@@ -1,0 +1,25 @@
+Host *
+	ServerAliveInterval 360
+	ForwardX11 yes
+
+Host al aluminum.the-britts.com 
+	HostName aluminum.the-britts.com
+	User sam
+
+Host ti titanium.the-britts.com titanium.goatech.org 130.207.128.69
+	HostName titanium.the-britts.com
+	Port 3489
+	User sam
+
+Host mol mole moleculos.me.gatech.edu
+	HostName moleculos.me.gatech.edu
+	GssApiAuthentication no
+	User sbritt
+
+Host titan titan.mse.gatech.edu 
+	HostName titan.mse.gatech.edu
+	User britt
+
+Host pen penguin penguin.me.gatech.edu
+	HostName penguin.me.gatech.edu
+	User britt
