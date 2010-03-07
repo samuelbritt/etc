@@ -1,0 +1,100 @@
+%%
+%% This is file `natmove.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% natmove.dtx  (with options: `package')
+%%  ----------------------------------------------------------------
+%%  natmove --- Automatic citation moving with natbib
+%%  Maintained by Joseph Wright
+%%  E-mail: joseph.wright@morningstar2.co.uk
+%%  Released under the LaTeX Project Public License v1.3c or later
+%%  See http://www.latex-project.org/lppl.txt
+%%  ----------------------------------------------------------------
+%% 
+\NeedsTeXFormat{LaTeX2e}
+\def\nmv@id$#1: #2.#3 #4 #5-#6-#7 #8 #9${%
+  #5/#6/#7\space v1.0\space}
+\ProvidesPackage{natmove}
+  [\nmv@id$Id: natmove.dtx 29 2008-08-22 07:47:26Z joseph $
+   Automatic citation moving with natbib]
+\begingroup
+  \catcode`\Q=3
+  \long\gdef\nmv@ifmtarg#1{%
+    \nmv@xifmtarg#1QQ\@secondoftwo\@firstoftwo\@nil}
+  \long\gdef\nmv@xifmtarg#1#2Q#3#4#5\@nil{#4}
+\endgroup
+\newif\ifnmv@cite
+\newcommand*{\nmv@citex}{%
+  \ifnmv@cite
+    \expandafter\nmv@citex@
+  \else
+    \expandafter\nmv@natcitex
+  \fi}
+\def\nmv@citex@[#1][#2]#3{%
+  \leavevmode
+  \skip@\lastskip
+  \unskip
+  \begingroup
+    \def\nmv@arg{[#1][#2]{#3}}%
+    \newcommand*{\nmv@citex@end}{%
+        \expandafter\nmv@natcitex\nmv@arg
+      \endgroup}%
+    \global\nmv@citefalse
+    \nmv@citex@getnext\relax}
+\newcommand*{\nmv@citex@getnext}[1]{%
+  \futurelet\nmv@citex@next\nmv@citex@punct}
+\newcommand*{\nmv@citex@punct}{%
+  \let\nmv@citex@loop\nmv@citex@end
+  \ifx.\nmv@citex@next\@empty
+    \ifnum\spacefactor<\nmv@citex@sfac\else
+      \let\nmv@citex@next\relax
+      \let\nmv@citex@loop\nmv@citex@getnext
+    \fi
+  \fi
+  \expandafter\nmv@citex@pnct\natmovechars\@empty
+  \nmv@citex@loop}
+\def\nmv@citex@pnct#1#2\@empty{%
+  \ifx\nmv@citex@next#1\@empty
+    #1%
+    \let\nmv@citex@loop\nmv@citex@getnext
+  \fi
+  \ifx\@empty#2\@empty\else
+    \expandafter\nmv@citex@pnct#2\@empty
+  \fi}
+\mathchardef\nmv@citex@sfac3000
+\expandafter\renewcommand\expandafter*\expandafter{\expandafter%
+  \frenchspacing\expandafter}\expandafter{%
+  \frenchspacing
+  \mathchardef\nmv@citex@sfac1001
+  \sfcode`\.\nmv@citex@sfac
+  \sfcode`\?\nmv@citex@sfac
+  \sfcode`\!\nmv@citex@sfac}
+\ifnum\sfcode`\.=\@m
+  \frenchspacing
+\fi
+\newcommand*{\nmv@activate}{%
+  \let\nmv@natcitex\@citex
+  \let\@citex\nmv@citex
+  \let\nmv@cite\cite
+  \renewcommand*{\cite}[2][]{%
+    \nmv@ifmtarg{##1}
+      {\nmv@citetrue
+       \nmv@cite{##2}}
+      {\nmv@citefalse
+       \nmv@cite[##1]{##2}}}}
+\AtBeginDocument{
+  \@ifpackageloaded{natbib}
+    {\ifNAT@super
+      \nmv@activate
+     \else
+      \nmv@notactivate
+     \fi}
+    {\PackageWarning{natmove}
+       {The natbib package has not been loaded}}}
+\newcommand*{\nmv@notactivate}{}
+\newcommand*{\natmovechars}{.,;:}
+\endinput
+%%
+%% End of file `natmove.sty'.

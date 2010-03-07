@@ -1,0 +1,139 @@
+% Provides good packages and tools for putting together the MSE lab reports
+
+\ProvidesPackage{mseLab}
+
+\usepackage{amsmath}          %extra math symbols
+\usepackage{amssymb}          %for postscript graphics
+\usepackage{latexsym}         %for postscript graphics
+\usepackage{color}            %who doesn't want a little color?
+\usepackage{graphicx}         %to insert graphics
+\usepackage{geometry}         %for margins
+\usepackage[thinspace, thinqspace, squaren, textstyle, Gray]{SIunits} 
+		              %consistent units; options 'squaren' and
+                              % 'Gray' are for use with PStricks 
+\usepackage{bpchem}           %chemical formulae, deprecated
+\usepackage[version=3]{mhchem}%chemical formulae + eqns; replaces bpchem
+\usepackage{url}              %better breaks in urls
+\usepackage{mathptmx}         %times font, for both text and math
+\usepackage{flafter}          %place floats only after first reference
+\usepackage[section]{placeins}%insert \FloatBarrier before each section
+\usepackage{dcolumn}          %for decimal-aligned tables
+\usepackage{multirow}         %for tables
+\usepackage{booktabs}         %for ``professional looking'' tables
+\usepackage{sectsty}          %custom section headings
+\usepackage{caption}          %custom caption formats
+\usepackage{varioref}         %custom cross-references
+\usepackage[square,comma,numbers,sort&compress]{natbib} 
+                              %collapsed, sorted in-text citations
+\bibliographystyle{IEEEtranN} %IEEE style compatible with natbib.sty
+
+%custom references, uses package varioref
+\labelformat{equation}{Equation~(#1)}
+\labelformat{figure}{Figure~#1}
+\labelformat{table}{Table~#1}
+
+%custom captions, uses package caption
+\captionsetup[figure]{font=footnotesize,labelfont=bf}
+\captionsetup[table]{labelfont=bf}
+
+%Section headings, uses package secsty
+\sectionfont{\large}
+\subsectionfont{\small}
+%Don't number any section headings
+\setcounter{secnumdepth}{-2}
+
+%include the ``images'' directory in the search path
+\graphicspath{{images/}}
+
+%margins, uses package geometry
+\geometry{hmargin=1.25in,vmargin=1in}  
+
+%chemistry command, uses package bpchem
+%Usage: \chem{CO\_2}
+%NOTE:  This command is deprecated, and only retained for compatibility.
+%       It is better to use the \ce{} command, provided by the mhchem 
+%       package.
+%       Usage: \ce{CO2}
+\newcommand{\chem}[1]{\BPChem{#1}}
+
+%title command: centered, bold
+\newcommand{\thetitle}[1]{%
+  \begin{center}%
+    {\Large\textbf{#1}}%
+  \end{center}%
+}
+
+%todo command---to make notes to yourself
+\newcommand{\todo}[1]{%
+  \textsc{%
+    \textcolor{red}{TODO: #1}%
+  }%
+}
+
+%easy scientific notation
+%usage: $ N_{A} = 6.022 \E{23} $ per mole
+\newcommand{\E}[1]{
+  \ensuremath{%
+    \times 10^{#1}%
+  }%
+}
+
+%degree command, e.g. $700\deg{C}$ or $400$\deg{F}
+%NOTE:	This command is deprecated, and only retained for compatibility
+%       It is better to use the \degree or \celsius commands, provided by 
+%       the SIunits package.
+%       Usage:  \unit{700}{\celsius} or 
+%               \addunit\fahrenheit{\degree\, F}
+%               ...
+%               \unit{400}{\fahrenheit}
+\renewcommand{\deg}[1]{%
+  \ensuremath{%
+    \,^{\circ}\mathrm{#1}%
+  }%
+}
+
+%Align decimal points in tables (uses package dcolumn):
+  % d{} takes a single argument specifying the number of digits to
+  % the left and right of the decimal point, separated by a decimal.
+  % The options used here will '.' as the separator, 
+  % with 'á' being used in the output. Example usage:
+  %%  \usepackage{dcolumn}
+  %%  \usepackage{booktabs}
+  %%  ...
+  %%  \begin{tabular}{d{1.2} d{3.3}}
+  %%    \toprule
+  %%    \multicolumn{1}{c}{Col 1}
+  %%      & \multicolumn{1}{c}{Col 2} \\
+  %%    \midrule
+  %%    1.2   &   0.596   \\
+  %%    5.69  &   568     \\
+  %%    \bottomrule
+  %%  \end{tabular}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+
+
+% Alter some LaTeX defaults for better treatment of figures:
+  % See p.105 of "TeX Unbound" for suggested values.
+  % See pp. 199-200 of Lamport's "LaTeX" book for details.
+  % I got these values from http://mintaka.sdsu.edu/GF/bibliog/
+  % latex/floats.html
+    %   General parameters, for ALL pages:
+    \renewcommand{\topfraction}{0.9}	% max fraction of floats at top
+    \renewcommand{\bottomfraction}{0.8}	% max fraction of floats at bottom
+    %   Parameters for TEXT pages (not float pages):
+    \setcounter{topnumber}{2}
+    \setcounter{bottomnumber}{2}
+    \setcounter{totalnumber}{4}     % 2 may work better
+    \setcounter{dbltopnumber}{2}    % for 2-column pages
+    \renewcommand{\dbltopfraction}{0.9}	% fit big float above 2-col. text
+    \renewcommand{\textfraction}{0.07}	% allow minimal text w. figs
+    %   Parameters for FLOAT pages (not text pages):
+    \renewcommand{\floatpagefraction}{0.7}	% require fuller float pages
+      % N.B.: floatpagefraction MUST be less than topfraction !!
+    \renewcommand{\dblfloatpagefraction}{0.7}	% require fuller float pages
+    % remember to use [htp] or [htpb] for placement
+
+
+% Create links to figures, citations; create bookmarks in pdf files
+% Loaded last to comply with the strange request in hyperref's documentation
+\usepackage[pdftex,bookmarks=true]{hyperref}

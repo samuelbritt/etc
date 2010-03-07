@@ -1,0 +1,543 @@
+%%
+%% This is file `notes2bib.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% notes2bib.dtx  (with options: `package')
+%%  ----------------------------------------------------------------
+%%  note2bib --- Integrating notes into the bibliography
+%%  Maintained by Joseph Wright
+%%  E-mail: joseph.wright@morningstar2.co.uk
+%%  Released under the LaTeX Project Public License v1.3 or later
+%%  See http://www.latex-project.org/lppl.txt
+%%  ----------------------------------------------------------------
+%% 
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{notes2bib}
+  [2008/10/31 v1.6a Integrating notes into the bibliography]
+\RequirePackage{xkeyval}[2005/05/07]
+\newcommand*{\niib@tempa}{}
+\newcommand*{\niib@tempb}{}
+\newif\ifniib@debug
+\newif\ifniib@logmin
+\newif\ifniib@lognone
+\newcommand*{\niib@log@err}[2]{%
+  \ifniib@lognone\else
+    \ifniib@logmin
+      \PackageWarning{notes2bib}{#1}%
+    \else
+      \PackageError{notes2bib}{#1}{#2}%
+    \fi
+  \fi}
+\newcommand*{\niib@log@warn}[1]{%
+  \ifniib@lognone\else
+    \ifniib@logmin\else
+      \PackageWarning{notes2bib}{#1}%
+    \fi
+  \fi}
+\newcommand*{\niib@log@inf}[1]{%
+  \ifniib@lognone\else
+    \ifniib@logmin\else
+      \PackageInfo{notes2bib}{#1}%
+    \fi
+  \fi}
+\newcommand*{\niib@log@debug}[1]{%
+  \ifniib@lognone\else
+    \ifniib@debug
+      \PackageInfo{notes2bib}{#1}%
+    \fi
+  \fi}
+\newcommand*{\niib@opt@boolkey}[2][]{%
+  \define@boolkey[niib]{opt}[niib@]{#2}[true]
+  {#1\niib@log@debug{Option #2 set to ##1}}}
+\newcommand*{\niib@opt@choicekey}[5][]{%
+  \define@choicekey*+[niib]{opt}{#2}[\niib@tempa]{#3}[#1]
+    {#4\niib@log@debug{Option #2 set to ##1}}
+    {#5\niib@log@debug{Option #2 set to ##1}}}
+\newcommand*{\niib@opt@cmdkeys}[1]{%
+  \define@cmdkeys[niib]{opt}[niib@]{#1}}
+\newcommand*{\niibsetup}{\setkeys[niib]{opt}}
+\niib@opt@choicekey[normal]{log}
+  {debug,verbose,normal,errors,none}
+  {\niib@debugfalse
+   \niib@logminfalse
+   \niib@lognonefalse
+   \renewcommand*{\niib@tempb}{none}%
+   \ifx\niib@tempa\niib@tempb
+     \niib@lognonetrue
+   \fi
+   \renewcommand*{\niib@tempb}{minimal}%
+   \ifx\niib@tempa\niib@tempb
+     \niib@logmintrue
+   \fi
+   \renewcommand*{\niib@tempb}{debug}%
+   \ifx\niib@tempa\niib@tempb
+     \niib@debugtrue
+   \fi
+   \renewcommand*{\niib@tempb}{verbose}%
+   \ifx\niib@tempa\niib@tempb
+     \niib@debugtrue
+   \fi}
+   {\niib@log@warn{Unrecognised value `#1' for option log}}
+\niib@opt@boolkey{debug}
+\niib@opt@boolkey[\niib@swapfoot]{footnotes}
+\niib@opt@boolkey[\niib@swapend]{endnotes}
+\newif\ifniib@tail
+\newif\ifniib@head
+\niib@opt@choicekey[none]{sort}{none,head,tail}
+  {\niib@headfalse
+   \niib@tailfalse
+   \renewcommand*{\niib@tempb}{head}%
+   \ifx\niib@tempa\niib@tempb
+     \niib@headtrue
+   \fi
+   \renewcommand*{\niib@tempb}{tail}%
+   \ifx\niib@tempa\niib@tempb
+     \niib@tailtrue
+   \fi}
+  {\niib@log@warn{Unrecognised value `#1' for option sort}}
+\niib@opt@boolkey[%
+  \ifniib@head
+    \ifniib@tail
+      \niib@tailfalse
+      \niib@log@inf{Option head cancels existing\MessageBreak
+        tail or sort=tail option}
+    \fi
+  \fi]{head}
+\niib@opt@boolkey[%
+  \ifniib@tail
+    \ifniib@head
+      \niib@headfalse
+      \niib@log@inf{Option tail cancels existing\MessageBreak
+        head or sort=head option}
+    \fi
+  \fi]{tail}
+\niib@opt@boolkey{writekey}
+\niib@opt@cmdkeys{%
+  cite,
+  name,
+  prefix,
+  record,
+  field,
+  presorthead,
+  presortnone,
+  presorttail,
+  keyhead,
+  keynone,
+  keytail,
+  keyword}
+\niibsetup{
+  cite=cite,
+  name=Bibnote,
+  prefix=niib-,
+  record=Misc,
+  field=note,
+  presorthead=ml,
+  presortnone=mm,
+  presorttail=mn,
+  keyhead=aaa,
+  keynone={},
+  keytail=zzz,
+  keyword=bibnote,
+  writekey=true}
+\niib@opt@boolkey{etex}
+\begingroup
+  \@ifundefined{eTeXversion}
+    {}
+    {\global\niib@etextrue}
+\endgroup
+\let\niib@org@footnote\footnote
+\let\niib@org@footnotemark\footnotemark
+\let\niib@org@footnotetext\footnotetext
+\AtBeginDocument{
+  \@ifpackageloaded{endnotes}
+    {\let\niib@org@endnote\endnote
+     \let\niib@org@endnotemark\endnotemark
+     \let\niib@org@endnotetext\endnotetext
+     \let\niib@org@theendnotes\theendnotes}{}}
+\@ifundefined{thanks}{}
+  {\renewcommand*{\thanks}[1]{%
+     \niib@org@footnotemark
+     \protected@xdef\@thanks{\@thanks
+     \protect\niib@org@footnotetext[\the\c@footnote]{#1}}}}
+\newcommand*{\niib@swapfoot}{%
+  \ifniib@footnotes
+    \let\footnote\bibnote
+    \let\footnotemark\bibnotetext
+    \let\footnotetext\bibnotemark
+    \niib@log@debug{Converting footnotes to bibnotes}%
+  \else
+    \let\footnote\niib@org@footnote
+    \let\footnotemark\niib@org@footnotemark
+    \let\footnotetext\niib@org@footnotetext
+    \niib@log@debug{Using kernel definition of footnotes}%
+    \fi}
+\AtBeginDocument{\niib@swapfoot}
+\newcommand*{\niib@swapend}{}
+\AtBeginDocument{
+  \@ifpackageloaded{endnotes}
+    {\renewcommand*{\niib@swapend}{%
+       \ifniib@endnotes
+         \let\endnote\bibnote
+         \let\endnotemark\bibnotemark
+         \let\endnotetext\bibnotetext
+         \let\theendnotes\printbibnotes
+         \niib@log@debug{Converting endnotes to bibnotes}%
+       \else
+         \let\endnote\niib@org@endnote
+         \let\endnotemark\niib@org@endnotemark
+         \let\endnotetext\niib@org@endnotetext
+         \let\theendnotes\niib@org@theendnotes
+         \niib@log@debug{Using endnotes package to handle
+           endnotes}%
+       \fi}
+     \niib@swapend}
+    {\ifniib@endnotes
+       \let\endnote\bibnote
+       \let\endnotemark\bibnotemark
+       \let\endnotetext\bibnotetext
+       \let\theendnotes\printbibnotes
+       \niib@log@debug{Converting endnotes to bibnotes}%
+     \fi
+     \renewcommand*{\niib@swapend}{%
+       \ifniib@endnotes
+         \let\endnote\bibnote
+         \let\endnotemark\bibnotemark
+         \let\endnotetext\bibnotetext
+         \let\theendnotes\printbibnotes
+         \niib@log@debug{Converting endnotes to bibnotes}%
+       \else
+         \niib@log@inf{endnotes package not loaded\MessageBreak
+           endnotes=false ignored}%
+       \fi}}}
+\ProcessOptionsX[niib]<opt>
+\AtEndOfPackage{
+  \define@key[niib]{opt}{etex}
+    {\niib@log@warn{Option `etex' only available
+       \MessageBreak when loading notes2bib}}}
+\begingroup
+  \@ifundefined{eTeXversion}
+    {\ifniib@etex
+       \niib@log@warn{e-TeX unavailable}%
+       \global\niib@etexfalse
+     \fi}
+    {\ifniib@etex\else
+       \niib@log@inf{Use of e-TeX disabled}%
+     \fi}
+\endgroup
+\newcounter{bibnote}
+\renewcommand*{\thebibnote}{\niib@name\the\value{bibnote}}
+\DeclareRobustCommand*{\bibnote}{%
+  \stepcounter{bibnote}%
+  \@ifnextchar[%]
+    {\niib@bibnote}
+    {\niib@bibnote[\thebibnote]}}
+\DeclareRobustCommand*{\bibnotemark}{%
+  \stepcounter{bibnote}%
+  \@ifnextchar[%]
+    {\niib@mark}
+    {\niib@mark[\thebibnote]}}
+\DeclareRobustCommand*{\bibnotetext}[1][\thebibnote]{%
+  \let\niib@next\niib@gobble
+  \niib@text{#1}}
+\AtBeginDocument{
+  \@ifpackageloaded{biblatex}
+    {\let\printbibnotes\printbibliography}
+    {\DeclareRobustCommand*{\printbibnotes}
+       {\niib@org@bib{\niib@prefix\jobname}}}}
+\DeclareRobustCommand*{\flushnotestack}{%
+  \let\niib@taillist\niib@stack
+  \ifniib@rerun\else
+    \niib@checkrerun{tail}%
+  \fi
+  \ifx\@empty\niib@stack\@empty
+    \niib@log@debug{Citation stack empty: nothing for
+      \MessageBreak\noexpand\flushnotestack to do}%
+  \else%
+    \niib@log@debug{Flushing note citations to aux file}%
+    \if@filesw
+      \immediate\write\@auxout{%
+        \string\niibtailcite{\niib@stack}}%
+    \fi
+    \expandafter\nocite\expandafter{\niib@stack}%
+    \gdef\niib@stack{}%
+  \fi}
+\DeclareRobustCommand*{\citenote}[1]{\niib@mark[#1]}
+\AtBeginDocument{
+  \@ifpackageloaded{biblatex}
+    {\niib@log@debug{Using field `keysort' for sorting key}%
+     \newcommand*{\niib@keyname}{keysort}}
+    {\niib@log@debug{Using field `key' for sorting key}%
+     \newcommand*{\niib@keyname}{key}}}
+\newcommand*{\niib@presort}{%
+  \ifniib@head
+    \niib@presorthead
+  \else
+    \ifniib@tail
+      \niib@presorttail
+    \else
+      \niib@presortnone
+    \fi
+  \fi}
+\newcommand*{\niib@key}{%
+  \ifniib@head
+    \niib@keyhead
+  \else
+    \ifniib@tail
+      \niib@keytail
+    \else
+      \niib@keynone
+    \fi
+  \fi}
+\edef\niib@msg{%
+  This is an auxiliary file used by the `notes2bib'
+  package.^^J This file may safely be deleted. It
+  will be recreated as required.^^J}
+\newcommand*{\niib@stack}{}
+\newcommand*{\niib@addtostack}[1]{%
+  \niib@log@debug{Adding citation #1\MessageBreak to `tail'
+    stack}%
+  \edef\niib@tempa{#1}%
+  \ifx\@empty\niib@stack\@empty
+    \xdef\niib@stack{\niib@tempa}%
+  \else
+    \xdef\niib@stack{\niib@stack,\niib@tempa}%
+  \fi}
+\long\def\niib@bibnote[#1]#2{%
+  \let\niib@next\niib@mark
+  \niib@text{#1}{#2}}
+\newcommand*{\niib@headlist}{}
+\def\niib@mark[#1]{%
+  \ifniib@head
+    \edef\niib@tempa{#1}%
+    \ifx\@empty\niib@headlist\@empty
+      \xdef\niib@headlist{\niib@tempa}%
+    \else
+      \xdef\niib@headlist{\niib@headlist,\niib@tempa}%
+    \fi
+    \if@filesw
+      \niib@log@debug{Adding citation #1 to list for next run}%
+      \immediate\write\@auxout{\string\niibheadcite{#1}}%
+    \fi
+  \fi
+  \ifniib@tail
+    \expandafter\niib@tailcite%
+  \else
+    \expandafter\niib@normcite%
+  \fi
+  {#1}}
+\newif\ifniib@filesw
+\AtBeginDocument{
+  \@ifpackageloaded{biblatex}
+    {\newcommand{\niib@tailcite}[1]{%
+       \niib@addtostack{#1}%
+       \AtNextCite{\@fileswfalse}%
+       \niib@normcite{#1}}}
+    {\newcommand{\niib@tailcite}[1]{%
+       \niib@addtostack{#1}%
+       \let\ifniib@filesw\if@filesw
+       \@fileswfalse
+       \let\niib@auxhook\niib@restorefilesw
+       \niib@tcite{#1}}}}
+\newcommand*{\niib@restorefilesw}{%
+  \let\if@filesw\ifniib@filesw
+  \let\niib@auxhook\relax}
+\AtBeginDocument{%
+  \@ifpackageloaded{cite}
+    {\newcommand*{\niib@tcite}[1]{\niib@normcite{#1}}}
+    {\newcommand*{\niib@tcite}[1]{%
+       \niib@normcite{#1}%
+       \niib@restorefilesw}}}
+\newcommand*{\niib@normcite}{\@nameuse{\niib@cite}}
+\newcommand*{\niib@next}{}
+\def\niib@gobble[#1]{}
+\let\niib@next\niib@gobble
+\newcommand*{\niib@text}{%
+  \@bsphack
+  \@ifundefined{niib@out}
+    {\if@filesw
+       \newwrite\niib@out
+       \gdef\niib@stream{\niib@prefix\jobname.bib}%
+       \niib@log@debug{Creating BibTeX database file
+         \MessageBreak\niib@stream\space to contain bibnotes}%
+       \immediate\openout\niib@out\niib@stream\relax
+       \immediate\write\niib@out{\niib@msg}%
+     \fi}
+    {}%
+  \if@filesw
+    \expandafter\niib@write
+  \else
+    \expandafter\niib@tidy
+  \fi}
+\newcommand*{\niib@tidy}[2]{%
+  \@esphack
+  \niib@next[#1]}
+\ifniib@etex
+  \newcommand*{\niib@write}[2]{%
+    \niib@log@debug{Writing bibnote #1 contents
+      \MessageBreak---\MessageBreak#2\MessageBreak
+      ---\MessageBreak to BibTeX database}%
+    \immediate\write\niib@out{%
+      @\niib@record\string{#1,^^J%
+      presort = \string{\niib@presort\string},^^J%
+      \ifniib@writekey
+        \niib@keyname\space= \string{\niib@key#1\string},^^J%
+      \fi
+      keywords = \string{\niib@keyword\string},^^J%
+      \niib@field\space= \string{\unexpanded{#2}\string}^^J%
+      \string}^^J}%
+    \@esphack
+    \niib@next[#1]}
+\else
+  \newcommand*{\niib@write}[1]{%
+    \begingroup
+      \let\do\@makeother
+      \dospecials
+      \catcode`\{=1\relax
+      \catcode`\}=2\relax
+      \niib@write@{#1}}
+\fi
+\newcommand\niib@write@[1]{%
+  \long\def\niib@tempa##1{%
+    \def\niib@tempa{##1}%
+    \@onelevel@sanitize\niib@tempa\expandafter\endgroup
+    \expandafter\def\expandafter\niib@tempa\expandafter{%
+      \niib@tempa}%
+    \niib@write@@{#1}}%
+  \catcode`\^^M=10\relax
+  \niib@tempa}
+\newcommand*\niib@write@@[1]{%
+  \niib@log@debug{Writing bibnote #1 contents
+    \MessageBreak---\MessageBreak\niib@tempa\MessageBreak
+    ---\MessageBreak to BibTeX database}%
+  \immediate\write\niib@out{%
+    @\niib@record\string{#1,^^J%
+    presort = \string{\niib@presort\string},^^J%
+    \niib@keyname\space= \string{\niib@key#1\string},^^J%
+    \niib@field\space= \string{\niib@tempa\string}^^J%
+    \string}^^J}%
+  \@esphack
+  \niib@next[#1]}
+\newcommand*{\niib@headcitelist}{}
+\g@addto@macro{\document}{\niib@dochook}
+\newcommand*{\niibheadcite}[1]{%
+  \edef\niib@tempa{#1}%
+  \ifx\@empty\niib@headcitelist\@empty
+    \xdef\niib@headcitelist{\niib@tempa}%
+  \else
+    \xdef\niib@headcitelist{\niib@headcitelist,\niib@tempa}%
+  \fi
+  \if@filesw
+    \niib@log@debug{Adding citation #1 to start of .aux file}%
+  \fi
+  \g@addto@macro{\niib@dochook}{\nocite{#1}}}
+\newcommand*{\niib@tailcitelist}{}
+\newcommand*{\niibtailcite}[1]{%
+  \edef\niib@tempa{#1}%
+  \ifx\@empty\niib@tailcitelist\@empty
+    \xdef\niib@tailcitelist{\niib@tempa}%
+  \else
+    \xdef\niib@tailcitelist{\niib@tailcitelist,\niib@tempa}%
+  \fi}
+\newcommand*{\niib@dochook}{%
+  \@ifundefined{@restore@auxhandle}
+    {\newcommand*{\@restore@auxhandle}{\niib@auxhook}}
+    {\ifx\relax\@restore@auxhandle\relax
+       \newcommand*{\@restore@auxhandle}{\niib@auxhook}%
+     \else
+       \g@addto@macro{\@restore@auxhandle}{\niib@auxhook}%
+     \fi}}
+\newcommand*{\niib@auxhook}{}
+\let\niib@auxhook\relax
+\AtBeginDocument{
+  \@ifpackageloaded{biblatex}
+    {\expandafter\gappto\expandafter\blx@bibfiles\expandafter
+       {,\niib@prefix\jobname}
+     \niib@log@debug{Added bibnotes database to biblatex file
+       list}}%
+    {\let\niib@org@bib\bibliography
+     \renewcommand*{\bibliography}[1]{%
+       \ifnum\the\value{bibnote} > \z@
+         \niib@org@bib{\niib@prefix\jobname,#1}%
+       \else
+         \niib@org@bib{#1}%
+       \fi}
+     \niib@log@debug{Added bibnote database to
+       \noexpand\bibliography}}}
+\newif\ifniib@rerun
+\newcommand*{\niib@checkrerun}[1]{%
+  \niib@rerunfalse
+  \expandafter\ifx\expandafter\@empty
+    \csname niib@#1list\endcsname\@empty
+    \expandafter\ifx\expandafter\@empty
+      \csname niib@#1citelist\endcsname\@empty
+      \niib@log@debug{No `#1' notes detected}%
+    \else
+      \niib@reruntrue
+      \niib@log@debug{No `#1' notes found this run\MessageBreak
+        but .aux files contained the `#1' requests:
+        \MessageBreak\csname niib@#1citelist\endcsname}%
+    \fi
+  \else
+    \expandafter\ifx\expandafter\@empty
+      \csname niib@#1citelist\endcsname\@empty
+      \niib@reruntrue
+      \niib@log@debug{No `#1' requests in .aux file
+        \MessageBreak but `#1' notes in this run:
+        \MessageBreak\csname niib@#1list\endcsname}%
+    \else
+      \niib@checklists{#1}%
+    \fi
+  \fi
+  \ifniib@rerun
+    \niib@log@warn{Rerun LaTeX to get correct \MessageBreak
+      `#1' notes}%
+    \niib@log@warn{Please (re)run BibTeX on the file(s):
+      \MessageBreak\jobname.aux
+      \MessageBreak and rerun LaTeX afterwards.}%
+    \ifniib@lognone\else
+      \typeout{%
+        REQ:3:latex:REQ^^J%
+        REQ:2:bibtex:REQ^^J%
+        REQ:1:latex:REQ}%
+    \fi
+  \fi}
+\newcommand*{\niib@checklists}[1]{%
+  \expandafter\edef\expandafter\niib@list\expandafter
+    {\csname niib@#1list\endcsname}%
+  \expandafter\edef\expandafter\niib@citelist\expandafter
+    {\csname niib@#1citelist\endcsname}%
+  \@for\niib@tempa:=\niib@list\do{%
+    \niib@reruntrue
+    \@for\niib@tempb:=\niib@citelist\do{%
+      \ifx\niib@tempa\niib@tempb
+        \niib@rerunfalse
+      \fi}
+    \ifniib@rerun
+      \niib@log@debug{Note \niib@tempa\space is a `#1' note
+        \MessageBreak but request not in .aux file}%
+    \fi}
+  \ifniib@rerun\else
+    \@for\niib@tempa:=\niib@citelist\do{%
+      \niib@reruntrue
+      \@for\niib@tempb:=\niib@list\do{%
+        \ifx\niib@tempa\niib@tempb
+          \niib@rerunfalse
+        \fi}
+      \ifniib@rerun
+        \niib@log@debug{Note \niib@tempa\space is set to `#1'
+          in .aux\MessageBreak file but is not a `#1' note}%
+      \fi}
+  \fi}
+\AtEndDocument{%
+  \niib@rerunfalse
+  \niib@checkrerun{head}%
+  \flushnotestack
+  \@ifundefined{niib@out}{}
+    {\immediate\closeout\niib@out
+     \niib@log@debug{Closed BibTeX database file\MessageBreak
+       \niib@stream}}}
+\endinput
+%%
+%% End of file `notes2bib.sty'.

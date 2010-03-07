@@ -1,0 +1,149 @@
+\ProvidesPackage{ccmdbeamer}
+
+\RequirePackage{graphicx}
+\RequirePackage{array}
+\RequirePackage{colortbl}
+
+%%fakesection DEFAULTS:
+\newcommand\todo[1][]{} %default is empty; overridden in draft mode
+\usetheme{default}
+\renewcommand\raggedright{\leftskip=0cm \rightskip=0pt plus 2em}
+%This is a hack for temporarily changing margins
+\newenvironment{fullscreen}{%
+  \begin{list}{}{%
+  \setlength{\topsep}{0pt}%
+  \setlength{\leftmargin}{-1cm}%
+  \setlength{\rightmargin}{0cm}%
+  \setlength{\listparindent}{\parindent}%
+  \setlength{\itemindent}{\parindent}%
+  \setlength{\parsep}{\parskip}%
+  }%
+  \item[]}{\end{list}}
+
+%%fakesection Fonts
+\usepackage{pxfonts}
+\usepackage[T1]{fontenc}
+\usefonttheme[]{serif}
+\setbeamerfont{framesubtitle}{size=\normalsize}
+
+%%fakesection Headlines/Footlines
+\usenavigationsymbolstemplate{}
+\setbeamertemplate{headline}{
+  \parbox[b]{\paperwidth}{
+      \vspace{3pt}
+      \hfill \tiny \bfseries \color{red}{
+      CCMD Confidential
+      \hspace{3pt}
+    }
+  }
+}
+
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=3ex,center]{author
+    in head/foot}%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=3ex,center]{author
+    in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=3ex,right]{date in
+    head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{4ex}
+  \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+
+%%fakesection Background Images
+\setbeamertemplate{background canvas}{
+  \parbox[c][\paperheight]{\paperwidth}{
+  \centering
+    \includegraphics[width=.95\paperwidth]{CCMD_presentation_header_transp}
+    \vfill
+    \includegraphics[width=.95\paperwidth]{CCMD_presentation_footer_transp}
+  }
+}
+
+%%fakesection Frametitle
+\setbeamertemplate{frametitle}{
+\vspace{7pt}
+\begin{center}
+  \begin{minipage}[t]{.75\paperwidth}
+    \begin{center}
+      \insertframetitle \\
+      \usebeamerfont{framesubtitle}
+      \insertframesubtitle
+    \end{center}
+  \end{minipage}
+\end{center}
+}
+
+%%fakesection OPTIONS:
+\DeclareOption{draft}{
+  \setbeamertemplate{background}[grid][color=black!20,step=.125\paperwidth]
+  \renewcommand\todo[1][Fix Me\ ]{\textsc{\color{red}{TODO: #1}}}
+}
+
+\DeclareOption{quad}{
+  \setbeamersize{text margin left=0pt}
+  \setbeamersize{text margin right=0pt}
+  \setbeamerfont{frametitle}{size=\tiny, series=\bfseries}
+  \setbeamerfont{framesubtitle}{size=\tiny, series=\mdseries}
+  \setbeamerfont{normalfont}{size=\tiny}
+  \newcommand\newquadblock{\usebeamerfont{normalfont} \vspace{-.35in}}
+  \newcommand\quadtitle[1]{%
+    {\centering \footnotesize \scshape \usebeamercolor[fg]{frametitle} #1\par}%
+  }
+
+  % Settings for the large table
+  \setlength\arrayrulewidth{1pt}
+  \newcolumntype{B}{!{\color{blue}\vline}}
+  \newcommand\bhline{\arrayrulecolor{blue}\hline}
+  \newlength\tblwd \setlength\tblwd{.98\paperwidth}
+  \newlength\colwd \setlength\colwd{.465\tblwd}
+  \setlength\extrarowheight{-2pt}
+
+  % Itemize/Enumerate
+  \setbeamerfont{itemize/enumerate subbody}{size=\Tiny}
+  \setbeamertemplate{itemize subitem}{---}
+  \setlength\leftmargini{.5em}
+  \setlength\leftmarginii{.5ex}
+  \newenvironment{qenumerate}{%
+    \begin{enumerate}
+    \setlength\labelsep{.8ex}
+    %\addtolength\parskip{-1pt}%
+  }{%
+    \end{enumerate}%
+  }
+  \newenvironment{qitemize}{%
+  \begin{itemize}
+    \setlength\labelsep{1ex}%
+  }{%
+    \end{itemize}%
+  }
+
+  % Custom Footline (no title or slide number)
+  \setbeamertemplate{footline}{
+    \leavevmode%
+    \hbox{%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=3ex,center]{author
+      in head/foot}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=3ex,center]{author
+      in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=3ex,right]{date in
+      head/foot}%
+      \usebeamerfont{date in head/foot}\insertshortdate\hspace*{4ex}
+    \end{beamercolorbox}%
+    }%
+    \vskip0pt%
+  }
+}
+
+\ProcessOptions

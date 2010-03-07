@@ -1,0 +1,60 @@
+% Provides tools for easily importing graphics from plots 
+% produced by Microsoft Excel
+
+\ProvidesPackage{xlgraphics}
+\usepackage{graphicx}
+
+%single figure command, uses default trims good for excel output
+%Usage: 
+% \xlSingleFig
+%   {filename}
+%     {caption}
+%     {label}
+\newcommand{\xlSingleFig}[3]{
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[t]{.7\linewidth}
+    \centering
+    \includegraphics[%
+      width=\linewidth,
+      trim=.9in 1.15in 1in 1.5in,
+      clip=true]{#1}
+    \caption{#2}
+    \label{#3}
+  \end{minipage}
+\end{figure}}
+
+%double figure command, uses default trims good for excel output
+%usage: 
+% \xlDoubleFig
+%   {filename1}
+%     {caption1}
+%     {label1}
+%   {filename2}
+%     {caption2}
+%     {label2}
+\newcommand{\xlDoubleFig}[6]{
+\begin{figure}[htbp]
+  \centering
+  %%--start of first figure--
+  \begin{minipage}[t]{0.48\linewidth}
+    \centering
+    \includegraphics[%
+      width=\linewidth,
+      trim=.9in 1.15in 1in 1.5in,
+      clip=true]{#1}
+    \caption{#2}
+    \label{#3}
+  \end{minipage}%
+  \hfill%
+  %%--start of second figure--
+  \begin{minipage}[t]{0.48\linewidth}
+    \centering
+    \includegraphics[%
+      width=\linewidth,
+      trim=.9in 1.15in 1in 1.5in,
+      clip=true]{#4}
+    \caption{#5}
+    \label{#6}
+  \end{minipage}%
+\end{figure}}
