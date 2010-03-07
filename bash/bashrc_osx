@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# source common settings
+. ~/etc/bash/bashrc_common
+
+# color support
+export CLICOLOR=1
+export LSCOLORS=gxFxCxDxBxegedabagacad
+
+export VIMRUNTIME='/Applications/MacVim.app/Contents/Resources/vim/runtime'
+
+# MacPorts Installer addition on 2008-12-29_at_19:09:46: adding appropriate
+# PATH DISPLAY variables for use with MacPorts 
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
+# Aliases
+alias gvim="mvim"
+alias gvimdiff="mvim -d"
+alias mvimdiff="mvim -d"
+alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
+alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
+alias lss="ls *.cpp *.h"
+alias ls="ls -p"

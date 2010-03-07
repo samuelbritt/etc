@@ -1,0 +1,4 @@
+set guifont=DejaVu\ Sans\ Mono\ 8
+colorscheme macvim
+set lines=40
+set columns=80
