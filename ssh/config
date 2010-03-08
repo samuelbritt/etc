@@ -2,9 +2,8 @@ Host *
 	ServerAliveInterval 360
 	ForwardX11 yes
 
-Host al aluminum.the-britts.com 
-	HostName aluminum.the-britts.com
-	User sam
+Host h
+	Hostname hydrogen.local
 
 Host ti titanium.the-britts.com titanium.goatech.org 130.207.128.69
 	HostName titanium.the-britts.com
@@ -16,10 +15,18 @@ Host mol mole moleculos.me.gatech.edu
 	GssApiAuthentication no
 	User sbritt
 
-Host titan titan.mse.gatech.edu 
+Host titan titan.mse.gatech.edu
 	HostName titan.mse.gatech.edu
 	User britt
 
 Host pen penguin penguin.me.gatech.edu
 	HostName penguin.me.gatech.edu
+	User britt
+
+Host al aluminum.the-britts.com
+	HostName aluminum.the-britts.com
+	User sam
+
+Host abe login-abe.ncsa.teragrid.org
+	HostName login-abe.ncsa.teragrid.org
 	User britt
