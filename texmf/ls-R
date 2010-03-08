@@ -16,6 +16,12 @@ bst
 ./bibtex/bst:
 achemso.bst
 biochem.bst
+elsevier
+
+./bibtex/bst/elsevier:
+elsarticle-harv.bst
+elsarticle-num.bst
+elsarticle-num-names.bst
 
 ./doc:
 
@@ -26,7 +32,6 @@ type1
 
 ./tex:
 latex
-myachemso.sty~
 
 ./tex/latex:
 achemso.sty
