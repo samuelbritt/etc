@@ -13,8 +13,6 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
-# prompt:
-PS1='\n\u@\h:\w\n\$ '
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -22,10 +20,14 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# prompt:
+PS1='\n\u@\h:\w\n\$ '
+
 # Alias definitions.
 alias grep="grep --color=auto"
 alias ll='ls -hl'
 alias la='ls -A'
+alias lal='ll -A'
 alias isodate='date +%F'
 alias isodatetime='date +%F-%H%M'
 alias bc='bc -l'
