@@ -102,3 +102,10 @@ set completeopt=menuone,menu,longest,preview
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
 set dir=~/.swp
+
+" show arrow at beginning of wrapped lines
+let &sbr = nr2char(8618).' '
+
+" Give windows equal space after resizing or opening a new window
+autocmd VimResized * wincmd =
+autocmd BufWinEnter * wincmd =

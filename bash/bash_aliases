@@ -1,0 +1,19 @@
+# Common alias definitions.
+alias grep="grep --color=auto"
+alias ll='ls -hl'
+alias la='ls -A'
+alias lal='ll -A'
+alias cd..='cd ..'
+alias ..='cd ..'
+alias isodate='date +%F'
+alias isodatetime='date +%F-%H%M'
+alias bc='bc -l'
+alias diff='diff -u'
+alias scr='screen -DR'
+alias df='df -H'
+alias du='du -h'
+
+# recursive mkdir and cd if successful
+function mkcd {
+	mkdir -p "$@" && builtin cd "$@"
+}

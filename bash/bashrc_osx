@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# OS X specific bash settings
 
 # source common settings
 . ~/etc/bash/bashrc_common

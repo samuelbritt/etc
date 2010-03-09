@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Common bash settings
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -23,18 +25,10 @@ fi
 # prompt:
 PS1='\n\u@\h:\w\n\$ '
 
-# Alias definitions.
-alias grep="grep --color=auto"
-alias ll='ls -hl'
-alias la='ls -A'
-alias lal='ll -A'
-alias cd..='cd ..'
-alias ..='cd ..'
-alias isodate='date +%F'
-alias isodatetime='date +%F-%H%M'
-alias bc='bc -l'
-alias scr='screen -DR'
-alias diff='diff -u'
+# Aliases in .bash_aliases
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
 
 # LaTeX
 export BIBINPUTS=.:$HOME/texmf/bibtex/bib
@@ -45,3 +39,4 @@ export PATH=$HOME/bin:$PATH
 
 #Vim keybindings
 set -o vi
+

@@ -1,3 +1,5 @@
+# Titanium-specific bash settings
+#
 # source common settings
 . ~/etc/bash/bashrc_linux
 
