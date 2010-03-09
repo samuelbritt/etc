@@ -17,3 +17,8 @@ alias du='du -h'
 function mkcd {
 	mkdir -p "$@" && builtin cd "$@"
 }
+
+# cd and ls
+function cl {
+	cd "$@" && ls 
+}
