@@ -1,7 +1,5 @@
 # Linux-specific bash settings
 # 
-# source common settings
-. ~/etc/bash/bashrc_common
 
 #color support of ls
 if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
@@ -13,3 +11,6 @@ fi
 alias open='gnome-open'
 alias lss='ls --ignore=*.o'
 alias lsd='ls --group-directories-first' #works on ubuntu
+
+# source common settings
+. ~/etc/bash/bashrc_common
