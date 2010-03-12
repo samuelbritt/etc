@@ -1,10 +1,14 @@
 # Common alias definitions.
-alias grep="grep --color=auto"
 alias ll='ls -hl'
 alias la='ls -A'
 alias lal='ll -A'
+
 alias cd..='cd ..'
 alias ..='cd ..'
+alias ...='cd ../..'
+alias root='cd `hg root`'
+
+alias grep="grep --color=auto"
 alias isodate='date +%F'
 alias isodatetime='date +%F-%H%M'
 alias bc='bc -l'
