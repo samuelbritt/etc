@@ -9,6 +9,7 @@ latest = log --limit 5
 git = True
 
 [extensions]
+graphlog =
 hgext.highlight =
 color =
 
