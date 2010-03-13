@@ -6,8 +6,7 @@ ignore = ~/.hgrc_ignore
 latest = log --limit 5
 
 [extensions]
-inotify =
-hgext.highlight =
+hgext.highlight=
 color =
 
 [color]
