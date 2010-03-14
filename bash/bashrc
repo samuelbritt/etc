@@ -1,5 +1,34 @@
 #!/bin/bash
-#
+
+# Platform-specific settings
+if [ `uname` = "Linux" ] ; then
+	#color support of ls
+	if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
+		eval "`dircolors -b`"
+		alias ls='ls --color=auto -Bp'
+		alias dir='dir --color=auto -p'
+	fi
+fi 
+if [ `uname` = "Darwin" ] ; then
+	# color support
+	export CLICOLOR=1
+	export LSCOLORS=ExGxCxDxCxegedabagacad
+	export VIMRUNTIME='/Applications/MacVim.app/Contents/Resources/vim/runtime'
+	# PATH DISPLAY variables for use with MacPorts 
+	export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+fi
+
+# Machine-specific settings
+if [ `uname -n` = "titanium" ] ; then
+	# Abaqus:
+	export SIMULIADIR=/usr/local/simulia
+	export ABAQUSDIR=$SIMULIADIR/Abaqus
+	export PATH=$PATH:$ABAQUSDIR/Commands
+	# Intel Compilers:
+	source /opt/intel/Compiler/11.0/074/bin/ifortvars.sh intel64
+fi
+
+
 # Common bash settings
 
 # If not running interactively, don't do anything
@@ -22,13 +51,13 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-# prompt:
-PS1='\n\u@\h:\w\n\$ '
-
-# Aliases in .bash_aliases
+# Aliases found in .bash_aliases
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
+
+# prompt
+PS1='\n\u@\h:\w\n\$ '
 
 # LaTeX
 export BIBINPUTS=.:$HOME/texmf/bibtex/bib
@@ -39,4 +68,3 @@ export PATH=$HOME/bin:$PATH
 
 #Vim keybindings
 set -o vi
-
