@@ -1,0 +1,90 @@
+#!/bin/bash
+
+# Platform-specific settings
+if [ `uname` = "Linux" ] ; then
+	#color support of ls
+	if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
+		eval "`dircolors -b`"
+		alias ls='ls --color=auto -Bp'
+		alias dir='dir --color=auto -p'
+	fi
+
+	alias open='gnome-open'
+	alias lss='ls --ignore=*.o'
+	alias lsd='ls --group-directories-first' #works on ubuntu
+fi 
+if [ `uname` = "Darwin" ] ; then
+	# color support
+	export CLICOLOR=1
+	export LSCOLORS=gxFxCxDxBxegedabagacad
+
+	export VIMRUNTIME='/Applications/MacVim.app/Contents/Resources/vim/runtime'
+
+	# PATH DISPLAY variables for use with MacPorts 
+	export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
+	# Aliases
+	alias gvim="mvim"
+	alias gvimdiff="mvim -d"
+	alias mvimdiff="mvim -d"
+	alias lss="ls *.cpp *.h"
+	alias ls="ls -p"
+	alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
+	alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
+fi
+
+# Machine-specific settings
+if [ `uname -n` = "titanium" ] ; then
+	# Abaqus:
+	export SIMULIADIR=/usr/local/simulia
+	export ABAQUSDIR=$SIMULIADIR/Abaqus
+	export PATH=$PATH:$ABAQUSDIR/Commands
+	alias abaqus='XLIB_SKIP_ARGB_VISUALS=1 abaqus'
+	alias abq671='XLIB_SKIP_ARGB_VISUALS=1 abq671'
+	alias abq681='XLIB_SKIP_ARGB_VISUALS=1 abq681'
+	alias cae='abaqus cae&'
+
+	# Intel Compilers:
+	source /opt/intel/Compiler/11.0/074/bin/ifortvars.sh intel64
+fi
+
+
+# Common bash settings
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+export HISTCONTROL=ignoreboth # ignore dupes and lines starting with spaces
+export HISTSIZE=5000 # number of stored commands
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+# Aliases found in .bash_aliases
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
+
+# prompt
+PS1='\n\u@\h:\w\n\$ '
+
+# LaTeX
+export BIBINPUTS=.:$HOME/texmf/bibtex/bib
+
+# paths
+export PYTHONPATH=$HOME/bin:$PYTHONPATH
+export PATH=$HOME/bin:$PATH
+
+#Vim keybindings
+set -o vi
