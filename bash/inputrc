@@ -1,0 +1,4 @@
+# Readline settings
+
+# Make all readline-obeying programs take vi settings
+set editing-mode vi
