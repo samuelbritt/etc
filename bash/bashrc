@@ -16,7 +16,7 @@ fi
 if [ `uname` = "Darwin" ] ; then
 	# color support
 	export CLICOLOR=1
-	export LSCOLORS=gxFxCxDxBxegedabagacad
+	export LSCOLORS=ExGxCxDxCxegedabagacad
 
 	export VIMRUNTIME='/Applications/MacVim.app/Contents/Resources/vim/runtime'
 
