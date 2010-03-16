@@ -59,8 +59,8 @@ function! CommentStr()
 		let s:comment_bkup = 0
 	elseif &ft == "c" || &ft == "css"
 		let s:comment_strt = '/*'
-		let s:comment_mid0 = '* '
-		let s:comment_mid1 = '*'
+		let s:comment_mid0 = ' * '
+		let s:comment_mid1 = ' *'
 		let s:comment_stop = '*/'
 		let s:comment_bkup = 1
 		let s:comment_strtbak = '/ *'
@@ -101,6 +101,12 @@ function! CommentStr()
 		let s:comment_strt = 'c'
 		let s:comment_mid0 = 'c '
 		let s:comment_mid1 = 'c'
+		let s:comment_stop = ' '
+		let s:comment_bkup = 0
+	elseif &ft == "abaqus"
+		let s:comment_strt = '**'
+		let s:comment_mid0 = '** '
+		let s:comment_mid1 = '**'
 		let s:comment_stop = ' '
 		let s:comment_bkup = 0
 	else
