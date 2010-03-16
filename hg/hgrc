@@ -10,6 +10,7 @@ glatest = glog --limit 5
 git = True
 
 [extensions]
+fetch =
 graphlog =
 hgext.highlight =
 color =
