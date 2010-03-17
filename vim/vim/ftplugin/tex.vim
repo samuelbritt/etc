@@ -13,8 +13,8 @@ setlocal spell spelllang=en_us
 set wildignore=*.log,*.aux,*.dvi,*.ps,*.pdf,*.aut,*.bbl,*.blg,*.fff,*.out*.toc,*.ttt
 
 let g:Tex_MultipleCompileFormats='dvi,pdf'
-let g:Tex_TEXINPUTS='~/texmf/tex/**,./**'
-let g:Tex_BIBINPUTS='/home/sam/texmf/bibtex/bib'
+let g:Tex_TEXINPUTS=$HOME . '/texmf/tex/**' " the '.' is string concat.
+let g:Tex_BIBINPUTS=$HOME . '/texmf/bibtex/bib' 
 "let g:Tex_ViewRule_pdf = 'open'
 "let g:Tex_ViewRule_pdf = '/Applications/Skim.app/Contents/MacOS/Skim'
 "let g:TreatMacViewerAsUNIX=1
