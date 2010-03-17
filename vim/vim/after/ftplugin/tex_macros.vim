@@ -7,9 +7,12 @@ call IMAP(',w', '$\omega$', 'tex')
 
 call IMAP('`w', '\omega', 'tex')	        "change the \wedge default
 call IMAP('`e', '\epsilon', 'tex')	        "change the \varepsilon default
+
 call IMAP('`u', '\unit{<++>}{<++>}<++>', 'tex')	"change the \upsilon default
 call IMAP(',v', '\bvec{<++>}<++>', 'tex')	"change the \varsigma default
 call IMAP(',d', '\dot{<++>}<++>', 'tex')
+call IMAP(',t', '\text{<++>}<++>', 'tex')
+
 call IMAP('<<', '\left< <++> \right><++>', 'tex')
 call IMAP('||', '\left| <++> \right|<++>', 'tex')
 call IMAP('==', '&= ', 'tex')                   "needs align environment
