@@ -3,8 +3,8 @@ username = Sam Britt <samuelbritt@gmail.com>
 ignore = ~/.hgrc_ignore
 
 [alias]
-latest = log --limit 5
-glatest = glog --limit 5
+clog = glog --style=compact
+latest = glog --limit 5 --style=compact
 
 [diff]
 git = True
