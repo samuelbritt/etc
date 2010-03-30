@@ -5,4 +5,4 @@ set editing-mode vi
 "kj": "\e"
 "jk": "\e"
 
-set completion-ignore-case On
+#set completion-ignore-case On
