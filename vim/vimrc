@@ -79,6 +79,10 @@ nmap :W :w
 imap jk <ESC>
 imap kj <ESC>
 
+" for NERDComments plugin
+let NERDCommentWholeLinesInVMode=1
+let NERDSpaceDelims=1
+
 " Insert blank line below, above in command mode
 nnoremap + maO<esc>`a
 nnoremap _ makdd`a
