@@ -14,6 +14,9 @@ call IMAP(',d', '\dot{<++>}<++>', 'tex')
 call IMAP(',t', '\text{<++>}<++>', 'tex')
 call IMAP(',-', '\bar{<++>}<++>', 'tex')
 call IMAP(',h', '\hat{<++>}<++>', 'tex')
+call IMAP(',n', '\note{<++>}<++>', 'tex')
+call IMAP(',T', '\todo{<++>}<++>', 'tex')
+
 
 call IMAP('<<', '\left< <++> \right><++>', 'tex')
 call IMAP('||', '\left| <++> \right|<++>', 'tex')
