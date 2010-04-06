@@ -11,6 +11,7 @@ git = True
 
 [extensions]
 fetch =
+record =
 graphlog =
 hgext.highlight =
 color =
