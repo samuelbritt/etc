@@ -34,7 +34,8 @@ if [ ${HOSTNAME:0:9} = "moleculos" ] ; then
 	alias abaqus='XLIB_SKIP_ARGB_VISUALS=1 abaqus'
 	alias cae='abaqus cae&'
 
-	# adding users
+	# PATH
+	export PATH=$PATH:/sbin
 	export PATH=$PATH:/usr/sbin
 fi
 
