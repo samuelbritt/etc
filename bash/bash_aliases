@@ -5,8 +5,7 @@ if [ `uname` = "Linux" ] ; then
 	alias open='gnome-open'
 	alias lss='ls --ignore=*.o'
 	alias lsd='ls --group-directories-first' #works on ubuntu
-fi 
-if [ `uname` = "Darwin" ] ; then
+elif [ `uname` = "Darwin" ] ; then
 	alias gvim="mvim"
 	alias gvimdiff="mvim -d"
 	alias mvimdiff="mvim -d"
@@ -20,6 +19,7 @@ if [ `uname -n` = "titanium" ] ; then
 	alias abq671='XLIB_SKIP_ARGB_VISUALS=1 abq671'
 	alias abq681='XLIB_SKIP_ARGB_VISUALS=1 abq681'
 	alias cae='abaqus cae&'
+	alias cmat='matlab -nosplash -nodesktop'
 fi
 
 # Common alias definitions.
