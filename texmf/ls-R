@@ -1,9 +1,6 @@
 % ls-R -- filename database for kpathsea; do not change this line.
 ./:
-.:
 bibtex
-doc
-fonts
 ls-R
 tex
 
@@ -12,6 +9,7 @@ bib
 bst
 
 ./bibtex/bib:
+library.bib
 
 ./bibtex/bst:
 achemso.bst
@@ -20,21 +18,16 @@ elsevier
 
 ./bibtex/bst/elsevier:
 elsarticle-harv.bst
-elsarticle-num.bst
 elsarticle-num-names.bst
+elsarticle-num.bst
 
-./doc:
-
-./fonts:
-type1
-
-./fonts/type1:
 
 ./tex:
 latex
 
 ./tex/latex:
 achemso.sty
+ccmd
 elsevier
 mciteplus.sty
 mseLab.sty
@@ -42,25 +35,35 @@ natmove.sty
 notes2bib.sty
 siunitx
 xlgraphics.sty
-xlgraphics.sty~
+
+./tex/latex/ccmd:
+CCMD_presentation_footer.png
+CCMD_presentation_footer_transp.png
+CCMD_presentation_header.png
+CCMD_presentation_header_transp.png
+ccmdbeamer.sty
 
 ./tex/latex/elsevier:
-elsarticle.cls
+README
 elsarticle-template-harv.tex
 elsarticle-template-num.tex
+elsarticle.cls
 elsdoc.pdf
-README
 
 ./tex/latex/siunitx:
-jawltxdoc.sty
 README.txt
+jawltxdoc.sty
+si-DE.cfg
+si-SIunits.cfg
+si-UK.cfg
+si-USA.cfg
+si-ZA.cfg
 si-abbr.cfg
 si-accepted.cfg
 si-addn.cfg
 si-astro.cfg
 si-binary.cfg
 si-bug.ltx
-si-DE.cfg
 si-fancynum.cfg
 si-fancyunits.cfg
 si-geophys.cfg
@@ -71,9 +74,7 @@ si-physical.cfg
 si-prefix.cfg
 si-prefixed.cfg
 si-sistyle.cfg
-si-SIunits.cfg
 si-synchem.cfg
-si-UK.cfg
 si-units.cfg
 si-unitsdef.cfg
 siunitx.bib
@@ -81,5 +82,3 @@ siunitx.dtx
 siunitx.ins
 siunitx.log
 siunitx.sty
-si-USA.cfg
-si-ZA.cfg
