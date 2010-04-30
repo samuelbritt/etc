@@ -93,6 +93,7 @@ if has("gui_running")
 	"SEE .gvimrc
 else
 	set bg=dark
+	colorscheme desert
 endif
 
 " Tags, completetion preferences:

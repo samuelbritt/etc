@@ -1,3 +1,4 @@
+colorscheme macvim
 set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
 set lines=60
 set columns=80
