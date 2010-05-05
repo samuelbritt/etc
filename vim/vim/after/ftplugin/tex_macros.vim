@@ -23,11 +23,17 @@ call IMAP('||', '\left| <++> \right|<++>', 'tex')
 call IMAP('==', '&= ', 'tex')             "needs align environment
 
 "align environment
-call IMAP('EAL', "\\begin{align}\<CR><++>\<CR>\\label{<++>}\<CR>\\end{align}<++>", 'tex') 
+call IMAP('EAL', "\\begin{align}\<CR><++>\<CR>\\label{<++>}\<CR>\\end{align}<++>", 'tex')
+"
+"starred align environment
+call IMAP('EAS', "\\begin{align*}\<CR><++>\<CR>\\label{<++>}\<CR>\\end{align*}<++>", 'tex')
+
+"starred equation environment
+call IMAP('EES', "\\begin{equation*}\<CR><++>\<CR>\\label{<++>}\<CR>\\end{equation*}<++>", 'tex')
 
 " Beamer Class:
 "frame environment
-call IMAP('EFE', "\\begin{frame}\<CR>\\frametitle{<++>}\<CR><++>\<CR>\\end{frame}<++>", 'tex') 
+call IMAP('EFE', "\\begin{frame}\<CR>\\frametitle{<++>}\<CR><++>\<CR>\\end{frame}<++>", 'tex')
 
 "columns environment
 call IMAP('ECS', "\\begin{columns}[<+options+>]\<CR><++>\<CR>\\end{columns}<++>", 'tex')
