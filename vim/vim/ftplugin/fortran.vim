@@ -7,7 +7,7 @@ else
 	unlet! fortran_free_source
 endif
 
-set ts=8
+set ts=4
 set sw=4
 set fo+=r
 set foldmethod=syntax

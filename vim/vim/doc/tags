@@ -12,6 +12,9 @@
 'NERDSpaceDelims'	NERD_commenter.txt	/*'NERDSpaceDelims'*
 'NERDUsePlaceHolders'	NERD_commenter.txt	/*'NERDUsePlaceHolders'*
 'loaded_nerd_comments'	NERD_commenter.txt	/*'loaded_nerd_comments'*
+,b	camelcasemotion.txt	/*,b*
+,e	camelcasemotion.txt	/*,e*
+,w	camelcasemotion.txt	/*,w*
 Alph	latexhelp.txt	/*Alph*
 Alt-B	latex-suite.txt	/*Alt-B*
 Alt-C	latex-suite.txt	/*Alt-C*
@@ -379,6 +382,16 @@ automatic-package-detection	latex-suite.txt	/*automatic-package-detection*
 bibtex	latexhelp.txt	/*bibtex*
 bibtex-bindings	latex-suite.txt	/*bibtex-bindings*
 book-class	latexhelp.txt	/*book-class*
+camelcasemotion-configuration	camelcasemotion.txt	/*camelcasemotion-configuration*
+camelcasemotion-dependencies	camelcasemotion.txt	/*camelcasemotion-dependencies*
+camelcasemotion-description	camelcasemotion.txt	/*camelcasemotion-description*
+camelcasemotion-history	camelcasemotion.txt	/*camelcasemotion-history*
+camelcasemotion-installation	camelcasemotion.txt	/*camelcasemotion-installation*
+camelcasemotion-known-problems	camelcasemotion.txt	/*camelcasemotion-known-problems*
+camelcasemotion-todo	camelcasemotion.txt	/*camelcasemotion-todo*
+camelcasemotion-usage	camelcasemotion.txt	/*camelcasemotion-usage*
+camelcasemotion.txt	camelcasemotion.txt	/*camelcasemotion.txt*
+camelcasemotion.vim	camelcasemotion.txt	/*camelcasemotion.vim*
 center	latexhelp.txt	/*center*
 changing-commands	latex-suite.txt	/*changing-commands*
 changing-environments	latex-suite.txt	/*changing-environments*
