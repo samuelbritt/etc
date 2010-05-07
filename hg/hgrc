@@ -9,6 +9,16 @@ latest = glog --limit 5 --style=compact
 [diff]
 git = True
 
+[merge-patterns]
+** = filemerge
+
+[merge-tools]
+filemerge.executable = gvim
+#filemerge.args = -d $local $other
+filemerge.args = -d $base $local $output $other +close +close
+filemerge.checkchanged = true
+filemerge.gui = true
+
 [extensions]
 transplant =
 fetch =
