@@ -26,6 +26,12 @@ record =
 graphlog =
 hgext.highlight =
 color =
+pager =
+prompt = $HOME/etc/hg/ext/hg-prompt/prompt.py
+artemis = $HOME/etc/hg/ext/artemis/artemis.py
+
+[pager]
+pager = LESS='FSRX' less
 
 [color]
 status.modified = cyan bold
