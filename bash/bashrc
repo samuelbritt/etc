@@ -69,7 +69,7 @@ fi
 
 # prompt
 hg_ps1() {
-	hg prompt "{ on {branch}}{update}{status}" 2> /dev/null
+	hg prompt "{ --- in {root|basename}}{|{branch}}{: {incoming|count} in}{: {outgoing|count} out}{update}{status}" 2> /dev/null
 }
 PS1='\n\u@\h:\w$(hg_ps1)\n\$ '
 
