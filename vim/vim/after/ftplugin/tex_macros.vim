@@ -20,6 +20,7 @@ call IMAP(',T', '\todo{<++>}<++>', 'tex')
 
 call IMAP('<<', '\left< <++> \right><++>', 'tex')
 call IMAP('||', '\left| <++> \right|<++>', 'tex')
+call IMAP('`[', '\{ <++> \}<++>', 'tex')
 call IMAP('==', '&= ', 'tex')             "needs align environment
 
 "align environment
