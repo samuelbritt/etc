@@ -7,10 +7,13 @@ else
 	unlet! fortran_free_source
 endif
 
-set ts=8
-set sw=4
-set fo+=r
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set formatoptions+=r
 set foldmethod=syntax
+set cursorcolumn "for fixed format
+set cursorline 
 let fortran_fold=1
 let fortran_fold_conditionals=1
 "let fortran_fold_multilinecomments=1

@@ -8,6 +8,7 @@
 \usetheme{default}
 \newcommand\todo[1][]{} %default is empty; overridden in draft mode
 \renewcommand\raggedright{\leftskip=0cm \rightskip=0pt plus 2em}
+
 %This is a hack for temporarily changing margins
 \newenvironment{fullscreen}{%
   \begin{list}{}{%
@@ -38,25 +39,38 @@
   }
 }
 
-\setbeamertemplate{footline}{
-  \leavevmode%
-  \hbox{%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=3ex,center]{author
-    in head/foot}%
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=3ex,center]{author
-    in head/foot}%
-    \usebeamerfont{title in head/foot}\insertshorttitle
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=3ex,right]{date in
-    head/foot}%
-    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
-    \insertframenumber{} / \inserttotalframenumber\hspace*{4ex}
-  \end{beamercolorbox}%
-  }%
-  \vskip0pt%
-}
+% \setbeamertemplate{footline}{
+%   \leavevmode%
+%   \hbox{%
+%   \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=3ex,center]{author
+%     in head/foot}%
+%   \end{beamercolorbox}%
+%   \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=3ex,center]{author
+%     in head/foot}%
+%     \usebeamerfont{title in head/foot}\insertshorttitle
+%   \end{beamercolorbox}%
+%   \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=3ex,right]{date in
+%     head/foot}%
+%     \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+%     \insertframenumber{} / \inserttotalframenumber\hspace*{4ex}
+%   \end{beamercolorbox}%
+%   }%
+%   \vskip0pt%
+% }
 
+% \setbeamertemplate{footline}{%
+% \raisebox{5pt}{\makebox[\paperwidth]{%
+%   \hfill\makebox[10pt]{\tiny\textcolor{gray}{%
+%   \insertframenumber}}%
+%   }}%
+% }
+
+\setbeamertemplate{footline}{%
+\raisebox{5pt}{\makebox[\paperwidth]{%
+  \hfill\makebox[10pt]{\tiny\textcolor{gray}{%
+  \insertframenumber}}%
+  }}%
+}
 
 %%fakesection Background Images
 \setbeamertemplate{background canvas}{
@@ -64,7 +78,7 @@
   \centering
     \includegraphics[width=.95\paperwidth]{CCMD_presentation_header_transp}
     \vfill
-    \includegraphics[width=.95\paperwidth]{CCMD_presentation_footer_transp}
+    \includegraphics[width=.95\paperwidth]{CCMD_presentation_footer_transp_noline}
   }
 }
 
@@ -84,7 +98,8 @@
 
 %%fakesection OPTIONS:
 \DeclareOption{draft}{
-  \setbeamertemplate{background}[grid][color=black!20,step=.125\paperwidth]
+  % \setbeamertemplate{background}[grid][color=black!20,step=.125\paperwidth]
+  \setbeamertemplate{background}[grid][color=black!20,step=1cm]
   \renewcommand\todo[1][Fix Me\ ]{\textsc{\color{red}{TODO: #1}}}
 }
 

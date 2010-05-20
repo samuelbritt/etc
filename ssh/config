@@ -27,6 +27,10 @@ Host al aluminum.the-britts.com
 	HostName aluminum.the-britts.com
 	User sam
 
+Host all
+	HostName aluminum.local
+	User sam
+
 Host abe login-abe.ncsa.teragrid.org
 	HostName login-abe.ncsa.teragrid.org
 	User britt

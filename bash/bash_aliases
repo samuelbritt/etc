@@ -5,13 +5,14 @@ if [ `uname` = "Linux" ] ; then
 	alias open='gnome-open'
 	alias lss='ls --ignore=*.o'
 	alias lsd='ls --group-directories-first' #works on ubuntu
-fi 
-if [ `uname` = "Darwin" ] ; then
+	alias diff='colordiff -u'
+elif [ `uname` = "Darwin" ] ; then
 	alias gvim="mvim"
 	alias gvimdiff="mvim -d"
 	alias mvimdiff="mvim -d"
 	alias lss="ls *.cpp *.h"
 	alias ls="ls -p"
+	alias diff='diff -u'
 	alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
 	alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
 fi
@@ -20,6 +21,7 @@ if [ `uname -n` = "titanium" ] ; then
 	alias abq671='XLIB_SKIP_ARGB_VISUALS=1 abq671'
 	alias abq681='XLIB_SKIP_ARGB_VISUALS=1 abq681'
 	alias cae='abaqus cae&'
+	alias cmat='matlab -nosplash -nodesktop'
 fi
 
 # Common alias definitions.
@@ -36,8 +38,6 @@ alias grep="grep --color=auto"
 alias today='date +%F'
 alias now='date +%F-%H%M'
 alias bc='bc -l'
-alias diff='diff -u'
-alias cdiff='colordiff -u'
 alias scr='screen -DR'
 alias df='df -H'
 alias du='du -h'

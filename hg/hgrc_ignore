@@ -1,4 +1,6 @@
 syntax:glob
+hghide*
 *~
 *.swp
+._*
 .DS_Store

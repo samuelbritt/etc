@@ -9,12 +9,29 @@ latest = glog --limit 5 --style=compact
 [diff]
 git = True
 
+[merge-patterns]
+** = filemerge
+
+[merge-tools]
+filemerge.executable = gvim
+#filemerge.args = -d $local $other
+filemerge.args = -d $base $local $output $other +close +close
+filemerge.checkchanged = true
+filemerge.gui = true
+
 [extensions]
+transplant =
 fetch =
 record =
 graphlog =
 hgext.highlight =
 color =
+pager =
+prompt = $HOME/etc/hg/ext/hg-prompt/prompt.py
+artemis = $HOME/etc/hg/ext/artemis/artemis.py
+
+[pager]
+pager = LESS='FSRX' less
 
 [color]
 status.modified = cyan bold

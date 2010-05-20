@@ -10,7 +10,7 @@ set iskeyword+=:
 set softtabstop=2
 set textwidth=70
 setlocal spell spelllang=en_us
-set wildignore=*.log,*.aux,*.dvi,*.ps,*.pdf,*.aut,*.bbl,*.blg,*.fff,*.out*.toc,*.ttt
+"set wildignore=*.log,*.aux,*.dvi,*.ps,*.pdf,*.aut,*.bbl,*.blg,*.fff,*.out*.toc,*.ttt
 
 let g:Tex_MultipleCompileFormats='dvi,pdf'
 let g:Tex_TEXINPUTS=$HOME . '/texmf/tex/**' " the '.' is string concat.

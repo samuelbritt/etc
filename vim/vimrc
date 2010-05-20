@@ -93,6 +93,7 @@ if has("gui_running")
 	"SEE .gvimrc
 else
 	set bg=dark
+	colorscheme desert
 endif
 
 " Tags, completetion preferences:
@@ -113,3 +114,10 @@ let &sbr = nr2char(8618).' '
 " Give windows equal space after resizing or opening a new window
 autocmd VimResized * wincmd =
 autocmd BufWinEnter * wincmd =
+
+" Highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
+au ColorScheme * highlight ExtraWhitespace guibg=lightgreen
+au BufEnter * match ExtraWhitespace /\s\+$/
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhiteSpace /\s\+$/
