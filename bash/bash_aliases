@@ -5,21 +5,17 @@ if [ `uname` = "Linux" ] ; then
 	alias open='gnome-open'
 	alias lss='ls --ignore=*.o'
 	alias lsd='ls --group-directories-first' #works on ubuntu
-	alias diff='colordiff -u'
 elif [ `uname` = "Darwin" ] ; then
 	alias gvim="mvim"
 	alias gvimdiff="mvim -d"
 	alias mvimdiff="mvim -d"
-	alias lss="ls *.cpp *.h"
 	alias ls="ls -p"
-	alias diff='diff -u'
+	alias lss="ls *.cpp *.h"
 	alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
 	alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
 fi
 if [ `uname -n` = "titanium" ] ; then
 	alias abaqus='XLIB_SKIP_ARGB_VISUALS=1 abaqus'
-	alias abq671='XLIB_SKIP_ARGB_VISUALS=1 abq671'
-	alias abq681='XLIB_SKIP_ARGB_VISUALS=1 abq681'
 	alias cae='abaqus cae&'
 	alias cmat='matlab -nosplash -nodesktop'
 fi
@@ -41,6 +37,7 @@ alias bc='bc -l'
 alias scr='screen -DR'
 alias df='df -H'
 alias du='du -h'
+alias diff='colordiff -u'
 
 # recursive mkdir and cd if successful
 function mkcd {
