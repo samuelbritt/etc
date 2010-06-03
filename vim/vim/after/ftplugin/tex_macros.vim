@@ -13,7 +13,7 @@ call IMAP(',v', '\bvec{<++>}<++>', 'tex') "change \varsigma default
 call IMAP(',d', '\dot{<++>}<++>', 'tex')
 call IMAP(',t', '\text{<++>}<++>', 'tex')
 call IMAP(',-', '\bar{<++>}<++>', 'tex')
-call IMAP(',_', '\bar{<++>}<++>', 'tex')
+call IMAP(',_', '\overline{<++>}<++>', 'tex')
 call IMAP(',h', '\hat{<++>}<++>', 'tex')
 call IMAP(',n', '\note{<++>}<++>', 'tex')
 call IMAP(',T', '\todo{<++>}<++>', 'tex')
