@@ -68,9 +68,6 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # prompt
-# hg_ps1() {
-	# hg prompt "{ --- in {root|basename}}{|{branch}}{: {incoming|count} in}{: {outgoing|count} out}{update}{status}" 2> /dev/null
-# }
 PS1='\n\u@\h:\w\n\$ '
 
 # LaTeX
