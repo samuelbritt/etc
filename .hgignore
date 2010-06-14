@@ -1,4 +1,6 @@
 syntax: glob
+updates-available
+.netrwhist
 *~
 *.pyc
 ~*
