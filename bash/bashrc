@@ -37,6 +37,14 @@ elif [ ${HOSTNAME:0:9} = "moleculos" ] ; then
 	# PATH
 	export PATH=$PATH:/sbin
 	export PATH=$PATH:/usr/sbin
+elif [ ${HOSTNAME} = "titan" ] ; then
+	# Abaqus:
+	export ABAQUSDIR=/usr/local/abaqus
+	export PATH=$PATH:$ABAQUSDIR/Commands
+
+	# PATH
+	export PATH=$PATH:/sbin
+	export PATH=$PATH:/usr/sbin
 fi
 
 
