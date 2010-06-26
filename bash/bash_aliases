@@ -17,7 +17,7 @@ fi
 if [ `uname -n` = "titanium" ] ; then
 	alias abaqus='XLIB_SKIP_ARGB_VISUALS=1 abaqus'
 	alias cae='abaqus cae&'
-	alias cmat='matlab -nosplash -nodesktop'
+	alias matcl='matlab -nosplash -nodesktop'
 fi
 
 # Common alias definitions.
