@@ -1,5 +1,6 @@
 syntax:glob
 *.pyc
+abaqus.rpy*
 hghide*
 *~
 *.swp
