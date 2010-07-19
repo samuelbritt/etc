@@ -5,6 +5,9 @@ if [ `uname` = "Linux" ] ; then
 	alias open='gnome-open'
 	alias lss='ls --ignore=*.o'
 	alias lsd='ls --group-directories-first' #works on ubuntu
+	alias abaqus='XLIB_SKIP_ARGB_VISUALS=1 abaqus'
+	alias cae='abaqus cae&'
+	alias matcl='matlab -nosplash -nodesktop'
 elif [ `uname` = "Darwin" ] ; then
 	alias gvim="mvim"
 	alias gvimdiff="mvim -d"
@@ -13,11 +16,6 @@ elif [ `uname` = "Darwin" ] ; then
 	alias lss="ls *.cpp *.h"
 	alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
 	alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
-fi
-if [ `uname -n` = "titanium" ] ; then
-	alias abaqus='XLIB_SKIP_ARGB_VISUALS=1 abaqus'
-	alias cae='abaqus cae&'
-	alias matcl='matlab -nosplash -nodesktop'
 fi
 
 # Common alias definitions.
