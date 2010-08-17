@@ -1,0 +1,4 @@
+%include etc/hg/hgrc
+
+[bigfiles]
+repo = /Users/sam/.bigfiles-versions
