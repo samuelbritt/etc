@@ -31,8 +31,9 @@ elif [ ${HOSTNAME:0:9} = "moleculos" ] ; then
 	# Abaqus:
 	export ABAQUSDIR=/opt/abaqus
 	export PATH=$PATH:$ABAQUSDIR/Commands
-	alias abaqus='XLIB_SKIP_ARGB_VISUALS=1 abaqus'
-	alias cae='abaqus cae&'
+
+	# Matlab
+	export PATH=$PATH:/opt/matlab
 
 	# PATH
 	export PATH=$PATH:/sbin
