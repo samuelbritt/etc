@@ -5,8 +5,8 @@ Host *
 Host h
 	Hostname hydrogen.local
 
-Host ti titanium.the-britts.com titanium.goatech.org 130.207.128.69
-	HostName titanium.the-britts.com
+Host ti titanium.britts.us titanium.the-britts.com 130.207.128.69
+	HostName titanium.britts.us
 	Port 3489
 	User sam
 
@@ -23,8 +23,8 @@ Host pen penguin penguin.me.gatech.edu
 	HostName penguin.me.gatech.edu
 	User britt
 
-Host al aluminum.the-britts.com
-	HostName aluminum.the-britts.com
+Host al aluminum.britts.us aluminum.the-britts.com
+	HostName aluminum.britts.us
 	User sam
 
 Host all
