@@ -41,6 +41,7 @@ endif " has("autocmd")
 " Needs to come after filetype plugin indent on
 if &t_Co > 2 || has("gui_running")
   syntax on
+  syntax sync minlines=50
   set hlsearch
 endif
 
