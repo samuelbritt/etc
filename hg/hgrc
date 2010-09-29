@@ -1,6 +1,7 @@
 [ui]
 username = Sam Britt <samuelbritt@gmail.com>
 ignore = ~/.hgrc_ignore
+ssh = ssh -C
 
 [alias]
 clog = glog --style=compact
