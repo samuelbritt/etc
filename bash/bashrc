@@ -35,6 +35,9 @@ if [ `uname -n` = "titanium" ] ; then
 	source /opt/intel/Compiler/11.1/072/bin/ifortvars.sh intel64
 	# Matlab:
 	export MATLABPATH=$HOME/bin:$HOME/lib/matlab:$MATLABPATH
+elif [ ${HOSTNAME} = "aluminum-vert" ] ; then
+	# Intel Compilers:
+	source /opt/intel/Compiler/11.1/073/bin/ifortvars.sh ia32
 elif [ ${HOSTNAME:0:9} = "moleculos" ] ; then
 	# Abaqus:
 	export ABAQUSDIR=/opt/abaqus
