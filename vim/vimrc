@@ -122,3 +122,7 @@ au ColorScheme * highlight ExtraWhitespace guibg=lightgreen
 au BufEnter * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhiteSpace /\s\+$/
+
+" Command to change to the directory of the current buffer
+command! CD cd %:p:h
+command! LCD lcd %:p:h
