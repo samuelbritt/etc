@@ -922,9 +922,12 @@ endfunction
 "    			  Env names are stored in g: variables it can be used by
 "    			  package files. 
 
-TexLet g:Tex_ItemStyle_itemize = '\item '
-TexLet g:Tex_ItemStyle_enumerate = '\item '
-TexLet g:Tex_ItemStyle_theindex = '\item '
+" NOTE: changed here (removed space at end of '\item ') and in the <C-CR>
+" mapping below (added <ESC>A) to avoid a bug whereby two spaces were being
+" added at the end.
+TexLet g:Tex_ItemStyle_itemize = '\item'
+TexLet g:Tex_ItemStyle_enumerate = '\item'
+TexLet g:Tex_ItemStyle_theindex = '\item'
 TexLet g:Tex_ItemStyle_thebibliography = '\item[<+biblabel+>]{<+bibkey+>} <++>'
 TexLet g:Tex_ItemStyle_description = '\item[<+label+>] <++>'
 
@@ -950,7 +953,10 @@ function! Tex_SetItemMaps()
 		imap <buffer> <M-i> <Plug>Tex_InsertItemOnThisLine
 	endif
 	if !hasmapto("<Plug>Tex_InsertItemOnNextLine", "i")
-		imap <buffer> <C-CR> <Plug>Tex_InsertItemOnNextLine
+		" NOTE: changed here (added <ESC>A) and in the Tex_ItemStyle_*
+		" definitions above (removed space at end of '\item ' to avoid a bug
+		" whereby two spaces were being added at the end.
+		imap <buffer> <C-CR> <Plug>Tex_InsertItemOnNextLine<ESC>A
 	endif
 endfunction " }}}
 
