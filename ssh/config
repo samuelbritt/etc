@@ -5,7 +5,7 @@ Host *
 Host h
 	Hostname hydrogen.local
 
-Host ti titanium.britts.us titanium.the-britts.com 130.207.128.69
+Host ti titanium.britts.us 130.207.128.69
 	HostName titanium.britts.us
 	Port 3489
 	User sam
@@ -23,13 +23,17 @@ Host pen penguin penguin.me.gatech.edu
 	HostName penguin.me.gatech.edu
 	User britt
 
-Host al aluminum.britts.us aluminum.the-britts.com
+Host al aluminum.britts.us
 	HostName aluminum.britts.us
 	User sam
 
 Host all
 	HostName aluminum.local
 	User sam
+
+Host macbook
+	HostName macbook.local
+	User aprilsheppard
 
 Host abe login-abe.ncsa.teragrid.org
 	HostName login-abe.ncsa.teragrid.org
