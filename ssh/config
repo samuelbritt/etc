@@ -1,6 +1,6 @@
 Host *
 	ServerAliveInterval 360
-	ForwardX11 yes
+	ForwardX11Trusted yes
 
 Host h
 	Hostname hydrogen.local
