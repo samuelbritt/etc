@@ -36,6 +36,7 @@ alias scr='screen -DR'
 alias df='df -H'
 alias du='du -h'
 alias diff='colordiff -u'
+alias pylab='ipython -pylab'
 
 # recursive mkdir and cd if successful
 function mkcd {
