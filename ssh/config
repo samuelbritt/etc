@@ -1,39 +1,54 @@
 Host *
 	ServerAliveInterval 360
-	ForwardX11Trusted yes
 
 Host h
 	Hostname hydrogen.local
+	ForwardX11 yes
+	ForwardX11Trusted yes
 
 Host ti titanium.britts.us 130.207.128.69
 	HostName titanium.britts.us
 	Port 3489
 	User sam
+	ForwardX11 yes
+	ForwardX11Trusted yes
 
 Host mol mole moleculos.me.gatech.edu
 	HostName moleculos.me.gatech.edu
 	GssApiAuthentication no
 	User sbritt
+	ForwardX11 yes
+	ForwardX11Trusted yes
 
 Host titan titan.mse.gatech.edu
 	HostName titan.mse.gatech.edu
 	User britt
+	ForwardX11 yes
+	ForwardX11Trusted yes
 
 Host pen penguin penguin.me.gatech.edu
 	HostName penguin.me.gatech.edu
 	User britt
+	ForwardX11 yes
+	ForwardX11Trusted yes
 
 Host al aluminum.britts.us
 	HostName aluminum.britts.us
 	User sam
+	ForwardX11 yes
+	ForwardX11Trusted yes
 
 Host all
 	HostName aluminum.local
 	User sam
+	ForwardX11 yes
+	ForwardX11Trusted yes
 
 Host macbook
 	HostName macbook.local
 	User aprilsheppard
+	ForwardX11 yes
+	ForwardX11Trusted yes
 
 Host abe login-abe.ncsa.teragrid.org
 	HostName login-abe.ncsa.teragrid.org
