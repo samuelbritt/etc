@@ -20,7 +20,7 @@
 # Version 1.0
 #
 
-# edited to be linux-compatible as well
+# edited to be linux-compatible as well but its not working
 
 if [ "x-x" = x"$1" ]; then
 	EXIT="; exit"; shift;
