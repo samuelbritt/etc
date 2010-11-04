@@ -3,7 +3,6 @@ Copy gatech.conf to /etc/vpnc. Start the vpn with
 or make a symbolic link to gatech.conf called default.conf in the same 
 directory. Then connect with simply
 	sudo vpnc
-or make a symbolic link to gatech.conf called default.conf in the same 
 
 Disconnect with
 	sudo vpnc-disconnect
