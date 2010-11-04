@@ -8,6 +8,11 @@ if [ `uname` = "Linux" ] ; then
 	alias abaqus='XLIB_SKIP_ARGB_VISUALS=1 abaqus'
 	alias cae='abaqus cae&'
 	alias matcl='matlab -nosplash -nodesktop'
+
+	# Edit file in new terminal window
+	function tvim {
+		gnome-terminal -x vim $@ &
+	}
 elif [ `uname` = "Darwin" ] ; then
 	alias gvim="mvim"
 	alias gvimdiff="mvim -d"
@@ -45,5 +50,5 @@ function mkcd {
 
 # cd and ls
 function cl {
-	cd "$@" && ls 
+	cd "$@" && ls
 }
