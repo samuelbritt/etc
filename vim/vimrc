@@ -77,8 +77,13 @@ set ignorecase
 set viminfo+='100,f1
 set nostartofline
 nmap :W :w
+
+" alternate escapes
 imap jk <ESC>
 imap kj <ESC>
+
+" make the . command return to the point where the command started
+nmap . .`[
 
 " for NERDComments plugin
 let NERDCommentWholeLinesInVMode=1

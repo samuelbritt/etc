@@ -13,7 +13,8 @@ elif [ `uname` = "Darwin" ] ; then
 	export CLICOLOR=1
 	export LSCOLORS=ExGxCxDxCxegedabagacad
 	export VIMRUNTIME='/Applications/MacVim.app/Contents/Resources/vim/runtime'
-	# PATH DISPLAY variables for use with MacPorts 
+	export PATH=/usr/local/bin:$PATH # (mostly for exuberent ctags)
+	# PATH DISPLAY variables for use with MacPorts
 	export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 	# Setting PATH for EPD-6.3-1
