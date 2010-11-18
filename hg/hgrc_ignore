@@ -1,4 +1,9 @@
 syntax:glob
+# latex
+*.bbl
+*.blg
+*.aux
+#other
 *.pyc
 abaqus.rpy*
 hghide*
