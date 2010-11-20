@@ -51,9 +51,15 @@ elif [ ${HOSTNAME:0:9} = "moleculos" ] ; then
 	# Matlab
 	export PATH=$PATH:/opt/matlab
 
+	# Maui Scheduler
+	export MAUIHOMEDIR=/usr/local/maui
+	export PATH=$PATH:$MAUIHOMEDIR/bin
+	export PATH=$PATH:$MAUIHOMEDIR/sbin
+
 	# PATH
 	export PATH=$PATH:/sbin
 	export PATH=$PATH:/usr/sbin
+	export PATH=$PATH:/usr/local/sbin
 elif [ ${HOSTNAME} = "titan" ] ; then
 	# Abaqus:
 	export ABAQUSDIR=/usr/local/abaqus
