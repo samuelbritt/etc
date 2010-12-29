@@ -52,3 +52,7 @@ function mkcd {
 function cl {
 	cd "$@" && ls
 }
+
+if [ ${HOSTNAME:0:9} = "moleculos" ] ; then
+	unalias diff
+fi
