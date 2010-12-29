@@ -11,3 +11,4 @@ hghide*
 *.swp
 ._*
 .DS_Store
+~$*
