@@ -12,6 +12,7 @@ set textwidth=70
 setlocal spell spelllang=en_us
 "set wildignore=*.log,*.aux,*.dvi,*.ps,*.pdf,*.aut,*.bbl,*.blg,*.fff,*.out*.toc,*.ttt
 
+let Tex_UseMakefile=0 "use default compile rules, even when a makefile is present
 let g:Tex_MultipleCompileFormats='dvi,pdf'
 let g:Tex_TEXINPUTS=$HOME . '/texmf/tex/**' " the '.' is string concat.
 let g:Tex_BIBINPUTS=$HOME . '/texmf/bibtex/bib' 
