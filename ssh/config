@@ -13,7 +13,7 @@ Host ti titanium.britts.us 130.207.128.69
 	ForwardX11 yes
 	ForwardX11Trusted yes
 
-Host mol mole moleculos.me.gatech.edu
+Host mol moleculos moleculos.me.gatech.edu
 	HostName moleculos.me.gatech.edu
 	GssApiAuthentication no
 	User sbritt
