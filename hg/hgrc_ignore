@@ -3,6 +3,10 @@ syntax:glob
 *.bbl
 *.blg
 *.aux
+*.toc
+*.lof
+*.lot
+*.out
 #other
 *.pyc
 abaqus.rpy*
