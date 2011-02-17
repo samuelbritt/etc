@@ -17,7 +17,7 @@ elif [ `uname` = "Darwin" ] ; then
 	# PATH DISPLAY variables for use with MacPorts
 	export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
-	# Setting PATH for EPD-6.3-1
+	# Setting PATH for EPD
 	# The orginal version is saved in .bash_profile.pysave
 	PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
 	export PATH
