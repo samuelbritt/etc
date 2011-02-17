@@ -2,6 +2,7 @@
 username = Sam Britt <samuelbritt@gmail.com>
 ignore = ~/.hgrc_ignore
 ssh = ssh -C
+editor = vim
 
 [alias]
 clog = glog --style=compact
