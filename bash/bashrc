@@ -107,7 +107,7 @@ export BIBINPUTS=.:$HOME/texmf/bibtex/bib
 # paths
 export PYTHONPATH=$PYTHONPATH:$HOME/bin
 export PYTHONPATH=$PYTHONPATH:$HOME/lib/python
-export PATH=$HOME/bin:$PATH
+export PATH=$PATH:$HOME/bin
 
 #Vim keybindings
 set -o vi
