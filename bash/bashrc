@@ -36,7 +36,7 @@ if [ `uname -n` = "titanium" ] ; then
 	# Matlab:
 	export MATLABPATH=$HOME/bin:$HOME/lib/matlab:$MATLABPATH
 	# EPD
-	export PATH=/opt/epd/bin:$PATH
+	export PATH=/opt/epd/epd7.0/bin:$PATH
 elif [ ${HOSTNAME} = "hydrogen" ] ; then
 	# EPD
 	export PATH=/opt/epd/bin:$PATH
