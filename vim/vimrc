@@ -131,3 +131,15 @@ au InsertLeave * match ExtraWhiteSpace /\s\+$/
 " Command to change to the directory of the current buffer
 command! CD cd %:p:h
 command! LCD lcd %:p:h
+
+" Easier buffer switching
+set winaltkeys=no	" turns off Alt for menu navigation
+nmap <silent> <M-k> :wincmd k<CR>
+nmap <silent> <M-j> :wincmd j<CR>
+nmap <silent> <M-h> :wincmd h<CR>
+nmap <silent> <M-l> :wincmd l<CR>
+imap <silent> <M-k> <C-o>:wincmd k<CR>
+imap <silent> <M-j> <C-o>:wincmd j<CR>
+imap <silent> <M-h> <C-o>:wincmd h<CR>
+imap <silent> <M-l> <C-o>:wincmd l<CR>
+
