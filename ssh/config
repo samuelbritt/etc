@@ -6,7 +6,7 @@ Host h
 	ForwardX11 yes
 	ForwardX11Trusted yes
 
-Host ti titanium.britts.us 130.207.153.149
+Host ti titanium.britts.us me00229.me.gatech.edu 130.207.153.149
 	HostName titanium.britts.us
 	Port 3489
 	User sam
