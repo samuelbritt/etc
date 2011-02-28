@@ -1,4 +1,4 @@
-set lines=65
+set lines=75
 set columns=80
-set guifont=Menlo:h13
-set macmeta
+set guifont=Menlo:h11
+set macmeta 		" gives my Alt key back
