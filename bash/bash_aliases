@@ -23,6 +23,12 @@ elif [ `uname` = "Darwin" ] ; then
 	alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
 fi
 
+if [ $HOSTNAME = "hydrogen.site" ]
+then
+	alias open='kde-open'
+fi
+
+
 # Common alias definitions.
 alias ll='ls -hl'
 alias la='ls -A'

@@ -37,9 +37,9 @@ if [ `uname -n` = "titanium" ] ; then
 	export MATLABPATH=$HOME/bin:$HOME/lib/matlab:$MATLABPATH
 	# EPD
 	export PATH=/opt/epd/epd7.0/bin:$PATH
-elif [ ${HOSTNAME} = "hydrogen" ] ; then
+elif [ ${HOSTNAME} = "hydrogen" ] || [ ${HOSTNAME} = "hydrogen.site" ] ; then
 	# EPD
-	export PATH=/opt/epd/bin:$PATH
+	export PATH=/opt/epd/epd7.0/bin:$PATH
 elif [ ${HOSTNAME} = "aluminum-vert" ] ; then
 	# Intel Compilers:
 	source /opt/intel/Compiler/11.1/073/bin/ifortvars.sh ia32
