@@ -1,0 +1,13 @@
+" Settings for the vrapper plugin for eclipse, which allows for
+" limited configuration/key mapping.
+" See
+" 		http://vrapper.sourceforge.net/home/
+" for the plugin and
+" 		http://vrapper.sourceforge.net/update-site/stable
+" for the update site for Eclipse
+imap jk <ESC>
+imap kj <ESC>
+
+set ignorecase
+set smartcase
+set saney

@@ -1,22 +1,12 @@
-
+"""""""""""""""""""""""""""""""
+" Basic Settings:
+"
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-set mouse=a
-
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-
   " Enable file type detection.
   filetype plugin indent on
 
@@ -27,36 +17,15 @@ if has("autocmd")
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
-
-
 else
 
   set autoindent		" always set autoindenting on
 
 endif " has("autocmd")
 
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-" Needs to come after filetype plugin indent on
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  syntax sync minlines=50
-  set hlsearch
-endif
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-	 	\ | wincmd p | diffthis
-
-" put in for macvim
-" restores normal vim keybindings
-if has("gui_macvim")
-	let macvim_skip_cmd_opt_movement = 1
-endif
-
-" Filetype Settings:
+"""""""""""""""""""""""""""""""
+" Plugins Settings:
+"
 " Vim-LaTeX
 " IMPORTANT: grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse latex-suite. Set your grep
@@ -65,75 +34,79 @@ set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex' " Sets .tex to be LaTeX file type
 let g:Tex_ViewRule_pdf='open'
 
-" Matlab
-autocmd BufEnter *.m compiler mlint
-
-" User Preferences:
-source $VIMRUNTIME/macros/matchit.vim
-"set wildmode=longest,full " bash compatible behavior
-set wildmode=longest:full,list:full " bash compatible behavior
-"set iskeyword-=_ "underscore as word delimiter
-set ignorecase
-set viminfo+='100,f1
-set nostartofline
-nmap :W :w
-set noshowmatch		" I find showmatch annoying
-
-" alternate escapes
-imap jk <ESC>
-imap kj <ESC>
-
-" make the . command return to the point where the command started
-nmap . .`[
-
-" for NERDComments plugin
+" NERDComments plugin
 let NERDCommentWholeLinesInVMode=1
 let NERDSpaceDelims=1
 
-" Insert blank line below, above in command mode
-nnoremap + maO<esc>`a
-nnoremap _ makdd`a
+" Tags, completetion, OmniCpp preferences:
+map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+set tags+=~/.vim/tags/cpp
+let OmniCpp_ShowPrototypeInAbbr = 1
+let OmniCpp_SelectFirstItem = 2 " select without inserting
+" automatically open and close the popup menu / preview window
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
+" SnipMate settings
+let g:snips_author = 'Sam Britt <samuelbritt@gmail.com>'
+
+" restores normal vim keybindings for macvim
+if has("gui_macvim")
+	let macvim_skip_cmd_opt_movement = 1
+endif
+
+"""""""""""""""""""""""""""""""
+" Colors:
+"
+" Switch syntax highlighting on, when the terminal has colors
+" Needs to come after filetype plugin indent on
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  syntax sync minlines=50
+endif
+
+" Colorscheme
 if has("gui_running")
 	set bg=light
 	set guioptions-=T
-	"SEE .gvimrc
+	"see also .gvimrc
 else
 	set bg=dark
 	colorscheme desert
 endif
 
-" Tags, completetion preferences:
-map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
-set tags+=~/.vim/tags/cpp
-let OmniCpp_ShowPrototypeInAbbr = 1
-let OmniCpp_SelectFirstItem = 2 " select without inserting
-set wmnu
-set completeopt=menuone,menu,longest,preview
-" automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+"""""""""""""""""""""""""""""""
+" Maps And Commands:
+"
+" more logical behavior of Y
+nmap Y y$
 
-set dir=~/.swp
+" alternate escapes
+imap jk <ESC>
+imap kj <ESC>
+cmap jk <ESC>
+cmap kj <ESC>
 
-" show arrow at beginning of wrapped lines
-let &sbr = nr2char(8618).' '
+" make the . command return to the point where the command started
+nmap . .`[
 
-" Give windows equal space after resizing or opening a new window
-autocmd VimResized * wincmd =
-autocmd BufWinEnter * wincmd =
+" Move line down, up in command mode (can delete lines)
+nnoremap + maO<esc>`a
+nnoremap _ makdd`a
 
-" Highlight trailing whitespace
-highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
-au ColorScheme * highlight ExtraWhitespace guibg=lightgreen
-au BufEnter * match ExtraWhitespace /\s\+$/
-au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-au InsertLeave * match ExtraWhiteSpace /\s\+$/
+" Move line up or down
+nmap <M-=> mz:m+<CR>`z
+nmap <M--> mz:m-2<CR>`z
+vmap <M-=> :m'>+<CR>`<my`>mzgv`yo`z
+vmap <M--> :m'<-2<CR>`>my`<mzgv`yo`z
 
-" Command to change to the directory of the current buffer
-command! CD cd %:p:h
-command! LCD lcd %:p:h
+" put current word on commandline
+cmap <F2> <C-R><C-W>
 
-" Easier buffer switching
+" Write buffer through sudo
+cnoreabbrev w!! w !sudo tee % >/dev/null
+" cmap w!! %!sudo tee % > /dev/null
+
+" Easier buffer switching with Alt key
 set winaltkeys=no	" turns off Alt for menu navigation
 nmap <silent> <M-k> :wincmd k<CR>
 nmap <silent> <M-j> :wincmd j<CR>
@@ -150,3 +123,51 @@ imap <silent> <M-w> <C-o>:wincmd w<CR>
 imap <silent> <M-`> <C-o>:wincmd w<CR>
 imap <silent> <M-o> <C-o>:wincmd o<CR>
 
+" Command to change to the directory of the current window (LCD) and all
+" windows (GCD)
+command! CD lcd %:p:h
+command! LCD lcd %:p:h
+command! GCD cd %:p:h
+
+" Command to see the difference between the current buffer and the file it was
+" loaded from, thus the changes you made.
+command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+	 	\ | wincmd p | diffthis
+
+"""""""""""""""""""""""""""""""
+" Preferences:
+"
+source $VIMRUNTIME/macros/matchit.vim		" % matching
+
+" show arrow at beginning of wrapped lines
+let &sbr = nr2char(8618).' '
+
+" Give windows equal space after resizing or opening a new window
+autocmd VimResized * wincmd =
+autocmd BufWinEnter * wincmd =
+
+" Highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
+au ColorScheme * highlight ExtraWhitespace guibg=lightgreen
+au BufEnter * match ExtraWhitespace /\s\+$/
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhiteSpace /\s\+$/
+
+" Various settings
+set backspace=indent,eol,start 	" backspace over everything
+set whichwrap+=<,>,[,]		" changing lines with arrow keys
+set history=50			" keep 50 lines of command line history
+set ruler			" show the cursor position all the time
+set showcmd			" display incomplete commands
+set incsearch			" do incremental searching
+set hlsearch			" highlight search
+set mouse=a 			" enable the mouse
+set dir=~/.swp			" don't litter project with ~ files
+set wildmenu			" tab completion on commands
+set wildmode=longest:full,list:full 		" bash compatible behavior
+set completeopt=menuone,menu,longest,preview	" insert completion
+set ignorecase			" ingnore case in searches
+set smartcase			" don't ignore case with uppercase in pattern
+set viminfo+='100,f1 		" history between sessions
+set nostartofline 		" keeps cursor in same spot when scrolling
+set noshowmatch			" showmatch is annoying
