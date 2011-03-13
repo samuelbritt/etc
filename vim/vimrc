@@ -70,13 +70,14 @@ autocmd BufEnter *.m compiler mlint
 
 " User Preferences:
 source $VIMRUNTIME/macros/matchit.vim
-"set wildmode=longest,full " bash compatible behavior
 set wildmode=longest:full,list:full " bash compatible behavior
-"set iskeyword-=_ "underscore as word delimiter
 set ignorecase
-set viminfo+='100,f1
-set nostartofline
+set viminfo+='100,f1 	"history between sessions
+set nostartofline 	"keeps cursor in same spot when scrolling
 nmap :W :w
+set noshowmatch		" I find showmatch annoying
+" more logical behavior of Y
+nmap Y y$
 
 " alternate escapes
 imap jk <ESC>
@@ -93,6 +94,7 @@ let NERDSpaceDelims=1
 nnoremap + maO<esc>`a
 nnoremap _ makdd`a
 
+" Colors
 if has("gui_running")
 	set bg=light
 	set guioptions-=T
@@ -140,10 +142,14 @@ nmap <silent> <M-h> :wincmd h<CR>
 nmap <silent> <M-l> :wincmd l<CR>
 nmap <silent> <M-w> :wincmd w<CR>
 nmap <silent> <M-`> :wincmd w<CR>
+nmap <silent> <M-o> :wincmd o<CR>
 imap <silent> <M-k> <C-o>:wincmd k<CR>
 imap <silent> <M-j> <C-o>:wincmd j<CR>
 imap <silent> <M-h> <C-o>:wincmd h<CR>
 imap <silent> <M-l> <C-o>:wincmd l<CR>
 imap <silent> <M-w> <C-o>:wincmd w<CR>
 imap <silent> <M-`> <C-o>:wincmd w<CR>
+imap <silent> <M-o> <C-o>:wincmd o<CR>
 
+" SnipMate settings
+let g:snips_author = 'Sam Britt <samuelbritt@gmail.com>'
