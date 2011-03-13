@@ -32,3 +32,4 @@ let &cpo = s:save_cpo
 
 set ts=4
 set sw=4
+compiler mlint
