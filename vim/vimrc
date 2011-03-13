@@ -70,14 +70,14 @@ autocmd BufEnter *.m compiler mlint
 
 " User Preferences:
 source $VIMRUNTIME/macros/matchit.vim
-"set wildmode=longest,full " bash compatible behavior
 set wildmode=longest:full,list:full " bash compatible behavior
-"set iskeyword-=_ "underscore as word delimiter
 set ignorecase
-set viminfo+='100,f1
-set nostartofline
+set viminfo+='100,f1 	"history between sessions
+set nostartofline 	"keeps cursor in same spot when scrolling
 nmap :W :w
 set noshowmatch		" I find showmatch annoying
+" more logical behavior of Y
+nmap Y y$
 
 " alternate escapes
 imap jk <ESC>
@@ -94,6 +94,7 @@ let NERDSpaceDelims=1
 nnoremap + maO<esc>`a
 nnoremap _ makdd`a
 
+" Colors
 if has("gui_running")
 	set bg=light
 	set guioptions-=T
