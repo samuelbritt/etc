@@ -44,7 +44,7 @@ set tags+=~/.vim/tags/cpp
 let OmniCpp_ShowPrototypeInAbbr = 1
 let OmniCpp_SelectFirstItem = 2 " select without inserting
 " automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+" au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
 " SnipMate settings
 let g:snips_author = 'Sam Britt <samuelbritt@gmail.com>'
@@ -60,8 +60,8 @@ endif
 " Switch syntax highlighting on, when the terminal has colors
 " Needs to come after filetype plugin indent on
 if &t_Co > 2 || has("gui_running")
-  syntax on
-  syntax sync minlines=50
+	syntax on
+	syntax sync minlines=50
 endif
 
 " Colorscheme
@@ -93,7 +93,7 @@ nmap . .`[
 nnoremap + maO<esc>`a
 nnoremap _ makdd`a
 
-" Move line up or down
+" Move line(s) up or down (swaps with adjacent lines
 nmap <M-=> mz:m+<CR>`z
 nmap <M--> mz:m-2<CR>`z
 vmap <M-=> :m'>+<CR>`<my`>mzgv`yo`z
@@ -101,6 +101,18 @@ vmap <M--> :m'<-2<CR>`>my`<mzgv`yo`z
 
 " put current word on commandline
 cmap <F2> <C-R><C-W>
+
+" TagList Toggle
+map <F2> :TlistToggle<CR>
+
+" TaskList Toggle
+map <F3> :TaskList<CR>
+
+" re-map the trigger for omnicomplete -- press Alt-Space once to bring up the
+" completion menu, and repeat to scroll through. Can also use Alt-P to scroll
+" back
+imap <expr> <M-Space> pumvisible() ? "<C-N>" : "<C-X><C-O>"
+imap <expr> <M-P>     pumvisible() ? "<C-P>" : "<M-P>"
 
 " <esc> in normal mode clears highlight
 nnoremap <silent> <ESC> :noh<CR><ESC>
