@@ -1,1 +1,2 @@
 camelcasemotion.vba: call delete('/Users/sam/.vim/autoload/camelcasemotion.vim')|call delete('/Users/sam/.vim/plugin/camelcasemotion.vim')|call delete('/Users/sam/.vim/doc/camelcasemotion.txt')
+delimitMate-2.6.vba: call delete('/Users/sam/.vim/plugin/delimitMate.vim')|call delete('/Users/sam/.vim/autoload/delimitMate.vim')|call delete('/Users/sam/.vim/doc/delimitMate.txt')
