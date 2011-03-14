@@ -115,9 +115,6 @@ imap <expr> <M-Space> pumvisible() ? "<C-N>" : "<C-X><C-O>"
 imap <expr> <M-P>     pumvisible() ? "<C-P>" : "<M-P>"
 inoremap <expr> <CR>  pumvisible() ? "\<C-Y>" : "\<C-g>u<CR>"
 
-" <esc> in normal mode clears highlight
-nnoremap <silent> <ESC> :noh<CR><ESC>
-
 " Write buffer through sudo
 cnoreabbrev w!! w !sudo tee % >/dev/null
 " cmap w!! %!sudo tee % > /dev/null
