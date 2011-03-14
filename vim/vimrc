@@ -89,7 +89,7 @@ cmap kj <ESC>
 " make the . command return to the point where the command started
 nmap . .`[
 
-" Move line down, up in command mode (can delete lines)
+" Push line down, up in command mode (can delete lines)
 nnoremap + maO<esc>`a
 nnoremap _ makdd`a
 
@@ -101,6 +101,9 @@ vmap <M--> :m'<-2<CR>`>my`<mzgv`yo`z
 
 " put current word on commandline
 cmap <F2> <C-R><C-W>
+
+" <esc> in normal mode clears highlight
+nnoremap <silent> <ESC> :noh<CR><ESC>
 
 " Write buffer through sudo
 cnoreabbrev w!! w !sudo tee % >/dev/null
