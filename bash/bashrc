@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
 # Platform-specific settings
 if [ `uname` = "Linux" ] ; then
 	#color support of ls

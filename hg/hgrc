@@ -26,12 +26,12 @@ transplant =
 fetch =
 record =
 graphlog =
-# hgext.highlight =
+hgext.highlight =
 # hgext.convert =
 color =
 pager =
-artemis = $HOME/etc/hg/ext/artemis/artemis.py
-bigfiles = $HOME/etc/hg/ext/bigfiles/bigfiles.py
+# artemis = $HOME/etc/hg/ext/artemis/artemis.py
+# bigfiles = $HOME/etc/hg/ext/bigfiles/bigfiles.py
 
 [pager]
 pager = LESS='FSRX' less
