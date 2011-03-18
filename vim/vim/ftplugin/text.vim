@@ -5,4 +5,4 @@ setlocal sw=4
 setlocal ts=4
 setlocal ai
 " setlocal fo+=awn
-setlocal fo+=anl
+setlocal fo+=nl
