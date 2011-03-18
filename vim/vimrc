@@ -49,6 +49,9 @@ let OmniCpp_SelectFirstItem = 2 " select without inserting
 " SnipMate settings
 let g:snips_author = 'Sam Britt <samuelbritt@gmail.com>'
 
+" SuperTab settings
+let g:SuperTabDefaultCompletionType='context'
+
 " restores normal vim keybindings for macvim
 if has("gui_macvim")
 	let macvim_skip_cmd_opt_movement = 1
@@ -83,8 +86,6 @@ nmap Y y$
 " alternate escapes
 imap jk <ESC>
 imap kj <ESC>
-cmap jk <ESC>
-cmap kj <ESC>
 
 " make the . command return to the point where the command started
 nmap . .`[
@@ -107,13 +108,6 @@ map <F2> :TlistToggle<CR>
 
 " TaskList Toggle
 map <F3> :TaskList<CR>
-
-" re-map the trigger for omnicomplete -- press Alt-Space once to bring up the
-" completion menu, and repeat to scroll through. Can also use Alt-P to scroll
-" back
-imap <expr> <M-Space> pumvisible() ? "<C-N>" : "<C-X><C-O>"
-imap <expr> <M-P>     pumvisible() ? "<C-P>" : "<M-P>"
-inoremap <expr> <CR>  pumvisible() ? "\<C-Y>" : "\<C-g>u<CR>"
 
 " Write buffer through sudo
 cnoreabbrev w!! w !sudo tee % >/dev/null
