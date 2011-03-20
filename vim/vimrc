@@ -83,8 +83,7 @@ endif
 " more logical behavior of Y
 nmap Y y$
 
-" alternate escapes
-imap jk <ESC>
+" alternate escape
 imap kj <ESC>
 
 " make the . command return to the point where the command started

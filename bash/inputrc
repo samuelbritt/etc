@@ -2,7 +2,8 @@
 
 # Make all readline-obeying programs take vi settings
 set editing-mode vi
+
+# Map kj to escape
 "kj": "\e"
-"jk": "\e"
 
 #set completion-ignore-case On
