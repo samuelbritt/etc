@@ -177,4 +177,6 @@ set ignorecase			" ingnore case in searches
 set smartcase			" don't ignore case with uppercase in pattern
 set viminfo+='100,f1 		" history between sessions
 set nostartofline 		" keeps cursor in same spot when scrolling
-set noshowmatch			" showmatch is annoying
+" set noshowmatch			" showmatch is annoying
+set showmatch
+set matchtime=1                 " showmatch is annoying
