@@ -4,6 +4,6 @@
 set editing-mode vi
 
 # Map kj to escape
-"kj": "\e"
+# "kj": "\e"
 
 #set completion-ignore-case On

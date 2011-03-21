@@ -84,7 +84,7 @@ endif
 nmap Y y$
 
 " alternate escape
-imap kj <ESC>
+" imap kj <ESC> " (mapped caps lock to esc)
 
 " make the . command return to the point where the command started
 nmap . .`[
@@ -110,22 +110,28 @@ map <F3> :TaskList<CR>
 
 " Write buffer through sudo
 cnoreabbrev w!! w !sudo tee % >/dev/null
-" cmap w!! %!sudo tee % > /dev/null
+
+" Reset leader to something easier to type
+let mapleader = ","
+
+" ` is more useful but less accessible than '
+nnoremap ' `
+nnoremap ` '
 
 " Easier buffer switching with Alt key
 set winaltkeys=no	" turns off Alt for menu navigation
-nmap <silent> <M-k> :wincmd k<CR>
-nmap <silent> <M-j> :wincmd j<CR>
-nmap <silent> <M-h> :wincmd h<CR>
-nmap <silent> <M-l> :wincmd l<CR>
-nmap <silent> <M-w> :wincmd w<CR>
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+" nmap <silent> <M-w> :wincmd w<CR>
 nmap <silent> <M-`> :wincmd w<CR>
 nmap <silent> <M-o> :wincmd o<CR>
-imap <silent> <M-k> <C-o>:wincmd k<CR>
-imap <silent> <M-j> <C-o>:wincmd j<CR>
-imap <silent> <M-h> <C-o>:wincmd h<CR>
-imap <silent> <M-l> <C-o>:wincmd l<CR>
-imap <silent> <M-w> <C-o>:wincmd w<CR>
+imap <silent> <C-k> <C-o>:wincmd k<CR>
+imap <silent> <C-j> <C-o>:wincmd j<CR>
+imap <silent> <C-h> <C-o>:wincmd h<CR>
+imap <silent> <C-l> <C-o>:wincmd l<CR>
+imap <silent> <C-w> <C-o>:wincmd w<CR>
 imap <silent> <M-`> <C-o>:wincmd w<CR>
 imap <silent> <M-o> <C-o>:wincmd o<CR>
 
@@ -176,6 +182,9 @@ set ignorecase			" ingnore case in searches
 set smartcase			" don't ignore case with uppercase in pattern
 set viminfo+='100,f1 		" history between sessions
 set nostartofline 		" keeps cursor in same spot when scrolling
-" set noshowmatch			" showmatch is annoying
-set showmatch
+set showmatch 			" highlight matching braces
 set matchtime=1                 " showmatch is annoying
+" set noshowmatch			" showmatch is annoying
+set hidden 			" allow switching buffers without saving
+set title 			" better titles in terminals
+set scrolloff=3 		" keep some context when scrolling
