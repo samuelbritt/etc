@@ -99,6 +99,11 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
+# xmodmap key bindings
+if [ -f ~/.xmodmap ]; then
+	xmodmap ~/.xmodmap
+fi
+
 # prompt
 PS1='\n\u@\h:\w\n\$ '
 
