@@ -120,18 +120,18 @@ nnoremap ` '
 
 " Easier buffer switching with Alt key
 set winaltkeys=no	" turns off Alt for menu navigation
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-l> :wincmd l<CR>
-" nmap <silent> <M-w> :wincmd w<CR>
+nmap <silent> <M-k> :wincmd k<CR>
+nmap <silent> <M-j> :wincmd j<CR>
+nmap <silent> <M-h> :wincmd h<CR>
+nmap <silent> <M-l> :wincmd l<CR>
+nmap <silent> <M-w> :wincmd w<CR>
 nmap <silent> <M-`> :wincmd w<CR>
 nmap <silent> <M-o> :wincmd o<CR>
-imap <silent> <C-k> <C-o>:wincmd k<CR>
-imap <silent> <C-j> <C-o>:wincmd j<CR>
-imap <silent> <C-h> <C-o>:wincmd h<CR>
-imap <silent> <C-l> <C-o>:wincmd l<CR>
-imap <silent> <C-w> <C-o>:wincmd w<CR>
+imap <silent> <M-k> <C-o>:wincmd k<CR>
+imap <silent> <M-j> <C-o>:wincmd j<CR>
+imap <silent> <M-h> <C-o>:wincmd h<CR>
+imap <silent> <M-l> <C-o>:wincmd l<CR>
+imap <silent> <M-w> <C-o>:wincmd w<CR>
 imap <silent> <M-`> <C-o>:wincmd w<CR>
 imap <silent> <M-o> <C-o>:wincmd o<CR>
 
