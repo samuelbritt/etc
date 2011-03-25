@@ -16,3 +16,4 @@ hghide*
 ._*
 .DS_Store
 ~$*
+.directory
