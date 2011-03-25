@@ -118,6 +118,11 @@ let mapleader = ","
 nnoremap ' `
 nnoremap ` '
 
+" Filename, line, and tag completion
+inoremap <C-F> <C-X><C-F>
+inoremap <C-L> <C-X><C-L>
+inoremap <C-]> <C-X><C-]>
+
 " Easier buffer switching with Alt key
 set winaltkeys=no	" turns off Alt for menu navigation
 nmap <silent> <M-k> :wincmd k<CR>
