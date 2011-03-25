@@ -1,4 +1,4 @@
 colorscheme macvim
-set guifont=Bitstream\ Vera\ Sans\ Mono\ 8
+set guifont=Inconsolata-dz\ 8
 set lines=70
 set columns=80
