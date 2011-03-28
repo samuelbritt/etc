@@ -49,6 +49,11 @@ let OmniCpp_SelectFirstItem = 2 " select without inserting
 " SnipMate settings
 let g:snips_author = 'Sam Britt <samuelbritt@gmail.com>'
 
+" DelimitMate settings
+let delimitMate_balance_matchpairs = 1
+let delimitMate_expand_space = 1
+let delimitMate_expand_cr = 1
+
 " restores normal vim keybindings for macvim
 if has("gui_macvim")
 	let macvim_skip_cmd_opt_movement = 1
