@@ -1,4 +1,5 @@
 set lines=75
 set columns=80
-set guifont=Menlo:h11
-set macmeta 		" gives my Alt key back
+set guifont=Inconsolata-dz:h12,Menlo:h11
+set macmeta 		" give me my Alt key back
+colorscheme macvim_regular

@@ -80,14 +80,11 @@ endif
 " more logical behavior of Y
 nmap Y y$
 
-" alternate escapes
-imap jk <ESC>
-imap kj <ESC>
-cmap jk <ESC>
-cmap kj <ESC>
+" alternate escape
+" imap kj <ESC> " (mapped caps lock to esc)
 
 " make the . command return to the point where the command started
-nmap . .`[
+noremap . .`[
 
 " Push line down, up in command mode (can delete lines)
 nnoremap + maO<esc>`a
@@ -108,16 +105,20 @@ map <F2> :TlistToggle<CR>
 " TaskList Toggle
 map <F3> :TaskList<CR>
 
-" re-map the trigger for omnicomplete -- press Alt-Space once to bring up the
-" completion menu, and repeat to scroll through. Can also use Alt-P to scroll
-" back
-imap <expr> <M-Space> pumvisible() ? "<C-N>" : "<C-X><C-O>"
-imap <expr> <M-P>     pumvisible() ? "<C-P>" : "<M-P>"
-inoremap <expr> <CR>  pumvisible() ? "\<C-Y>" : "\<C-g>u<CR>"
-
 " Write buffer through sudo
 cnoreabbrev w!! w !sudo tee % >/dev/null
-" cmap w!! %!sudo tee % > /dev/null
+
+" Reset leader to something easier to type
+let mapleader = ","
+
+" ` is more useful but less accessible than '
+nnoremap ' `
+nnoremap ` '
+
+" Filename, line, and tag completion
+inoremap <C-F> <C-X><C-F>
+inoremap <C-L> <C-X><C-L>
+inoremap <C-]> <C-X><C-]>
 
 " Easier buffer switching with Alt key
 set winaltkeys=no	" turns off Alt for menu navigation
@@ -183,4 +184,9 @@ set ignorecase			" ingnore case in searches
 set smartcase			" don't ignore case with uppercase in pattern
 set viminfo+='100,f1 		" history between sessions
 set nostartofline 		" keeps cursor in same spot when scrolling
-set noshowmatch			" showmatch is annoying
+set showmatch 			" highlight matching braces
+set matchtime=1                 " showmatch is annoying
+" set noshowmatch			" showmatch is annoying
+set hidden 			" allow switching buffers without saving
+set title 			" better titles in terminals
+set scrolloff=3 		" keep some context when scrolling
