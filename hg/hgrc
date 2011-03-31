@@ -31,7 +31,7 @@ hgext.highlight =
 color =
 pager =
 # artemis = $HOME/etc/hg/ext/artemis/artemis.py
-# bigfiles = $HOME/etc/hg/ext/bigfiles/bigfiles.py
+bigfiles = $HOME/etc/hg/ext/bigfiles/bigfiles.py
 
 [pager]
 pager = LESS='FSRX' less
