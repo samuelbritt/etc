@@ -44,6 +44,7 @@ if [ `uname -n` = "titanium" ] ; then
 	export PATH=/opt/epd/epd7.0/bin:$PATH
 elif [ ${HOSTNAME} = "hydrogen" ] || [ ${HOSTNAME} = "hydrogen.site" ] ; then
 	export PATH=/opt/bin:$PATH
+	export PATH=/usr/sbin:$PATH
 	# EPD
 	export PATH=/opt/epd/epd7.0/bin:$PATH
 elif [ ${HOSTNAME} = "aluminum-vert" ] ; then
