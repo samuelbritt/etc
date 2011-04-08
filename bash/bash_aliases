@@ -37,6 +37,7 @@ alias lal='ll -A'
 alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias dirs="dirs -v"
 alias root='cd `hg root`'
 
 alias grep="grep --color=auto"
@@ -48,6 +49,7 @@ alias df='df -H'
 alias du='du -h'
 alias diff='colordiff -u'
 alias pylab='ipython -pylab'
+alias gh=hg
 
 # recursive mkdir and cd if successful
 function mkcd {
@@ -62,3 +64,5 @@ function cl {
 if [ ${HOSTNAME:0:9} = "moleculos" ] ; then
 	unalias diff
 fi
+
+# vim: set ft=sh nospell:
