@@ -2,4 +2,6 @@ set lines=75
 set columns=80
 set guifont=Inconsolata-dz:h12,Menlo:h11
 set macmeta 		" give me my Alt key back
-colorscheme macvim_regular
+set guioptions-=T
+set bg=dark
+colorscheme peaksea

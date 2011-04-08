@@ -71,11 +71,10 @@ endif
 
 " Colorscheme
 if has("gui_running")
-	set bg=light
-	set guioptions-=T
-	"see also .gvimrc
+	"see .gvimrc
 else
 	set bg=dark
+	" set t_Co=256 " breaks on OS X
 	colorscheme desert
 endif
 
@@ -150,8 +149,24 @@ command! GCD cd %:p:h
 
 " Command to see the difference between the current buffer and the file it was
 " loaded from, thus the changes you made.
-command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 	 	\ | wincmd p | diffthis
+
+" Function to trim trailing white spaces
+function! <SID>TrimTrailingSpaces()
+	let l = line(".")
+	let c = col(".")
+	%s/\s\+$//e
+	call cursor(l, c)
+endfunction
+command! TrimTrailingSpaces :call <SID>TrimTrailingSpaces()
+
+" Highlight trailing whitespace
+" highlight TrailingSpaces ctermbg=darkgreen guibg=lightgreen
+" au ColorScheme * highlight TrailingSpaces guibg=lightgreen
+au BufEnter * match TODO /\s\+$/
+au InsertEnter * match TODO /\s\+\%#\@<!$/
+au InsertLeave * match TODO /\s\+$/
 
 """""""""""""""""""""""""""""""
 " Preferences:
@@ -164,13 +179,6 @@ let &sbr = nr2char(8618).' '
 " Give windows equal space after resizing or opening a new window
 autocmd VimResized * wincmd =
 autocmd BufWinEnter * wincmd =
-
-" Highlight trailing whitespace
-highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
-au ColorScheme * highlight ExtraWhitespace guibg=lightgreen
-au BufEnter * match ExtraWhitespace /\s\+$/
-au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-au InsertLeave * match ExtraWhiteSpace /\s\+$/
 
 " Various settings
 set backspace=indent,eol,start 	" backspace over everything
@@ -195,3 +203,4 @@ set matchtime=1                 " showmatch is annoying
 set hidden 			" allow switching buffers without saving
 set title 			" better titles in terminals
 set scrolloff=3 		" keep some context when scrolling
+set linebreak                   " wrap lines sanely
