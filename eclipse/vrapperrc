@@ -5,9 +5,9 @@
 " for the plugin and
 " 		http://vrapper.sourceforge.net/update-site/stable
 " for the update site for Eclipse
-imap jk <ESC>
-imap kj <ESC>
 
 set ignorecase
 set smartcase
 set saney
+
+" vim: ft=vim
