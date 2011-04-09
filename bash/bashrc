@@ -13,6 +13,11 @@ if [ `uname` = "Linux" ] ; then
 		alias ls='ls --color=auto -Bp'
 		alias dir='dir --color=auto -p'
 	fi
+
+	if [ `uname -n` = "aluminum" ]
+	then
+		export PATH=/opt/epd/bin:$PATH
+	fi
 elif [ `uname` = "Darwin" ] ; then
 	# color support
 	export CLICOLOR=1
