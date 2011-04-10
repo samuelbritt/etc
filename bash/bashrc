@@ -17,6 +17,7 @@ if [ `uname` = "Linux" ] ; then
 	if [ `uname -n` = "aluminum" ]
 	then
 		export PATH=/opt/epd/bin:$PATH
+		export PATH=/opt/eclipse:$PATH
 	fi
 elif [ `uname` = "Darwin" ] ; then
 	# color support
