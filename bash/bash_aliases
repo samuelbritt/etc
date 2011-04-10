@@ -8,6 +8,8 @@ if [ `uname` = "Linux" ] ; then
 	alias abaqus='XLIB_SKIP_ARGB_VISUALS=1 abaqus'
 	alias cae='abaqus cae&'
 	alias matcl='matlab -nosplash -nodesktop'
+	alias mvim="gvim"
+	alias mvimdiff="gvimdiff"
 
 	# Edit file in new terminal window
 	function tvim {
