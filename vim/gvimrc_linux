@@ -1,3 +1,4 @@
+set guioptions-=T
 set guifont=Inconsolata-dz\ 10
 set bg=dark
 colorscheme peaksea
