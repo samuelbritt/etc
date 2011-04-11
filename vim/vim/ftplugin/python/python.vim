@@ -22,6 +22,6 @@ let python_highlight_exceptions=1
 "let python_highlight_space_errors=1
 
 " DelimitMate: allow triple double-quotes
-let b:delmitMate_nesting_quotes['"']
+let b:delimitMate_nesting_quotes = ['"']
 
 syntax on
