@@ -4,4 +4,4 @@ set guifont=Inconsolata-dz:h12,Menlo:h11
 set macmeta 		" give me my Alt key back
 set guioptions-=T
 set bg=dark
-colorscheme peaksea
+colorscheme peaksea_regular
