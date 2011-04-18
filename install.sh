@@ -12,8 +12,9 @@ ln -sf etc/bash/bash_aliases .bash_aliases
 ln -sf etc/bash/inputrc .inputrc
 
 # Vim
-ln -sf etc/vim/vim .vim
+ln -sfT etc/vim/vim .vim
 ln -sf etc/vim/vimrc .vimrc
+mkdir -p ~/.swp
 if [[ `uname` == "Linux" ]]
 then
 	if [[ `uname -n` == hydrogen* ]]
@@ -26,7 +27,6 @@ else
 	ln -sf etc/vim/gvimrc_osx .gvimrc
 fi
 
-
 # Hg
 ln -sf etc/hg/hgrc_ignore .hgrc_ignore
 if [[ `uname` = "Linux" ]]
@@ -37,14 +37,14 @@ else
 fi
 
 # LaTeX
-ln -sf etc/texmf texmf
+ln -sfT etc/texmf texmf
 
 # Eclipse
 ln -sf etc/eclipse/vrapperrc .vrapperrc
 
 # Screen
 ln -sf etc/screen/screenrc .screenrc
-ln -sf etc/screen/screen-profiles .screen-profiles
+ln -sfT etc/screen/screen-profiles .screen-profiles
 
 # Abaqus
 if   type -P abaqus &>/dev/null || [[ `uname -n` == "titanium"  ]]
@@ -55,3 +55,14 @@ fi
 # SSH
 cd .ssh
 ln -sf ../etc/ssh/config config
+cd $HOME
+
+# Fonts
+unzip etc/themes/fonts/*zip
+mkdir -p .fonts
+mv *.otf .fonts
+
+# Clean up home
+mkdir -p media
+rm -rf Templates Public
+mv -n Pictures Videos Music media
