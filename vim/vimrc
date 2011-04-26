@@ -74,8 +74,8 @@ if has("gui_running")
 	"see .gvimrc
 else
 	set bg=dark
-	" set t_Co=256 " breaks on OS X
-	colorscheme desert
+	set t_Co=256 " breaks on OS X
+	colorscheme peaksea_regular
 endif
 
 """""""""""""""""""""""""""""""
@@ -204,3 +204,4 @@ set hidden 			" allow switching buffers without saving
 set title 			" better titles in terminals
 set scrolloff=3 		" keep some context when scrolling
 set linebreak                   " wrap lines sanely
+set foldcolumn=1		" click to fold

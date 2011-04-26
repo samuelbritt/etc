@@ -50,7 +50,10 @@ alias scr='screen -DR'
 alias df='df -H'
 alias du='du -h'
 alias diff='colordiff -u'
-alias pylab='ipython -pylab'
+export EPD=/opt/epd/bin
+alias pylab='$EPD/ipython -pylab'
+alias epython='$EPD/python'
+alias eipython='$EPD/ipython'
 alias gh=hg
 
 # recursive mkdir and cd if successful

@@ -16,7 +16,7 @@ if [ `uname` = "Linux" ] ; then
 
 	if [ `uname -n` = "aluminum" ]
 	then
-		export PATH=/opt/epd/bin:$PATH
+		export PATH=$PATH:/opt/epd/bin
 		export PATH=/opt/eclipse:$PATH
 	fi
 elif [ `uname` = "Darwin" ] ; then
@@ -123,9 +123,14 @@ PS1='\n\u@\h:\w\n\$ '
 export BIBINPUTS=.:$HOME/texmf/bibtex/bib
 
 # paths
-export PYTHONPATH=$PYTHONPATH:$HOME/bin
-export PYTHONPATH=$PYTHONPATH:$HOME/lib/python
-export PATH=$PATH:$HOME/bin
+# export PYTHONPATH=$PYTHONPATH:$HOME/bin
+# export PYTHONPATH=$PYTHONPATH:$HOME/lib/python
+# export PATH=$PATH:$HOME/bin
+export PATH=$HOME/.local/bin:$PATH
+# this ^^^ may be all we need---installing python packages with
+#	setup.py install --user
+# installs scripts to ~/.local/bin, and modulus to ~/.local/lib/python*/site-packages
+# and the PYTHONPATH is taken care of automagically
 
 #Vim keybindings
 set -o vi
