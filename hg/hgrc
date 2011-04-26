@@ -32,6 +32,7 @@ color =
 pager =
 # artemis = $HOME/etc/hg/ext/artemis/artemis.py
 bigfiles = $HOME/etc/hg/ext/bigfiles/bigfiles.py
+progress =
 
 [pager]
 pager = LESS='FSRX' less
