@@ -119,6 +119,9 @@ let mapleader = ","
 nnoremap ' `
 nnoremap ` '
 
+" unhighlight after search
+nmap <silent> <leader>n :silent :nohlsearch<CR>
+
 " Filename, line, and tag completion
 inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
