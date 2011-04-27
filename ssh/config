@@ -56,7 +56,7 @@ Host abe login-abe.ncsa.teragrid.org
 
 Host code code.britts.us bitbucket.org
 	# Note: to use ssh on bitbucket, follow the URL with the username,
-	# e.g. ssh://code/samuelbritt/project. For HTML, that's not an issue:
+	# e.g. ssh://code/samuelbritt/project. For HTTP, that's not an issue:
 	# e.g. http://code.britts.us/project
 	HostName code.britts.us
 	User hg
