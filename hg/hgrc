@@ -31,6 +31,15 @@ hgext.highlight =
 color =
 pager =
 progress =
+inotify =
+hgext.schemes =
+
+[schemes]
+h = ssh://h/
+al = ssh://al/
+all = ssh://all/
+ti = ssh://ti/
+mol = ssh://mol/
 
 [pager]
 pager = LESS='FSRX' less
