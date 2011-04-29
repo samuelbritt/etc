@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install these first so we can start doing work
-sudo apt-get install 			\
+sudo apt-get install -y			\
 	vim-gnome			\
 	mercurial			\
 
@@ -33,8 +33,8 @@ sudo apt-get install 			\
 	# backintime-gnome		\
 	# deja-dup			\
 
-# Install LaTeX last b/c it takes forever
-sudo apt-get install 			\
+# install LaTeX last b/c it takes forever
+sudo apt-get install -y			\
 	texlive				\
 	texlive-bibtex-extra            \
 	texlive-math-extra              \
