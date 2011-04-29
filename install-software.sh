@@ -36,6 +36,7 @@ sudo apt-get install 			\
 # install LaTeX last b/c it takes forever
 sudo apt-get install -y			\
 	texlive				\
+	texlive-latex-recommended	\
 	texlive-bibtex-extra            \
 	texlive-math-extra              \
 	texlive-publishers              \
