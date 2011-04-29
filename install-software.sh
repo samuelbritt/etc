@@ -6,10 +6,15 @@ sudo apt-get install -y			\
 	mercurial			\
 
 # now the rest
-sudo apt-get install 			\
+sudo apt-add-repository ppa:stebbins/handbrake-releases
+sudo apt-get update
+
+	# handbrake			\
+sudo apt-get install -y			\
 	ipython                         \
 	python-scipy                    \
 	python-matplotlib               \
+	python-virtualenv               \
 	inkscape                        \
 	scribus-ng                      \
 	scribus-ng-doc                  \
@@ -26,7 +31,12 @@ sudo apt-get install 			\
 	electricsheep                   \
 	network-manager-vpnc            \
 	exuberant-ctags                 \
-	libdvdcss2			\
+	libdvdread4			\
+	ubuntu-restricted-extras	\
+	gstreamer0.10-plugins-bad	\
+	gstreamer0.10-plugins-ugly	\
+	gnome-gmail			\
+	colordiff			\
 
 	## Others?
 	# chromium-browser		\
@@ -42,6 +52,8 @@ sudo apt-get install -y			\
 	texlive-publishers              \
 	texlive-science                 \
 
+# Enable dvd playback
+sudo /usr/share/doc/libdvdread4/install-css.sh
 
 echo
 echo "Now that the install is done, be sure to install these from the web:"
