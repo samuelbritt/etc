@@ -171,6 +171,10 @@ au BufEnter * match TODO /\s\+$/
 au InsertEnter * match TODO /\s\+\%#\@<!$/
 au InsertLeave * match TODO /\s\+$/
 
+" Filetypes
+" Match mako files
+au BufNewFile,BufRead *.mako set filetype=mako
+
 """""""""""""""""""""""""""""""
 " Preferences:
 "
