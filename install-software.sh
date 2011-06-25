@@ -37,6 +37,7 @@ sudo apt-get install -y			\
 	gstreamer0.10-plugins-ugly	\
 	gnome-gmail			\
 	colordiff			\
+	ddclient			\
 
 	## Others?
 	# chromium-browser		\
