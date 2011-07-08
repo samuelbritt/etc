@@ -10,6 +10,10 @@ cd ${HOME}
 ln -sf etc/bash/bashrc .bashrc
 ln -sf etc/bash/bash_aliases .bash_aliases
 ln -sf etc/bash/inputrc .inputrc
+if [[ `uname` == "Darwin" ]]
+then
+	ln -sf etc/bash/bash_profile .bash_profile
+fi
 
 # Vim
 ln -sfT etc/vim/vim .vim
@@ -64,5 +68,5 @@ mv *.otf .fonts
 
 # Clean up home
 mkdir -p media
-rm -rf Templates Public
-mv -n Pictures Videos Music media
+sudo rm -rf Templates Public
+sudo mv -n Pictures Videos Music media
