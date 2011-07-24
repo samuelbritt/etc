@@ -67,6 +67,6 @@ mkdir -p .fonts
 mv *.otf .fonts
 
 # Clean up home
-mkdir -p media
-sudo rm -rf Templates Public
-sudo mv -n Pictures Videos Music media
+# mkdir -p media
+# sudo rm -rf Templates Public
+# sudo mv -n Pictures Videos Music media
