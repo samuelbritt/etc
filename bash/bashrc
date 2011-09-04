@@ -34,6 +34,9 @@ elif [ `uname` = "Darwin" ] ; then
 	export PATH
 	MKL_NUM_THREADS=1
 	export MKL_NUM_THREADS
+
+	# Setting PATH for MacTeX
+	export PATH=$PATH:/usr/texbin
 fi
 
 # Machine-specific settings
