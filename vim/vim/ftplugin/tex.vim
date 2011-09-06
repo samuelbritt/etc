@@ -25,6 +25,6 @@ let g:Tex_FoldedEnvironments=',column,frame'
 "let g:Tex_PromptedEnvironments='eqnarray*,eqnarray,equation,equation*,\[,$$,align,align*' "Defaults
 
 " Write and Compile
-map \wl :w<CR>\ll
+map <leader>wl :w<CR><leader>ll
 
 " see ~/.vim/after/ftplugin/tex_macros.vim for custom macros
