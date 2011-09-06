@@ -57,6 +57,7 @@ then
 fi
 
 # SSH
+mkdir .ssh
 cd .ssh
 ln -sf ../etc/ssh/config config
 cd $HOME
