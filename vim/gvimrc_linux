@@ -1,5 +1,5 @@
 set guifont=Inconsolata-dz\ 10
 colorscheme peaksea
 set bg=dark
-set lines=70
+set lines=60
 set columns=80
