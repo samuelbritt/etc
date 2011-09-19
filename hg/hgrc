@@ -33,6 +33,7 @@ pager =
 progress =
 inotify =
 hgext.schemes =
+hgext.purge =
 
 [schemes]
 h = ssh://h/
