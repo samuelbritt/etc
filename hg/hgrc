@@ -39,6 +39,8 @@ hgext.purge =
 h = ssh://h/
 al = ssh://al/
 all = ssh://all/
+si = ssh://si/
+silo = ssh://silo/
 ti = ssh://ti/
 mol = ssh://mol/
 

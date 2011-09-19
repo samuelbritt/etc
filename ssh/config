@@ -44,6 +44,18 @@ Host all
 	ForwardX11 yes
 	ForwardX11Trusted yes
 
+Host si silicon.britts.us
+	HostName silicon.britts.us
+	User sam
+	ForwardX11 yes
+	ForwardX11Trusted yes
+
+Host silo
+	HostName silicon.local
+	User sam
+	ForwardX11 yes
+	ForwardX11Trusted yes
+
 Host macbook
 	HostName macbook.local
 	User aprilsheppard
