@@ -38,6 +38,7 @@ sudo apt-get install -y			\
 	gnome-gmail			\
 	colordiff			\
 	ddclient			\
+	gtk2-engines-pixbuf		\
 
 	## Others?
 	# chromium-browser		\
