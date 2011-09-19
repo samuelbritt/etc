@@ -14,11 +14,6 @@ if [ `uname` = "Linux" ] ; then
 		alias dir='dir --color=auto -p'
 	fi
 
-	if [ `uname -n` = "aluminum" ]
-	then
-		export PATH=$PATH:/opt/epd/bin
-		export PATH=/opt/eclipse:$PATH
-	fi
 elif [ `uname` = "Darwin" ] ; then
 	# color support
 	export CLICOLOR=1
@@ -56,6 +51,9 @@ elif [ ${HOSTNAME} = "hydrogen" ] || [ ${HOSTNAME} = "hydrogen.site" ] ; then
 	export PATH=/usr/sbin:$PATH
 	# EPD
 	export PATH=$PATH:/opt/epd/bin
+elif [ `uname -n` = "silicon" ] ; then
+		export PATH=$PATH:/opt/epd/bin
+		export PATH=/opt/eclipse:$PATH
 elif [ ${HOSTNAME} = "aluminum-vert" ] ; then
 	# Intel Compilers:
 	source /opt/intel/Compiler/11.1/073/bin/ifortvars.sh ia32
