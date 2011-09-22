@@ -27,11 +27,11 @@ fetch =
 record =
 graphlog =
 hgext.highlight =
-# hgext.convert =
+hgext.convert =
 color =
 pager =
 progress =
-inotify =
+inotify =!
 hgext.schemes =
 hgext.purge =
 
