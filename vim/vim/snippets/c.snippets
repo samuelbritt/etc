@@ -10,7 +10,7 @@ snippet inc
 	#include <${1:stdio}.h>${2}
 # #include "..."
 snippet Inc
-	#include "${1:`Filename("$1.h")`}"${2}
+	#include "${1:`Filename("$1")`}.h"${2}
 # #ifndef ... #define ... #endif
 snippet Def
 	#ifndef $1
@@ -37,7 +37,7 @@ snippet once
 
 	${2}
 
-	#endif /* end of include guard: $1 */
+	#endif /* end of include guard: $1_H */
 # If Condition
 snippet if
 	if (${1:/* condition */}) {
@@ -76,7 +76,8 @@ snippet forr
 	}
 # Function
 snippet fun
-	${1:void} ${2:function_name}(${3})
+	${1:void}
+	${2:function_name}(${3})
 	{
 		${4:/* code */}
 	}
@@ -114,3 +115,24 @@ snippet .
 	[${1}]${2}
 snippet un
 	unsigned
+# Unit tests
+snippet test
+	START_TEST(test_${1:foo})
+	{
+		${2:/* code */}
+	}
+	END_TEST${3}
+snippet suite
+	Suite *
+	${1:foo}_suite(void)
+	{
+		TCase *tc_${2:core} = tcase_create("${3:$2}");
+
+		/* add tests to test case */
+		tcase_add_test(tc_$2, test_${4:bar});
+
+		/* add test cases to suite */
+		Suite *s = suite_create("$1");
+		suite_add_tcase(s, tc_$2);
+		return s;
+	}${5}
