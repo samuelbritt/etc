@@ -73,3 +73,7 @@ Host code code.britts.us bitbucket.org
 	HostName code.britts.us
 	User hg
 
+Host factor
+	HostName factor-4210.cc.gatech.edu
+	User gtg473y
+	GssApiAuthentication no
