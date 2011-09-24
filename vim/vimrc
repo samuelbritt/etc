@@ -40,7 +40,8 @@ let NERDSpaceDelims=1
 
 " NERDTree plugin
 let NERDTreeIgnore=['\.o$']
-" let NERDTreeWinSize=21
+let NERDTreeChDirMode=2 " change dir when changing root
+let NERDTreeShowBookmarks=1
 
 " Tags, completetion, OmniCpp preferences:
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
