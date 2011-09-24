@@ -38,6 +38,10 @@ let g:Tex_ViewRule_pdf='open'
 let NERDCommentWholeLinesInVMode=1
 let NERDSpaceDelims=1
 
+" NERDTree plugin
+let NERDTreeIgnore=['\.o$']
+" let NERDTreeWinSize=21
+
 " Tags, completetion, OmniCpp preferences:
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 set tags+=~/.vim/tags/cpp
@@ -184,8 +188,8 @@ source $VIMRUNTIME/macros/matchit.vim		" % matching
 let &sbr = nr2char(8618).' '
 
 " Give windows equal space after resizing or opening a new window
-autocmd VimResized * wincmd =
-autocmd BufWinEnter * wincmd =
+" autocmd VimResized * wincmd =
+" autocmd BufWinEnter * wincmd =
 
 " Various settings
 set backspace=indent,eol,start 	" backspace over everything
@@ -208,6 +212,8 @@ set showmatch 			" highlight matching braces
 set matchtime=1                 " showmatch is annoying
 " set noshowmatch			" showmatch is annoying
 set hidden 			" allow switching buffers without saving
+set switchbuf+=usetab		" switch to open buffer first, rather than
+				" 	duplicating file in current buffer
 set title 			" better titles in terminals
 set scrolloff=3 		" keep some context when scrolling
 set linebreak                   " wrap lines sanely
