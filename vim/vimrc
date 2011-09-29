@@ -203,6 +203,7 @@ set hlsearch			" highlight search
 set mouse=a 			" enable the mouse
 set dir=~/.swp			" don't litter project with ~ files
 set wildmenu			" tab completion on commands
+set wildignore=*.o,*.a,*.so,*.swp,*.aux,*.pdf	" hide from completion
 set wildmode=longest:full,list:full 		" bash compatible behavior
 set completeopt=menuone,menu,longest,preview	" insert completion
 set ignorecase			" ingnore case in searches
