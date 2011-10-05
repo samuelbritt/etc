@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # install these first so we can start doing work
-sudo apt-get install -y			\
+apt-get install -y			\
 	vim-gnome			\
 	mercurial			\
 
 # now the rest
-sudo apt-add-repository ppa:stebbins/handbrake-releases
-sudo apt-get update
+apt-add-repository ppa:stebbins/handbrake-releases
+apt-get update
 
 	# handbrake			\
-sudo apt-get install -y			\
+apt-get install -y			\
 	ipython                         \
 	python-scipy                    \
 	python-matplotlib               \
@@ -46,7 +46,7 @@ sudo apt-get install -y			\
 	# deja-dup			\
 
 # install LaTeX last b/c it takes forever
-sudo apt-get install -y			\
+apt-get install -y			\
 	texlive				\
 	texlive-latex-recommended	\
 	texlive-bibtex-extra            \
@@ -55,7 +55,7 @@ sudo apt-get install -y			\
 	texlive-science                 \
 
 # Enable dvd playback
-sudo /usr/share/doc/libdvdread4/install-css.sh
+/usr/share/doc/libdvdread4/install-css.sh
 
 echo
 echo "Now that the install is done, be sure to install these from the web:"
