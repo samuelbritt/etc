@@ -41,7 +41,14 @@ else
 fi
 
 # LaTeX
-ln -sfT etc/texmf texmf
+if [[ `uname` = "Linux" ]]
+then
+	ln -sfT etc/texmf texmf
+elif [[ `uname` = "Darwin" ]]
+then
+	ln -sfT ~/Library/texmf texmf
+fi
+
 
 # Eclipse
 ln -sf etc/eclipse/vrapperrc .vrapperrc
