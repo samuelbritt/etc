@@ -21,7 +21,7 @@ let g:Tex_BIBINPUTS=$HOME . '/texmf/bibtex/bib'
 "let g:TreatMacViewerAsUNIX=1
 
 "folds for beamer class
-let g:Tex_FoldedEnvironments=',column,frame'
+let g:Tex_FoldedEnvironments=',column,frame,codebox'
 "let g:Tex_PromptedEnvironments='eqnarray*,eqnarray,equation,equation*,\[,$$,align,align*' "Defaults
 
 " Write and Compile
