@@ -43,6 +43,9 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias dirs="dirs -v"
 alias root='cd `hg root`'
+alias pu='pushd'
+alias po='popd'
+alias ph='pushd ~'
 
 alias grep="grep --color=auto"
 alias today='date +%F'
