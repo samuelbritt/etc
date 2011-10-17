@@ -53,7 +53,7 @@ if &background=='light'
   "
   " hi CursorIM		guifg=#f0f0f0	guibg=#800080
   hi Special		guifg=#907000	guibg=NONE	gui=NONE
-  hi Comment		guifg=#606000	guibg=NONE	gui=NONE
+  hi Comment		guifg=#606000	guibg=NONE	gui=italic
   hi Number		guifg=#907000	guibg=NONE	gui=NONE
   hi Constant		guifg=#007068	guibg=NONE	gui=NONE
   hi StatusLine		guifg=fg	guibg=#a6caf0	gui=NONE
@@ -260,13 +260,13 @@ elseif &background=='dark'
   " DARK COLOR DEFINE START
 
   hi Normal		guifg=#d0d0d0	guibg=#202020	gui=NONE
-  hi Comment		guifg=#d0d090	guibg=NONE	gui=NONE
+  hi Comment		guifg=#d0d090	guibg=NONE	gui=italic
   hi Constant		guifg=#80c0e0	guibg=NONE	gui=NONE
   hi Number		guifg=#e0c060	guibg=NONE	gui=NONE
   hi Identifier		guifg=#f0c0f0	guibg=NONE	gui=NONE
-  hi Statement		guifg=#c0d8f8	guibg=NONE	gui=NONE
+  hi Statement		guifg=#c0d8f8	guibg=NONE	gui=bold
   hi PreProc		guifg=#60f080	guibg=NONE	gui=NONE
-  hi Type		guifg=#b0d0f0	guibg=NONE	gui=NONE
+  hi Type		guifg=#b0d0f0	guibg=NONE	gui=bold
   hi Special		guifg=#e0c060	guibg=NONE	gui=NONE
   hi Error		guifg=#f08060	guibg=NONE	gui=NONE
   hi Todo		guifg=#800000	guibg=#d0d090	gui=NONE
@@ -277,15 +277,15 @@ elseif &background=='dark'
   " hi CursorIM		guifg=#000000	guibg=#f000f0	gui=NONE
   hi StatusLine		guifg=#000000	guibg=#a6caf0	gui=NONE
   hi LineNr		guifg=#b0b0b0	guibg=NONE	gui=NONE
-  hi Question		guifg=#000000	guibg=#d0d090	gui=NONE
-  hi ModeMsg		guifg=fg	guibg=#000080	gui=NONE
+  hi Question		guifg=#000000	guibg=#d0d090	gui=bold
+  hi ModeMsg		guifg=fg	guibg=#000080	gui=bold
   hi VisualNOS		guifg=fg	guibg=#000080	gui=NONE
   hi SpecialKey		guifg=#b0d0f0	guibg=NONE	gui=NONE
-  hi NonText		guifg=#6080f0	guibg=#101010	gui=NONE
+  hi NonText		guifg=#6080f0	guibg=#101010	gui=bold
   hi Directory		guifg=#80c0e0	guibg=NONE	gui=NONE
   hi ErrorMsg		guifg=#d0d090	guibg=#800000	gui=NONE
   hi MoreMsg		guifg=#c0e080	guibg=NONE	gui=NONE
-  hi Title		guifg=#f0c0f0	guibg=NONE	gui=NONE
+  hi Title		guifg=#f0c0f0	guibg=NONE	gui=bold
   hi WarningMsg		guifg=#f08060	guibg=NONE	gui=NONE
   hi WildMenu		guifg=#000000	guibg=#d0d090	gui=NONE
   hi Folded		guifg=NONE	guibg=#004000	gui=NONE
