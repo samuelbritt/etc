@@ -3,6 +3,7 @@ vim/vim2/bundle/surround 	= [git]https://github.com/tpope/vim-surround.git
 vim/vim2/bundle/nerdcommenter 	= [git]https://github.com/scrooloose/nerdcommenter.git
 vim/vim2/bundle/nerdtree 	= [git]https://github.com/scrooloose/nerdtree.git
 vim/vim2/bundle/alternate 	= [git]https://github.com/vim-scripts/a.vim.git
+vim/vim2/bundle/taglist 	= [git]https://github.com/vim-scripts/taglist.vim.git
 vim/vim2/bundle/CamelCaseMotion	= [git]https://github.com/bkad/CamelCaseMotion.git
 vim/vim2/bundle/delimitMate 	= [git]https://github.com/Raimondi/delimitMate.git
 vim/vim2/bundle/snipmate 	= [git]https://github.com/msanders/snipmate.vim.git
