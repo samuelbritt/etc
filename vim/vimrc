@@ -94,7 +94,8 @@ endif
 nmap Y y$
 
 " alternate escape
-" imap kj <ESC> " (mapped caps lock to esc)
+" inoremap kj <ESC>
+inoremap jj <ESC>
 
 " make the . command return to the point where the command started
 noremap . .`[
@@ -129,7 +130,11 @@ nnoremap ' `
 nnoremap ` '
 
 " unhighlight after search
-nmap <silent> <leader>n :silent :nohlsearch<CR>
+nmap <silent> <leader><space> :silent :nohlsearch<CR>
+
+" move by screen line, not file line
+nnoremap j gj
+nnoremap k gk
 
 " Filename, line, and tag completion
 inoremap <C-F> <C-X><C-F>
@@ -224,3 +229,4 @@ set title 			" better titles in terminals
 set scrolloff=3 		" keep some context when scrolling
 set linebreak                   " wrap lines sanely
 set foldcolumn=1		" click to fold
+set gdefault			" global subst. by default; use 'g' to revert
