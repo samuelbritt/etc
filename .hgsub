@@ -1,4 +1,5 @@
 vim/vim2/bundle/pathogen 	= [git]https://github.com/tpope/vim-pathogen.git
+vim/vim2/bundle/surround 	= [git]https://github.com/tpope/vim-surround.git
 vim/vim2/bundle/nerdcommenter 	= [git]https://github.com/scrooloose/nerdcommenter.git
 vim/vim2/bundle/nerdtree 	= [git]https://github.com/scrooloose/nerdtree.git
 vim/vim2/bundle/alternate 	= [git]https://github.com/vim-scripts/a.vim.git
