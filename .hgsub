@@ -4,3 +4,4 @@ vim/vim2/bundle/nerdtree 	= [git]https://github.com/scrooloose/nerdtree.git
 vim/vim2/bundle/alternate 	= [git]https://github.com/vim-scripts/a.vim.git
 vim/vim2/bundle/CamelCaseMotion	= [git]https://github.com/bkad/CamelCaseMotion.git
 vim/vim2/bundle/delimitMate 	= [git]https://github.com/Raimondi/delimitMate.git
+vim/vim2/bundle/snipmate 	= [git]https://github.com/msanders/snipmate.vim.git
