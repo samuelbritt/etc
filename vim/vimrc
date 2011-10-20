@@ -82,9 +82,9 @@ endif
 if has("gui_running")
 	"see .gvimrc
 else
-	set bg=dark
 	set t_Co=256 " breaks on OS X
-	colorscheme peaksea_regular
+	colorscheme peaksea
+	set bg=dark  " must come after colorscheme
 endif
 
 """""""""""""""""""""""""""""""
