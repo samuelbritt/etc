@@ -1,5 +1,6 @@
 2cbe946206ec622d9d8cf2c99317f204c4d41885 vim/vim2/bundle/alternate
 85aba995c95b9b184f351f4aaad8ba76087484e5 vim/vim2/bundle/camelcasemotion
+056c06ed838a19813e5a4fd47ebe0a2827720453 vim/vim2/bundle/command-t
 39b8298390a9171c796df077ad3c5f3c0f111c56 vim/vim2/bundle/delimitMate
 36d275da3266c1b0cdc8f525f4d977d0154241f1 vim/vim2/bundle/latex
 06c1e16a4dcfd1b8b1764e96482af4b063ca7c8a vim/vim2/bundle/matlab
@@ -12,3 +13,4 @@ cdffdd43816ddaeee858ae42da3ab6ddcfa25d19 vim/vim2/bundle/repeat
 f5a75d075d3c005ebe69e3f5e56cf99516e8aa3b vim/vim2/bundle/snipmate
 6f0984a5ca1430047fe760fc680c6cf98ae94b01 vim/vim2/bundle/surround
 53041fbc45398a9af631a20657e109707a455339 vim/vim2/bundle/taglist
+8e2dfdcc6e13d8afab5b3f620ee06ebb29b786f9 vim/vim2/bundle/tasklist

@@ -12,3 +12,5 @@ vim/vim2/bundle/latex	 	= [git]git://vim-latex.git.sourceforge.net/gitroot/vim-l
 vim/vim2/bundle/matlab	 	= [git]https://github.com/vim-scripts/MatlabFilesEdition.git
 vim/vim2/bundle/python_match 	= [git]https://github.com/vim-scripts/python_match.vim.git
 vim/vim2/bundle/minibufexpl 	= [git]https://github.com/fholgado/minibufexpl.vim.git
+vim/vim2/bundle/command-t 	= [git]https://github.com/wincent/Command-T.git
+vim/vim2/bundle/tasklist 	= [git]https://github.com/vim-scripts/TaskList.vim.git
