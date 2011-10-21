@@ -18,6 +18,7 @@ set shiftwidth=4
 set formatoptions+=r  " auto-insert comment leader
 set foldmethod=syntax
 let fortran_do_enddo=1
+set comments+=:c
 " Folding for large subroutines can be slow
 " let fortran_fold=1
 " let fortran_fold_conditionals=1
