@@ -14,3 +14,4 @@ vim/vim2/bundle/python_match 	= [git]https://github.com/vim-scripts/python_match
 vim/vim2/bundle/minibufexpl 	= [git]https://github.com/fholgado/minibufexpl.vim.git
 vim/vim2/bundle/command-t 	= [git]https://github.com/wincent/Command-T.git
 vim/vim2/bundle/tasklist 	= [git]https://github.com/vim-scripts/TaskList.vim.git
+vim/vim2/bundle/pyflakes 	= [git]https://github.com/kevinw/pyflakes-vim.git
