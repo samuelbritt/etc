@@ -62,6 +62,7 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
 " SnipMate settings
 let g:snips_author = 'Sam Britt <samuelbritt@gmail.com>'
+let g:snippets_dir = $HOME . '/.vim/custom-snippets'
 
 " DelimitMate settings
 let delimitMate_balance_matchpairs = 1
