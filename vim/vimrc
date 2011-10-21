@@ -8,6 +8,7 @@ set nocompatible
 " Pathogen - sane plugin managment
 " This must come before syntax on; filetype plugin on
 runtime bundle/pathogen/autoload/pathogen.vim
+call pathogen#helptags()
 call pathogen#infect()
 
 " Only do this part when compiled with support for autocommands.
