@@ -97,6 +97,9 @@ endif
 """""""""""""""""""""""""""""""
 " Maps And Commands:
 "
+" Reset leader to something easier to type
+let mapleader = ","
+
 " more logical behavior of Y
 nmap Y y$
 
@@ -128,9 +131,6 @@ map <leader>l <Plug>TaskList
 
 " Write buffer through sudo
 cnoreabbrev w!! w !sudo tee % >/dev/null
-
-" Reset leader to something easier to type
-let mapleader = ","
 
 " ` is more useful but less accessible than '
 nnoremap ' `
