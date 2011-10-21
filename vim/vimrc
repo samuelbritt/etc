@@ -124,7 +124,7 @@ cmap <F2> <C-R><C-W>
 map <F2> :TlistToggle<CR>
 
 " TaskList Toggle
-map <F3> :TaskList<CR>
+map <leader>l <Plug>TaskList
 
 " Write buffer through sudo
 cnoreabbrev w!! w !sudo tee % >/dev/null
