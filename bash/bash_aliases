@@ -17,15 +17,17 @@ if [ `uname` = "Linux" ] ; then
 		gnome-terminal -x vim $@ &
 	}
 elif [ `uname` = "Darwin" ] ; then
+	alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 	alias gvim="mvim"
 	alias gvimdiff="mvim -d"
 	alias mvimdiff="mvim -d"
 	alias ls="ls -p"
 	alias lss="ls *.cpp *.h"
+	alias tree="find . -print | sed -e 's;[^/]*/;|_;g;s;_|; |;g'"
 	alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
 	alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
-fi
 	export EPD=/Library/Frameworks/Python.framework/Versions/Current/bin
+fi
 
 if [ $HOSTNAME = "hydrogen.site" ]
 then
