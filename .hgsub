@@ -15,3 +15,4 @@ vim/vim2/bundle/minibufexpl 	= [git]git://github.com/fholgado/minibufexpl.vim.gi
 vim/vim2/bundle/command-t 	= [git]git://github.com/wincent/Command-T.git
 vim/vim2/bundle/tasklist 	= [git]git://github.com/vim-scripts/TaskList.vim.git
 vim/vim2/bundle/pyflakes 	= [git]git://github.com/kevinw/pyflakes-vim.git
+vim/vim2/bundle/omnicppcomplete	= [git]git://github.com/vim-scripts/OmniCppComplete.git
