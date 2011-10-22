@@ -11,6 +11,7 @@ vim/vim2/bundle/snipmate 	= [git]git://github.com/msanders/snipmate.vim.git
 vim/vim2/bundle/latex	 	= [git]git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex
 vim/vim2/bundle/matlab	 	= [git]git://github.com/vim-scripts/MatlabFilesEdition.git
 vim/vim2/bundle/python_match 	= [git]git://github.com/vim-scripts/python_match.vim.git
+vim/vim2/bundle/python-indent	= [git]git://github.com/vim-scripts/indentpython.vim.git
 vim/vim2/bundle/minibufexpl 	= [git]git://github.com/fholgado/minibufexpl.vim.git
 vim/vim2/bundle/command-t 	= [git]git://github.com/wincent/Command-T.git
 vim/vim2/bundle/tasklist 	= [git]git://github.com/vim-scripts/TaskList.vim.git

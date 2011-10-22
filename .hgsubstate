@@ -10,6 +10,7 @@ b28e7be63235982501ab7dd30c03ea7feef7b095 vim/vim2/bundle/nerdcommenter
 2fac015957895dffa6b298e3c028ac30560d015b vim/vim2/bundle/omnicppcomplete
 00ce0614f0526708431243ca6b126a3bec802697 vim/vim2/bundle/pathogen
 634ddb795e46eae54578981b91b10a232c2735c2 vim/vim2/bundle/pyflakes
+6aaddfde21fe9e7acbe448b92b3cbb67f2fe1fc1 vim/vim2/bundle/python-indent
 20bb437d265544e7b8022b04cf2d6553d5f233ed vim/vim2/bundle/python_match
 cdffdd43816ddaeee858ae42da3ab6ddcfa25d19 vim/vim2/bundle/repeat
 f5a75d075d3c005ebe69e3f5e56cf99516e8aa3b vim/vim2/bundle/snipmate
