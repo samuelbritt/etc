@@ -25,10 +25,8 @@ elif [ `uname` = "Darwin" ] ; then
 
 	# Setting PATH for EPD
 	# The orginal version is saved in .bash_profile.pysave
-	PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
-	export PATH
-	MKL_NUM_THREADS=1
-	export MKL_NUM_THREADS
+	export PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
+	export MKL_NUM_THREADS=1
 
 	# Setting PATH for MacTeX
 	export PATH=$PATH:/usr/texbin
