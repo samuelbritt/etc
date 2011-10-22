@@ -1,239 +1,214 @@
-"""""""""""""""""""""""""""""""
-" Basic Settings:
-"
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
+" Modeline and Notes {
+" vim: set foldmarker={,} foldlevel=0 foldmethod=marker ts=4 sw=4 spell:
+" }
 
-" Pathogen - sane plugin managment
-" This must come before syntax on; filetype plugin on
-runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#helptags()
-call pathogen#infect()
+" Environment {
+	set nocompatible 				" must be first line
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-  " Enable file type detection.
-  filetype plugin indent on
+	" Pathogen Support {
+		runtime! bundle/pathogen/autoload/pathogen.vim
+		silent! call pathogen#helptags()
+		silent! call pathogen#runtime_append_all_bundles()
+	" }
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-else
+ 	filetype plugin indent on		" detect filetypes
+	syntax on						" syntax highlighting
+	set mouse=a 					" enable the mouse
+	set dir=~/.swp					" don't litter project with ~ files
+	set history=50					" keep 50 lines of command line history
+	set viminfo+='100,f1 			" history between sessions
+	set hidden 						" allow switching buffers without saving
 
-  set autoindent		" always set autoindenting on
+	" restores normal vim keybindings for macvim
+	if has("gui_macvim")
+		let macvim_skip_cmd_opt_movement = 1
+	endif
 
-endif " has("autocmd")
+	" When editing a file, always jump to the last known cursor position.
+	" Don't do it when the position is invalid or when inside an event handler
+	" (happens when dropping a file on gvim).
+	autocmd BufReadPost *
+			\ if line("'\"") > 0 && line("'\"") <= line("$") |
+			\   exe "normal! g`\"" |
+			\ endif
+" }
 
-"""""""""""""""""""""""""""""""
-" Plugins Settings:
-"
-" Vim-LaTeX
-" IMPORTANT: grep will sometimes skip displaying the file name if you
-" search in a singe file. This will confuse latex-suite. Set your grep
-" program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor='latex' " Sets .tex to be LaTeX file type
-let g:Tex_ViewRule_pdf='open'
+" Vim UI {
+	source $VIMRUNTIME/macros/matchit.vim 			" enable % matching
+	let &sbr = nr2char(8618).' ' 	" show arrow at beginning of wrapped lines
+	set backspace=indent,eol,start 	" backspace over everything
+	set whichwrap+=<,>,[,]			" changing lines with arrow keys
+	set ruler						" show the cursor position all the time
+	set showcmd						" display incomplete commands
+	set incsearch					" do incremental searching
+	set hlsearch					" highlight search
+	set wildmenu					" tab completion on commands
+	set wildignore=*.o,*.a,*.so,*.swp,*.aux,*.pdf	" hide from completion
+	set wildmode=longest:full,list:full 			" bash compatible behavior
+	set completeopt=menuone,menu,longest,preview	" insert completion
+	set winaltkeys=no				" turns off Alt for menu navigation
+	set ignorecase					" ingnore case in searches
+	set smartcase					" don't ignore case with uppercase in pattern
+	set nostartofline 				" keeps cursor in same spot when scrolling
+	set showmatch 					" highlight matching braces
+	set matchtime=1                 " showmatch is annoying
+	set title 						" better titles in terminals
+	set scrolloff=3 				" keep some context when scrolling
+	set linebreak                   " wrap lines sanely
+	set foldcolumn=1				" click to fold
+	set gdefault					" global subst. by default; use '/g' to revert
+	set tags+=tags;/				" search for tags in higher directories
+	set switchbuf+=usetab			" switch to open buffer first, rather than
+									" 	duplicating file in current buffer
+	" Statusline {
+		set laststatus=2						" always show statusline
+		set statusline=%<%f\    				" filename
+		set statusline+=%w%h%m%r 				" flags
+		set statusline+=\ [%{&ff}/%Y]           " filetype
+		set statusline+=\ [%{getcwd()}]         " current dir
+		set statusline+=%=%-14.(%l,%c%V%)\ %p%% " file nav info
+	" }
 
-" NERDComments plugin
-let NERDCommentWholeLinesInVMode=1
-let NERDSpaceDelims=1
+	" Highlight trailing whitespace
+	au BufEnter * match TODO /\s\+$/
+	au InsertEnter * match TODO /\s\+\%#\@<!$/
+	au InsertLeave * match TODO /\s\+$/
+" }
 
-" NERDTree plugin
-let NERDTreeIgnore=['\.o$']
-let NERDTreeChDirMode=2 " change dir when changing root
-let NERDTreeShowBookmarks=1
+" Formatting {
+	" Colors {
+		if has("gui_running")
+			" see .gvimrc
+		else
+			colorscheme peaksea
+			set t_Co=256			" number of colors in terminal
+			set bg=dark  			" must come after colorscheme
+		endif
+	" }
+	set autoindent					" always set autoindenting on
+" }
 
-" Tags, completetion, OmniCpp preferences:
-" map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
-noremap <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-inoremap <F12> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-set tags+=tags;/			" search higher directories
-set tags+=~/.vim/tags/cpp	" STL
-let OmniCpp_ShowPrototypeInAbbr = 1
-" let OmniCpp_SelectFirstItem = 2 " select without inserting, ignored when
-				  " completeopt contains 'longest'
-" automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+" Maps And Commands {
 
-" SnipMate settings
-let g:snips_author = 'Sam Britt <samuelbritt@gmail.com>'
-let g:snippets_dir = $HOME . '/.vim/custom-snippets'
+	" Reset leader to something easier to type
+	let mapleader = ","
 
-" DelimitMate settings
-let delimitMate_balance_matchpairs = 1
-let delimitMate_expand_space = 1
-let delimitMate_expand_cr = 1
+	" more logical behavior of Y
+	nnoremap Y y$
 
-" restores normal vim keybindings for macvim
-if has("gui_macvim")
-	let macvim_skip_cmd_opt_movement = 1
-endif
+	" alternate escape
+	inoremap jj <ESC>
 
-"""""""""""""""""""""""""""""""
-" Colors:
-"
-" Switch syntax highlighting on, when the terminal has colors
-" Needs to come after filetype plugin indent on
-if &t_Co > 2 || has("gui_running")
-	syntax on
-	syntax sync minlines=50
-endif
+	" make the . command return to the point where the command started
+	noremap . .`[
 
-" Colorscheme
-if has("gui_running")
-	"see .gvimrc
-else
-	set t_Co=256 " breaks on OS X
-	colorscheme peaksea
-	set bg=dark  " must come after colorscheme
-endif
+	" Push line down, up in command mode (can delete lines)
+	nnoremap + maO<esc>`a
+	nnoremap _ makdd`a
 
-"""""""""""""""""""""""""""""""
-" Maps And Commands:
-"
-" Reset leader to something easier to type
-let mapleader = ","
+	" Move line(s) up or down (swaps with adjacent lines
+	nnoremap <M-=> mz:m+<CR>`z
+	nnoremap <M--> mz:m-2<CR>`z
+	vnoremap <M-=> :m'>+<CR>`<my`>mzgv`yo`z
+	vnoremap <M--> :m'<-2<CR>`>my`<mzgv`yo`z
 
-" more logical behavior of Y
-nmap Y y$
+	" put current word on commandline
+	cmap <F2> <C-R><C-W>
 
-" alternate escape
-" inoremap kj <ESC>
-inoremap jj <ESC>
+	" Write buffer through sudo
+	cnoreabbrev w!! w !sudo tee % >/dev/null
 
-" make the . command return to the point where the command started
-noremap . .`[
+	" ` is more useful but less accessible than '
+	nnoremap ' `
+	nnoremap ` '
 
-" Push line down, up in command mode (can delete lines)
-nnoremap + maO<esc>`a
-nnoremap _ makdd`a
+	" unhighlight after search
+	nmap <silent> <leader><space> :silent :nohlsearch<CR>
 
-" Move line(s) up or down (swaps with adjacent lines
-nmap <M-=> mz:m+<CR>`z
-nmap <M--> mz:m-2<CR>`z
-vmap <M-=> :m'>+<CR>`<my`>mzgv`yo`z
-vmap <M--> :m'<-2<CR>`>my`<mzgv`yo`z
+	" move by screen line, not file line
+	nnoremap j gj
+	nnoremap k gk
 
-" put current word on commandline
-cmap <F2> <C-R><C-W>
+	" Filename, line, and tag completion
+	inoremap <C-F> <C-X><C-F>
+	inoremap <C-L> <C-X><C-L>
+	inoremap <C-]> <C-X><C-]>
 
-" TagList Toggle
-map <F2> :TlistToggle<CR>
+	" Command to change to the directory of the current window (LCD) and all
+	" windows (GCD)
+	command! CD lcd %:p:h
+	command! LCD lcd %:p:h
+	command! GCD cd %:p:h
 
-" TaskList Toggle
-map <leader>l <Plug>TaskList
+	" visual shifting (does not exit Visual mode)
+	vnoremap < <gv
+	vnoremap > >gv
 
-" Write buffer through sudo
-cnoreabbrev w!! w !sudo tee % >/dev/null
+	" build tags files in insert or normal mode
+	noremap <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+	inoremap <F12> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
-" ` is more useful but less accessible than '
-nnoremap ' `
-nnoremap ` '
+	" Command to see the difference between the current buffer and the file it
+	" was loaded from, thus the changes you made.
+	command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+			\ | wincmd p | diffthis
 
-" unhighlight after search
-nmap <silent> <leader><space> :silent :nohlsearch<CR>
+	" Function to trim trailing white spaces
+	function! <SID>TrimTrailingSpaces()
+		let l = line(".")
+		let c = col(".")
+		%s/\s\+$//e
+		call cursor(l, c)
+	endfunction
+	command! TrimTrailingSpaces :call <SID>TrimTrailingSpaces()
+" }
 
-" move by screen line, not file line
-nnoremap j gj
-nnoremap k gk
+" Plugins {
+	" Vim-LaTeX {
+		" IMPORTANT: grep will sometimes skip displaying the file name if you
+		" search in a singe file. This will confuse latex-suite. Set your grep
+		" program to always generate a file-name.
+		set grepprg=grep\ -nH\ $*
+		let g:tex_flavor='latex' 			" Sets .tex to be LaTeX file type
+		let g:Tex_ViewRule_pdf='open'
+	" }
 
-" Filename, line, and tag completion
-inoremap <C-F> <C-X><C-F>
-inoremap <C-L> <C-X><C-L>
-inoremap <C-]> <C-X><C-]>
+	" NERDComments {
+		let NERDCommentWholeLinesInVMode=1
+		let NERDSpaceDelims=1
+ 	" }
 
-" Easier buffer switching with Alt key
-set winaltkeys=no	" turns off Alt for menu navigation
-nmap <silent> <M-k> :wincmd k<CR>
-nmap <silent> <M-j> :wincmd j<CR>
-nmap <silent> <M-h> :wincmd h<CR>
-nmap <silent> <M-l> :wincmd l<CR>
-nmap <silent> <M-w> :wincmd w<CR>
-nmap <silent> <M-`> :wincmd w<CR>
-nmap <silent> <M-o> :wincmd o<CR>
-imap <silent> <M-k> <C-o>:wincmd k<CR>
-imap <silent> <M-j> <C-o>:wincmd j<CR>
-imap <silent> <M-h> <C-o>:wincmd h<CR>
-imap <silent> <M-l> <C-o>:wincmd l<CR>
-imap <silent> <M-w> <C-o>:wincmd w<CR>
-imap <silent> <M-`> <C-o>:wincmd w<CR>
-imap <silent> <M-o> <C-o>:wincmd o<CR>
+	" NERDTree {
+		let NERDTreeIgnore=['\.o$']
+		let NERDTreeChDirMode=2 		" change dir when changing root
+		let NERDTreeShowBookmarks=1
+	" }
 
-" Command to change to the directory of the current window (LCD) and all
-" windows (GCD)
-command! CD lcd %:p:h
-command! LCD lcd %:p:h
-command! GCD cd %:p:h
+	" OmniCpp {
+		set tags+=~/.vim/tags/cpp		" STL
+		let OmniCpp_ShowPrototypeInAbbr = 1
+		" let OmniCpp_SelectFirstItem = 2 " select without inserting, ignored when
+						  " completeopt contains 'longest'
+		" automatically open and close the popup menu / preview window
+		au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+	" }
 
-" Command to see the difference between the current buffer and the file it was
-" loaded from, thus the changes you made.
-command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-	 	\ | wincmd p | diffthis
+	" SnipMate {
+		let g:snips_author = 'Sam Britt <samuelbritt@gmail.com>'
+		let g:snippets_dir = $HOME . '/.vim/custom-snippets'
+	" }
 
-" Function to trim trailing white spaces
-function! <SID>TrimTrailingSpaces()
-	let l = line(".")
-	let c = col(".")
-	%s/\s\+$//e
-	call cursor(l, c)
-endfunction
-command! TrimTrailingSpaces :call <SID>TrimTrailingSpaces()
+	" DelimitMate {
+		let delimitMate_balance_matchpairs = 1
+		let delimitMate_expand_space = 1
+		let delimitMate_expand_cr = 1
+	" }
 
-" Highlight trailing whitespace
-" highlight TrailingSpaces ctermbg=darkgreen guibg=lightgreen
-" au ColorScheme * highlight TrailingSpaces guibg=lightgreen
-au BufEnter * match TODO /\s\+$/
-au InsertEnter * match TODO /\s\+\%#\@<!$/
-au InsertLeave * match TODO /\s\+$/
+	" Taglist {
+		map <F2> :TlistToggle<CR>
+	" }
 
-" Filetypes
-" Match mako files
-au BufNewFile,BufRead *.mako set filetype=mako
-
-"""""""""""""""""""""""""""""""
-" Preferences:
-"
-source $VIMRUNTIME/macros/matchit.vim		" % matching
-
-" show arrow at beginning of wrapped lines
-let &sbr = nr2char(8618).' '
-
-" Give windows equal space after resizing or opening a new window
-" autocmd VimResized * wincmd =
-" autocmd BufWinEnter * wincmd =
-
-" Various settings
-set backspace=indent,eol,start 	" backspace over everything
-set whichwrap+=<,>,[,]		" changing lines with arrow keys
-set history=50			" keep 50 lines of command line history
-set ruler			" show the cursor position all the time
-set showcmd			" display incomplete commands
-set incsearch			" do incremental searching
-set hlsearch			" highlight search
-set mouse=a 			" enable the mouse
-set dir=~/.swp			" don't litter project with ~ files
-set wildmenu			" tab completion on commands
-set wildignore=*.o,*.a,*.so,*.swp,*.aux,*.pdf	" hide from completion
-set wildmode=longest:full,list:full 		" bash compatible behavior
-set completeopt=menuone,menu,longest,preview	" insert completion
-set ignorecase			" ingnore case in searches
-set smartcase			" don't ignore case with uppercase in pattern
-set viminfo+='100,f1 		" history between sessions
-set nostartofline 		" keeps cursor in same spot when scrolling
-set showmatch 			" highlight matching braces
-set matchtime=1                 " showmatch is annoying
-" set noshowmatch			" showmatch is annoying
-set hidden 			" allow switching buffers without saving
-set switchbuf+=usetab		" switch to open buffer first, rather than
-				" 	duplicating file in current buffer
-set title 			" better titles in terminals
-set scrolloff=3 		" keep some context when scrolling
-set linebreak                   " wrap lines sanely
-set foldcolumn=1		" click to fold
-set gdefault			" global subst. by default; use 'g' to revert
+	" TaskList {
+		map <leader>l <Plug>TaskList
+	" }
+" }
