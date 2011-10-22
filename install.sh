@@ -31,6 +31,24 @@ else
 	ln -sf etc/vim/gvimrc_osx .gvimrc
 fi
 
+# Vim config submodules
+# install ruby dev files if needed
+hash rake 2>/dev/null || {
+	sudo apt-get install ruby ruby-dev rake;
+}
+cd $HOME/.vim/bundle/command-t
+rake make
+cd $HOME
+
+# install git if needed
+hash git 2>/dev/null || {
+	sudo apt-get install git;
+}
+cd $HOME/.vim/bundle/pyflakes
+git submodule init
+git submodule update
+cd $HOME
+
 # Hg
 ln -sf etc/hg/hgrc_ignore .hgrc_ignore
 if [[ `uname` = "Linux" ]]

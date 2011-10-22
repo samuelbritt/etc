@@ -8,14 +8,13 @@ apt-get install -y			\
 # install these so we can start doing work
 apt-get install -y			\
 	vim-gnome			\
+	git				\
 	mercurial			\
 
 # now the rest
 # apt-add-repository ppa:stebbins/handbrake-releases
 apt-get update
 
-	# handbrake			\
-	# gnome-gmail			\
 apt-get install -y			\
 	ipython                         \
 	python-scipy                    \
@@ -42,11 +41,16 @@ apt-get install -y			\
 	gstreamer0.10-plugins-ugly	\
 	colordiff			\
 	gtk2-engines-pixbuf		\
+	ruby				\
+	ruby-dev			\
+	rake				\
 
 	## Others?
 	# chromium-browser		\
 	# backintime-gnome		\
 	# deja-dup			\
+	# handbrake			\
+	# gnome-gmail			\
 
 # install LaTeX last b/c it takes forever
 apt-get install -y			\
