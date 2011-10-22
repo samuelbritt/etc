@@ -88,7 +88,7 @@ ln -sf ../etc/ssh/config config
 cd $HOME
 
 # Fonts
-unzip etc/themes/fonts/*zip
+unzip etc/fonts/*zip
 mkdir -p .fonts
 mv *.otf .fonts
 
