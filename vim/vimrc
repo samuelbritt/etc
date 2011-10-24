@@ -62,11 +62,11 @@
 									" 	duplicating file in current buffer
 	" Statusline {
 		set laststatus=2						" always show statusline
-		set statusline=%<%f\    				" filename
-		set statusline+=%w%h%m%r 				" flags
-		set statusline+=\ [%{&ff}/%Y]           " filetype
-		set statusline+=\ [%{getcwd()}]         " current dir
-		set statusline+=%=%-14.(%l,%c%V%)\ %p%% " file nav info
+		set statusline=%f\    			    	" filename
+		set statusline+=%w%h%m%r                " flags
+		set statusline+=\ %Y                    " filetype
+		set statusline+=\ [%<%{getcwd()}]\      " current dir
+		set statusline+=%=%-11.(%l,%c%V%)\ %p%% " file nav info
 	" }
 
 	" Highlight trailing whitespace
