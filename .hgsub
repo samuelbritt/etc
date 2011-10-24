@@ -1,6 +1,7 @@
 vim/vim/bundle/pathogen 	= [git]git://github.com/tpope/vim-pathogen.git
 vim/vim/bundle/surround 	= [git]git://github.com/tpope/vim-surround.git
 vim/vim/bundle/repeat	 	= [git]git://github.com/tpope/vim-repeat.git
+vim/vim/bundle/unimpaired 	= [git]git://github.com/tpope/vim-unimpaired.git
 vim/vim/bundle/nerdcommenter 	= [git]git://github.com/scrooloose/nerdcommenter.git
 vim/vim/bundle/nerdtree 	= [git]git://github.com/scrooloose/nerdtree.git
 vim/vim/bundle/alternate 	= [git]git://github.com/vim-scripts/a.vim.git
