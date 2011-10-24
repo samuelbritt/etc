@@ -1,4 +1,4 @@
-set guifont=Inconsolata-dz\ 10
+set guifont=Ubuntu\ Mono\ 11,Inconsolata-dz\ 10
 colorscheme peaksea
 set bg=dark
 set lines=60

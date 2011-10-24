@@ -1,15 +1,20 @@
 #!/bin/bash
 
-# install these first so we can start doing work
+# install first because they are interactive
+apt-get install -y			\
+	ddclient			\
+	ubuntu-restricted-extras	\
+
+# install these so we can start doing work
 apt-get install -y			\
 	vim-gnome			\
+	git				\
 	mercurial			\
 
 # now the rest
-apt-add-repository ppa:stebbins/handbrake-releases
+# apt-add-repository ppa:stebbins/handbrake-releases
 apt-get update
 
-	# handbrake			\
 apt-get install -y			\
 	ipython                         \
 	python-scipy                    \
@@ -32,18 +37,20 @@ apt-get install -y			\
 	network-manager-vpnc            \
 	exuberant-ctags                 \
 	libdvdread4			\
-	ubuntu-restricted-extras	\
 	gstreamer0.10-plugins-bad	\
 	gstreamer0.10-plugins-ugly	\
-	gnome-gmail			\
 	colordiff			\
-	ddclient			\
 	gtk2-engines-pixbuf		\
+	ruby				\
+	ruby-dev			\
+	rake				\
 
 	## Others?
 	# chromium-browser		\
 	# backintime-gnome		\
 	# deja-dup			\
+	# handbrake			\
+	# gnome-gmail			\
 
 # install LaTeX last b/c it takes forever
 apt-get install -y			\

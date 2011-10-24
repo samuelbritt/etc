@@ -10,8 +10,8 @@ if [ `uname` = "Linux" ] ; then
 	#color support of ls
 	if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
 		eval "`dircolors -b`"
-		alias ls='ls --color=auto -Bp'
-		alias dir='dir --color=auto -p'
+		alias ls='ls --color=auto -Bpv'
+		alias dir='dir --color=auto -pv'
 	fi
 
 elif [ `uname` = "Darwin" ] ; then
