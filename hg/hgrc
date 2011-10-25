@@ -31,7 +31,7 @@ hgext.convert =
 color =
 pager =
 progress =
-inotify =!
+inotify =
 hgext.schemes =
 hgext.purge =
 
