@@ -13,9 +13,10 @@ setlocal spell spelllang=en_us
 "set wildignore=*.log,*.aux,*.dvi,*.ps,*.pdf,*.aut,*.bbl,*.blg,*.fff,*.out*.toc,*.ttt
 
 let Tex_UseMakefile=0 "use default compile rules, even when a makefile is present
+let g:Tex_DefaultTargetFormat='pdf' 		" PDF instead of DVI
 let g:Tex_MultipleCompileFormats='dvi,pdf'
-let g:Tex_TEXINPUTS=$HOME . '/texmf/tex/**' " the '.' is string concat.
-let g:Tex_BIBINPUTS=$HOME . '/texmf/bibtex/bib' 
+let g:Tex_TEXINPUTS=$HOME . '/texmf/tex/**' 	" the '.' is string concat.
+let g:Tex_BIBINPUTS=$HOME . '/texmf/bibtex/bib'
 "let g:Tex_ViewRule_pdf = 'open'
 "let g:Tex_ViewRule_pdf = '/Applications/Skim.app/Contents/MacOS/Skim'
 "let g:TreatMacViewerAsUNIX=1
