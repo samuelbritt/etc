@@ -8,6 +8,7 @@ syntax:glob
 *.lot
 *.out
 #other
+*.o
 *.pyc
 abaqus.rpy*
 hghide*

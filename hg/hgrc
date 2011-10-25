@@ -7,6 +7,7 @@ editor = vim
 [alias]
 clog = glog --style=compact
 latest = glog --limit 5 --style=compact
+undo = revert --no-backup
 
 [diff]
 git = True
@@ -31,7 +32,7 @@ hgext.convert =
 color =
 pager =
 progress =
-inotify =!
+inotify =
 hgext.schemes =
 hgext.purge =
 
