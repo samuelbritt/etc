@@ -60,7 +60,39 @@ alias diff='colordiff -u'
 alias pylab='$EPD/ipython -pylab'
 alias epython='$EPD/python'
 alias eipython='$EPD/ipython'
+
+# bad typing with hg
 alias gh=hg
+function h {
+	case "$1" in
+		gst)
+			command hg st "${@:2}"
+			;;
+		gts)
+			command hg st "${@:2}"
+			;;
+		gsum)
+			command hg sum "${@:2}"
+			;;
+		gic)
+			command hg ci "${@:2}"
+			;;
+		gci)
+			command hg ci "${@:2}"
+			;;
+		gfe)
+			command hg fe "${@:2}"
+			;;
+		gdiff)
+			command hg diff "${@:2}"
+			;;
+		*)
+			# just pass command through
+			command "$0" "$@"
+			;;
+	esac
+}
+
 
 # recursive mkdir and cd if successful
 function mkcd {
