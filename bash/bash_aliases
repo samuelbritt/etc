@@ -86,6 +86,15 @@ function h {
 		gdiff)
 			command hg diff "${@:2}"
 			;;
+		gidff)
+			command hg diff "${@:2}"
+			;;
+		glate)
+			command hg late "${@:2}"
+			;;
+		galte)
+			command hg late "${@:2}"
+			;;
 		*)
 			# just pass command through
 			command "$0" "$@"
