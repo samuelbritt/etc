@@ -13,6 +13,7 @@ apt-get install -y			\
 
 # now the rest
 # apt-add-repository ppa:stebbins/handbrake-releases
+# apt-add-repository ppa:stebbins/handbrake-snapshots
 apt-get update
 
 apt-get install -y			\
