@@ -50,13 +50,8 @@ git submodule update
 cd $HOME
 
 # Hg
+ln -sf etc/hg/hgrc .hgrc
 ln -sf etc/hg/hgrc_ignore .hgrc_ignore
-if [[ `uname` = "Linux" ]]
-then
-	ln -sf etc/hg/hgrc_linux .hgrc
-else
-	ln -sf etc/hg/hgrc_osx .hgrc
-fi
 
 # LaTeX
 if [[ `uname` = "Linux" ]]
