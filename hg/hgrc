@@ -38,6 +38,7 @@ progress =
 inotify =
 hgext.schemes =
 hgext.purge =
+mq =
 
 [schemes]
 h = ssh://h/
