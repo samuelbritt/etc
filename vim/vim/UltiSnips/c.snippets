@@ -1,0 +1,21 @@
+snippet fun "Function definition" !b
+/*
+ * ${1: Description}
+ */
+${2:void} ${3:function}(${4})
+{
+	${5:exit(1);	/* TODO */}
+}${0}
+endsnippet
+
+snippet lock "pthread mutex lock" !b
+pthread_mutex_lock(${1:lock});
+endsnippet
+
+snippet unlock "pthread mutex unlock" !b
+pthread_mutex_unlock(${1:lock});${0}
+endsnippet
+
+snippet signal "pthread signal" !b
+pthread_cond_signal(${1:condvar});${0}
+endsnippet
