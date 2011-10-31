@@ -8,9 +8,13 @@ editor = vim
 clog = glog --style=compact
 latest = glog --limit 5 --style=compact
 undo = revert --no-backup
+# typos
 alte=late
 ic=ci
 ef=fe
+# MQ
+qrf = qrefresh
+qss = qseries
 
 [diff]
 git = True
