@@ -41,6 +41,7 @@ apt-get install -y			\
 	gstreamer0.10-plugins-bad	\
 	gstreamer0.10-plugins-ugly	\
 	colordiff			\
+	colormake			\
 	gtk2-engines-pixbuf		\
 	ruby				\
 	ruby-dev			\
