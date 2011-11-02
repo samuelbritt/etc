@@ -1,0 +1,49 @@
+snippet test "Cutest test" !b
+void test_${1:foo}(CuTest *tc)
+{
+	${2:CuFail(tc, "Not yet implemented");}
+}
+SUITE_ADD_TEST(suite, test_$1);${0}
+endsnippet
+
+snippet suite "Create Cutest test suite" !b
+CuSuite* ${1:`!p snip.rv = snip.basename`}_get_suite()
+{
+	CuSuite *suite = CuSuiteNew();
+
+	// SUITE_ADD_TEST calls
+	${2}
+
+	return suite;
+}
+CuSuite* $1_get_suite();
+CuSuiteAddSuite(suite, $1_get_suite());
+${0}
+endsnippet
+
+snippet tests "Boiler plate for running all Cutest tests" !b
+#include <stdio.h>
+#include "CuTest.h"
+
+// *_get_suite() declarations...
+${1}
+
+void run_all_tests(void) {
+	CuString *output = CuStringNew();
+	CuSuite *suite = CuSuiteNew();
+
+	// CuSuiteAddSuite() calls...
+	${2}
+
+	CuSuiteRun(suite);
+	CuSuiteSummary(suite, output);
+	CuSuiteDetails(suite, output);
+	printf("%s\n", output->buffer);
+}
+
+int main(int argc, const char *argv[])
+{
+	run_all_tests();
+	return 0;
+}
+endsnippet
