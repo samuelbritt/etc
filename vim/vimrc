@@ -190,7 +190,7 @@
 		" let OmniCpp_SelectFirstItem = 2 " select without inserting, ignored when
 						  " completeopt contains 'longest'
 		" automatically open and close the popup menu / preview window
-		au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+		" au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 	" }
 
 	" SnipMate {
