@@ -1,9 +1,17 @@
+snippet ** "Comment"
+/* ${1} */${0}
+endsnippet
+
 snippet Inc "#include local header (Inc)" !b
 #include "${1:`!p snip.rv = snip.basename`}.h"${0}
 endsnippet
 
 snippet inc "#include <> (inc)" !b
 #include <${1:stdio}.h>${0}
+endsnippet
+
+snippet def "#define SYMBOL" !b
+#define ${1:SYMBOL}${0}
 endsnippet
 
 snippet fun "Function definition" !b
@@ -45,13 +53,21 @@ printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2
 endsnippet
 
 snippet lock "pthread mutex lock" !b
-pthread_mutex_lock(${1:lock});
+pthread_mutex_lock(${1:&mutex});
 endsnippet
 
 snippet unlock "pthread mutex unlock" !b
-pthread_mutex_unlock(${1:lock});${0}
+pthread_mutex_unlock(${1:&mutex});${0}
 endsnippet
 
 snippet signal "pthread signal" !b
-pthread_cond_signal(${1:condvar});${0}
+pthread_cond_signal(${1:&condvar});${0}
+endsnippet
+
+snippet broadcast "pthread broadcast" !b
+pthread_cond_broadcast(${1:&condvar});${0}
+endsnippet
+
+snippet wait "pthread wait" !b
+pthread_cond_wait(${1:&condvar}, ${2:&mutex});${0}
 endsnippet
