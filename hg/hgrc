@@ -15,6 +15,7 @@ ef=fe
 # MQ
 qrf = qrefresh
 qss = qseries
+go = qgoto
 
 [diff]
 git = True
