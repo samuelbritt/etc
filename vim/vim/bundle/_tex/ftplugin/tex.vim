@@ -28,4 +28,9 @@ let g:Tex_FoldedEnvironments=',column,frame,codebox'
 " Write and Compile
 map <leader>wl :w<CR><leader>ll''
 
+" Conceal: displays some math characters with their unicode equivalents
+set conceallevel=2
+set ambw=double			" show wide chars
+hi Conceal guibg=black
+
 " see ~/.vim/after/ftplugin/tex_macros.vim for custom macros
