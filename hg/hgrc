@@ -16,6 +16,7 @@ ef=fe
 qrf = qrefresh
 qss = qseries
 go = qgoto
+qstatus = status --rev -2:.
 
 [diff]
 git = True
