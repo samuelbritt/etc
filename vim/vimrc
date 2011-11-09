@@ -7,8 +7,8 @@
 
 	" Pathogen Support {
 		runtime! bundle/pathogen/autoload/pathogen.vim
-		silent! call pathogen#helptags()
 		silent! call pathogen#runtime_append_all_bundles()
+		silent! call pathogen#helptags()
 	" }
 
  	filetype plugin indent on		" detect filetypes
@@ -45,7 +45,7 @@
 	set wildmenu					" tab completion on commands
 	set wildignore=*.o,*.a,*.so,*.swp,*.aux,*.pdf	" hide from completion
 	set wildmode=longest:full,list:full 			" bash compatible behavior
-	set completeopt=menuone,menu,longest,preview	" insert completion
+	set completeopt=menuone,longest,preview			" insert completion
 	set winaltkeys=no				" turns off Alt for menu navigation
 	set ignorecase					" ingnore case in searches
 	set smartcase					" don't ignore case with uppercase in pattern
@@ -145,8 +145,9 @@
 	vnoremap > >gv
 
 	" build tags files in insert or normal mode
+	noremap <F11> :!ctags -R --c-kinds=+p --fields=+S .<CR>
 	noremap <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-	inoremap <F12> <ESC>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+	inoremap <F12> <ESC>:!ctags -R --c++-kinds=+p --c-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 	" Command to see the difference between the current buffer and the file it
 	" was loaded from, thus the changes you made.
@@ -186,11 +187,20 @@
 
 	" OmniCpp {
 		set tags+=~/.vim/tags/cpp		" STL
-		let OmniCpp_ShowPrototypeInAbbr = 1
+		" let OmniCpp_ShowPrototypeInAbbr = 1
 		" let OmniCpp_SelectFirstItem = 2 " select without inserting, ignored when
 						  " completeopt contains 'longest'
 		" automatically open and close the popup menu / preview window
 		" au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+	" }
+
+	" SuperTab {
+		let g:SuperTabDefaultCompletionType = 'context'
+		let g:SuperTabMappingForward = '<C-Space>'
+		let g:SuperTabMappingBackward = '<S-C-Space>'
+		let g:SuperTabCrMapping = 0
+		let g:SuperTabLongestEnhanced = 1
+		let g:SuperTabLongestHighlight = 1
 	" }
 
 	" SnipMate {

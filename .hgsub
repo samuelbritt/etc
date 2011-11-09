@@ -17,6 +17,5 @@ vim/vim/bundle/minibufexpl      = [git]git://github.com/fholgado/minibufexpl.vim
 vim/vim/bundle/command-t        = [git]git://github.com/wincent/Command-T.git
 vim/vim/bundle/tasklist         = [git]git://github.com/vim-scripts/TaskList.vim.git
 vim/vim/bundle/pyflakes         = [git]git://github.com/kevinw/pyflakes-vim.git
-vim/vim/bundle/omnicppcomplete  = [git]git://github.com/vim-scripts/OmniCppComplete.git
 vim/vim/bundle/tabular          = [git]git://github.com/godlygeek/tabular.git
 vim/vim/bundle/supertab         = [git]git://github.com/ervandew/supertab.git
