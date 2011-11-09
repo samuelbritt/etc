@@ -19,3 +19,4 @@ vim/vim/bundle/tasklist         = [git]git://github.com/vim-scripts/TaskList.vim
 vim/vim/bundle/pyflakes         = [git]git://github.com/kevinw/pyflakes-vim.git
 vim/vim/bundle/tabular          = [git]git://github.com/godlygeek/tabular.git
 vim/vim/bundle/supertab         = [git]git://github.com/ervandew/supertab.git
+vim/vim/bundle/gundo   		= [git]git://github.com/sjl/gundo.vim.git

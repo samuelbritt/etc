@@ -221,4 +221,9 @@
 	" TaskList {
 		map <leader>l <Plug>TaskList
 	" }
+
+	" Gundo {
+		nnoremap <F4> :GundoToggle<CR>
+		let g:gundo_close_on_revert=1
+	" }
 " }
