@@ -47,6 +47,7 @@ apt-get install -y			\
 	ruby-dev			\
 	rake				\
 	valgrind			\
+	terminator			\
 
 	## Others?
 	# chromium-browser		\
