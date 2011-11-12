@@ -45,6 +45,7 @@ apt-get install -y			\
 	ruby				\
 	ruby-dev			\
 	rake				\
+	terminator			\
 
 	## Others?
 	# chromium-browser		\
