@@ -172,6 +172,7 @@
 		set grepprg=grep\ -nH\ $*
 		let g:tex_flavor='latex' 			" Sets .tex to be LaTeX file type
 		let g:Tex_ViewRule_pdf='open'
+		imap <C-K> <Plug>IMAP_JumpForward
 	" }
 
 	" NERDComments {
