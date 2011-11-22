@@ -54,6 +54,7 @@ si = ssh://si/
 silo = ssh://silo/
 ti = ssh://ti/
 mol = ssh://mol/
+bb = ssh://hg@bitbucket.org/samuelbritt/
 
 [pager]
 pager = LESS='FSRX' less
