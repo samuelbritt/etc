@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # install first because they are interactive
-apt-get install -y			\
-	ddclient			\
-	ubuntu-restricted-extras	\
+# apt-get install -y			\
+#         ddclient			\
+#         ubuntu-restricted-extras	\
 
 # install these so we can start doing work
 apt-get install -y			\
@@ -37,9 +37,6 @@ apt-get install -y			\
 	electricsheep                   \
 	network-manager-vpnc            \
 	exuberant-ctags                 \
-	libdvdread4			\
-	gstreamer0.10-plugins-bad	\
-	gstreamer0.10-plugins-ugly	\
 	colordiff			\
 	colormake			\
 	gtk2-engines-pixbuf		\
@@ -48,9 +45,12 @@ apt-get install -y			\
 	rake				\
 	valgrind			\
 	terminator			\
+	chromium-browser		\
 
 	## Others?
-	# chromium-browser		\
+	# libdvdread4			\
+	# gstreamer0.10-plugins-bad	\
+	# gstreamer0.10-plugins-ugly	\
 	# backintime-gnome		\
 	# deja-dup			\
 	# handbrake			\
@@ -66,7 +66,7 @@ apt-get install -y			\
 	texlive-science                 \
 
 # Enable dvd playback
-/usr/share/doc/libdvdread4/install-css.sh
+# /usr/share/doc/libdvdread4/install-css.sh
 
 echo
 echo "Now that the install is done, be sure to install these from the web:"
