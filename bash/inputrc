@@ -7,3 +7,6 @@ set editing-mode vi
 # "kj": "\e"
 
 #set completion-ignore-case On
+
+# only hit <TAB> once to complete
+set show-all-if-ambiguous on
