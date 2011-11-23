@@ -113,21 +113,47 @@ fi
 #         xmodmap ~/.xmodmap
 # fi
 
-# prompt
-PS1='\n\u@\h:\w\n\$ '
+# Prompt
+# A note on the colors:
+#	\e[  - Indicates the beginning of color prompt
+#	x;ym - Indicates color code: x is foreground and y is background
+#	\e[m - indicates the end of color prompt
+# [Note: Replace 0 with 1 for dark color]
+BLACK='\e[0;30m'
+RED='\e[0;31m'
+GREEN='\e[0;32m'
+BROWN='\e[0;33m'
+BLUE='\e[0;34m'
+PURPLE='\e[0;35m'
+CYAN='\e[0;36m'
+BBLACK='\e[1;30m'
+BRED='\e[1;31m'
+BGREEN='\e[1;32m'
+BBROWN='\e[1;33m'
+BBLUE='\e[1;34m'
+BPURPLE='\e[1;35m'
+BCYAN='\e[1;36m'
+D='\e[m'
+
+# Candy Colored Terminal: Custom RGB Values
+PINK=$BPURPLE	# 250, 37, 115
+GOLD=$BROWN	# 196, 160, 0
+ORANGE=$BBROWN	# 252, 149, 30
+GREEN=$BGREEN	# 166, 227, 45
+BLUE=$BBLUE	# 110, 154, 255
+# PS1="\n\u@\h:\w\n\$ "
+PS1="\n$GREEN\u$D@$PINK\h$D : $ORANGE\w$D\n\$ "
 
 # LaTeX
 export BIBINPUTS=.:$HOME/texmf/bibtex/bib
 
 # paths
-# export PYTHONPATH=$PYTHONPATH:$HOME/bin
-# export PYTHONPATH=$PYTHONPATH:$HOME/lib/python
-# export PATH=$PATH:$HOME/bin
 export PATH=$HOME/.local/bin:$PATH
-# this ^^^ may be all we need---installing python packages with
+# installing python packages with
 #	setup.py install --user
-# installs scripts to ~/.local/bin, and modulus to ~/.local/lib/python*/site-packages
-# and the PYTHONPATH is taken care of automagically
+# installs scripts to ~/.local/bin, and modules to
+# ~/.local/lib/python*/site-packages and the PYTHONPATH is taken care of
+# automagically
 
 #Vim keybindings
 set -o vi
