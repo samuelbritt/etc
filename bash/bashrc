@@ -5,14 +5,21 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# Set up vars
+PLATFORM=`uname`
+MACHINE=${HOSTNAME%%.*}
+if [ ${MACHINE:0:9} = "moleculos" ] ; then
+	MACHINE="moleculos"
+fi
+
 # Platform-specific settings
-if [ `uname` = "Linux" ] ; then
+if [ $PLATFORM = "Linux" ] ; then
 	#color support of ls
 	eval "`dircolors -b`"
 	alias ls='ls --color=auto -Bpv'
 	alias dir='dir --color=auto -pv'
 
-elif [ `uname` = "Darwin" ] ; then
+elif [ $PLATFORM = "Darwin" ] ; then
 	# color support
 	export CLICOLOR=1
 	export LSCOLORS=ExGxCxDxCxegedabagacad
@@ -31,7 +38,7 @@ elif [ `uname` = "Darwin" ] ; then
 fi
 
 # Machine-specific settings
-if [ `uname -n` = "titanium" ] ; then
+if [ $MACHINE = "titanium" ] ; then
 	# Abaqus:
 	export SIMULIADIR=/opt/simulia
 	export ABAQUSDIR=$SIMULIADIR/abaqus
@@ -42,18 +49,18 @@ if [ `uname -n` = "titanium" ] ; then
 	export MATLABPATH=$HOME/bin:$HOME/lib/matlab:$MATLABPATH
 	# EPD
 	export PATH=/opt/epd/epd7.0/bin:$PATH
-elif [ ${HOSTNAME} = "hydrogen" ] || [ ${HOSTNAME} = "hydrogen.site" ] ; then
+elif [ $MACHINE = "hydrogen" ] ; then
 	export PATH=/opt/bin:$PATH
 	export PATH=/usr/sbin:$PATH
 	# EPD
 	export PATH=$PATH:/opt/epd/bin
-elif [ `uname -n` = "silicon" ] ; then
-		export PATH=$PATH:/opt/epd/bin
-		export PATH=/opt/eclipse:$PATH
-elif [ ${HOSTNAME} = "aluminum-vert" ] ; then
+elif [ $MACHINE = "silicon" ] ; then
+	export PATH=$PATH:/opt/epd/bin
+	export PATH=/opt/eclipse:$PATH
+elif [ $MACHINE = "aluminum-vert" ] ; then
 	# Intel Compilers:
 	source /opt/intel/Compiler/11.1/073/bin/ifortvars.sh ia32
-elif [ ${HOSTNAME:0:9} = "moleculos" ] ; then
+elif [ $MACHINE = "moleculos" ] ; then
 	# Abaqus:
 	export ABAQUSDIR=/opt/abaqus
 	export PATH=$PATH:$ABAQUSDIR/Commands
@@ -70,7 +77,7 @@ elif [ ${HOSTNAME:0:9} = "moleculos" ] ; then
 	export PATH=$PATH:/sbin
 	export PATH=$PATH:/usr/sbin
 	export PATH=$PATH:/usr/local/sbin
-elif [ ${HOSTNAME} = "titan" ] ; then
+elif [ $MACHINE = "titan" ] ; then
 	# Abaqus:
 	export ABAQUSDIR=/usr/local/abaqus
 	export PATH=$PATH:$ABAQUSDIR/Commands
@@ -136,7 +143,7 @@ BCYAN='\e[1;36m'
 D='\e[m'
 
 # Candy Colored Terminal: Custom RGB/Hex Values
-PINK=$BPURPLE	# 250, 37, 115	#FA2573
+PINK=$BPURPLE	# 250, 37,  115	#FA2573
 GOLD=$BROWN	# 196, 160, 0	#C4A000
 ORANGE=$BBROWN	# 252, 149, 30	#FC951E
 GREEN=$BGREEN	# 166, 227, 45	#A6E32D
