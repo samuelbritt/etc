@@ -135,12 +135,12 @@ BPURPLE='\e[1;35m'
 BCYAN='\e[1;36m'
 D='\e[m'
 
-# Candy Colored Terminal: Custom RGB Values
-PINK=$BPURPLE	# 250, 37, 115
-GOLD=$BROWN	# 196, 160, 0
-ORANGE=$BBROWN	# 252, 149, 30
-GREEN=$BGREEN	# 166, 227, 45
-BLUE=$BBLUE	# 110, 154, 255
+# Candy Colored Terminal: Custom RGB/Hex Values
+PINK=$BPURPLE	# 250, 37, 115	#FA2573
+GOLD=$BROWN	# 196, 160, 0	#C4A000
+ORANGE=$BBROWN	# 252, 149, 30	#FC951E
+GREEN=$BGREEN	# 166, 227, 45	#A6E32D
+BLUE=$BBLUE	# 110, 154, 255	#6E9AFF
 # PS1="\n\u@\h:\w\n\$ "
 PS1="\n$GREEN\u$D@$PINK\h$D : $ORANGE\w$D\n\$ "
 
