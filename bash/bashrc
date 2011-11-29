@@ -149,7 +149,7 @@ ORANGE=$BBROWN	# 252, 149, 30	#FC951E
 GREEN=$BGREEN	# 166, 227, 45	#A6E32D
 BLUE=$BBLUE	# 110, 154, 255	#6E9AFF
 # PS1="\n\u@\h:\w\n\$ "
-PS1="\n$GREEN\u$D@$PINK\h$D : $ORANGE\w$D\n\$ "
+PS1="\n$GREEN\u$D@$PINK\h$D: $ORANGE\w$D\n\$ "
 
 # LaTeX
 export BIBINPUTS=.:$HOME/texmf/bibtex/bib
