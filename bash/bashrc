@@ -1,178 +1,201 @@
 #!/bin/bash
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
+# Modeline {
+# vim: set foldmarker={,} foldlevel=0 foldmethod=marker sw=4 ts=4 spell:
+# }
 
-# Set up vars
-PLATFORM=`uname`
-MACHINE=${HOSTNAME%%.*}
-if [ ${MACHINE:0:9} = "moleculos" ] ; then
-	MACHINE="moleculos"
-fi
+# Global variables {
+	# Source global definitions
+	if [ -f /etc/bashrc ]; then
+		. /etc/bashrc
+	fi
 
-# Determine if root
-is_root=false
-if [[ "$UID" = "0" ]]; then
-	is_root=true
-fi
+	# Set up vars
+	PLATFORM=`uname`
+	MACHINE=${HOSTNAME%%.*}
+	if [ ${MACHINE:0:9} = "moleculos" ] ; then
+		MACHINE="moleculos"
+	fi
 
-# Platform-specific settings
-if [ $PLATFORM = "Linux" ] ; then
-	#color support of ls
-	eval "`dircolors -b`"
-	alias ls='ls --color=auto -Bpv'
-	alias dir='dir --color=auto -pv'
+	# Determine if root
+	is_root=false
+	if [[ "$UID" = "0" ]]; then
+		is_root=true
+	fi
+# }
 
-elif [ $PLATFORM = "Darwin" ] ; then
-	# color support
-	export CLICOLOR=1
-	export LSCOLORS=ExGxCxDxCxegedabagacad
-	export VIMRUNTIME='/Applications/MacVim.app/Contents/Resources/vim/runtime'
-	export PATH=/usr/local/bin:$PATH # (mostly for exuberent ctags)
-	# PATH DISPLAY variables for use with MacPorts
-	export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Platform-specific settings {
+	# Linux {
+	if [ $PLATFORM = "Linux" ] ; then 
+		#color support of ls
+		eval "`dircolors -b`"
+		alias ls='ls --color=auto -Bpv'
+		alias dir='dir --color=auto -pv'
+	# }
+	# Darwin {
+	elif [ $PLATFORM = "Darwin" ] ; then
+		# color support
+		export CLICOLOR=1
+		export LSCOLORS=ExGxCxDxCxegedabagacad
+		export VIMRUNTIME='/Applications/MacVim.app/Contents/Resources/vim/runtime'
+		export PATH=/usr/local/bin:$PATH # (mostly for exuberent ctags)
+		# PATH DISPLAY variables for use with MacPorts
+		export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
-	# Setting PATH for EPD
-	# The orginal version is saved in .bash_profile.pysave
-	export PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
-	export MKL_NUM_THREADS=1
+		# Setting PATH for EPD
+		# The orginal version is saved in .bash_profile.pysave
+		export PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
+		export MKL_NUM_THREADS=1
 
-	# Setting PATH for MacTeX
-	export PATH=$PATH:/usr/texbin
-fi
+		# Setting PATH for MacTeX
+		export PATH=$PATH:/usr/texbin
+	fi
+	# }
+# }
 
-# Machine-specific settings
-if [ $MACHINE = "titanium" ] ; then
-	# Abaqus:
-	export SIMULIADIR=/opt/simulia
-	export ABAQUSDIR=$SIMULIADIR/abaqus
-	export PATH=$PATH:$ABAQUSDIR/Commands
-	# Intel Compilers:
-	source /opt/intel/Compiler/11.1/072/bin/ifortvars.sh intel64
-	# Matlab:
-	export MATLABPATH=$HOME/bin:$HOME/lib/matlab:$MATLABPATH
-	# EPD
-	export PATH=/opt/epd/epd7.0/bin:$PATH
-elif [ $MACHINE = "hydrogen" ] ; then
-	export PATH=/opt/bin:$PATH
-	export PATH=/usr/sbin:$PATH
-	# EPD
-	export PATH=$PATH:/opt/epd/bin
-elif [ $MACHINE = "silicon" ] ; then
-	export PATH=$PATH:/opt/epd/bin
-	export PATH=/opt/eclipse:$PATH
-elif [ $MACHINE = "aluminum-vert" ] ; then
-	# Intel Compilers:
-	source /opt/intel/Compiler/11.1/073/bin/ifortvars.sh ia32
-elif [ $MACHINE = "moleculos" ] ; then
-	# Abaqus:
-	export ABAQUSDIR=/opt/abaqus
-	export PATH=$PATH:$ABAQUSDIR/Commands
+# Machine-specific settings {
+	# Titanium {
+	if [ $MACHINE = "titanium" ] ; then
+		# Abaqus:
+		export SIMULIADIR=/opt/simulia
+		export ABAQUSDIR=$SIMULIADIR/abaqus
+		export PATH=$PATH:$ABAQUSDIR/Commands
+		# Intel Compilers:
+		source /opt/intel/Compiler/11.1/072/bin/ifortvars.sh intel64
+		# Matlab:
+		export MATLABPATH=$HOME/bin:$HOME/lib/matlab:$MATLABPATH
+		# EPD
+		export PATH=/opt/epd/epd7.0/bin:$PATH
+	# }
+	# Hydrogen {
+	elif [ $MACHINE = "hydrogen" ] ; then
+		export PATH=/opt/bin:$PATH
+		export PATH=/usr/sbin:$PATH
+		# EPD
+		export PATH=$PATH:/opt/epd/bin
+	# }
+	# Silicon {
+	elif [ $MACHINE = "silicon" ] ; then
+		export PATH=$PATH:/opt/epd/bin
+		export PATH=/opt/eclipse:$PATH
+	# }
+	# Aluminum Virtual Machine {
+	elif [ $MACHINE = "aluminum-vert" ] ; then
+		# Intel Compilers:
+		source /opt/intel/Compiler/11.1/073/bin/ifortvars.sh ia32
+	# }
+	# Moleculos {
+	elif [ $MACHINE = "moleculos" ] ; then
+		# Abaqus:
+		export ABAQUSDIR=/opt/abaqus
+		export PATH=$PATH:$ABAQUSDIR/Commands
 
-	# Matlab
-	export PATH=$PATH:/opt/matlab
+		# Matlab
+		export PATH=$PATH:/opt/matlab
 
-	# Maui Scheduler
-	export MAUIHOMEDIR=/usr/local/maui
-	export PATH=$PATH:$MAUIHOMEDIR/bin
-	export PATH=$PATH:$MAUIHOMEDIR/sbin
+		# Maui Scheduler
+		export MAUIHOMEDIR=/usr/local/maui
+		export PATH=$PATH:$MAUIHOMEDIR/bin
+		export PATH=$PATH:$MAUIHOMEDIR/sbin
 
-	# PATH
-	export PATH=$PATH:/sbin
-	export PATH=$PATH:/usr/sbin
-	export PATH=$PATH:/usr/local/sbin
-elif [ $MACHINE = "titan" ] ; then
-	# Abaqus:
-	export ABAQUSDIR=/usr/local/abaqus
-	export PATH=$PATH:$ABAQUSDIR/Commands
+		# PATH
+		export PATH=$PATH:/sbin
+		export PATH=$PATH:/usr/sbin
+		export PATH=$PATH:/usr/local/sbin
+	# }
+	# Titan {
+	elif [ $MACHINE = "titan" ] ; then
+		# Abaqus:
+		export ABAQUSDIR=/usr/local/abaqus
+		export PATH=$PATH:$ABAQUSDIR/Commands
 
-	# PATH
-	export PATH=$PATH:/sbin
-	export PATH=$PATH:/usr/sbin
-fi
+		# PATH
+		export PATH=$PATH:/sbin
+		export PATH=$PATH:/usr/sbin
+	fi
+	# }
+# }
 
+# Common Settings {
+	# If not running interactively, don't do anything
+	[ -z "$PS1" ] && return
 
-# Common Settings
+	export HISTCONTROL=ignoreboth # ignore dupes and lines starting with spaces
+	export HISTSIZE=5000 # number of stored commands
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+	# check the window size after each command and, if necessary,
+	# update the values of LINES and COLUMNS.
+	shopt -s checkwinsize
 
-export HISTCONTROL=ignoreboth # ignore dupes and lines starting with spaces
-export HISTSIZE=5000 # number of stored commands
+	# make less more friendly for non-text input files, see lesspipe(1)
+	[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+	# enable programmable completion features (you don't need to enable
+	# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+	# sources /etc/bash.bashrc).
+	if [ -f /etc/bash_completion ]; then
+	    . /etc/bash_completion
+	fi
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+	# Aliases found in .bash_aliases
+	if [ -f ~/.bash_aliases ]; then
+		. ~/.bash_aliases
+	fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
+	## xmodmap key bindings
+	# if [ -f ~/.xmodmap ]; then
+	#         xmodmap ~/.xmodmap
+	# fi
 
-# Aliases found in .bash_aliases
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
-fi
+	# Prompt {
+		# A note on the colors:
+		#	\e[  - Indicates the beginning of color prompt
+		#	x;ym - Indicates color code: x is foreground and y is background
+		#	\e[m - indicates the end of color prompt
+		# [Note: Replace 0 with 1 for dark color]
+		BLACK='\e[0;30m'
+		RED='\e[0;31m'
+		GREEN='\e[0;32m'
+		BROWN='\e[0;33m'
+		BLUE='\e[0;34m'
+		PURPLE='\e[0;35m'
+		CYAN='\e[0;36m'
+		BBLACK='\e[1;30m'
+		BRED='\e[1;31m'
+		BGREEN='\e[1;32m'
+		BBROWN='\e[1;33m'
+		BBLUE='\e[1;34m'
+		BPURPLE='\e[1;35m'
+		BCYAN='\e[1;36m'
+		D='\e[m'
 
-## xmodmap key bindings
-# if [ -f ~/.xmodmap ]; then
-#         xmodmap ~/.xmodmap
-# fi
+		# Candy Colored Terminal: Custom RGB/Hex Values
+		PINK=$BPURPLE	# 250, 37,  115	#FA2573
+		GOLD=$BROWN	# 196, 160, 0	#C4A000
+		ORANGE=$BBROWN	# 252, 149, 30	#FC951E
+		GREEN=$BGREEN	# 166, 227, 45	#A6E32D
+		BLUE=$BBLUE	# 110, 154, 255	#6E9AFF
+		prompt_color=$D
+		user_color=$GREEN
+		if $is_root ; then
+			prompt_color=$BRED
+			user_color=$BRED
+		fi
+		PS1="\n$user_color\u$D@$PINK\h$D: $ORANGE\w$D\n${prompt_color}\\\$$D "
+	# }
 
-# Prompt
-# A note on the colors:
-#	\e[  - Indicates the beginning of color prompt
-#	x;ym - Indicates color code: x is foreground and y is background
-#	\e[m - indicates the end of color prompt
-# [Note: Replace 0 with 1 for dark color]
-BLACK='\e[0;30m'
-RED='\e[0;31m'
-GREEN='\e[0;32m'
-BROWN='\e[0;33m'
-BLUE='\e[0;34m'
-PURPLE='\e[0;35m'
-CYAN='\e[0;36m'
-BBLACK='\e[1;30m'
-BRED='\e[1;31m'
-BGREEN='\e[1;32m'
-BBROWN='\e[1;33m'
-BBLUE='\e[1;34m'
-BPURPLE='\e[1;35m'
-BCYAN='\e[1;36m'
-D='\e[m'
+	# LaTeX
+	export BIBINPUTS=.:$HOME/texmf/bibtex/bib
 
-# Candy Colored Terminal: Custom RGB/Hex Values
-PINK=$BPURPLE	# 250, 37,  115	#FA2573
-GOLD=$BROWN	# 196, 160, 0	#C4A000
-ORANGE=$BBROWN	# 252, 149, 30	#FC951E
-GREEN=$BGREEN	# 166, 227, 45	#A6E32D
-BLUE=$BBLUE	# 110, 154, 255	#6E9AFF
-prompt_color=$D
-user_color=$GREEN
-if $is_root ; then
-	prompt_color=$BRED
-	user_color=$BRED
-fi
-PS1="\n$user_color\u$D@$PINK\h$D: $ORANGE\w$D\n${prompt_color}\\\$$D "
+	# paths
+	export PATH=$HOME/.local/bin:$PATH
+	# installing python packages with
+	#	setup.py install --user
+	# installs scripts to ~/.local/bin, and modules to
+	# ~/.local/lib/python*/site-packages and the PYTHONPATH is taken care of
+	# automagically
 
-# LaTeX
-export BIBINPUTS=.:$HOME/texmf/bibtex/bib
-
-# paths
-export PATH=$HOME/.local/bin:$PATH
-# installing python packages with
-#	setup.py install --user
-# installs scripts to ~/.local/bin, and modules to
-# ~/.local/lib/python*/site-packages and the PYTHONPATH is taken care of
-# automagically
-
-#Vim keybindings
-set -o vi
-export EDITOR=vim
+	#Vim keybindings
+	set -o vi
+	export EDITOR=vim
+# }
