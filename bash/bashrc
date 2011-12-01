@@ -153,35 +153,37 @@
 		#	x;ym - Indicates color code: x is foreground and y is background
 		#	\e[m - indicates the end of color prompt
 		# [Note: Replace 0 with 1 for dark color]
-		BLACK='\e[0;30m'
-		RED='\e[0;31m'
-		GREEN='\e[0;32m'
-		BROWN='\e[0;33m'
-		BLUE='\e[0;34m'
-		PURPLE='\e[0;35m'
-		CYAN='\e[0;36m'
-		BBLACK='\e[1;30m'
-		BRED='\e[1;31m'
-		BGREEN='\e[1;32m'
-		BBROWN='\e[1;33m'
-		BBLUE='\e[1;34m'
-		BPURPLE='\e[1;35m'
-		BCYAN='\e[1;36m'
-		D='\e[m'
+		BLACK='\[\e[0;30m\]'
+		RED='\[\e[0;31m\]'
+		GREEN='\[\e[0;32m\]'
+		BROWN='\[\e[0;33m\]'
+		BLUE='\[\e[0;34m\]'
+		PURPLE='\[\e[0;35m\]'
+		CYAN='\[\e[0;36m\]'
+		BBLACK='\[\e[1;30m\]'
+		BRED='\[\e[1;31m\]'
+		BGREEN='\[\e[1;32m\]'
+		BBROWN='\[\e[1;33m\]'
+		BBLUE='\[\e[1;34m\]'
+		BPURPLE='\[\e[1;35m\]'
+		BCYAN='\[\e[1;36m\]'
+		D='\[\e[0m\]'
 
 		# Candy Colored Terminal: Custom RGB/Hex Values
 		PINK=$BPURPLE	# 250, 37,  115	#FA2573
-		GOLD=$BROWN	# 196, 160, 0	#C4A000
+		GOLD=$BROWN		# 196, 160, 0	#C4A000
 		ORANGE=$BBROWN	# 252, 149, 30	#FC951E
 		GREEN=$BGREEN	# 166, 227, 45	#A6E32D
-		BLUE=$BBLUE	# 110, 154, 255	#6E9AFF
+		BLUE=$BBLUE		# 110, 154, 255	#6E9AFF
+
 		prompt_color=$D
 		user_color=$GREEN
 		if $is_root ; then
 			prompt_color=$BRED
 			user_color=$BRED
 		fi
-		PS1="\n$user_color\u$D@$PINK\h$D: $ORANGE\w$D\n${prompt_color}\\\$$D "
+		archey
+		PS1="\n$user_color\u$D@$PINK\h$D: $ORANGE\w$D\n$prompt_color\\\$$D "
 	# }
 
 	# LaTeX
