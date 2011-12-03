@@ -12,10 +12,6 @@ if [ `uname` = "Linux" ] ; then
 	alias mvimdiff="gvimdiff"
 	export EPD=/opt/epd/bin
 
-	# Edit file in new terminal window
-	function tvim {
-		gnome-terminal -x vim $@ &
-	}
 elif [ `uname` = "Darwin" ] ; then
 	alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 	alias gvim="mvim"
@@ -28,12 +24,6 @@ elif [ `uname` = "Darwin" ] ; then
 	alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
 	export EPD=/Library/Frameworks/Python.framework/Versions/Current/bin
 fi
-
-if [ $HOSTNAME = "hydrogen.site" ]
-then
-	alias open='kde-open'
-fi
-
 
 # Common alias definitions.
 alias ll='ls -hl'
@@ -59,42 +49,31 @@ alias du='du -h'
 alias pacman='pacman-color'
 alias diff='colordiff -u'
 alias make='colormake'
-alias pylab='$EPD/ipython -pylab'
+alias pylab='ipython -pylab'
 alias epython='$EPD/python'
 alias eipython='$EPD/ipython'
+alias epylab='eipython -pylab'
 
 # bad typing with hg
 alias gh=hg
 function h {
 	case "$1" in
-		gst)
-			command hg st "${@:2}"
-			;;
-		gts)
+		gst | gts)
 			command hg st "${@:2}"
 			;;
 		gsum)
 			command hg sum "${@:2}"
 			;;
-		gic)
-			command hg ci "${@:2}"
-			;;
-		gci)
+		gic | gci)
 			command hg ci "${@:2}"
 			;;
 		gfe)
 			command hg fe "${@:2}"
 			;;
-		gdiff)
+		gdiff | gidff)
 			command hg diff "${@:2}"
 			;;
-		gidff)
-			command hg diff "${@:2}"
-			;;
-		glate)
-			command hg late "${@:2}"
-			;;
-		galte)
+		glate | galte)
 			command hg late "${@:2}"
 			;;
 		*)
