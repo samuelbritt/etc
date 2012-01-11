@@ -53,6 +53,8 @@ alias pylab='ipython -pylab'
 alias epython='$EPD/python'
 alias eipython='$EPD/ipython'
 alias epylab='eipython -pylab'
+alias tarz='tar czf'
+alias untarz='tar xzf'
 
 # bad typing with hg
 alias gh=hg
