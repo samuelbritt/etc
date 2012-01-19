@@ -22,29 +22,30 @@ apt-get install -y			\
 	python-matplotlib               \
 	python-virtualenv               \
 	inkscape                        \
-	scribus-ng                      \
-	scribus-ng-doc                  \
-	gimp                            \
-	gnome-do                        \
+	#scribus-ng                      \
+	#scribus-ng-doc                  \
+	#gimp                            \
+	#gnome-do                        \
 	vlc                             \
 	htop                            \
 	tree                            \
-	nautilus-open-terminal          \
+	#nautilus-open-terminal          \
 	engauge-digitizer               \
-	compizconfig-settings-manager   \
-	qalculate-gtk                   \
+	#compizconfig-settings-manager   \
+	#qalculate-gtk                   \
 	openssh-server                  \
-	electricsheep                   \
+	#electricsheep                   \
 	network-manager-vpnc            \
 	exuberant-ctags                 \
+	ctags				\
 	colordiff			\
 	colormake			\
-	gtk2-engines-pixbuf		\
+	#gtk2-engines-pixbuf		\
 	ruby				\
 	ruby-dev			\
 	rake				\
 	valgrind			\
-	terminator			\
+	#terminator			\
 	chromium-browser		\
 
 	## Others?
