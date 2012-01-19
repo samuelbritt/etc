@@ -41,7 +41,7 @@ fi
 # Vim config submodules
 # install ruby dev files if needed
 hash rake 2>/dev/null || {
-	sudo apt-get install ruby ruby-dev rake;
+	sudo apt-get -y install ruby ruby-dev rake;
 }
 cd $HOME/.vim/bundle/command-t
 rake make
@@ -49,7 +49,7 @@ cd $HOME
 
 # install git if needed
 hash git 2>/dev/null || {
-	sudo apt-get install git;
+	sudo apt-get -y install git;
 }
 cd $HOME/.vim/bundle/pyflakes
 git submodule init
@@ -90,9 +90,9 @@ ln -sf ../etc/ssh/config config
 cd $HOME
 
 # Fonts
-unzip etc/fonts/*zip
-mkdir -p .fonts
-mv *.otf .fonts
+# unzip etc/fonts/*zip
+# mkdir -p .fonts
+# mv *.otf .fonts
 
 # Clean up home
 # mkdir -p media
