@@ -2,7 +2,8 @@
 
 # Platform and machine specific aliases
 if [ `uname` = "Linux" ] ; then
-	alias open='gnome-open'
+	# alias open='gnome-open'
+	alias open='kde-open'
 	alias lss='ls --ignore=*.o --ignore=*.pyc'
 	alias lsd='ls --group-directories-first' #works on ubuntu
 	alias abaqus='XLIB_SKIP_ARGB_VISUALS=1 abaqus'
