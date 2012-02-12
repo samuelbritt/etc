@@ -1,14 +1,27 @@
 syntax:glob
 # latex
+*.aux
 *.bbl
 *.blg
-*.aux
-*.toc
+*.dvi
+*.idx
+*.ind
 *.lof
 *.lot
 *.out
+*.pdfsync
+*.toc
+# python
+*.egg
+*.egg-info
+dist
+build
+sdist
+eggs
 #other
 *.o
+*.so
+*.a
 *.pyc
 abaqus.rpy*
 hghide*
