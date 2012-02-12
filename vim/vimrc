@@ -170,9 +170,11 @@
 		" search in a singe file. This will confuse latex-suite. Set your grep
 		" program to always generate a file-name.
 		set grepprg=grep\ -nH\ $*
+		let s:doneMappings = 1
 		let g:tex_flavor='latex' 			" Sets .tex to be LaTeX file type
 		let g:Tex_ViewRule_pdf='open'
-		imap <C-K> <Plug>IMAP_JumpForward
+        " let g:Imap_UsePlaceHolders=0
+
 	" }
 
 	" NERDComments {
