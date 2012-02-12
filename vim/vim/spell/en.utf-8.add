@@ -92,3 +92,9 @@ subarray
 vertices
 i.e.
 struct
+uthread
+vruntime
+kthread
+runqueue
+timeslice
+printf
