@@ -1,0 +1,13 @@
+[user]
+	name = Sam Britt
+	email = samuelbritt@gmail.com
+[color]
+	ui = true
+[core]
+	excludesfile = /home/sam/.git_ignore
+[alias]
+	ci = commit
+	st = status
+	sts = status --short
+	co = checkout
+	glog = log --oneline --graph

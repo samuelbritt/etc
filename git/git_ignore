@@ -1,0 +1,32 @@
+# latex
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.idx
+*.ind
+*.lof
+*.lot
+*.out
+*.pdfsync
+*.toc
+# python
+*.egg
+*.egg-info
+dist
+build
+sdist
+eggs
+#other
+*.o
+*.so
+*.a
+*.pyc
+abaqus.rpy*
+hghide*
+*~
+*.swp
+._*
+.DS_Store
+~$*
+.directory
