@@ -185,8 +185,8 @@
 			prompt_color=$RUBY
 			user_color=$RUBY
 		fi
-		# archey
-		PS1="\n$user_color\u$D@$PINK\h$D: $ORANGE\w$D\n$prompt_color\\\$$D "
+		export GIT_PS1_SHOWDIRTYSTATE=1
+		PS1="\n$user_color\u$D@$PINK\h$D: $ORANGE\w$D$RUBY\$(__git_ps1)$D \n$prompt_color\\\$$D "
 	# }
 
 	# LaTeX

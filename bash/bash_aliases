@@ -57,6 +57,9 @@ alias epylab='eipython -pylab'
 alias tarz='tar czf'
 alias untarz='tar xzf'
 
+# bad typing with git
+alias gi=git
+
 # bad typing with hg
 alias gh=hg
 function h {
