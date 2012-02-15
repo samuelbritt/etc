@@ -47,18 +47,13 @@ cd $HOME/.vim/bundle/command-t
 rake make
 cd $HOME
 
-# install git if needed
-hash git 2>/dev/null || {
-	sudo apt-get -y install git;
-}
-cd $HOME/.vim/bundle/pyflakes
-git submodule init
-git submodule update
-cd $HOME
-
 # Hg
 ln -sf etc/hg/hgrc .hgrc
 ln -sf etc/hg/hgrc_ignore .hgrc_ignore
+
+# Git
+ln -sf etc/git/gitconfig .gitconfig
+ln -sf etc/git/git_ignore .git_ignore
 
 # LaTeX
 if [[ $KERNEL = "Linux" ]]
