@@ -21,6 +21,7 @@ eggs
 *.o
 *.so
 *.a
+*.d
 *.pyc
 abaqus.rpy*
 hghide*
