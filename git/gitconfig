@@ -10,4 +10,6 @@
 	st = status
 	sts = status --short
 	co = checkout
-	glog = log --oneline --graph
+	br = branch
+	glog = log --oneline --graph --decorate
+	late = log --oneline --graph --decorate -15
