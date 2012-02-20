@@ -56,6 +56,7 @@
 	set scrolloff=3 				" keep some context when scrolling
 	set linebreak                   " wrap lines sanely
 	set foldcolumn=1				" click to fold
+	set colorcolumn=+1				" show textwidth limit
 	set gdefault					" global subst. by default; use '/g' to revert
 	set tags+=tags;/				" search for tags in higher directories
 	set switchbuf+=usetab			" switch to open buffer first, rather than
