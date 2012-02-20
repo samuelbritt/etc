@@ -1,0 +1,10 @@
+Network Name (SSID):	GTwireless
+WEP Key:		3671A113A0
+
+Network Name (SSID):	GTwpa
+Security:		WPA2 Enterprise
+EAP Type:		PEAP
+PEAP Version:		Automatic
+Inner Authentication:	MSCHAPv2
+CA Certificate:		/etc/ssl/certs/Equifax_Secure_CA.pem
+
