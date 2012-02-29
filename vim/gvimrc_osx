@@ -4,4 +4,4 @@ set guifont=Ubuntu\ Mono:h14,Inconsolata-dz:h10
 set macmeta 		" give me my Alt key back
 set guioptions-=T
 set bg=dark
-colorscheme peaksea
+colorscheme molokai

@@ -1,6 +1,6 @@
 set guioptions-=T
 set guifont=Ubuntu\ Mono\ 9,Inconsolata-dz\ 8
 set bg=dark
-colorscheme peaksea
+colorscheme molokai
 set lines=40
 set columns=80
