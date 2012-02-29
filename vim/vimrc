@@ -81,7 +81,7 @@
 		if has("gui_running")
 			" see .gvimrc
 		else
-			colorscheme peaksea
+			colorscheme molokai
 			set t_Co=256			" number of colors in terminal
 			set bg=dark  			" must come after colorscheme
 		endif
