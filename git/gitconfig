@@ -12,4 +12,6 @@
 	co = checkout
 	br = branch
 	glog = log --oneline --graph --decorate
-	late = log --oneline --graph --decorate -15
+	late = !git --no-pager\
+		log --oneline --graph --decorate -15
+	arch = "!f() { git archive HEAD --prefix=\"$1/\" | gzip > \"$1\".tar.gz; }; f"
