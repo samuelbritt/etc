@@ -40,9 +40,6 @@
 [submodule "vim/vim/bundle/delimitMate"]
 	path = vim/vim/bundle/delimitMate
 	url = git://github.com/Raimondi/delimitMate.git
-[submodule "vim/vim/bundle/latex"]
-	path = vim/vim/bundle/latex
-	url = git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex
 [submodule "vim/vim/bundle/minibufexpl"]
 	path = vim/vim/bundle/minibufexpl
 	url = git://github.com/fholgado/minibufexpl.vim.git
