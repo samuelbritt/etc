@@ -166,16 +166,8 @@
 " }
 
 " Plugins {
-	" Vim-LaTeX {
-		" IMPORTANT: grep will sometimes skip displaying the file name if you
-		" search in a singe file. This will confuse latex-suite. Set your grep
-		" program to always generate a file-name.
-		" set grepprg=grep\ -nH\ $*
-		" let s:doneMappings = 1
-		" let g:tex_flavor='latex' 			" Sets .tex to be LaTeX file type
-		" let g:Tex_ViewRule_pdf='open'
-        " let g:Imap_UsePlaceHolders=0
-
+	" LaTeX {
+		let g:tex_flavor='latex' 			" Sets .tex to be LaTeX file type
 	" }
 
 	" NERDComments {
@@ -205,11 +197,6 @@
 		let g:SuperTabCrMapping = 0
 		let g:SuperTabLongestEnhanced = 1
 		let g:SuperTabLongestHighlight = 1
-	" }
-
-	" SnipMate {
-		let g:snips_author = 'Sam Britt <samuelbritt@gmail.com>'
-		let g:snippets_dir = $HOME . '/.vim/custom-snippets'
 	" }
 
 	" DelimitMate {

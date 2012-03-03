@@ -13,7 +13,6 @@ setlocal spell spelllang=en_us
 
 " delimitMate math
 let b:delimitMate_quotes = "' ` \$"
-inoremap <silent> <buffer> .. ..<C-R>=UltiSnips_Anon('[$1]', '..', 'Bracket', 'i')<cr>
 
 let maplocalleader = ","
 let g:LatexBox_viewer = "open"
