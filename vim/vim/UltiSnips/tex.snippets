@@ -1,8 +1,12 @@
 snippet doc "Document Class" !b
 \documentclass[${2}]{${1:article}}
+
 ${3}
+
 \begin{document}
-${0}
+
+$0
+
 \end{document}
 endsnippet
 
@@ -51,19 +55,19 @@ snippet si "Unitx" !
 endsnippet
 
 snippet em "emph" !
-\emph{${1}}${0}
+\\emph{${1}}${0}
 endsnippet
 
-snippet $ "$$" !
-$${1}$${0}
+snippet "" "quotes" !
+\`\`$1"$0
 endsnippet
 
 snippet \ "\macro{}" i
 \\${1}{${2}}${0}
 endsnippet
 
-snippet { "{}" i
-{${1}}${0}
+snippet { "\{\}" i
+\\{${1}\\}${0}
 endsnippet
 
 snippet < "\langle \rangle" i
@@ -80,4 +84,69 @@ endsnippet
 
 snippet ,t "text" !i
 \text{${1}}${0}
+endsnippet
+
+snippet it "\item" !i
+\\item$0
+endsnippet
+
+snippet tab "Table" !b
+\begin{table}[${1:htbp}]
+	\label{tab:${2:label}}
+	\centering
+	\begin{minipage}[t]{${3:.8\linewidth}}
+		\centering
+		\caption{${4:Title}}
+		\begin{tabular}{${5:c}}
+			\toprule
+			$0${5/((?<=.)c|l|r)|./(?1: & )/g} \\\\
+			\midrule
+			\bottomrule
+		\end{tabular}
+	\end{minipage}
+\end{table}
+endsnippet
+
+snippet fig "Figure" !b
+\begin{figure}[${1:htbp}]
+	\label{fig:${2:label}}
+	\centering
+	\begin{minipage}[t]{${3:.8\linewidth}}
+		\centering
+		\includegraphics[width=\linewidth]{$0}
+		\caption{${4:caption}}
+	\end{minipage}
+\end{figure}
+endsnippet
+
+snippet science "Collection of scientific packages/commands" !b
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage[alsoload=binary]{siunitx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{fancyvrb}
+\usepackage[section]{placeins}
+\usepackage{flafter}
+\usepackage{url}
+\usepackage{hyperref}
+
+% no section numbers
+\setcounter{secnumdepth}{-2}
+
+% from amssymb.sty
+\let\emtpyset\varnothing
+
+% leave notes to yourself
+\newcommand\todo[1]{\textcolor{red}\textsc{todo}: #1}
+
+% write in code
+\DefineShortVerb{\|}
+
+\title{${1:Title}}
+\author{${2:Sam Britt}}
+\date{${3}}
+$0
 endsnippet

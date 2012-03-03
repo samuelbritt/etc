@@ -10,27 +10,19 @@ set iskeyword+=:
 set softtabstop=2
 set textwidth=70
 setlocal spell spelllang=en_us
-"set wildignore=*.log,*.aux,*.dvi,*.ps,*.pdf,*.aut,*.bbl,*.blg,*.fff,*.out*.toc,*.ttt
 
-let Tex_UseMakefile=0 "use default compile rules, even when a makefile is present
-let g:Tex_DefaultTargetFormat='pdf' 		" PDF instead of DVI
-let g:Tex_MultipleCompileFormats='dvi,pdf'
-let g:Tex_TEXINPUTS=$HOME . '/texmf/tex/**' 	" the '.' is string concat.
-let g:Tex_BIBINPUTS=$HOME . '/texmf/bibtex/bib'
-"let g:Tex_ViewRule_pdf = 'open'
-"let g:Tex_ViewRule_pdf = '/Applications/Skim.app/Contents/MacOS/Skim'
-"let g:TreatMacViewerAsUNIX=1
+" delimitMate math
+let b:delimitMate_quotes = "' ` \$"
+inoremap <silent> <buffer> .. ..<C-R>=UltiSnips_Anon('[$1]', '..', 'Bracket', 'i')<cr>
 
-"folds for beamer class
-let g:Tex_FoldedEnvironments=',column,frame,codebox'
-"let g:Tex_PromptedEnvironments='eqnarray*,eqnarray,equation,equation*,\[,$$,align,align*' "Defaults
+let maplocalleader = ","
+let g:LatexBox_viewer = "open"
+let g:LatexBox_autojump = 1 	" jump to first error on latexmk
 
-" Write and Compile
-map <leader>wl :w<CR><leader>ll''
-
-" Conceal: displays some math characters with their unicode equivalents
-" set conceallevel=2
-" set ambw=double			" show wide chars
-" hi Conceal guibg=black
-
-" see ~/.vim/after/ftplugin/tex_macros.vim for custom macros
+nmap <leader>wl 	:w<CR><LocalLeader>ll
+imap <buffer> [[ 	\begin{
+imap <buffer> ]]	<Plug>LatexCloseCurEnv
+nmap <buffer> <F5>	<Plug>LatexChangeEnv
+vmap <buffer> <F7>	<Plug>LatexWrapSelection
+vmap <buffer> <S-F7>	<Plug>LatexEnvWrapSelection
+imap <buffer> (( 	\eqref{
