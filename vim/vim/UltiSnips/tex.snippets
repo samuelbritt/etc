@@ -5,7 +5,7 @@ ${3}
 
 \begin{document}
 
-$0
+	$0
 
 \end{document}
 endsnippet
@@ -15,22 +15,22 @@ snippet use "Use Package" !b
 endsnippet
 
 snippet new "New command" !b
-\newcommand\\${1:cmd}{${2}}${3:$0}
+\newcommand\\${1:cmd}{${2:${VISUAL}}}${3:$0}
 endsnippet
 
 snippet la "Label" !b
-\label{${1}}${2:${0}}
+\label{${1:${VISUAL}}}${2:${0}}
 endsnippet
 
 snippet eq "Equation" !b
 \begin{equation}
-	${1}
+	${1:${VISUAL}}
 \end{equation}${0}
 endsnippet
 
 snippet es "Equation Star" !b
 \begin{equation*}
-	${1}
+	${1:${VISUAL}}
 \end{equation*}${0}
 endsnippet
 
@@ -46,51 +46,59 @@ snippet as "Align Star" !b
 \end{align*}${0}
 endsnippet
 
-snippet unit "Unit" !
-\unit{${1}}{${2}}${0}
-endsnippet
-
 snippet si "Unitx" !
-\SI{${1}}{${2}}${0}
-endsnippet
-
-snippet em "emph" !
-\\emph{${1}}${0}
+\SI{${1:${VISUAL}}}{${2}}${0}
 endsnippet
 
 snippet "" "quotes" !
-\`\`$1"$0
+\`\`${1:${VISUAL}}"$0
+endsnippet
+
+snippet $$ "Inline math" !i
+\$${1:${VISUAL}}\$$0
+endsnippet
+
+snippet ^^ "Exponent" !i
+^{${1:${VISUAL}}}$0
+endsnippet
+
+snippet __ "Subscript" !i
+_{${1:${VISUAL}}}$0
 endsnippet
 
 snippet \ "\macro{}" i
-\\${1}{${2}}${0}
+\\${1:${VISUAL}}{${2}}${0}
 endsnippet
 
-snippet { "\{\}" i
-\\{${1}\\}${0}
+snippet {{ "\left{ \right}" i
+\l{ ${1:${VISUAL}} \r}${0}
 endsnippet
 
-snippet < "\langle \rangle" i
-\langle ${1} \rangle${0}
+snippet << "\left< \right>" i
+\l< ${1:${VISUAL}} \r>${0}
 endsnippet
 
-snippet lp "\left( \right)" i
-\l( ${1} \r)${0}
+snippet (( "\left( \right)" i
+\l( ${1:${VISUAL}} \r)${0}
 endsnippet
 
-snippet lb "\left[ \right]" i
-\l[ ${1} \r]${0}
+snippet [[ "\left[ \right]" i
+\l[ ${1:${VISUAL}} \r]${0}
 endsnippet
 
 snippet ,t "text" !i
-\text{${1}}${0}
+\text{${1:${VISUAL}}}${0}
 endsnippet
 
-snippet it "\item" !i
-\\item$0
+snippet "\st?o?d?o?" "\todo" !r
+\\todo{${1:${VISUAL}}}
 endsnippet
 
-snippet tab "Table" !b
+snippet "\semp?h?" "\emph" !r
+\\emph{${1:${VISUAL}}}
+endsnippet
+
+snippet table "Table" !b
 \begin{table}[${1:htbp}]
 	\label{tab:${2:label}}
 	\centering
@@ -107,7 +115,7 @@ snippet tab "Table" !b
 \end{table}
 endsnippet
 
-snippet fig "Figure" !b
+snippet "figu?r?e?" "Figure" !br
 \begin{figure}[${1:htbp}]
 	\label{fig:${2:label}}
 	\centering
@@ -133,6 +141,10 @@ snippet science "Collection of scientific packages/commands" !b
 \usepackage{url}
 \usepackage{hyperref}
 
+% a bit more compact
+\let\l\left
+\let\r\right
+
 % no section numbers
 \setcounter{secnumdepth}{-2}
 
@@ -146,7 +158,7 @@ snippet science "Collection of scientific packages/commands" !b
 \DefineShortVerb{\|}
 
 \title{${1:Title}}
-\author{${2:Sam Britt}}
-\date{${3}}
+\author{${2:`!v g:ulti_user`}}
+\date{${3:\\today}}
 $0
 endsnippet
