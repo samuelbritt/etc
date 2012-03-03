@@ -107,7 +107,7 @@
 	nnoremap + maO<esc>`a
 	nnoremap _ makdd`a
 
-	" Move line(s) up or down (swaps with adjacent lines
+	" Move line(s) up or down (swaps with adjacent lines)
 	nnoremap <M-=> mz:m+<CR>`z
 	nnoremap <M--> mz:m-2<CR>`z
 	vnoremap <M-=> :m'>+<CR>`<my`>mzgv`yo`z
@@ -199,10 +199,17 @@
 		let g:SuperTabLongestHighlight = 1
 	" }
 
-	" DelimitMate {
-		let delimitMate_balance_matchpairs = 1
-		let delimitMate_expand_space = 1
-		let delimitMate_expand_cr = 1
+	" UltiSnips {
+		inoremap <silent> ()    ()<C-R>=UltiSnips_Anon('($1)', '()', 'paren',   'i')<cr>
+		inoremap <silent> {}    {}<C-R>=UltiSnips_Anon('{$1}', '{}', 'stache',  'i')<cr>
+		inoremap <silent> []    []<C-R>=UltiSnips_Anon('[$1]', '[]', 'bracket', 'i')<cr>
+		inoremap <silent> (<cr> ()<C-R>=UltiSnips_Anon('(<C-V><C-M><tab>$0<C-V><C-M>)', '()', 'exp_paren',   'i')<cr>
+		inoremap <silent> {<cr> {}<C-R>=UltiSnips_Anon('{<C-V><C-M><tab>$0<C-V><C-M>}', '{}', 'exp_stache',  'i')<cr>
+		inoremap <silent> [<cr> []<C-R>=UltiSnips_Anon('[<C-V><C-M><tab>$0<C-V><C-M>]', '[]', 'exp_bracket', 'i')<cr>
+		inoremap <silent> <>    <><C-R>=UltiSnips_Anon('<$1>', '<>', 'angle bracket', 'i')<cr>
+		inoremap <silent> ""    ""<C-R>=UltiSnips_Anon('"$1"',   '""', 'quote', 'i')<cr>
+		inoremap <silent> ''    ""<C-R>=UltiSnips_Anon('''$1''', '""', 'single quote', 'i')<cr>
+		inoremap <silent> ``    ""<C-R>=UltiSnips_Anon('\`$1\`',   '""', 'back quote', 'i')<cr>
 	" }
 
 	" Taglist {
@@ -211,10 +218,5 @@
 
 	" TaskList {
 		map <leader>l <Plug>TaskList
-	" }
-
-	" Gundo {
-		nnoremap <F4> :GundoToggle<CR>
-		let g:gundo_close_on_revert=1
 	" }
 " }
