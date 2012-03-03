@@ -19,9 +19,6 @@
 [submodule "vim/vim/bundle/taglist"]
 	path = vim/vim/bundle/taglist
 	url = git://github.com/vim-scripts/taglist.vim.git
-[submodule "vim/vim/bundle/ultisnips"]
-	path = vim/vim/bundle/ultisnips
-	url = git://github.com/vim-scripts/UltiSnips.git
 [submodule "vim/vim/bundle/matlab"]
 	path = vim/vim/bundle/matlab
 	url = git://github.com/vim-scripts/MatlabFilesEdition.git
