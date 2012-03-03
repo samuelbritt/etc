@@ -22,33 +22,33 @@ apt-get install -y			\
 	python-matplotlib               \
 	python-virtualenv               \
 	inkscape                        \
-	#scribus-ng                      \
-	#scribus-ng-doc                  \
-	#gimp                            \
-	#gnome-do                        \
 	vlc                             \
 	htop                            \
 	tree                            \
-	#nautilus-open-terminal          \
 	engauge-digitizer               \
-	#compizconfig-settings-manager   \
-	#qalculate-gtk                   \
 	openssh-server                  \
-	#electricsheep                   \
 	network-manager-vpnc            \
 	exuberant-ctags                 \
 	ctags				\
 	colordiff			\
 	colormake			\
-	#gtk2-engines-pixbuf		\
 	ruby				\
 	ruby-dev			\
 	rake				\
 	valgrind			\
-	#terminator			\
 	chromium-browser		\
 
 	## Others?
+	# nautilus-open-terminal	\
+	# compizconfig-settings-manager	\
+	# qalculate-gtk			\
+	# electricsheep			\
+	# gtk2-engines-pixbuf		\
+	# terminator			\
+	# scribus-ng			\
+	# scribus-ng-doc		\
+	# gimp				\
+	# gnome-do			\
 	# libdvdread4			\
 	# gstreamer0.10-plugins-bad	\
 	# gstreamer0.10-plugins-ugly	\
@@ -59,6 +59,7 @@ apt-get install -y			\
 
 # install LaTeX last b/c it takes forever
 apt-get install -y			\
+	latexmk				\
 	texlive				\
 	texlive-latex-recommended	\
 	texlive-bibtex-extra            \
