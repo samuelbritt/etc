@@ -6,6 +6,8 @@ set iskeyword+=:
 set textwidth=70
 setlocal spell spelllang=en_us
 
+let g:tex_fold_enabled = 1
+
 let maplocalleader = ","
 let g:LatexBox_viewer = "open"
 let g:LatexBox_autojump = 1 	" jump to first error on latexmk
