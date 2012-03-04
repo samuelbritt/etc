@@ -215,6 +215,7 @@
 	" UltiSnips [
 		let g:ulti_user = "Sam Britt"
         let g:ulti_email = "samuelbritt@gmail.com"
+		let g:UltiSnipsEditSplit = "horizontal"
         " see also mappings above
 	" ]
 
