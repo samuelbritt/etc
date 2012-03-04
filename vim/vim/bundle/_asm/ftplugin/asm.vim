@@ -1,3 +1,3 @@
-set ts=8
-set sw=8
-set smartindent
+setlocal ts=8
+setlocal sw=8
+setlocal smartindent

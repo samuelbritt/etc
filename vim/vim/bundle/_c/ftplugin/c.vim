@@ -1,5 +1,5 @@
-set tw=80
-set sw=8
-set ts=8
-set cino+=(0,t0
-set foldmethod=syntax
+setlocal tw=80
+setlocal sw=8
+setlocal ts=8
+setlocal cino+=(0,t0
+setlocal foldmethod=syntax

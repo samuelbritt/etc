@@ -1,6 +1,5 @@
 setlocal textwidth=65
 setlocal spell
-setlocal spelllang=en_us
 setlocal sw=4
 setlocal ts=4
 setlocal sts=4

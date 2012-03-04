@@ -13,12 +13,12 @@ setlocal expandtab
 setlocal backspace=indent,eol,start
 setlocal ruler
 setlocal wildmenu
-set foldmethod=indent
-set commentstring=\ #\ %s
-"let python_highlight_all=1
-let python_highlight_numbers=1
-let python_highlight_builtins=1
-let python_highlight_exceptions=1
-"let python_highlight_space_errors=1
+setlocal foldmethod=indent
+setlocal commentstring=\ #\ %s
+"let b:python_highlight_all=1
+let b:python_highlight_numbers=1
+let b:python_highlight_builtins=1
+let b:python_highlight_exceptions=1
+"let b:python_highlight_space_errors=1
 
 syntax on

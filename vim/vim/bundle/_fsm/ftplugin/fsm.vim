@@ -1,1 +1,1 @@
-set smartindent
+setlocal smartindent

@@ -1,10 +1,10 @@
 
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set iskeyword+=:
-set textwidth=70
-setlocal spell spelllang=en_us
+setlocal shiftwidth=2
+setlocal softtabstop=2
+setlocal expandtab
+setlocal iskeyword+=:
+setlocal textwidth=70
+setlocal spell
 
 let g:tex_fold_enabled = 1
 
@@ -13,10 +13,11 @@ let g:LatexBox_viewer = "open"
 let g:LatexBox_autojump = 1 	" jump to first error on latexmk
 
 " auto itemize
-inoremap <buffer> <C-enter> <esc>o\item 
-imap <buffer> it<tab> <esc>ddki<C-enter>
+inoremap <buffer> <C-CR> <C-O>o\item<space>
+nnoremap <buffer> <C-CR> o\item<space>
+inoremap <silent> <buffer> it<tab> it<C-R>=UltiSnips_Anon('\\item ${1:${VISUAL}}', 'it', 'item', 'b')<cr><C-O>==
 
-nmap <buffer> <leader>wl  :w<CR><LocalLeader>ll
+nmap <buffer> <LocalLeader>wl  :w<CR><LocalLeader>ll
 nmap <buffer> <F5>	  <Plug>LatexChangeEnv
 vmap <buffer> <F7>	  <Plug>LatexWrapSelection
 vmap <buffer> <S-F7>	  <Plug>LatexEnvWrapSelection
