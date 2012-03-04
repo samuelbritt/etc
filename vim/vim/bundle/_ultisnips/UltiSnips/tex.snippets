@@ -1,5 +1,5 @@
 snippet doc "Document Class" !b
-\documentclass[${2}]{${1:article}}
+\documentclass${2}{${1:article}}
 
 ${3}
 
@@ -10,8 +10,73 @@ ${3}
 \end{document}
 endsnippet
 
+snippet table "Table" !b
+\begin{table}[${1:htbp}]
+	\label{tab:${2:label}}
+	\centering
+	\begin{minipage}[t]{${3:.8\linewidth}}
+		\centering
+		\caption{${4:Title}}
+		\begin{tabular}{${5:c}}
+			\toprule
+			$0${5/((?<=.)c|l|r)|./(?1: & )/g} \\\\
+			\midrule
+			\bottomrule
+		\end{tabular}
+	\end{minipage}
+\end{table}
+endsnippet
+
+snippet "figu?r?e?" "Figure" !br
+\begin{figure}[${1:htbp}]
+	\label{fig:${2:label}}
+	\centering
+	\begin{minipage}[t]{${3:.8\linewidth}}
+		\centering
+		\includegraphics[width=\linewidth]{$0}
+		\caption{${4:caption}}
+	\end{minipage}
+\end{figure}
+endsnippet
+
+snippet science "Collection of scientific packages/commands" !b
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage[alsoload=binary]{siunitx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{fancyvrb}
+\usepackage[section]{placeins}
+\usepackage{flafter}
+\usepackage{url}
+\usepackage{hyperref}
+
+% a bit more compact
+\let\l\left
+\let\r\right
+
+% no section numbers
+\setcounter{secnumdepth}{-2}
+
+% from amssymb.sty
+\let\emtpyset\varnothing
+
+% leave notes to yourself
+\newcommand\todo[1]{\textcolor{red}\textsc{todo}: #1}
+
+% write in code
+\DefineShortVerb{\|}
+
+\title{${1:Title}}
+\author{${2:`!v g:ulti_user`}}
+\date{${3:\\today}}$0
+endsnippet
+
+# \usepackage${2/(.*)/(?1:[)/}${2}${2/(.*)/(?1:])/}{${1}}${3:$0}
 snippet use "Use Package" !b
-\usepackage[${2}]{${1}}${3:$0}
+\usepackage${2}{${1}}${3:$0}
 endsnippet
 
 snippet new "New command" !b
@@ -20,6 +85,10 @@ endsnippet
 
 snippet la "Label" !b
 \label{${1:${VISUAL}}}${2:${0}}
+endsnippet
+
+snippet "ref?" "\ref{}" !wr
+\ref{$1}
 endsnippet
 
 snippet eq "Equation" !b
@@ -96,68 +165,4 @@ endsnippet
 
 snippet "\semp?h?" "\emph" !r
 \\emph{${1:${VISUAL}}}
-endsnippet
-
-snippet table "Table" !b
-\begin{table}[${1:htbp}]
-	\label{tab:${2:label}}
-	\centering
-	\begin{minipage}[t]{${3:.8\linewidth}}
-		\centering
-		\caption{${4:Title}}
-		\begin{tabular}{${5:c}}
-			\toprule
-			$0${5/((?<=.)c|l|r)|./(?1: & )/g} \\\\
-			\midrule
-			\bottomrule
-		\end{tabular}
-	\end{minipage}
-\end{table}
-endsnippet
-
-snippet "figu?r?e?" "Figure" !br
-\begin{figure}[${1:htbp}]
-	\label{fig:${2:label}}
-	\centering
-	\begin{minipage}[t]{${3:.8\linewidth}}
-		\centering
-		\includegraphics[width=\linewidth]{$0}
-		\caption{${4:caption}}
-	\end{minipage}
-\end{figure}
-endsnippet
-
-snippet science "Collection of scientific packages/commands" !b
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{color}
-\usepackage{graphicx}
-\usepackage[alsoload=binary]{siunitx}
-\usepackage{booktabs}
-\usepackage{multirow}
-\usepackage{fancyvrb}
-\usepackage[section]{placeins}
-\usepackage{flafter}
-\usepackage{url}
-\usepackage{hyperref}
-
-% a bit more compact
-\let\l\left
-\let\r\right
-
-% no section numbers
-\setcounter{secnumdepth}{-2}
-
-% from amssymb.sty
-\let\emtpyset\varnothing
-
-% leave notes to yourself
-\newcommand\todo[1]{\textcolor{red}\textsc{todo}: #1}
-
-% write in code
-\DefineShortVerb{\|}
-
-\title{${1:Title}}
-\author{${2:`!v g:ulti_user`}}
-\date{${3:\\today}}$0
 endsnippet
