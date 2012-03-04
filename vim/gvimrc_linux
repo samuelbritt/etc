@@ -1,6 +1,2 @@
 set guifont=Ubuntu\ Mono\ 11,Inconsolata-dz\ 10
-colorscheme molokai
-set bg=dark
 set lines=60
-set columns=81		" add 1 for foldcolumn
-set guioptions-=T

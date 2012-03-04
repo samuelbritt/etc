@@ -1,7 +1,3 @@
 set lines=75
-set columns=80
 set guifont=Ubuntu\ Mono:h14,Inconsolata-dz:h10
 set macmeta 		" give me my Alt key back
-set guioptions-=T
-set bg=dark
-colorscheme molokai

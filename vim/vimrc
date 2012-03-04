@@ -1,5 +1,5 @@
 " Modeline and Notes [
-" vim: set foldmarker=[,] foldlevel=0 foldmethod=marker ts=4 sw=4 spell:
+" vim: set foldmarker=[,] foldlevel=0 foldmethod=marker ts=4 sw=4 nowrap spell:
 " ]
 
 " Environment [
@@ -18,22 +18,25 @@
 	set history=50					" keep 50 lines of command line history
 	set viminfo+='100,f1 			" history between sessions
 	set hidden 						" allow switching buffers without saving
+	set switchbuf+=usetab			" switch to open buffer first, rather than
+									" 	duplicating file in current buffer
 
 	" restores normal vim keybindings for macvim
 	if has("gui_macvim")
 		let macvim_skip_cmd_opt_movement = 1
 	endif
 
-	" When editing a file, always jump to the last known cursor position.
-	" Don't do it when the position is invalid or when inside an event handler
-	" (happens when dropping a file on gvim).
-	autocmd BufReadPost *
-			\ if line("'\"") > 0 && line("'\"") <= line("$") |
-			\   exe "normal! g`\"" |
-			\ endif
+	" Jump to last cursor position [
+		" Don't do it when the position is invalid or when inside an event
+		" handler (happens when dropping a file on gvim).
+		autocmd BufReadPost *
+				\ if line("'\"") > 0 && line("'\"") <= line("$") |
+				\   exe "normal! g`\"" |
+				\ endif
+	" ]
 " ]
 
-" Vim UI [
+" Vim Settings [
 	source $VIMRUNTIME/macros/matchit.vim 			" enable % matching
 	let &sbr = nr2char(8618).' ' 	" show arrow at beginning of wrapped lines
 	set backspace=indent,eol,start 	" backspace over everything
@@ -60,8 +63,28 @@
 	set number						" line number, c.f. relativenumber
 	set gdefault					" global subst. by default; use '/g' to revert
 	set tags+=tags;/				" search for tags in higher directories
-	set switchbuf+=usetab			" switch to open buffer first, rather than
-									" 	duplicating file in current buffer
+	set spelllang=en_us				" made in the USA
+	set autoindent					" always set autoindenting on
+
+	" Highlight trailing whitespace
+	au BufEnter * match TODO /\s\+$/
+	au InsertEnter * match TODO /\s\+\%#\@<!$/
+	au InsertLeave * match TODO /\s\+$/
+" ]
+
+" Vim UI [
+	" Colors [
+		colorscheme molokai
+		set bg=dark
+		if has("gui_running")
+			set guioptions-=T
+			set columns=85			" 80 + 1 (foldcolumn) + 4 (number)
+			" see .gvimrc
+		else
+			set t_Co=256			" number of colors in terminal
+			set bg=dark  			" must come after colorscheme
+		endif
+	" ]
 	" Statusline [
 		set laststatus=2						" always show statusline
 		set statusline=%f\    			    	" filename
@@ -70,24 +93,6 @@
 		set statusline+=\ [%<%{getcwd()}]\      " current dir
 		set statusline+=%=%-11.(%l,%c%V%)\ %p%% " file nav info
 	" ]
-
-	" Highlight trailing whitespace
-	au BufEnter * match TODO /\s\+$/
-	au InsertEnter * match TODO /\s\+\%#\@<!$/
-	au InsertLeave * match TODO /\s\+$/
-" ]
-
-" Formatting [
-	" Colors [
-		if has("gui_running")
-			" see .gvimrc
-		else
-			colorscheme molokai
-			set t_Co=256			" number of colors in terminal
-			set bg=dark  			" must come after colorscheme
-		endif
-	" ]
-	set autoindent					" always set autoindenting on
 " ]
 
 " Maps And Commands [
@@ -155,7 +160,7 @@
     " Maps to create expanded open brackets. [
 		" Depends on UltiSnips plugin. The <C-V> allow me to enter the <C-M>
 		" (the carriage return) literally.
-		inoremap <silent> (<cr> ()<C-R>=UltiSnips_Anon('(<C-V><C-M><tab>${1:${VISUAL}}<C-V><C-M>)', '()', 'exp_paren',   'i')<cr>"}
+		inoremap <silent> (<cr> ()<C-R>=UltiSnips_Anon('(<C-V><C-M><tab>${1:${VISUAL}}<C-V><C-M>)', '()', 'exp_paren',   'i')<cr>
 		inoremap <silent> {<cr> {}<C-R>=UltiSnips_Anon('{<C-V><C-M><tab>${1:${VISUAL}}<C-V><C-M>}', '{}', 'exp_stache',  'i')<cr>
 		inoremap <silent> [<cr> []<C-R>=UltiSnips_Anon('[<C-V><C-M><tab>${1:${VISUAL}}<C-V><C-M>]', '[]', 'exp_bracket', 'i')<cr>
 		"]
