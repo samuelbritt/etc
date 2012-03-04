@@ -7,6 +7,12 @@ snippet im "import" b
 import $0
 endsnippet
 
+snippet ds "docstring" !b
+""" ${1:${VISUAL:docstring}}
+
+"""$0
+endsnippet
+
 # /* snippet from "from module import function" b */
 # /* from ${1:module} import ${2:*}$0 */
 # /* endsnippet */
