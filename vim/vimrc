@@ -187,6 +187,10 @@
 	" NERDComments [
 		let NERDCommentWholeLinesInVMode=1
 		let NERDSpaceDelims=1
+        let NERDCompactSexyComs=1
+        let NERDCustomDelimiters = {
+            \ 'snippets' : { 'left': '#' }
+        \ }
  	" ]
 
 	" NERDTree [
