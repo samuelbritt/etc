@@ -4,6 +4,7 @@
 if [ `uname` = "Linux" ] ; then
 	# alias open='gnome-open'
 	alias open='kde-open'
+	export PDFVIEWER='kde-open'
 	alias lss='ls --ignore=*.o --ignore=*.pyc'
 	alias lsd='ls --group-directories-first' #works on ubuntu
 	alias abaqus='XLIB_SKIP_ARGB_VISUALS=1 abaqus'
@@ -15,6 +16,7 @@ if [ `uname` = "Linux" ] ; then
 
 elif [ `uname` = "Darwin" ] ; then
 	alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+	export PDFVIEWER='open'
 	alias gvim="mvim"
 	alias gvimdiff="mvim -d"
 	alias mvimdiff="mvim -d"
