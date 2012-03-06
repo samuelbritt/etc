@@ -110,6 +110,9 @@
 	noremap . .`[
 	"]
 
+	" Toggle word capitalization
+	inoremap <C-U> <ESC>g~iwgi
+
 	" Push line down, up in command mode (can delete lines)
 	nnoremap + maO<esc>`a
 	nnoremap _ makdd`a
