@@ -7,9 +7,12 @@
 *.ind
 *.lof
 *.lot
+*.toc
 *.out
 *.pdfsync
-*.toc
+*.synctex.gz
+*.fdb_latexmk
+
 # python
 *.egg
 *.egg-info
@@ -17,17 +20,19 @@ dist
 build
 sdist
 eggs
-#other
+
+# other
 *.o
 *.so
 *.a
 *.d
 *.pyc
 abaqus.rpy*
-hghide*
 *~
 *.swp
 ._*
 .DS_Store
 ~$*
 .directory
+
+# vim: set ft=conf:
