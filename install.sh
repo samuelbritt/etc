@@ -53,7 +53,7 @@ ln -sf etc/hg/hgrc_ignore .hgrc_ignore
 
 # Git
 ln -sf etc/git/gitconfig .gitconfig
-ln -sf etc/git/git_ignore .git_ignore
+ln -sf etc/git/git_ignore .gitignore
 
 # LaTeX
 if [[ $KERNEL = "Linux" ]]
