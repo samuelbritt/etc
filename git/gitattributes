@@ -1,0 +1,5 @@
+*.tex		diff=tex
+*.python	diff=python
+*.c		diff=cpp
+*.cpp		diff=cpp
+*.java		diff=java

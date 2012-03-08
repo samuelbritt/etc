@@ -5,6 +5,7 @@
 	ui = true
 [core]
 	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
 [alias]
 	ci = commit
 	st = status --short --branch
