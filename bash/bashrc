@@ -142,6 +142,15 @@
 		. ~/.bash_aliases
 	fi
 
+	# git bash completion
+	if [ -f ~/.git-completion.sh ]; then
+		source ~/.git-completion.sh
+	fi
+	export GIT_PS1_SHOWDIRTYSTATE=1
+	export GIT_PS1_SHOWSTASHSTATE=1
+	export GIT_PS1_SHOWUNTRACKEDFILES=1
+	export GIT_PS1_SHOWUPSTREAM="auto"
+
 	## xmodmap key bindings
 	# if [ -f ~/.xmodmap ]; then
 	#         xmodmap ~/.xmodmap
@@ -185,7 +194,6 @@
 			prompt_color=$RUBY
 			user_color=$RUBY
 		fi
-		export GIT_PS1_SHOWDIRTYSTATE=1
 		PS1="\n$user_color\u$D@$PINK\h$D: $ORANGE\w$D$RUBY\$(__git_ps1)$D \n$prompt_color\\\$$D "
 	# }
 
