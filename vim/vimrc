@@ -38,7 +38,7 @@
 
 " Vim Settings [
 	source $VIMRUNTIME/macros/matchit.vim 			" enable % matching
-	let &sbr = nr2char(8618).' ' 	" show arrow at beginning of wrapped lines
+	let &showbreak=nr2char(8618).'  ' " show arrow at beginning of wrapped lines
 	set backspace=indent,eol,start 	" backspace over everything
 	set whichwrap+=<,>,[,]			" changing lines with arrow keys
 	set ruler						" show the cursor position all the time
