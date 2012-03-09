@@ -65,17 +65,19 @@
 	set tags+=tags;/				" search for tags in higher directories
 	set spelllang=en_us				" made in the USA
 	set autoindent					" always set autoindenting on
-
-	" Highlight trailing whitespace
-	au BufEnter * match TODO /\s\+$/
-	au InsertEnter * match TODO /\s\+\%#\@<!$/
-	au InsertLeave * match TODO /\s\+$/
 " ]
 
 " Vim UI [
 	" Colors [
 		colorscheme molokai
 		set bg=dark
+
+		" Molokai customizations [
+			highlight Comment gui=italic guifg=#757575
+			highlight Macro gui=none
+			highlight StatusLine guifg=#b84c00
+		" ]
+
 		if has("gui_running")
 			set guioptions-=T
 			set columns=85			" 80 + 1 (foldcolumn) + 4 (number)
@@ -84,6 +86,12 @@
 			set t_Co=256			" number of colors in terminal
 			set bg=dark  			" must come after colorscheme
 		endif
+
+		" Highlight trailing whitespace
+		highlight Trailing ctermbg=LightRed guibg=LightRed
+		au BufEnter * match Trailing /\s\+$/
+		au InsertEnter * match Trailing /\s\+\%#\@<!$/
+		au InsertLeave * match Trailing /\s\+$/
 	" ]
 	" Statusline [
 		set laststatus=2						" always show statusline
