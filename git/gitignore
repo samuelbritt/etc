@@ -1,3 +1,5 @@
+# vim: set ft=conf:
+
 # latex
 *.aux
 *.bbl
@@ -34,5 +36,4 @@ abaqus.rpy*
 .DS_Store
 ~$*
 .directory
-
-# vim: set ft=conf:
+tags
