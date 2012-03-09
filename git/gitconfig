@@ -8,11 +8,15 @@
 	attributesfile = ~/.gitattributes
 [alias]
 	ci = commit
+	cam = commit -am
 	st = status --short --branch
 	co = checkout
 	br = branch
+	fe = fetch
+	diffs = diff --staged
 	glog = log --oneline --graph --decorate
-	late = !git --no-pager\
-		log --oneline --graph --decorate -15
+	last = !git --no-pager glog -15
+	gloga = !git glog --all
+	lasta = !git last --all
 	arch = "!f() { git archive HEAD --prefix=\"$1/\" | gzip > \"$1\".tar.gz; }; f"
 	root = rev-parse --show-toplevel
