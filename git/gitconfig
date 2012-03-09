@@ -15,3 +15,4 @@
 	late = !git --no-pager\
 		log --oneline --graph --decorate -15
 	arch = "!f() { git archive HEAD --prefix=\"$1/\" | gzip > \"$1\".tar.gz; }; f"
+	root = rev-parse --show-toplevel

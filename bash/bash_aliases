@@ -36,6 +36,7 @@ alias lal='ll -A'
 alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias gitroot='cd $(git root)'
 alias dirs="dirs -v"
 alias root='cd `hg root`'
 alias pu='pushd'
