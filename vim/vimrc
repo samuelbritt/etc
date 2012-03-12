@@ -73,9 +73,10 @@
 		set bg=dark
 
 		" Molokai customizations [
-			highlight Comment gui=italic guifg=#757575
-			highlight Macro gui=none
-			highlight StatusLine guifg=#b84c00
+			highlight Comment		gui=italic guifg=#757575
+			highlight Macro			gui=none
+			highlight StatusLine	guifg=#b84c00
+			highlight Search		guifg=#b84c00
 		" ]
 
 		if has("gui_running")
