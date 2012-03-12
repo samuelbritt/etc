@@ -56,11 +56,11 @@
 	set showmatch 					" highlight matching braces
 	set matchtime=1                 " showmatch is annoying
 	set title 						" better titles in terminals
-	set scrolloff=3 				" keep some context when scrolling
 	set linebreak                   " wrap lines sanely
 	set foldcolumn=1				" click to fold
 	set colorcolumn=+1				" show textwidth limit
-	set number						" line number, c.f. relativenumber
+	set scrolloff=3 				" keep cursor from edges
+	set relativenumber				" line number, c.f. 'number'
 	set gdefault					" global subst. by default; use '/g' to revert
 	set tags+=tags;/				" search for tags in higher directories
 	set spelllang=en_us				" made in the USA
