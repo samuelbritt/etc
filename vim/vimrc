@@ -48,7 +48,7 @@
 	set wildmenu					" tab completion on commands
 	set wildignore=*.o,*.a,*.so,*.swp,*.aux,*.pdf	" hide from completion
 	set wildmode=longest:full,list:full 			" bash compatible behavior
-	set completeopt=menuone,longest,preview			" insert completion
+	set completeopt=menuone,longest	" insert completion
 	set winaltkeys=no				" turns off Alt for menu navigation
 	set ignorecase					" ingnore case in searches
 	set smartcase					" don't ignore case with uppercase in pattern
@@ -57,10 +57,11 @@
 	set matchtime=1                 " showmatch is annoying
 	set title 						" better titles in terminals
 	set linebreak                   " wrap lines sanely
+	set winminheight=0				" collapse windows to just the statusline
 	set foldcolumn=1				" click to fold
 	set colorcolumn=+1				" show textwidth limit
 	set scrolloff=3 				" keep cursor from edges
-	set relativenumber				" line number, c.f. 'number'
+	set number						" line number, c.f. 'relativenumber'
 	set gdefault					" global subst. by default; use '/g' to revert
 	set tags+=tags;/				" search for tags in higher directories
 	set spelllang=en_us				" made in the USA
@@ -77,6 +78,7 @@
 			highlight Macro			gui=none
 			highlight StatusLine	guifg=#b84c00
 			highlight Search		guifg=#b84c00
+			highlight SpellBad		cterm=undercurl ctermbg=233
 		" ]
 
 		if has("gui_running")
