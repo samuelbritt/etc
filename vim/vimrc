@@ -77,7 +77,7 @@
 			highlight Comment		gui=italic guifg=#757575
 			highlight Macro			gui=none
 			highlight StatusLine	guifg=#b84c00
-			highlight Search		guifg=#b84c00
+			highlight Search		guifg=#ffffff guibg=#b84c00
 			highlight SpellBad		cterm=undercurl ctermbg=233
 		" ]
 
@@ -98,8 +98,8 @@
 	" ]
 	" Statusline [
 		set laststatus=2						" always show statusline
-		set statusline=%f\						" filename
-		set statusline+=%w%h%m%r                " flags
+		set statusline=%f						" filename
+		set statusline+=\ %w%h%m%r				" flags
 		set statusline+=\ %Y                    " filetype
 		set statusline+=\ [%<%{getcwd()}]\      " current dir
 		set statusline+=%=%-11.(%l,%c%V%)\ %p%% " file nav info
