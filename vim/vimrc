@@ -1,9 +1,9 @@
 " Modeline and Notes [
-" vim: set foldmarker=[,] foldlevel=0 foldmethod=marker ts=4 sw=4 nowrap spell:
+" vim: set foldmarker=[,] foldlevel=0 foldmethod=marker ts=4 sw=4 sts=4 nowrap spell:
 " ]
 
 " Environment [
-	set nocompatible 				" must be first line
+	set nocompatible				" must be first line
 
 	" Pathogen Support [
 		runtime! bundle/pathogen/autoload/pathogen.vim
@@ -11,15 +11,15 @@
 		silent! call pathogen#helptags()
 	" ]
 
- 	filetype plugin indent on		" detect filetypes
+	filetype plugin indent on		" detect filetypes
 	syntax on						" syntax highlighting
-	set mouse=a 					" enable the mouse
 	set dir=~/.swp					" don't litter project with ~ files
+	set hidden						" allow switching buffers without saving
 	set history=50					" keep 50 lines of command line history
-	set viminfo+='100,f1 			" history between sessions
-	set hidden 						" allow switching buffers without saving
+	set mouse=a						" enable the mouse
 	set switchbuf+=usetab			" switch to open buffer first, rather than
-									" 	duplicating file in current buffer
+									"	duplicating file in current buffer
+	set viminfo+='100,f1			" history between sessions
 
 	" restores normal vim keybindings for macvim
 	if has("gui_macvim")
@@ -37,35 +37,35 @@
 " ]
 
 " Vim Settings [
-	source $VIMRUNTIME/macros/matchit.vim 			" enable % matching
+	source $VIMRUNTIME/macros/matchit.vim	" enable % matching
 	let &showbreak=nr2char(8618).'  ' " show arrow at beginning of wrapped lines
-	set backspace=indent,eol,start 	" backspace over everything
-	set whichwrap+=<,>,[,]			" changing lines with arrow keys
-	set ruler						" show the cursor position all the time
-	set showcmd						" display incomplete commands
-	set incsearch					" do incremental searching
-	set hlsearch					" highlight search
-	set wildmenu					" tab completion on commands
-	set wildignore=*.o,*.a,*.so,*.swp,*.aux,*.pdf	" hide from completion
-	set wildmode=longest:full,list:full 			" bash compatible behavior
-	set completeopt=menuone,longest	" insert completion
-	set winaltkeys=no				" turns off Alt for menu navigation
-	set ignorecase					" ingnore case in searches
-	set smartcase					" don't ignore case with uppercase in pattern
-	set nostartofline 				" keeps cursor in same spot when scrolling
-	set showmatch 					" highlight matching braces
-	set matchtime=1                 " showmatch is annoying
-	set title 						" better titles in terminals
-	set linebreak                   " wrap lines sanely
-	set winminheight=0				" collapse windows to just the statusline
-	set foldcolumn=1				" click to fold
-	set colorcolumn=+1				" show textwidth limit
-	set scrolloff=3 				" keep cursor from edges
-	set number						" line number, c.f. 'relativenumber'
-	set gdefault					" global subst. by default; use '/g' to revert
-	set tags+=tags;/				" search for tags in higher directories
-	set spelllang=en_us				" made in the USA
 	set autoindent					" always set autoindenting on
+	set backspace=indent,eol,start	" backspace over everything
+	set colorcolumn=+1				" show textwidth limit
+	set completeopt=menuone,longest	" insert completion
+	set foldcolumn=1				" click to fold
+	set gdefault					" global subst. by default; use '/g' to revert
+	set hlsearch					" highlight search
+	set ignorecase					" ingnore case in searches
+	set incsearch					" do incremental searching
+	set linebreak                   " wrap lines sanely
+	set matchtime=1                 " showmatch is annoying
+	set nostartofline				" keeps cursor in same spot when scrolling
+	set number						" line number, c.f. 'relativenumber'
+	set ruler						" show the cursor position all the time
+	set scrolloff=3					" keep cursor from edges
+	set showcmd						" display incomplete commands
+	set showmatch					" highlight matching braces
+	set smartcase					" don't ignore case with uppercase in pattern
+	set spelllang=en_us				" made in the USA
+	set tags+=tags;/				" search for tags in higher directories
+	set title						" better titles in terminals
+	set whichwrap+=<,>,[,]			" changing lines with arrow keys
+	set wildignore=*.o,*.a,*.so,*.swp,*.aux,*.pdf " hide from completion
+	set wildmenu					" tab completion on commands
+	set wildmode=longest:full,list:full	" bash compatible behavior
+	set winaltkeys=no				" turns off Alt for menu navigation
+	set winminheight=0				" collapse windows to just the statusline
 " ]
 
 " Vim UI [
@@ -87,7 +87,7 @@
 			" see .gvimrc
 		else
 			set t_Co=256			" number of colors in terminal
-			set bg=dark  			" must come after colorscheme
+			set bg=dark				" must come after colorscheme
 		endif
 
 		" Highlight trailing whitespace
@@ -98,7 +98,7 @@
 	" ]
 	" Statusline [
 		set laststatus=2						" always show statusline
-		set statusline=%f\    			    	" filename
+		set statusline=%f\						" filename
 		set statusline+=%w%h%m%r                " flags
 		set statusline+=\ %Y                    " filetype
 		set statusline+=\ [%<%{getcwd()}]\      " current dir
@@ -195,7 +195,7 @@
 
 " Plugins [
 	" LaTeX [
-		let g:tex_flavor='latex' 			" Sets .tex to be LaTeX file type
+		let g:tex_flavor='latex'			" Sets .tex to be LaTeX file type
 	" ]
 
 	" NERDComments [
@@ -205,11 +205,11 @@
         let NERDCustomDelimiters = {
             \ 'snippets' : { 'left': '#' }
         \ }
- 	" ]
+	" ]
 
 	" NERDTree [
 		let NERDTreeIgnore=['\.o$']
-		let NERDTreeChDirMode=2 		" change dir when changing root
+		let NERDTreeChDirMode=2			" change dir when changing root
 		let NERDTreeShowBookmarks=1
 	" ]
 
