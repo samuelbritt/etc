@@ -23,7 +23,7 @@ then
 fi
 
 # Vim
-ln -sfT etc/vim/vim .vim
+ln -sf etc/vim/vim .vim
 ln -sf etc/vim/vimrc .vimrc
 mkdir -p ~/.swp
 if [[ $KERNEL == "Linux" ]]
@@ -54,23 +54,26 @@ ln -sf etc/hg/hgrc_ignore .hgrc_ignore
 # Git
 ln -sf etc/git/gitconfig .gitconfig
 ln -sf etc/git/git_ignore .gitignore
+if [[ $KERNEL = "Darwin" ]]
+then
+	ln -sf etc/git/git-completion.sh ~/.git-completion.sh
+fi
 
 # LaTeX
 if [[ $KERNEL = "Linux" ]]
 then
-	ln -sfT etc/texmf texmf
+	ln -sf etc/texmf texmf
 elif [[ $KERNEL = "Darwin" ]]
 then
-	ln -sfT ~/Library/texmf texmf
+	ln -sf etc/texmf ~/Library/texmf
 fi
-
 
 # Eclipse
 ln -sf etc/eclipse/vrapperrc .vrapperrc
 
 # Screen
 ln -sf etc/screen/screenrc .screenrc
-ln -sfT etc/screen/screen-profiles .screen-profiles
+ln -sf etc/screen/screen-profiles .screen-profiles
 
 # Abaqus
 if   type -P abaqus &>/dev/null || [[ $HOST == "titanium"  ]]
