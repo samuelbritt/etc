@@ -53,7 +53,7 @@ ln -sf etc/hg/hgrc_ignore .hgrc_ignore
 
 # Git
 ln -sf etc/git/gitconfig .gitconfig
-ln -sf etc/git/git_ignore .gitignore
+ln -sf etc/git/gitignore .gitignore
 if [[ $KERNEL = "Darwin" ]]
 then
 	ln -sf etc/git/git-completion.sh ~/.git-completion.sh
