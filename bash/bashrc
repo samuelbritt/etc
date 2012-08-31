@@ -44,7 +44,7 @@
 
 		# Setting PATH for EPD
 		# The orginal version is saved in .bash_profile.pysave
-		export PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
+		export PATH="/Library/Frameworks/EPD64.framework/Versions/Current/bin:${PATH}"
 		export MKL_NUM_THREADS=1
 
 		# Setting PATH for MacTeX

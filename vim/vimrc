@@ -74,7 +74,7 @@
 		set bg=dark
 
 		" Molokai customizations [
-			highlight Comment		gui=italic guifg=#757575
+			highlight Comment		gui=italic guifg=#909090
 			highlight Macro			gui=none
 			highlight StatusLine	guifg=#b84c00
 			highlight Search		guifg=#ffffff guibg=#b84c00
@@ -115,7 +115,7 @@
 	nnoremap Y y$
 
 	" alternate escape
-	inoremap jj <ESC>
+	" inoremap jj <ESC>
 
 	" make the . command return to the point where the command started
 	noremap . .`[
@@ -169,9 +169,9 @@
     " Maps to create expanded open brackets. [
 		" Depends on UltiSnips plugin. The <C-V> allow me to enter the <C-M>
 		" (the carriage return) literally.
-		inoremap <silent> (<cr> ()<C-R>=UltiSnips_Anon('(<C-V><C-M><tab>${1:${VISUAL}}<C-V><C-M>)', '()', 'exp_paren',   'i')<cr>
-		inoremap <silent> {<cr> {}<C-R>=UltiSnips_Anon('{<C-V><C-M><tab>${1:${VISUAL}}<C-V><C-M>}', '{}', 'exp_stache',  'i')<cr>
-		inoremap <silent> [<cr> []<C-R>=UltiSnips_Anon('[<C-V><C-M><tab>${1:${VISUAL}}<C-V><C-M>]', '[]', 'exp_bracket', 'i')<cr>
+		" inoremap <silent> (<cr> ()<C-R>=UltiSnips_Anon('(<C-V><C-M><tab>${1:${VISUAL}}<C-V><C-M>)', '()', 'exp_paren',   'i')<cr>
+		" inoremap <silent> {<cr> {}<C-R>=UltiSnips_Anon('{<C-V><C-M><tab>${1:${VISUAL}}<C-V><C-M>}', '{}', 'exp_stache',  'i')<cr>
+		" inoremap <silent> [<cr> []<C-R>=UltiSnips_Anon('[<C-V><C-M><tab>${1:${VISUAL}}<C-V><C-M>]', '[]', 'exp_bracket', 'i')<cr>
 		"]
 	"]
 

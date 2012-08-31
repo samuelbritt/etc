@@ -25,20 +25,21 @@ apt-get install -y			\
 	vlc                             \
 	htop                            \
 	tree                            \
-	engauge-digitizer               \
 	openssh-server                  \
 	network-manager-vpnc            \
 	exuberant-ctags                 \
 	ctags				\
 	colordiff			\
 	colormake			\
+	colorgcc			\
 	ruby				\
 	ruby-dev			\
 	rake				\
 	valgrind			\
-	chromium-browser		\
 
 	## Others?
+	# chromium-browser		\
+	# engauge-digitizer		\
 	# nautilus-open-terminal	\
 	# compizconfig-settings-manager	\
 	# qalculate-gtk			\

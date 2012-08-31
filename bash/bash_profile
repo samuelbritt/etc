@@ -16,9 +16,10 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# Setting PATH for EPD-7.0-1
+
+# Setting PATH for EPD-7.3-2
 # The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
+PATH="/Library/Frameworks/EPD64.framework/Versions/Current/bin:${PATH}"
 export PATH
 
 MKL_NUM_THREADS=1
