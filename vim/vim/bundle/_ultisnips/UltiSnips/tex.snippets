@@ -42,7 +42,7 @@ endsnippet
 snippet science "Collection of scientific packages/commands" !b
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{color}
+\usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage[alsoload=binary]{siunitx}
 \usepackage{booktabs}
@@ -91,6 +91,10 @@ snippet "ref?" "\ref{}" !wr
 \ref{$1}
 endsnippet
 
+snippet "cit?e?" "\cite{}" !wr
+\cite{$1}
+endsnippet
+
 snippet eq "Equation" !b
 \begin{equation}
 	${1:${VISUAL}}
@@ -127,7 +131,11 @@ snippet || "vert" !
 |${1:${VISUAL}}|$0
 endsnippet
 
-snippet $$ "Inline math" !i
+# snippet $$ "Inline math" !i
+# \$${1:${VISUAL}}\$$0
+# endsnippet
+
+snippet $ "Inline math" !i
 \$${1:${VISUAL}}\$$0
 endsnippet
 
@@ -167,12 +175,12 @@ snippet ,t "text" !i
 \text{${1:${VISUAL}}}${0}
 endsnippet
 
-snippet "\st?o?d?o?" "\todo" !r
-\\todo{${1:${VISUAL}}}
+snippet "tod?o?" "\todo" !r
+\todo{${1:${VISUAL}}}
 endsnippet
 
-snippet "\semp?h?" "\emph" !r
-\\emph{${1:${VISUAL}}}
+snippet "\emp?h?" "\emph" !r
+\emph{${1:${VISUAL}}}
 endsnippet
 
 snippet == "&=" !
