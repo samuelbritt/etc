@@ -5,6 +5,7 @@
 *.bbl
 *.blg
 *.dvi
+*.fls
 *.idx
 *.ind
 *.lof
@@ -18,6 +19,7 @@
 # python
 *.egg
 *.egg-info
+*.pyc
 dist
 build
 sdist
@@ -28,7 +30,6 @@ eggs
 *.so
 *.a
 *.d
-*.pyc
 abaqus.rpy*
 *~
 *.swp
