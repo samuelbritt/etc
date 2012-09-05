@@ -74,6 +74,10 @@
 		# EPD
 		export PATH=$PATH:/opt/epd/bin
 	# }
+	# Helium {
+	elif [ $MACHINE = "helium" ] ; then
+		# reduce touchpad sensitivity
+		xinput set-prop "SynPS/2 Synaptics TouchPad" "Synaptics Finger" 40, 45, 256
 	# Silicon {
 	elif [ $MACHINE = "silicon" ] ; then
 		export PATH=$PATH:/opt/epd/bin
