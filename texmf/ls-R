@@ -9,17 +9,23 @@ bib
 bst
 
 ./bibtex/bib:
+library-zotero.bib
 library.bib
 
 ./bibtex/bst:
 achemso.bst
 biochem.bst
 elsevier
+gatech-thesis
 
 ./bibtex/bst/elsevier:
 elsarticle-harv.bst
 elsarticle-num-names.bst
 elsarticle-num.bst
+
+./bibtex/bst/gatech-thesis:
+gatech-thesis-losa.bst
+gatech-thesis.bst
 
 
 ./tex:
@@ -28,17 +34,19 @@ latex
 ./tex/latex:
 achemso.sty
 ccmd
+clrscode3e.sty
 elsevier
+gatech-thesis
 mciteplus.sty
 mseLab.sty
 natmove.sty
 notes2bib.sty
-siunitx
 xlgraphics.sty
 
 ./tex/latex/ccmd:
 CCMD_presentation_footer.png
 CCMD_presentation_footer_transp.png
+CCMD_presentation_footer_transp_noline.png
 CCMD_presentation_header.png
 CCMD_presentation_header_transp.png
 ccmdbeamer.sty
@@ -50,35 +58,10 @@ elsarticle-template-num.tex
 elsarticle.cls
 elsdoc.pdf
 
-./tex/latex/siunitx:
-README.txt
-jawltxdoc.sty
-si-DE.cfg
-si-SIunits.cfg
-si-UK.cfg
-si-USA.cfg
-si-ZA.cfg
-si-abbr.cfg
-si-accepted.cfg
-si-addn.cfg
-si-astro.cfg
-si-binary.cfg
-si-bug.ltx
-si-fancynum.cfg
-si-fancyunits.cfg
-si-geophys.cfg
-si-hep.cfg
-si-hepunits.cfg
-si-named.cfg
-si-physical.cfg
-si-prefix.cfg
-si-prefixed.cfg
-si-sistyle.cfg
-si-synchem.cfg
-si-units.cfg
-si-unitsdef.cfg
-siunitx.bib
-siunitx.dtx
-siunitx.ins
-siunitx.log
-siunitx.sty
+./tex/latex/gatech-thesis:
+gatech-thesis-gloss.sty
+gatech-thesis-index.ist
+gatech-thesis-index.sty
+gatech-thesis-losa.sty
+gatech-thesis-patch.sty
+gatech-thesis.cls
