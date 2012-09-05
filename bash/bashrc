@@ -198,7 +198,7 @@
 	# }
 
 	# LaTeX
-	export BIBINPUTS=.:$HOME/texmf/bibtex/bib
+	export BIBINPUTS=.:$HOME/etc/texmf/bibtex/bib
 
 	# paths
 	export PATH=$HOME/.local/bin:$PATH
