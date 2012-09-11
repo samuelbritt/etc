@@ -7,11 +7,10 @@ if [ `uname` = "Linux" ] ; then
 	export PDFVIEWER='kde-open'
 	alias lss='ls --ignore=*.o --ignore=*.pyc'
 	alias lsd='ls --group-directories-first' #works on ubuntu
-	alias abaqus='XLIB_SKIP_ARGB_VISUALS=1 abaqus'
-	alias cae='abaqus cae&'
 	alias matcl='matlab -nosplash -nodesktop'
 	alias mvim="gvim"
 	alias mvimdiff="gvimdiff"
+	alias mendeley="mendeleydesktop &"
 	export EPD=/opt/epd/bin
 
 elif [ `uname` = "Darwin" ] ; then
