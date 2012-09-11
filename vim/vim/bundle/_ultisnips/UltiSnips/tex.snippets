@@ -39,6 +39,15 @@ snippet "figu?r?e?" "Figure" !br
 \end{figure}
 endsnippet
 
+snippet alg "Algorithm packages/commands" !b
+\let\oldgets\gets
+\usepackage{clrscode3e}
+\let\gets\oldgets
+
+% from amssymb.sty
+\let\emtpyset\varnothing$0
+endsnippet
+
 snippet science "Collection of scientific packages/commands" !b
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -60,15 +69,14 @@ snippet science "Collection of scientific packages/commands" !b
 % no section numbers
 \setcounter{secnumdepth}{-2}
 
-% from amssymb.sty
-\let\emtpyset\varnothing
-
 % leave notes to yourself
 \newcommand\todo[1]{\textcolor{red}\textsc{todo}: #1}
 
 % write in code
-\DefineShortVerb{\|}
+\DefineShortVerb{\|}$0
+endsnippet
 
+snippet title "Title/Author/Date" !b
 \title{${1:Title}}
 \author{${2:`!v g:ulti_user`}}
 \date{${3:\\today}}$0
@@ -83,7 +91,7 @@ snippet new "New command" !b
 \newcommand\\${1:cmd}{${2:${VISUAL}}}${3:$0}
 endsnippet
 
-snippet la "Label" !b
+snippet la "Label" !
 \label{${1:${VISUAL}}}${2:${0}}
 endsnippet
 
