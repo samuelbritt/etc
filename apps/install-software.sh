@@ -20,15 +20,11 @@ apt-get install -y			\
 	ipython                         \
 	python-scipy                    \
 	python-matplotlib               \
-	python-virtualenv               \
 	inkscape                        \
 	vlc                             \
 	htop                            \
-	tree                            \
 	openssh-server                  \
-	network-manager-vpnc            \
 	exuberant-ctags                 \
-	ctags				\
 	colordiff			\
 	colormake			\
 	colorgcc			\
@@ -38,6 +34,10 @@ apt-get install -y			\
 	valgrind			\
 
 	## Others?
+	# ctags				\
+	# python-virtualenv             \
+	# tree                          \
+	# network-manager-vpnc          \
 	# chromium-browser		\
 	# engauge-digitizer		\
 	# nautilus-open-terminal	\
