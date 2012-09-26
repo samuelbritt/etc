@@ -62,6 +62,7 @@ apt-get install -y			\
 apt-get install -y			\
 	latexmk				\
 	texlive				\
+	texlive-latex-extra		\
 	texlive-latex-recommended	\
 	texlive-bibtex-extra            \
 	texlive-math-extra              \
