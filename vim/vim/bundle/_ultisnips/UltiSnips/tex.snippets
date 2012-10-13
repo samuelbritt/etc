@@ -99,6 +99,10 @@ snippet "ref?" "\ref{}" !wr
 \ref{$1}
 endsnippet
 
+snippet "eqre?" "\eqref{}" !wr
+\eqref{$1}
+endsnippet
+
 snippet "cit?e?" "\cite{}" !wr
 \cite{$1}
 endsnippet
@@ -129,6 +133,10 @@ endsnippet
 
 snippet si "Unitx" !
 \SI{${1:${VISUAL}}}{${2}}${0}
+endsnippet
+
+snippet "num?" "num" !
+\num{${1:${VISUAL}}}${0}
 endsnippet
 
 snippet "" "quotes" !
@@ -193,4 +201,24 @@ endsnippet
 
 snippet == "&=" !
 &= $1 \\\\$0
+endsnippet
+
+snippet ... "ldots" !i
+\ldots $0
+endsnippet
+
+snippet ,l "ell" !i
+\ell$0
+endsnippet
+
+snippet ,p "phi" !i
+\phi$0
+endsnippet
+
+snippet ,t "theta" !i
+\theta$0
+endsnippet
+
+snippet ,s "sigma" !i
+\sigma$0
 endsnippet
