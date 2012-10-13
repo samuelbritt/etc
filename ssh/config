@@ -6,6 +6,11 @@ Host h
 	ForwardX11 yes
 	ForwardX11Trusted yes
 
+Host he
+	Hostname helium.local
+	ForwardX11 yes
+	ForwardX11Trusted yes
+
 Host ti titanium.britts.us me00229.me.gatech.edu 130.207.153.149
 	HostName me00229.me.gatech.edu
 	Port 3489
