@@ -102,6 +102,12 @@ function cl {
 	cd "$@" && ls
 }
 
+# create a pretty-printed man page
+function manp {
+	file=/tmp/man_"$@".pdf
+	man -t "$@" | ps2pdf - $file && open $file
+}
+
 if [ ${HOSTNAME:0:9} = "moleculos" ] ; then
 	unalias diff
 fi
