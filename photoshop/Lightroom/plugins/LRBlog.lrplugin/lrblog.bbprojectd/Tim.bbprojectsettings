@@ -15,22 +15,148 @@
 		<dict>
 			<key>AliasData</key>
 			<data>
-			AAAAAAGaAAIAAARCb290AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADF
-			7clJSCsAAAAGTioISW5mby5sdWEAAAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQmx
-			TMgirMhURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAEkxS
-			QmxvZy5scmRldnBsdWdpbgAQAAgAAMXtuzkAAAARAAgAAMgikKgA
-			AAABABQABk4qAAYwZQAFbCoAAxI1AAMRoAACAEVCb290OlVzZXJz
+			AAAAAAHMAAIAAARCb290AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADF
+			7clJSCsAAAAGTioVTFJMaWJfRGlhbG9nVXRpbHMubHVhAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZO
+			asqeqFYAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAEkxS
+			QmxvZy5scmRldnBsdWdpbgAQAAgAAMXtuzkAAAARAAgAAMqejDYA
+			AAABABQABk4qAAYwZQAFbCoAAxI1AAMRoAACAFJCb290OlVzZXJz
 			OgBUaW06AERldmVsb3BtZW50OgBscnBsdWdpbnM6AExSQmxvZy5s
-			cmRldnBsdWdpbjoASW5mby5sdWEAAA4AEgAIAEkAbgBmAG8ALgBs
-			AHUAYQAPAAoABABCAG8AbwB0ABIAO1VzZXJzL1RpbS9EZXZlbG9w
-			bWVudC9scnBsdWdpbnMvTFJCbG9nLmxyZGV2cGx1Z2luL0luZm8u
-			bHVhAAATAAEvAAAVAAIACv//AAA=
+			cmRldnBsdWdpbjoATFJMaWJfRGlhbG9nVXRpbHMubHVhAA4ALAAV
+			AEwAUgBMAGkAYgBfAEQAaQBhAGwAbwBnAFUAdABpAGwAcwAuAGwA
+			dQBhAA8ACgAEAEIAbwBvAHQAEgBIVXNlcnMvVGltL0RldmVsb3Bt
+			ZW50L2xycGx1Z2lucy9MUkJsb2cubHJkZXZwbHVnaW4vTFJMaWJf
+			RGlhbG9nVXRpbHMubHVhABMAAS8AABUAAgAK//8AAA==
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Tim/Development/lrplugins/LRBlog.lrdevplugin/Info.lua</string>
+			<string>file://localhost/Users/Tim/Development/lrplugins/LRBlog.lrdevplugin/LRLib_DialogUtils.lua</string>
 			<key>RelativePath</key>
-			<string>./Info.lua</string>
+			<string>./LRLib_DialogUtils.lua</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAHCAAIAAARCb290AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADF
+			7clJSCsAAAAGTioSTFIyQmxvZ0Jsb2dnZXIubHVhAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZO
+			icgirMhURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAEkxS
+			QmxvZy5scmRldnBsdWdpbgAQAAgAAMXtuzkAAAARAAgAAMgikKgA
+			AAABABQABk4qAAYwZQAFbCoAAxI1AAMRoAACAE9Cb290OlVzZXJz
+			OgBUaW06AERldmVsb3BtZW50OgBscnBsdWdpbnM6AExSQmxvZy5s
+			cmRldnBsdWdpbjoATFIyQmxvZ0Jsb2dnZXIubHVhAAAOACYAEgBM
+			AFIAMgBCAGwAbwBnAEIAbABvAGcAZwBlAHIALgBsAHUAYQAPAAoA
+			BABCAG8AbwB0ABIARVVzZXJzL1RpbS9EZXZlbG9wbWVudC9scnBs
+			dWdpbnMvTFJCbG9nLmxyZGV2cGx1Z2luL0xSMkJsb2dCbG9nZ2Vy
+			Lmx1YQAAEwABLwAAFQACAAr//wAA
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Tim/Development/lrplugins/LRBlog.lrdevplugin/LR2BlogBlogger.lua</string>
+			<key>RelativePath</key>
+			<string>./LR2BlogBlogger.lua</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAHCAAIAAARCb290AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADF
+			7clJSCsAAAAGTioSTFIyQmxvZ1R5cGVQYWQubHVhAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACu7
+			/8qqMu9URVhUUipjaP////8AAAkgAAAAAAAAAAAAAAAAAAAAEkxS
+			QmxvZy5scmRldnBsdWdpbgAQAAgAAMXtuzkAAAARAAgAAMqqFs8A
+			AAABABQABk4qAAYwZQAFbCoAAxI1AAMRoAACAE9Cb290OlVzZXJz
+			OgBUaW06AERldmVsb3BtZW50OgBscnBsdWdpbnM6AExSQmxvZy5s
+			cmRldnBsdWdpbjoATFIyQmxvZ1R5cGVQYWQubHVhAAAOACYAEgBM
+			AFIAMgBCAGwAbwBnAFQAeQBwAGUAUABhAGQALgBsAHUAYQAPAAoA
+			BABCAG8AbwB0ABIARVVzZXJzL1RpbS9EZXZlbG9wbWVudC9scnBs
+			dWdpbnMvTFJCbG9nLmxyZGV2cGx1Z2luL0xSMkJsb2dUeXBlUGFk
+			Lmx1YQAAEwABLwAAFQACAAr//wAA
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Tim/Development/lrplugins/LRBlog.lrdevplugin/LR2BlogTypePad.lua</string>
+			<key>RelativePath</key>
+			<string>./LR2BlogTypePad.lua</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAG6AAIAAARCb290AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADF
+			7clJSCsAAAAGTioQTFJMaWJfTG9nZ2VyLmx1YQAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZO
+			X8haM8IAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAEkxS
+			QmxvZy5scmRldnBsdWdpbgAQAAgAAMXtuzkAAAARAAgAAMhaF6IA
+			AAABABQABk4qAAYwZQAFbCoAAxI1AAMRoAACAE1Cb290OlVzZXJz
+			OgBUaW06AERldmVsb3BtZW50OgBscnBsdWdpbnM6AExSQmxvZy5s
+			cmRldnBsdWdpbjoATFJMaWJfTG9nZ2VyLmx1YQAADgAiABAATABS
+			AEwAaQBiAF8ATABvAGcAZwBlAHIALgBsAHUAYQAPAAoABABCAG8A
+			bwB0ABIAQ1VzZXJzL1RpbS9EZXZlbG9wbWVudC9scnBsdWdpbnMv
+			TFJCbG9nLmxyZGV2cGx1Z2luL0xSTGliX0xvZ2dlci5sdWEAABMA
+			AS8AABUAAgAK//8AAA==
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Tim/Development/lrplugins/LRBlog.lrdevplugin/LRLib_Logger.lua</string>
+			<key>RelativePath</key>
+			<string>./LRLib_Logger.lua</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAHMAAIAAARCb290AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADF
+			7clJSCsAAAAGTioVTFIyQmxvZ0dvb2dsZURhdGEubHVhAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZO
+			XcgirMhURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAEkxS
+			QmxvZy5scmRldnBsdWdpbgAQAAgAAMXtuzkAAAARAAgAAMgikKgA
+			AAABABQABk4qAAYwZQAFbCoAAxI1AAMRoAACAFJCb290OlVzZXJz
+			OgBUaW06AERldmVsb3BtZW50OgBscnBsdWdpbnM6AExSQmxvZy5s
+			cmRldnBsdWdpbjoATFIyQmxvZ0dvb2dsZURhdGEubHVhAA4ALAAV
+			AEwAUgAyAEIAbABvAGcARwBvAG8AZwBsAGUARABhAHQAYQAuAGwA
+			dQBhAA8ACgAEAEIAbwBvAHQAEgBIVXNlcnMvVGltL0RldmVsb3Bt
+			ZW50L2xycGx1Z2lucy9MUkJsb2cubHJkZXZwbHVnaW4vTFIyQmxv
+			Z0dvb2dsZURhdGEubHVhABMAAS8AABUAAgAK//8AAA==
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Tim/Development/lrplugins/LRBlog.lrdevplugin/LR2BlogGoogleData.lua</string>
+			<key>RelativePath</key>
+			<string>./LR2BlogGoogleData.lua</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAG6AAIAAARCb290AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADF
+			7clJSCsAAAAGTioQTFIyQmxvZ1V0aWxzLmx1YQAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZO
+			ncgirMhURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAEkxS
+			QmxvZy5scmRldnBsdWdpbgAQAAgAAMXtuzkAAAARAAgAAMgikKgA
+			AAABABQABk4qAAYwZQAFbCoAAxI1AAMRoAACAE1Cb290OlVzZXJz
+			OgBUaW06AERldmVsb3BtZW50OgBscnBsdWdpbnM6AExSQmxvZy5s
+			cmRldnBsdWdpbjoATFIyQmxvZ1V0aWxzLmx1YQAADgAiABAATABS
+			ADIAQgBsAG8AZwBVAHQAaQBsAHMALgBsAHUAYQAPAAoABABCAG8A
+			bwB0ABIAQ1VzZXJzL1RpbS9EZXZlbG9wbWVudC9scnBsdWdpbnMv
+			TFJCbG9nLmxyZGV2cGx1Z2luL0xSMkJsb2dVdGlscy5sdWEAABMA
+			AS8AABUAAgAK//8AAA==
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Tim/Development/lrplugins/LRBlog.lrdevplugin/LR2BlogUtils.lua</string>
+			<key>RelativePath</key>
+			<string>./LR2BlogUtils.lua</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -64,23 +190,23 @@
 		<dict>
 			<key>AliasData</key>
 			<data>
-			AAAAAAHCAAIAAARCb290AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADF
-			7clJSCsAAAAGTioSTFIyQmxvZ05leHRHRU4ubHVhAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKMX
-			osqfgkBURVhUUipjaP////8AAAkgAAAAAAAAAAAAAAAAAAAAEkxS
-			QmxvZy5scmRldnBsdWdpbgAQAAgAAMXtuzkAAAARAAgAAMqfZiAA
-			AAABABQABk4qAAYwZQAFbCoAAxI1AAMRoAACAE9Cb290OlVzZXJz
+			AAAAAAHMAAIAAARCb290AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADF
+			7clJSCsAAAAGTioVTFIyQmxvZ1RvcFNlY3Rpb24ubHVhAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZO
+			isgirMhURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAEkxS
+			QmxvZy5scmRldnBsdWdpbgAQAAgAAMXtuzkAAAARAAgAAMgikKgA
+			AAABABQABk4qAAYwZQAFbCoAAxI1AAMRoAACAFJCb290OlVzZXJz
 			OgBUaW06AERldmVsb3BtZW50OgBscnBsdWdpbnM6AExSQmxvZy5s
-			cmRldnBsdWdpbjoATFIyQmxvZ05leHRHRU4ubHVhAAAOACYAEgBM
-			AFIAMgBCAGwAbwBnAE4AZQB4AHQARwBFAE4ALgBsAHUAYQAPAAoA
-			BABCAG8AbwB0ABIARVVzZXJzL1RpbS9EZXZlbG9wbWVudC9scnBs
-			dWdpbnMvTFJCbG9nLmxyZGV2cGx1Z2luL0xSMkJsb2dOZXh0R0VO
-			Lmx1YQAAEwABLwAAFQACAAr//wAA
+			cmRldnBsdWdpbjoATFIyQmxvZ1RvcFNlY3Rpb24ubHVhAA4ALAAV
+			AEwAUgAyAEIAbABvAGcAVABvAHAAUwBlAGMAdABpAG8AbgAuAGwA
+			dQBhAA8ACgAEAEIAbwBvAHQAEgBIVXNlcnMvVGltL0RldmVsb3Bt
+			ZW50L2xycGx1Z2lucy9MUkJsb2cubHJkZXZwbHVnaW4vTFIyQmxv
+			Z1RvcFNlY3Rpb24ubHVhABMAAS8AABUAAgAK//8AAA==
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Tim/Development/lrplugins/LRBlog.lrdevplugin/LR2BlogNextGEN.lua</string>
+			<string>file://localhost/Users/Tim/Development/lrplugins/LRBlog.lrdevplugin/LR2BlogTopSection.lua</string>
 			<key>RelativePath</key>
-			<string>./LR2BlogNextGEN.lua</string>
+			<string>./LR2BlogTopSection.lua</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -90,72 +216,22 @@
 			<key>AliasData</key>
 			<data>
 			AAAAAAG8AAIAAARCb290AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADF
-			7clJSCsAAAAGTioRTFIyQmxvZ1Rva2Vucy5sdWEAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKMU
-			HsgirMhURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAEkxS
-			QmxvZy5scmRldnBsdWdpbgAQAAgAAMXtuzkAAAARAAgAAMgikKgA
+			7clJSCsAAAAGTioRTFJMaWJfSW50ZXJPcC5sdWEAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZO
+			hskUOadURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAEkxS
+			QmxvZy5scmRldnBsdWdpbgAQAAgAAMXtuzkAAAARAAgAAMkUK5cA
 			AAABABQABk4qAAYwZQAFbCoAAxI1AAMRoAACAE5Cb290OlVzZXJz
 			OgBUaW06AERldmVsb3BtZW50OgBscnBsdWdpbnM6AExSQmxvZy5s
-			cmRldnBsdWdpbjoATFIyQmxvZ1Rva2Vucy5sdWEADgAkABEATABS
-			ADIAQgBsAG8AZwBUAG8AawBlAG4AcwAuAGwAdQBhAA8ACgAEAEIA
+			cmRldnBsdWdpbjoATFJMaWJfSW50ZXJPcC5sdWEADgAkABEATABS
+			AEwAaQBiAF8ASQBuAHQAZQByAE8AcAAuAGwAdQBhAA8ACgAEAEIA
 			bwBvAHQAEgBEVXNlcnMvVGltL0RldmVsb3BtZW50L2xycGx1Z2lu
-			cy9MUkJsb2cubHJkZXZwbHVnaW4vTFIyQmxvZ1Rva2Vucy5sdWEA
+			cy9MUkJsb2cubHJkZXZwbHVnaW4vTFJMaWJfSW50ZXJPcC5sdWEA
 			EwABLwAAFQACAAr//wAA
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Tim/Development/lrplugins/LRBlog.lrdevplugin/LR2BlogTokens.lua</string>
+			<string>file://localhost/Users/Tim/Development/lrplugins/LRBlog.lrdevplugin/LRLib_InterOp.lua</string>
 			<key>RelativePath</key>
-			<string>./LR2BlogTokens.lua</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAG6AAIAAARCb290AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADF
-			7clJSCsAAAAGTioQTFJMaWJfVG9rZW5zLmx1YQAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZO
-			ocqeMrFURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAEkxS
-			QmxvZy5scmRldnBsdWdpbgAQAAgAAMXtuzkAAAARAAgAAMqeFpEA
-			AAABABQABk4qAAYwZQAFbCoAAxI1AAMRoAACAE1Cb290OlVzZXJz
-			OgBUaW06AERldmVsb3BtZW50OgBscnBsdWdpbnM6AExSQmxvZy5s
-			cmRldnBsdWdpbjoATFJMaWJfVG9rZW5zLmx1YQAADgAiABAATABS
-			AEwAaQBiAF8AVABvAGsAZQBuAHMALgBsAHUAYQAPAAoABABCAG8A
-			bwB0ABIAQ1VzZXJzL1RpbS9EZXZlbG9wbWVudC9scnBsdWdpbnMv
-			TFJCbG9nLmxyZGV2cGx1Z2luL0xSTGliX1Rva2Vucy5sdWEAABMA
-			AS8AABUAAgAK//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Tim/Development/lrplugins/LRBlog.lrdevplugin/LRLib_Tokens.lua</string>
-			<key>RelativePath</key>
-			<string>./LRLib_Tokens.lua</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAHCAAIAAARCb290AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADF
-			7clJSCsAAAAGTioSTFIyQmxvZ1R5cGVQYWQubHVhAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACu7
-			/8qqMu9URVhUUipjaP////8AAAkgAAAAAAAAAAAAAAAAAAAAEkxS
-			QmxvZy5scmRldnBsdWdpbgAQAAgAAMXtuzkAAAARAAgAAMqqFs8A
-			AAABABQABk4qAAYwZQAFbCoAAxI1AAMRoAACAE9Cb290OlVzZXJz
-			OgBUaW06AERldmVsb3BtZW50OgBscnBsdWdpbnM6AExSQmxvZy5s
-			cmRldnBsdWdpbjoATFIyQmxvZ1R5cGVQYWQubHVhAAAOACYAEgBM
-			AFIAMgBCAGwAbwBnAFQAeQBwAGUAUABhAGQALgBsAHUAYQAPAAoA
-			BABCAG8AbwB0ABIARVVzZXJzL1RpbS9EZXZlbG9wbWVudC9scnBs
-			dWdpbnMvTFJCbG9nLmxyZGV2cGx1Z2luL0xSMkJsb2dUeXBlUGFk
-			Lmx1YQAAEwABLwAAFQACAAr//wAA
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Tim/Development/lrplugins/LRBlog.lrdevplugin/LR2BlogTypePad.lua</string>
-			<key>RelativePath</key>
-			<string>./LR2BlogTypePad.lua</string>
+			<string>./LRLib_InterOp.lua</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -198,6 +274,6 @@
 	<key>ViewSplitterPosition:Tim</key>
 	<real>0.21968366205692291</real>
 	<key>WindowFrame:Tim:displays([(0, 0), (2560, 1600)])</key>
-	<string>rect(134,940,1489,2647)</string>
+	<string>rect(192,1288,1547,2995)</string>
 </dict>
 </plist>
