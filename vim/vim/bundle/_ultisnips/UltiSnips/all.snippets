@@ -12,30 +12,30 @@ snippet email "email" !
 `!v g:ulti_email`
 endsnippet
 
-snippet [] "Bracket" !i
-[${VISUAL}$1]$0
-endsnippet
-
-snippet () "Paren" !i
+snippet ( "()" !iw
 (${1:${VISUAL}})$0
 endsnippet
 
-snippet {} "Stache" !i
+snippet [ "[]" !iw
+[${VISUAL}$1]$0
+endsnippet
+
+snippet { "{}" !iw
 {${1:${VISUAL}}}$0
 endsnippet
 
-snippet <> "Angle" !i
+snippet < "<>" !iw
 <${1:${VISUAL}}>$0
 endsnippet
 
-snippet "" "Quotes" !i
+snippet " "Quotes" !iw
 "${1:${VISUAL}}"$0
 endsnippet
 
-snippet '' "Single Quotes" !i
+snippet ' "Single Quotes" !iw
 '${1:${VISUAL}}'$0
 endsnippet
 
-snippet `` "Back Quotes" !i
+snippet ` "Back Quotes" !iw
 \`${1:${VISUAL}}\`$0
 endsnippet

@@ -82,7 +82,6 @@ snippet title "Title/Author/Date" !b
 \date{${3:\\today}}$0
 endsnippet
 
-# \usepackage${2/(.*)/(?1:[)/}${2}${2/(.*)/(?1:])/}{${1}}${3:$0}
 snippet use "Use Package" !b
 \usepackage${2}{${1}}${3:$0}
 endsnippet
@@ -120,15 +119,15 @@ snippet es "Equation Star" !b
 endsnippet
 
 snippet al "Align" !b
-\begin{align}
-	${1} &= ${2}
-\end{align}${0}
+\\begin{align}
+	${1} &= ${2} \\\\${3}
+\\end{align}$0
 endsnippet
 
 snippet as "Align Star" !b
-\begin{align*}
-	${1} &= ${2}
-\end{align*}${0}
+\\begin{align*}
+	${1} &= ${2} \\\\${3}
+\\end{align*}$0
 endsnippet
 
 snippet si "Unitx" !
@@ -143,50 +142,45 @@ snippet "" "quotes" !
 \`\`${1:${VISUAL}}"$0
 endsnippet
 
-snippet || "vert" !
-|${1:${VISUAL}}|$0
+snippet $ "Inline math" !i
+\$${1:${VISUAL}}\$$0
 endsnippet
 
-# snippet $$ "Inline math" !i
-# \$${1:${VISUAL}}\$$0
-# endsnippet
+snippet ^ "Exponent" !i
+^{${1:${VISUAL}}}$0
+endsnippet
 
-# snippet $ "Inline math" !i
-# \$${1:${VISUAL}}\$$0
-# endsnippet
+snippet _ "Subscript" !i
+_{${1:${VISUAL}}}$0
+endsnippet
 
-# snippet ^ "Exponent" !i
-# ^{${1:${VISUAL}}}$0
-# endsnippet
-
-# snippet _ "Subscript" !i
-# _{${1:${VISUAL}}}$0
-# endsnippet
-
-snippet \ "\macro{}" i
+snippet \ "\\macro{}" i
 \\${1:${VISUAL}}{${2}}${0}
 endsnippet
 
 # Delimeters:
-snippet < "\left< \right>" i
-\l< ${1:${VISUAL}} \r>${0}
+snippet (( "\\l( \\r)" i
+\l( ${1:${VISUAL}} \r)$0
 endsnippet
 
-snippet || "| |" i
-|${1:${VISUAL}}|${0}
+snippet [[ "\\l[ \\r]" i
+\l[ ${1:${VISUAL}} \r]${0}
 endsnippet
 
-# These assume imaps so, for example, ``(|" gets mapped to ``(|)"
-snippet { "\left\{ \right\}" i
-\l\\{ ${1:${VISUAL}} \r\\${0}
+snippet {{ "\\l\\{ \\r\\}" i
+\l\\{ ${1:${VISUAL}} \r\\}$0
 endsnippet
 
-snippet ( "\left( \right)" i
-\l( ${1:${VISUAL}} \r${0}
+snippet << "\\l< \\r>" i
+\l< ${1:${VISUAL}} \r>$0
 endsnippet
 
-snippet [ "\left[ \right]" i
-\l[ ${1:${VISUAL}} \r${0}
+snippet | "| |" i
+|${1:${VISUAL}}|$0
+endsnippet
+
+snippet " "LaTeX quotes" iw!
+\`\`${1:${VISUAL}}''$0
 endsnippet
 
 snippet ,t "text" !i

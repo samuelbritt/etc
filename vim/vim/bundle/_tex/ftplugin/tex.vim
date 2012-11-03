@@ -17,13 +17,6 @@ let g:LatexBox_autojump = 1 	" jump to first error on latexmk
 " Maps
 inoremap <buffer> <C-CR> <C-O>o\item<space>
 nnoremap <buffer> <C-CR> o\item<space>
-inoremap " ``"<Esc>:call BC_AddChar("\"")<CR>i
-inoremap $ $$<Esc>:call BC_AddChar("$")<CR>i
-inoremap ^^ ^{}<Esc>:call BC_AddChar("}")<CR>i
-inoremap __ _{}<Esc>:call BC_AddChar("}")<CR>i
-" inoremap (( \l(  \r)<Esc>Bh:call BC_AddChar("$")<CR>i
-" inoremap <silent> <buffer> it<tab> it<C-R>=UltiSnips_Anon('\\item ${1:${VISUAL}}', 'it', 'item', 'b')<cr><C-O>==
-" inoremap <silent> <buffer> $$ $$<C-R>=UltiSnips_Anon('\$${1:${VISUAL}}\$', '$$', 'math', '')<cr><C-O>==
 
 nmap <buffer> <LocalLeader>wl  :w<CR><LocalLeader>ll
 nmap <buffer> <F5>	  <Plug>LatexChangeEnv

@@ -166,31 +166,6 @@
 	vnoremap < <gv
 	vnoremap > >gv
 
-    " Maps to auto-close open brackets. Ctrl-j to jump out. [
-		" inoremap ( ()<Tab>
-		inoremap ( ()<Esc>:call BC_AddChar(")")<CR>i
-		inoremap { {}<Esc>:call BC_AddChar("}")<CR>i
-		" inoremap { {<CR>}<Esc>:call BC_AddChar("}")<CR><Esc>kA<CR>
-		inoremap [ []<Esc>:call BC_AddChar("]")<CR>i
-		inoremap " ""<Esc>:call BC_AddChar("\"")<CR>i
-		" jump out of parenthesis
-		inoremap <C-j> <Esc>:call search(BC_GetChar(), "W")<CR>a
-
-		function! BC_AddChar(schar)
-			if exists("b:robstack")
-				let b:robstack = b:robstack . a:schar
-			else
-				let b:robstack = a:schar
-			endif
-		endfunction
-
-		function! BC_GetChar()
-			let l:char = b:robstack[strlen(b:robstack)-1]
-			let b:robstack = strpart(b:robstack, 0, strlen(b:robstack)-1)
-			return l:char
-		endfunction
-	"]
-
 	" DiffOrig [
 		"Command to see the difference between the current buffer and the file
 		"it was loaded from, thus the changes you made.
@@ -243,9 +218,7 @@
         let g:ulti_email = "samuelbritt@gmail.com"
 		let g:UltiSnipsEditSplit = "horizontal"
 		let g:UltiSnipsExpandTrigger="<tab>"
-		let g:UltiSnipsJumpForwardTrigger="<tab>"
-		let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-        " see also mappings above
+        " " see also mappings above
 	" ]
 
 	" Taglist [
