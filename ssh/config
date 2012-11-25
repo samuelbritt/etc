@@ -86,3 +86,8 @@ Host factor
 Host nfs
 	HostName ssh.phx.nearlyfreespeech.net
 	User sambritt_pointandframe
+
+Host gator
+	HostName 174.120.28.154
+	User sambritt
+	Port 2222
