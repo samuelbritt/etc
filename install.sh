@@ -4,6 +4,10 @@
 # Installs all the dot-files (symlinks) to their appropriate locations
 #
 
+cd ${HOME}/etc
+git submodule init
+git submodule update
+
 cd ${HOME}
 
 KERNEL=`uname`
