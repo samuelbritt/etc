@@ -8,7 +8,11 @@ setlocal textwidth=70
 " setlocal showbreak+=\ \ \ \ \ 
 setlocal spell
 
-let g:tex_fold_enabled = 1
+" These folds work well, but slows vim to a crawl:
+" let g:tex_fold_enabled = 1
+"
+" A decent comprimise
+setlocal foldmethod=indent
 
 let maplocalleader = ","
 let g:LatexBox_viewer = "$PDFVIEWER"
