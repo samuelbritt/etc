@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=Candy
-Font=Ubuntu Mono,12,-1,5,50,0,0,0,0,0
+Font=Ubuntu Mono,11,-1,5,50,0,0,0,0,0
 
 [General]
 Icon=utilities-terminal
