@@ -91,3 +91,7 @@ Host gator
 	HostName 174.120.28.154
 	User sambritt
 	Port 2222
+
+host jinx
+	HostName jinx-login.cc.gatech.edu
+	User gtg473y
