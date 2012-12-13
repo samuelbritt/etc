@@ -1,0 +1,72 @@
+*~
+*.o
+Dropbox
+.dropbox
+.dvdcss
+
+# OS X files
+.DS_Store
+.Trash*
+
+# System files (useful when backing up '/'):
+/dev/*
+/proc/*
+/sys/*
+/tmp/*
+/run/*
+/mnt/*
+/media/*
+/Volumes/*
+/var/cache/*
+/var/tmp/*
+/lost+found
+/home/*/.gvfs
+
+# Exclusions taken from OS X Time machine
+/.DocumentRevisions-V100
+/.MobileBackups
+/MobileBackups.trash
+/.MobileBackups.trash
+/.Spotlight-V100
+/.TemporaryItems
+/.Trashes
+/.fseventsd
+/.hotfiles.btree
+/Backups.backupdb
+/Desktop DB
+/Desktop DF
+/Network/Servers
+/Library/Updates
+/Previous Systems
+/Users/Shared/SC Info
+/Users/Guest
+/dev
+/net
+/private/var/db/efw_cache
+/private/var/db/Spotlight
+/private/var/db/Spotlight-V100
+/private/var/lib/postfix/greylist.db
+/Volumes
+/Network
+/automount
+/.vol
+/tmp
+/cores
+/private/tmp
+/private/Network
+/private/tftpboot
+/private/var/automount
+/private/var/folders
+/private/var/run
+/private/var/tmp
+/private/var/vm
+/private/var/db/dhcpclient
+/private/var/db/fseventsd
+/Library/Caches
+/Library/Logs
+/System/Library/Caches
+/System/Library/Extensions/Caches
+/private/var/log
+/private/var/spool/cups
+/private/var/spool/fax
+/private/var/spool/uucp
