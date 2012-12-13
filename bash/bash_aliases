@@ -58,6 +58,7 @@ alias eipython='$EPD/ipython'
 alias epylab='eipython -pylab'
 alias tarz='tar czf'
 alias untarz='tar xzf'
+alias cleanlatex='rm -f *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out'
 
 # bad typing with git
 alias gi=git
