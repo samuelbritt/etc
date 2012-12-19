@@ -29,12 +29,12 @@ endsnippet
 
 snippet "figu?r?e?" "Figure" !br
 \begin{figure}[${1:htbp}]
-	\label{fig:${2:label}}
 	\centering
 	\begin{minipage}[t]{${3:.8\linewidth}}
 		\centering
 		\includegraphics[width=\linewidth]{$0}
 		\caption{${4:caption}}
+		\label{fig:${2:label}}
 	\end{minipage}
 \end{figure}
 endsnippet
