@@ -51,8 +51,15 @@ endsnippet
 snippet science "Collection of scientific packages/commands" !b
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
 \usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{subfig}
+\usepackage{enumitem}
 \usepackage[alsoload=binary]{siunitx}
 \usepackage{booktabs}
 \usepackage{multirow}
@@ -62,18 +69,32 @@ snippet science "Collection of scientific packages/commands" !b
 \usepackage{url}
 \usepackage{hyperref}
 
-% a bit more compact
-\let\l\left
-\let\r\right
-
 % no section numbers
 \setcounter{secnumdepth}{-2}
+
+% a bit more compact
+\renewcommand\l{\mathopen{}\left}
+\renewcommand\r{\right}
+
+% left-right pairs (requires mathtools package)
+\DeclarePairedDelimeter\abs{\left\vert}{\right\vert}
+\DeclarePairedDelimeter\set{\left\{}{\right\}}
+
+% commands
+\renewcommand\vec[1]{\bm{#1}}
+\renewcommand\epsilon{\varepsilon}
+\newcommand\bit{\ensuremath{\set{0,1}}}
 
 % leave notes to yourself
 \newcommand\todo[1]{\textcolor{red}{\textsc{todo}: #1}}
 
 % write in code
 \DefineShortVerb{\|}$0
+endsnippet
+
+snippet type "Type-related settings" !b
+% \usepackage[osf]{mathpazo}
+\usepackage{microtype}
 endsnippet
 
 snippet title "Title/Author/Date" !b
