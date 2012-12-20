@@ -1,0 +1,44 @@
+KDE Customizations
+==================
+
+## Settings
+Account Details
+	- Set Paths
+	- Turn off KDE Wallet
+Application Appearance
+	- Fonts
+	- Enable subpixel rendering, slight hinting
+Notifications Turn off sound
+	- KDE Workspace, Logout, Login
+	- Power management: AC adapter unplugged
+Shortucts
+	- Custom Shortcuts > Run Konsole
+Window Behavior
+	- Task Switcher > Visualization: Large icons
+Workspace behavior
+	- Virtual Desktops > Switching > keyboard shortcuts
+Bluetooth
+	- disable
+Input Devices
+	- Keyboard > Advanced: set Caps Lock Behavior > "make caps lock an addition ctrl" and Miscellaneous > "Both shift keys toggle Caps Lock"
+	- Touchpad
+		- Scrolling: uncheck vertical scrolling at right edge
+		- Tapping: Make single taps faster
+		- Tapping: Three fingers: Middle button
+Energy settings
+	- When laptop lid is closed: sleep
+
+## Panel
+Right click on System Tray > System Tray Settings
+  - Display: Battery monitor
+  - Entries: Battery monitor: Always visible
+  - Entries: Klipper: Hidden
+Right click on Battery monitor
+  - Settings: Show charge information
+  - Energy Saving: all three panels: Sleep when lid closed
+  - Advanced settings: Low at 10%, Critical at 5%
+  - Advanced settings: Uncheck Lock screen on resume
+Right click on clock
+  - Date format: Long Date
+  - Customize date format:
+    - Date&Time: Long date format: SHORTWEEKDAY, SHORTMONTH DD, YYYY

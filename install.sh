@@ -12,6 +12,7 @@ cd ${HOME}
 
 KERNEL=`uname`
 HOST=`uname -n`
+KDE=$KDE_FULL_SESSION
 
 # Bash
 ln -sf etc/bash/bashrc .bashrc
@@ -97,4 +98,13 @@ then
 	x11conf=/etc/X11/xorg.conf.d/
 	sudo mkdir -p $x11conf
 	sudo cp etc/X11/xorg.conf.d/60-synaptics.conf $x11conf
+fi
+
+# KDE-specific
+if [[ $KDE ]]
+then
+	konsoleconf=${HOME}/.kde/share/apps/konsole
+	mkdir -p $konsoleconf
+	ln -sf {~/etc/kde/konsole,$konsoleconf}/Candy.colorscheme
+	ln -sf {~/etc/kde/konsole,$konsoleconf}/Shell.profile
 fi
