@@ -26,7 +26,6 @@ fi
 # Vim
 ln -sf etc/vim/vim .vim
 ln -sf etc/vim/vimrc .vimrc
-mkdir -p ~/.swp
 if [[ $KERNEL == "Linux" ]]
 then
 	if [[ $HOST == hydrogen* ]]

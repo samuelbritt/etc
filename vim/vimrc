@@ -13,7 +13,7 @@
 
 	filetype plugin indent on		" detect filetypes
 	syntax on						" syntax highlighting
-	set dir=~/.swp					" don't litter project with ~ files
+	set dir=~/etc/vim/swp			" don't litter project with ~ files
 	set hidden						" allow switching buffers without saving
 	set history=50					" keep 50 lines of command line history
 	set mouse=a						" enable the mouse
