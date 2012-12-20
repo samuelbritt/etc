@@ -70,7 +70,7 @@ then
 	ln -sf etc/texmf texmf
 elif [[ $KERNEL = "Darwin" ]]
 then
-	ln -sf etc/texmf ~/Library/texmf
+	ln -sf ~/etc/texmf ~/Library/texmf
 fi
 
 # Eclipse
