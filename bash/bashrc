@@ -13,9 +13,6 @@
 	# Set up vars
 	PLATFORM=`uname`
 	MACHINE=${HOSTNAME%%.*}
-	if [ ${MACHINE:0:9} = "moleculos" ] ; then
-		MACHINE="moleculos"
-	fi
 
 	# Determine if root
 	is_root=false
@@ -26,7 +23,7 @@
 
 # Platform-specific settings {
 	# Linux {
-	if [ $PLATFORM = "Linux" ] ; then 
+	if [ $PLATFORM = "Linux" ] ; then
 		#color support of ls
 		eval "`dircolors -b`"
 		alias ls='ls --color=auto -Bpv'
@@ -54,25 +51,10 @@
 # }
 
 # Machine-specific settings {
-	# Titanium {
-	if [ $MACHINE = "titanium" ] ; then
-		# Abaqus:
-		export SIMULIADIR=/opt/simulia
-		export ABAQUSDIR=$SIMULIADIR/abaqus
-		export PATH=$PATH:$ABAQUSDIR/Commands
-		# Intel Compilers:
-		source /opt/intel/Compiler/11.1/072/bin/ifortvars.sh intel64
-		# Matlab:
-		export MATLABPATH=$HOME/bin:$HOME/lib/matlab:$MATLABPATH
-		# EPD
-		export PATH=/opt/epd/epd7.0/bin:$PATH
-	# }
 	# Hydrogen {
-	elif [ $MACHINE = "hydrogen" ] ; then
+	if [ $MACHINE = "hydrogen" ] ; then
 		export PATH=/opt/bin:$PATH
 		export PATH=/usr/sbin:$PATH
-		# EPD
-		export PATH=$PATH:/opt/epd/bin
 	# }
 	# Silicon {
 	elif [ $MACHINE = "silicon" ] ; then
@@ -83,36 +65,6 @@
 	elif [ $MACHINE = "aluminum-vert" ] ; then
 		# Intel Compilers:
 		source /opt/intel/Compiler/11.1/073/bin/ifortvars.sh ia32
-	# }
-	# Moleculos {
-	elif [ $MACHINE = "moleculos" ] ; then
-		# Abaqus:
-		export ABAQUSDIR=/opt/abaqus
-		export PATH=$PATH:$ABAQUSDIR/Commands
-
-		# Matlab
-		export PATH=$PATH:/opt/matlab
-
-		# Maui Scheduler
-		export MAUIHOMEDIR=/usr/local/maui
-		export PATH=$PATH:$MAUIHOMEDIR/bin
-		export PATH=$PATH:$MAUIHOMEDIR/sbin
-
-		# PATH
-		export PATH=$PATH:/sbin
-		export PATH=$PATH:/usr/sbin
-		export PATH=$PATH:/usr/local/sbin
-	# }
-	# Titan {
-	elif [ $MACHINE = "titan" ] ; then
-		# Abaqus:
-		export ABAQUSDIR=/usr/local/abaqus
-		export PATH=$PATH:$ABAQUSDIR/Commands
-
-		# PATH
-		export PATH=$PATH:/sbin
-		export PATH=$PATH:/usr/sbin
-	fi
 	# }
 # }
 
@@ -150,11 +102,6 @@
 	export GIT_PS1_SHOWSTASHSTATE=1
 	export GIT_PS1_SHOWUNTRACKEDFILES=1
 	export GIT_PS1_SHOWUPSTREAM="auto"
-
-	## xmodmap key bindings
-	# if [ -f ~/.xmodmap ]; then
-	#         xmodmap ~/.xmodmap
-	# fi
 
 	# Prompt {
 		# A note on the colors:

@@ -21,10 +21,6 @@ ln -sf etc/bash/inputrc .inputrc
 if [[ $KERNEL == "Darwin" ]]
 then
 	ln -sf etc/bash/bash_profile .bash_profile
-#elif [[ $KERNEL == "Linux" && ($HOST == silicon || $HOST == aluminum) ]]
-#then
-	# fix keyboard function keys
-	# sudo ./etc/bash/apple_fn.sh
 fi
 
 # Vim
@@ -79,12 +75,6 @@ ln -sf etc/eclipse/vrapperrc .vrapperrc
 # Screen
 ln -sf etc/screen/screenrc .screenrc
 ln -sf etc/screen/screen-profiles .screen-profiles
-
-# Abaqus
-if   type -P abaqus &>/dev/null || [[ $HOST == "titanium"  ]]
-then
-	ln -sf etc/abaqus/abaqus_v6.env abaqus_v6.env
-fi
 
 # SSH
 mkdir -p .ssh
