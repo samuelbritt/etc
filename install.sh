@@ -91,12 +91,10 @@ cd .ssh
 ln -sf ../etc/ssh/config config
 cd $HOME
 
-# Fonts
-# unzip etc/fonts/*zip
-# mkdir -p .fonts
-# mv *.otf .fonts
-
-# Clean up home
-# mkdir -p media
-# sudo rm -rf Templates Public
-# sudo mv -n Pictures Videos Music media
+# Synaptics
+if [[ $host = "helium" ]]
+then
+	x11conf=/etc/X11/xorg.conf.d/
+	sudo mkdir -p $x11conf
+	sudo cp etc/X11/xorg.conf.d/60-synaptics.conf $x11conf
+fi
