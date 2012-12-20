@@ -65,6 +65,7 @@
 	elif [ $MACHINE = "aluminum-vert" ] ; then
 		# Intel Compilers:
 		source /opt/intel/Compiler/11.1/073/bin/ifortvars.sh ia32
+	fi
 	# }
 # }
 
@@ -143,9 +144,9 @@
 		fi
 
 		# use a git tag if available
-		git_tag=""
+		git_tag=''
 		! hash git 2>/dev/null || {
-			git_tag="$RUBY\$(__git_ps1)$D"
+			git_tag="$RUBY\$(__git_ps1)$D";
 		}
 
 		PS1="\n$user_color\u$D@$PINK\h$D: $ORANGE\w$git_tag\n$prompt_color\\\$$D "
