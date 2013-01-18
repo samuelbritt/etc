@@ -62,11 +62,14 @@ fi
 # LaTeX
 if [[ $KERNEL = "Linux" ]]
 then
-	ln -sf etc/texmf texmf
+	TEXMFDIR=$HOME/texmf
 elif [[ $KERNEL = "Darwin" ]]
 then
-	ln -sf ~/etc/texmf ~/Library/texmf
+	TEXMFDIR=$HOME/Library/texmf
 fi
+# Mendeley handles bibtex files in Dropbox
+ln -sf $HOME/Dropbox/mendeley/bib $HOME/etc/texmf/bibtex/bib
+ln -sf $HOME/etc/texmf $TEXMFDIR
 
 # Eclipse
 ln -sf etc/eclipse/vrapperrc .vrapperrc
