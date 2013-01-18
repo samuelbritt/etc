@@ -187,6 +187,7 @@
 " Plugins [
 	" LaTeX [
 		let g:tex_flavor='latex'			" Sets .tex to be LaTeX file type
+		" let g:tex_flavor='context'			" Sets .tex to be CONTeX file type
 	" ]
 
 	" NERDComments [

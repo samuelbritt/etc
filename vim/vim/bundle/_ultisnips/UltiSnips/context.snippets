@@ -1,0 +1,97 @@
+snippet doc "Document setup" !b
+\definefontfeature
+  [default]
+  [default]
+  [protrusion=quality,expansion=quality]
+\setupalign[hz,hanging]
+% \enablemode[txmath,pxmath,lmmath] % fixes some spacing issues
+% \setupbodyfont[times]
+% \setupbodyfont[palatino]
+
+% bugs, bugs
+\def\frac#1#2{{\begingroup #1 \endgroup \over #2 }}
+
+\setupinteraction[status=start]
+
+\starttext
+	$0
+\stoptext
+endsnippet
+
+snippet type "type setups" !b
+\definefontfeature
+  [default]
+  [default]
+  [protrusion=quality,expansion=quality]
+\setupalign[hz,hanging]
+% \enablemode[txmath,pxmath,lmmath] % fixes some spacing issues
+% \setupbodyfont[times]
+% \setupbodyfont[palatino]
+endsnippet
+
+snippet "s(tart)?" "start / stop" br
+\start${1:something}
+	${2:${VISUAL}}
+\stop$1${0}
+endsnippet
+
+snippet se "setup" !b
+\setup${1:something}[$0]
+endsnippet
+
+snippet chap "Chapter" b
+\chapter{${1:chapter name}}
+${0}
+snippet sec "Section" b
+\section{${1:section name}}
+${0}
+snippet sub "Subsection" b
+\subsection{${1:section name}}
+${0}
+snippet ssub "Subsubsection" b
+\subsubsection{${1:section name}}
+${0}
+endsnippet
+
+snippet pf "placeformula" !b
+\placeformula[${1:label}]$0
+endsnippet
+
+snippet sf "startformula" !b
+\startformula
+	${1:${VISUAL}}
+\stopformula$0
+endsnippet
+
+snippet al "mathalignment" !b
+\startformula
+	\startmathalignment
+			\NC ${1}
+			\NC = ${2}
+		\NR${3}
+	\stopmathalignment
+\stopformula$0
+endsnippet
+
+snippet in "in (reference)" !
+\in${2:{Eqn.}}[${1:label}]$0
+endsnippet
+
+snippet " "quotation" !
+\quotation{${1:${VISUAL}}}$0
+endsnippet
+
+snippet ' "quote" !
+\quote{${1:${VISUAL}}}$0
+endsnippet
+
+snippet fig "placefigure" !b
+\placefigure
+	[${1:options}]
+	[fig:${2:label}]
+	{
+		${3:caption}
+	}
+	{\externalfigure[${4:fig:$2}][${5:width=${6}}]}
+$0
+endsnippet

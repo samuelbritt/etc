@@ -58,7 +58,6 @@ snippet science "Collection of scientific packages/commands" !b
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{tikz}
-\usepackage{subfig}
 \usepackage{enumitem}
 \usepackage[alsoload=binary]{siunitx}
 \usepackage{booktabs}
@@ -66,27 +65,25 @@ snippet science "Collection of scientific packages/commands" !b
 \usepackage{fancyvrb}
 \usepackage[section]{placeins}
 \usepackage{flafter}
+\usepackage[backgroundcolor=orange!30,bordercolor=none]{todonotes}
 \usepackage{url}
 \usepackage{hyperref}
 
 % no section numbers
 \setcounter{secnumdepth}{-2}
 
-% a bit more compact
-\renewcommand\l{\mathopen{}\left}
-\renewcommand\r{\right}
-
-% left-right pairs (requires mathtools package)
-\DeclarePairedDelimeter\abs{\left\vert}{\right\vert}
-\DeclarePairedDelimeter\set{\left\{}{\right\}}
+% a bit more compact, and fixes spacing issues
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\l}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\r}{\aftergroup\egroup\originalright}
 
 % commands
 \renewcommand\vec[1]{\bm{#1}}
 \renewcommand\epsilon{\varepsilon}
 \newcommand\bit{\ensuremath{\set{0,1}}}
-
-% leave notes to yourself
-\newcommand\todo[1]{\textcolor{red}{\textsc{todo}: #1}}
+\newcommand\abs[1]{\l\vert #1 \r\vert}
+\newcommand\set[1]{\l\{ #1 \r\}}
 
 % write in code
 \DefineShortVerb{\|}$0
@@ -216,7 +213,7 @@ snippet "tod?o?" "\\todo" !r
 \todo{${1:${VISUAL}}}
 endsnippet
 
-snippet em "\\emph" !i
+snippet em "\\emph" !
 \emph{${1:${VISUAL}}}
 endsnippet
 
