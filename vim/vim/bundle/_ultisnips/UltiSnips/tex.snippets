@@ -39,15 +39,6 @@ snippet "figu?r?e?" "Figure" !br
 \end{figure}
 endsnippet
 
-snippet alg "Algorithm packages/commands" !b
-\let\oldgets\gets
-\usepackage{clrscode3e}
-\let\gets\oldgets
-
-% from amssymb.sty
-\let\emtpyset\varnothing$0
-endsnippet
-
 snippet science "Collection of scientific packages/commands" !b
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -89,9 +80,46 @@ snippet science "Collection of scientific packages/commands" !b
 \DefineShortVerb{\|}$0
 endsnippet
 
+snippet alg "Algorithm packages/commands" !b
+\let\oldgets\gets
+\usepackage{clrscode3e}
+\let\gets\oldgets
+
+% from amssymb.sty
+\let\emtpyset\varnothing$0
+endsnippet
+
 snippet type "Type-related settings" !b
 % \usepackage[osf]{mathpazo}
 \usepackage{microtype}
+endsnippet
+
+snippet tikz "Tikz and libraries" !b
+\usepackage{tikz}
+\usetikzlibrary
+  {
+    positioning,
+    calc,
+    intersections,
+    backgrounds,
+    arrows,
+  }
+\tikzset
+  {
+    ->,
+    >=latex',
+    shorten >=.5pt,
+    block/.style=
+      {
+        draw,
+        inner sep=.3em,
+        rectangle,
+        rounded corners=3pt,
+        text height=1.3ex,
+        text depth=.2ex,
+        minimum size=3.6ex,
+      },
+  }
 endsnippet
 
 snippet title "Title/Author/Date" !b
@@ -150,6 +178,12 @@ snippet as "Align Star" !b
 \\begin{align*}
 	${1} &= ${2} \\\\${3}
 \\end{align*}$0
+endsnippet
+
+snippet mini "Minipage" !b
+\\begin{minipage}[${2:b}]{${1:.8}\\linewidth}
+	${3}
+\\end{minipage}$0
 endsnippet
 
 snippet si "Unitx" !
