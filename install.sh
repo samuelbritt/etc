@@ -85,7 +85,7 @@ ln -sf ../etc/ssh/config config
 cd $HOME
 
 # Synaptics
-if [[ $host = "helium" ]]
+if [[ $HOST = "helium" ]]
 then
 	x11conf=/etc/X11/xorg.conf.d/
 	sudo mkdir -p $x11conf
