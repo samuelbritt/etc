@@ -13,8 +13,9 @@ Notifications Turn off sound
 	- Power management: AC adapter unplugged
 Shortucts
 	- Custom Shortcuts > Run Konsole
-Window Behavior
-	- Task Switcher > Visualization: Large icons
+Window Behavio
+	- Task Switcher > Visualization: Large icon
+	- Task Switcher > Content: Only one icon per applicaton
 Workspace behavior
 	- Virtual Desktops > Switching > keyboard shortcuts
 Bluetooth
