@@ -28,6 +28,8 @@ Input Devices
 		- Tapping: Three fingers: Middle button
 Energy settings
 	- When laptop lid is closed: sleep
+Startup and Shutdown
+	- Add Script > ~/.dropbox-dist/dropboxd
 
 ## Panel
 Right click on System Tray > System Tray Settings
