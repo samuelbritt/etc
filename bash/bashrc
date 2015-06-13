@@ -109,11 +109,11 @@
 	fi
 	if [ -f ~/.git-prompt.sh ]; then
 		. ~/.git-prompt.sh
+		export GIT_PS1_SHOWDIRTYSTATE=1
+		export GIT_PS1_SHOWSTASHSTATE=1
+		export GIT_PS1_SHOWUNTRACKEDFILES=1
+		export GIT_PS1_SHOWUPSTREAM="auto"
 	fi
-	export GIT_PS1_SHOWDIRTYSTATE=1
-	export GIT_PS1_SHOWSTASHSTATE=1
-	export GIT_PS1_SHOWUNTRACKEDFILES=1
-	export GIT_PS1_SHOWUPSTREAM="auto"
 
 	# Prompt {
 		# A note on the colors:
@@ -156,9 +156,6 @@
 
 		# use a git tag if available
 		git_tag=''
-		! hash __git_ps1 2>/dev/null || {
-			git_tag="$RUBY\$(__git_ps1)$D";
-		}
 
 		PS1="\n$user_color\u$D@$PINK\h$D: $ORANGE\w$git_tag\n$prompt_color\\\$$D "
 	# }
