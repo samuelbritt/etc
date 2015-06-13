@@ -1,5 +1,5 @@
 " Modeline and Notes [
-" vim: set foldmarker=[,] foldlevel=0 foldmethod=marker ts=4 sw=4 sts=4 nowrap spell:
+" vim: set foldmarker=[,] foldlevel=0 foldmethod=marker ts=4 sw=4 sts=4 nowrap nospell:
 " ]
 
 " Environment [
@@ -10,7 +10,6 @@
 		silent! call pathogen#infect()
 		silent! call pathogen#helptags()
 	" ]
-
 	filetype plugin indent on		" detect filetypes
 	syntax on						" syntax highlighting
 	set dir=~/etc/vim/swp			" don't litter project with ~ files
@@ -41,7 +40,9 @@
 	let &showbreak=nr2char(8618).'  ' " show arrow at beginning of wrapped lines
 	set autoindent					" always set autoindenting on
 	set backspace=indent,eol,start	" backspace over everything
-	set colorcolumn=+1				" show textwidth limit
+	if version >= 703
+		set colorcolumn=+1			" show textwidth limit
+	endif
 	set completeopt=menuone,longest	" insert completion
 	set foldcolumn=1				" click to fold
 	set gdefault					" global subst. by default; use '/g' to revert
