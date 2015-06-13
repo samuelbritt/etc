@@ -97,12 +97,3 @@ then
 	sudo mkdir -p $x11conf
 	sudo cp etc/X11/xorg.conf.d/60-synaptics.conf $x11conf
 fi
-
-# KDE-specific
-if [[ $KDE ]]
-then
-	konsoleconf=${HOME}/.kde/share/apps/konsole
-	mkdir -p $konsoleconf
-	ln -sf {~/etc/kde/konsole,$konsoleconf}/Candy.colorscheme
-	ln -sf {~/etc/kde/konsole,$konsoleconf}/Shell.profile
-fi

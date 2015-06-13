@@ -60,19 +60,6 @@
 		export PATH=/opt/bin:$PATH
 		export PATH=/usr/sbin:$PATH
 	# }
-	# Helium {
-	# elif [ $MACHINE = "helium" ] ; then
-		# export PATH=${HOME}/.local/opt/context/tex/texmf-linux-64/bin:$PATH
-	# }
-	# Silicon {
-	elif [ $MACHINE = "silicon" ] ; then
-		export PATH=$PATH:/opt/epd/bin
-		export PATH=/opt/eclipse:$PATH
-	# }
-	# Aluminum Virtual Machine {
-	elif [ $MACHINE = "aluminum-vert" ] ; then
-		# Intel Compilers:
-		source /opt/intel/Compiler/11.1/073/bin/ifortvars.sh ia32
 	fi
 	# }
 # }

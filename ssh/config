@@ -11,87 +11,12 @@ Host he
 	ForwardX11 yes
 	ForwardX11Trusted yes
 
-Host ti titanium.britts.us me00229.me.gatech.edu 130.207.153.149
-	HostName me00229.me.gatech.edu
-	Port 3489
-	User sam
-	ForwardX11 yes
-	ForwardX11Trusted yes
-
-Host mol moleculos moleculos.me.gatech.edu
-	HostName moleculos.me.gatech.edu
-	GssApiAuthentication no
-	User sbritt
-	ForwardX11 yes
-	ForwardX11Trusted yes
-
-Host titan titan.mse.gatech.edu
-	HostName titan.mse.gatech.edu
-	User britt
-	ForwardX11 yes
-	ForwardX11Trusted yes
-
-Host pen penguin penguin.me.gatech.edu
-	HostName penguin.me.gatech.edu
-	User britt
-	ForwardX11 yes
-	ForwardX11Trusted yes
-
-Host al aluminum.britts.us
-	HostName aluminum.britts.us
-	User sam
-	ForwardX11 yes
-	ForwardX11Trusted yes
-
-Host all
-	HostName aluminum.local
-	User sam
-	ForwardX11 yes
-	ForwardX11Trusted yes
-
-Host si silicon.britts.us
-	HostName silicon.britts.us
-	User sam
-	ForwardX11 yes
-	ForwardX11Trusted yes
-
-Host silo
-	HostName silicon.local
-	User sam
-	ForwardX11 yes
-	ForwardX11Trusted yes
-
 Host macbook
 	HostName macbook.local
 	User aprilsheppard
 	ForwardX11 yes
 	ForwardX11Trusted yes
 
-Host abe login-abe.ncsa.teragrid.org
-	HostName login-abe.ncsa.teragrid.org
-	User britt
-
-Host code code.britts.us bitbucket.org
-	# Note: to use ssh on bitbucket, follow the URL with the username,
-	# e.g. ssh://code/samuelbritt/project. For HTTP, that's not an issue:
-	# e.g. http://code.britts.us/project
-	HostName code.britts.us
-	User hg
-
-Host factor
-	HostName factor-6210.cc.gatech.edu
-	User gtg473y
-	GssApiAuthentication no
-
-Host nfs
-	HostName ssh.phx.nearlyfreespeech.net
-	User sambritt_pointandframe
-
-Host gator
-	HostName 174.120.28.154
-	User sambritt
-	Port 2222
-
-host jinx
-	HostName jinx-login.cc.gatech.edu
-	User gtg473y
+Host github.com
+	HostName ssh.github.com
+	Port 443
