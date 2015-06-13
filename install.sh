@@ -86,7 +86,7 @@ ln -sf etc/screen/screenrc .screenrc
 ln -sf etc/screen/screen-profiles .screen-profiles
 
 # Tmux
-ln -sf etc/tmux/tmux-conf .tmux-conf
+ln -sf etc/tmux/tmux.conf .tmux.conf
 ln -sf etc/tmux/tmux-completion.sh .tmux-completion.sh
 
 # SSH
