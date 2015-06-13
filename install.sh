@@ -10,7 +10,12 @@ git submodule update
 
 cd ${HOME}
 
-KERNEL=`uname`
+KERNEL=`uname -s`
+if [[ 'Cygwin' = `uname -o` ]]
+then
+	KERNEL='Linux'
+fi
+
 HOST=`uname -n`
 KDE=$KDE_FULL_SESSION
 
@@ -40,12 +45,12 @@ fi
 
 # Vim config submodules
 # install ruby dev files if needed
-hash rake 2>/dev/null || {
-	sudo apt-get -y install ruby ruby-dev rake;
-}
-cd $HOME/.vim/bundle/command-t
-rake make
-cd $HOME
+# hash rake 2>/dev/null || {
+# 	sudo apt-get -y install ruby ruby-dev rake;
+# }
+# cd $HOME/.vim/bundle/command-t
+# rake make
+# cd $HOME
 
 # Hg
 ln -sf etc/hg/hgrc .hgrc
@@ -66,7 +71,10 @@ then
 	TEXMFDIR=$HOME/Library/texmf
 fi
 # Mendeley handles bibtex files in Dropbox
-ln -sf $HOME/Dropbox/mendeley/bib $HOME/etc/texmf/bibtex/bib
+if [[ -d $HOME/Dropbox ]]
+then
+	ln -sf $HOME/Dropbox/mendeley/bib $HOME/etc/texmf/bibtex/bib
+fi
 ln -sf $HOME/etc/texmf $TEXMFDIR
 
 # Eclipse

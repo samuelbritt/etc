@@ -12,6 +12,10 @@
 
 	# Set up vars
 	PLATFORM=`uname`
+	if [[ 'Cygwin' = `uname -o` ]]
+	then
+		PLATFORM='Linux'
+	fi
 	MACHINE=${HOSTNAME%%.*}
 
 	# Determine if root
