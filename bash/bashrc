@@ -101,7 +101,10 @@
 
 	# git bash completion
 	if [ -f ~/.git-completion.sh ]; then
-		source ~/.git-completion.sh
+		. ~/.git-completion.sh
+	fi
+	if [ -f ~/.git-prompt.sh ]; then
+		. ~/.git-prompt.sh
 	fi
 	export GIT_PS1_SHOWDIRTYSTATE=1
 	export GIT_PS1_SHOWSTASHSTATE=1
@@ -149,7 +152,7 @@
 
 		# use a git tag if available
 		git_tag=''
-		! hash git 2>/dev/null || {
+		! hash __git_ps1 2>/dev/null || {
 			git_tag="$RUBY\$(__git_ps1)$D";
 		}
 

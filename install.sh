@@ -54,10 +54,8 @@ ln -sf etc/hg/hgrc_ignore .hgrc_ignore
 # Git
 ln -sf etc/git/gitconfig .gitconfig
 ln -sf etc/git/gitignore .gitignore
-if [[ $KERNEL = "Darwin" ]]
-then
-	ln -sf etc/git/git-completion.sh ~/.git-completion.sh
-fi
+ln -sf etc/git/git-completion.bash .git-completion.sh
+ln -sf etc/git/git-prompt.sh .git-prompt.sh
 
 # LaTeX
 if [[ $KERNEL = "Linux" ]]
