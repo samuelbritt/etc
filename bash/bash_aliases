@@ -74,7 +74,7 @@ function t {
 			echo "tmux list-sessions"
 			command tmux list-sessions
 		else
-			local sessions=$(tmux -q list-sessions | cut -f 1 -d ':')
+			local sessions=$(tmux -q list-sessions 2>/dev/null | cut -f 1 -d ':')
 			local isopen=false
 			for session in $sessions; do
 				if [[ $session = $1 ]]; then
