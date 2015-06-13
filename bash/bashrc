@@ -11,12 +11,12 @@
 	fi
 
 	# Set up vars
+	MACHINE=${HOSTNAME%%.*}
+	DOMAIN=${HOSTNAME#*.}
 	PLATFORM=`uname`
-	if [[ 'Cygwin' = `uname -o` ]]
-	then
+	if [[ 'Cygwin' = `uname -o` ]];  then
 		PLATFORM='Linux'
 	fi
-	MACHINE=${HOSTNAME%%.*}
 
 	# Determine if root
 	is_root=false
@@ -30,6 +30,7 @@
 	if [ $PLATFORM = "Linux" ] ; then
 		#color support of ls
 		eval "`dircolors -b`"
+		test -r $colors && eval "$(dircolors $colors)"
 		alias ls='ls --color=auto -Bpv'
 		alias dir='dir --color=auto -pv'
 	# }
@@ -64,6 +65,82 @@
 	# }
 # }
 
+# Domain-specific settings {
+	# athena dev {
+	if [ $DOMAIN = "athenahealth.com" ] ; then
+
+		# General settings
+		export LD_LIBRARY_PATH="/usr/X11R6/lib:"$LD_LIBRARY_PATH
+		export NYTPROF=start=no
+
+		# Perforce
+		export P4CLIENT=$USER
+		export P4PORT=perforce.athenahealth.com:1666
+		export P4_HOME=/home/$USER/p4
+
+		# If using perforce in windows, uncomment this line
+		# export P4WINROOT=z:\\p4
+
+		# If not using perforce in windows, uncomment these lines
+		export P4LOCALROOT=$P4_HOME
+		export P4WINROOT=$P4_HOME
+
+		# Athena Home
+		export ATHENA_HOME="$P4_HOME/prod"
+		export MASTER_ROOT_INSTANCE=PTEST1
+		export INTRANET_HOME="$P4_HOME/intranet"
+
+		# Athena-specific config
+		export EMAILINTERCEPTADDRESS="$USER@corp.athenahealth.com"
+		export BARCODEWEBSERVICELOC=http://ars-anetsrv1.corp.athenahealth.com/perl/barcode/ws.pl
+		export CURLPROXY=link1.athenahealth.com:8000
+		export MEMCACHEDPOOL=DEV
+		export FILEROOT=/home/$USER/fileroot
+		export REDIRECT_PERL_FILEROOT=1
+		export WIKI_HOME=/home/$USER/wiki
+		export PATH="$HOME/bin:$P4_HOME/intranet/bin:$P4_HOME/techops/coredev/:$P4_HOME/techops/coredev/bin:$PATH"
+
+		alias prettysql='/home/twilliams/bin/python /home/twilliams/bin/sqlformat --reindent'
+
+		# Save the .bash_history with every command. (The default is to save only on
+		# shell exit). -- from Sam Scarano via Miki on tech-tev.
+		# export PROMPT_COMMAND='history -a; history -r'
+
+		alias unharr='/usr/local/athena/techops/prodsys/patch/ctl stop'
+
+		# Only uncomment this alias if you are using perforce with Windows and know that you need it.
+		# It can cause unexpected problems on linux-only workflows
+		# alias p4=auto_local_p4
+
+		# navigation_utilities: defines common functions like 'build', 'define', 'devdb'...
+		source /usr/local/athena/techops/coredev/utils/navigation_utilities.sh
+
+		# uses navigation_utilities' function to set athenaNet environment variables
+		# like $ATHENA_HOME and $MASTER_ROOT_INSTANCE
+		build prod
+
+		# aDL
+		export ADL_BIN="$ATHENA_HOME/scripts/reports/anodyne/"
+		export ADL_LIB="$ATHENA_HOME/perllib/Athena/Reports/Extract"
+		export ADL_CRON="$ATHENA_HOME/perllib/Athena/Cron/Jobs/"
+		export ab=$ADL_BIN;
+		export al=$ADL_LIB;
+		export ac=$ADL_CRON;
+
+		# devnet
+		export DEVNET_HOME=$AX_HOME/devnet
+		
+		# athenaWorker
+		export WORKER_BIN="$ATHENA_HOME/scripts/app/platform"
+		export RUNWORKUNITSINPROCESS=0
+		export ISDEVSERVER=Y
+	# }
+	fi
+	# }
+
+# }
+
+
 # Common Settings {
 	# If not running interactively, don't do anything
 	[ -z "$PS1" ] && return
@@ -75,8 +152,28 @@
 	# update the values of LINES and COLUMNS.
 	shopt -s checkwinsize
 
+	#Vim keybindings
+	set -o vi
+	export EDITOR=vim
+	
 	# make less more friendly for non-text input files, see lesspipe(1)
 	[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
+	# Aliases found in .bash_aliases
+	if [ -f ~/.bash_aliases ]; then
+		. ~/.bash_aliases
+	fi
+
+	# paths
+	export PATH=$HOME/.local/bin:$PATH
+	# installing python packages with
+	#	setup.py install --user
+	# installs scripts to ~/.local/bin, and modules to
+	# ~/.local/lib/python*/site-packages and the PYTHONPATH is taken care of
+	# automagically
+
+	# LaTeX
+	export BIBINPUTS=.:$HOME/etc/texmf/bibtex/bib
 
 	# enable programmable completion features (you don't need to enable
 	# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -85,15 +182,17 @@
 	    . /etc/bash_completion
 	fi
 
-	# Aliases found in .bash_aliases
-	if [ -f ~/.bash_aliases ]; then
-		. ~/.bash_aliases
+	# tmux bash completion
+	if [ -f ~/.tmux-completion.sh ]; then
+		source ~/.tmux-completion.sh
 	fi
 
 	# git bash completion
 	if [ -f ~/.git-completion.sh ]; then
 		. ~/.git-completion.sh
 	fi
+
+	# git prompt help
 	if [ -f ~/.git-prompt.sh ]; then
 		. ~/.git-prompt.sh
 		export GIT_PS1_SHOWDIRTYSTATE=1
@@ -141,24 +240,15 @@
 			user_color=$RUBY
 		fi
 
-		# use a git tag if available
+		# Git tag is just too slow
 		git_tag=''
 
-		PS1="\n$user_color\u$D@$PINK\h$D: $ORANGE\w$git_tag\n$prompt_color\\\$$D "
+		athena_tag = ''
+		if [[ "$DOMAIN" = "athenahealth.com" ]]; then 
+			athena_tag="[$BUILDNAME $MASTER_ROOT_INSTANCE]"
+		fi
+
+		export PS1="\n$user_color\u$D@$PINK\h$D: $CYAN$athena_tag $BROWN\w\n$prompt_color\\\$$D "
 	# }
 
-	# LaTeX
-	export BIBINPUTS=.:$HOME/etc/texmf/bibtex/bib
-
-	# paths
-	export PATH=$HOME/.local/bin:$PATH
-	# installing python packages with
-	#	setup.py install --user
-	# installs scripts to ~/.local/bin, and modules to
-	# ~/.local/lib/python*/site-packages and the PYTHONPATH is taken care of
-	# automagically
-
-	#Vim keybindings
-	set -o vi
-	export EDITOR=vim
 # }

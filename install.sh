@@ -23,6 +23,7 @@ KDE=$KDE_FULL_SESSION
 ln -sf etc/bash/bashrc .bashrc
 ln -sf etc/bash/bash_aliases .bash_aliases
 ln -sf etc/bash/inputrc .inputrc
+ln -sf etc/bash/dircolors .dircolors
 if [[ $KERNEL == "Darwin" ]]
 then
 	ln -sf etc/bash/bash_profile .bash_profile
@@ -83,6 +84,10 @@ ln -sf etc/eclipse/vrapperrc .vrapperrc
 # Screen
 ln -sf etc/screen/screenrc .screenrc
 ln -sf etc/screen/screen-profiles .screen-profiles
+
+# Tmux
+ln -sf etc/tmux/tmux-conf .tmux-conf
+ln -sf etc/tmux/tmux-completion.sh .tmux-completion.sh
 
 # SSH
 mkdir -p .ssh

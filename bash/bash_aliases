@@ -50,8 +50,8 @@ alias scr='screen -DR'
 alias df='df -H'
 alias du='du -h'
 alias pacman='pacman-color'
-alias diff='colordiff -u'
-alias make='colormake'
+hash colordiff > /dev/null 2>&1 && alias diff='colordiff -u'
+hash colormake > /dev/null 2>&1 && alias make='colormake'
 alias pylab='ipython --pylab'
 alias epython='$EPD/python'
 alias eipython='$EPD/ipython'
@@ -60,6 +60,41 @@ alias tarz='tar czf'
 alias untarz='tar xzf'
 alias cleanlatex='rm -f *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out'
 alias subl='/cygdrive/C/Program\ Files/Sublime\ Text\ 3/sublime_text.exe'
+alias mytop="htop -u $(whoami)"
+
+# tmux helpers
+alias tls='tmux list-sessions'
+function t {
+	# t ls                you probably meant "tls"
+	# t <open-session>    attach open session "<open-session>"
+	# t <new-session>     create new session named "new-session" 
+	# t                   attach last open session
+	if [ -n "$1" ]; then
+		if [[ $1 = "ls" ]]; then
+			echo "tmux list-sessions"
+			command tmux list-sessions
+		else
+			local sessions=$(tmux -q list-sessions | cut -f 1 -d ':')
+			local isopen=false
+			for session in $sessions; do
+				if [[ $session = $1 ]]; then
+					isopen=true
+					break
+				fi
+			done
+			if [ "$isopen" = true ]; then
+				echo "tmux attach-session -t $1"
+				command tmux attach-session -t $1
+			else
+				echo "tmux new-session -s $1"
+				command tmux new-session -s $1
+			fi
+		fi
+	else
+		echo "tmux attach-session"
+		command tmux attach-session
+	fi
+}
 
 # bad typing with git
 alias gi=git
