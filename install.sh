@@ -20,28 +20,25 @@ HOST=`uname -n`
 KDE=$KDE_FULL_SESSION
 
 # Bash
-ln -sf etc/bash/bashrc .bashrc
-ln -sf etc/bash/bash_aliases .bash_aliases
-ln -sf etc/bash/inputrc .inputrc
-ln -sf etc/bash/dircolors .dircolors
-if [[ $KERNEL == "Darwin" ]]
-then
-	ln -sf etc/bash/bash_profile .bash_profile
-fi
+ln -sfn etc/bash/bashrc .bashrc
+ln -sfn etc/bash/bash_aliases .bash_aliases
+ln -sfn etc/bash/inputrc .inputrc
+ln -sfn etc/bash/dircolors .dircolors
+ln -sfn etc/bash/bash_profile .bash_profile
 
 # Vim
-ln -sf etc/vim/vim .vim
-ln -sf etc/vim/vimrc .vimrc
+ln -sfn etc/vim/vim .vim
+ln -sfn etc/vim/vimrc .vimrc
 if [[ $KERNEL == "Linux" ]]
 then
 	if [[ $HOST == hydrogen* ]]
 	then
-		ln -sf etc/vim/gvimrc_hydrogen .gvimrc
+		ln -sfn etc/vim/gvimrc_hydrogen .gvimrc
 	else
-		ln -sf etc/vim/gvimrc_linux .gvimrc
+		ln -sfn etc/vim/gvimrc_linux .gvimrc
 	fi
 else
-	ln -sf etc/vim/gvimrc_osx .gvimrc
+	ln -sfn etc/vim/gvimrc_osx .gvimrc
 fi
 
 # Vim config submodules
@@ -54,14 +51,14 @@ fi
 # cd $HOME
 
 # Hg
-ln -sf etc/hg/hgrc .hgrc
-ln -sf etc/hg/hgrc_ignore .hgrc_ignore
+ln -sfn etc/hg/hgrc .hgrc
+ln -sfn etc/hg/hgrc_ignore .hgrc_ignore
 
 # Git
-ln -sf etc/git/gitconfig .gitconfig
-ln -sf etc/git/gitignore .gitignore
-ln -sf etc/git/git-completion.bash .git-completion.sh
-ln -sf etc/git/git-prompt.sh .git-prompt.sh
+ln -sfn etc/git/gitconfig .gitconfig
+ln -sfn etc/git/gitignore .gitignore
+ln -sfn etc/git/git-completion.bash .git-completion.sh
+ln -sfn etc/git/git-prompt.sh .git-prompt.sh
 
 # LaTeX
 if [[ $KERNEL = "Linux" ]]
@@ -74,25 +71,25 @@ fi
 # Mendeley handles bibtex files in Dropbox
 if [[ -d $HOME/Dropbox ]]
 then
-	ln -sf $HOME/Dropbox/mendeley/bib $HOME/etc/texmf/bibtex/bib
+	ln -sfn $HOME/Dropbox/mendeley/bib $HOME/etc/texmf/bibtex/bib
 fi
-ln -sf $HOME/etc/texmf $TEXMFDIR
+ln -sfn $HOME/etc/texmf $TEXMFDIR
 
 # Eclipse
-ln -sf etc/eclipse/vrapperrc .vrapperrc
+ln -sfn etc/eclipse/vrapperrc .vrapperrc
 
 # Screen
-ln -sf etc/screen/screenrc .screenrc
-ln -sf etc/screen/screen-profiles .screen-profiles
+ln -sfn etc/screen/screenrc .screenrc
+ln -sfn etc/screen/screen-profiles .screen-profiles
 
 # Tmux
-ln -sf etc/tmux/tmux.conf .tmux.conf
-ln -sf etc/tmux/tmux-completion.sh .tmux-completion.sh
+ln -sfn etc/tmux/tmux.conf .tmux.conf
+ln -sfn etc/tmux/tmux-completion.sh .tmux-completion.sh
 
 # SSH
 mkdir -p .ssh
 cd .ssh
-ln -sf ../etc/ssh/config config
+ln -sfn ../etc/ssh/config config
 cd $HOME
 
 # Synaptics
