@@ -243,7 +243,7 @@
 		# Git tag is just too slow
 		git_tag=''
 
-		athena_tag = ''
+		athena_tag=''
 		if [[ "$DOMAIN" = "athenahealth.com" ]]; then 
 			athena_tag="[$BUILDNAME $MASTER_ROOT_INSTANCE]"
 		fi
