@@ -209,20 +209,18 @@
 		#	\e[m - indicates the end of color prompt
 		# [Note: Replace 0 with 1 for dark color]
 
-
 		# Candy colors
 		candy_lime=154
 		candy_gold=172
 		candy_ruby=196
 		candy_pink=200
-		candy_orange=202
-		candy_yellow=220
+		candy_tangerine=208
+		candy_lemon=220
 		candy_lavender=147
-		candy_cyan=123
+		candy_sky=123
 		candy_darkgray=237
 		candy_midgray=244
 		candy_lightgray=250
-		
 
 		# Solarized colors
 		# SOLARIZED       XTERM/HEX   16/8 TERMCOL  HEX     L*A*B      sRGB        HSB
