@@ -101,13 +101,9 @@
 		export WIKI_HOME=/home/$USER/wiki
 		export PATH="$HOME/bin:$P4_HOME/intranet/bin:$P4_HOME/techops/coredev/:$P4_HOME/techops/coredev/bin:$PATH"
 
-		alias prettysql='/home/twilliams/bin/python /home/twilliams/bin/sqlformat --reindent'
-
 		# Save the .bash_history with every command. (The default is to save only on
 		# shell exit). -- from Sam Scarano via Miki on tech-tev.
 		# export PROMPT_COMMAND='history -a; history -r'
-
-		alias unharr='/usr/local/athena/techops/prodsys/patch/ctl stop'
 
 		# Only uncomment this alias if you are using perforce with Windows and know that you need it.
 		# It can cause unexpected problems on linux-only workflows

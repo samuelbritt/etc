@@ -27,6 +27,12 @@ elif [ `uname` = "Darwin" ] ; then
 	export EPD=/Library/Frameworks/Python.framework/Versions/Current/bin
 fi
 
+if [ ${HOSTNAME#*.} = "athenahealth.com" ]; then
+	alias adlglimpse="glimpse  -iF 'Anodyne'"
+	alias prettysql='/home/twilliams/bin/python /home/twilliams/bin/sqlformat --reindent'
+	alias unharr='/usr/local/athena/techops/prodsys/patch/ctl stop'
+fi
+
 # Common alias definitions.
 alias ll='ls -hl'
 alias la='ls -A'
