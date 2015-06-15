@@ -28,7 +28,7 @@ elif [ `uname` = "Darwin" ] ; then
 fi
 
 if [ ${HOSTNAME#*.} = "athenahealth.com" ]; then
-	alias adlglimpse="glimpse  -iF 'Anodyne'"
+	alias adlglimpse='aglimpse -iF "Anodyne"'
 	alias prettysql='/home/twilliams/bin/python /home/twilliams/bin/sqlformat --reindent'
 	alias unharr='/usr/local/athena/techops/prodsys/patch/ctl stop'
 fi
