@@ -38,6 +38,7 @@
 " Vim Settings [
 	source $VIMRUNTIME/macros/matchit.vim	" enable % matching
 	let &showbreak=nr2char(8618).'  ' " show arrow at beginning of wrapped lines
+	let g:is_bash=1					" bash syntax for all sh files
 	set autoindent					" always set autoindenting on
 	set backspace=indent,eol,start	" backspace over everything
 	if version >= 703
