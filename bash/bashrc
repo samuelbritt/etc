@@ -144,7 +144,6 @@
 
 	export HISTCONTROL=ignoreboth # ignore dupes and lines starting with spaces
 	export HISTSIZE=5000 # number of stored commands
-	export TERM="xterm-256color"
 
 	# check the window size after each command and, if necessary,
 	# update the values of LINES and COLUMNS.
@@ -177,7 +176,12 @@
 	# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 	# sources /etc/bash.bashrc).
 	if [ -f /etc/bash_completion ]; then
-	    . /etc/bash_completion
+	    source /etc/bash_completion
+	fi
+
+	# adl bash completion
+	if [ -f ~/.adl-completion.sh ]; then
+		source ~/.adl-completion.sh
 	fi
 
 	# tmux bash completion
@@ -187,12 +191,12 @@
 
 	# git bash completion
 	if [ -f ~/.git-completion.sh ]; then
-		. ~/.git-completion.sh
+		source ~/.git-completion.sh
 	fi
 
 	# git prompt help
 	if [ -f ~/.git-prompt.sh ]; then
-		. ~/.git-prompt.sh
+		source ~/.git-prompt.sh
 		export GIT_PS1_SHOWDIRTYSTATE=1
 		export GIT_PS1_SHOWSTASHSTATE=1
 		export GIT_PS1_SHOWUNTRACKEDFILES=1
@@ -250,7 +254,8 @@
 		user_c=$(c $solar_orange)
 		host_c=$(c $solar_yellow)
 		path_c=$(c $solar_green bold)
-		tag_c=$(c $solar_cyan)
+		athena_tag_c=$(c $solar_cyan)
+		adl_tag_c=$(c $solar_red)
 		prompt_c=$(c $solar_base1)
 		default_c='\[\e[0m\]' # Resets to default term color
 
@@ -264,10 +269,14 @@
 
 		athena_tag=''
 		if [[ "$DOMAIN" = "athenahealth.com" ]]; then
-			athena_tag="[$BUILDNAME $MASTER_ROOT_INSTANCE]"
+			athena_tag=" [$BUILDNAME $MASTER_ROOT_INSTANCE]"
 		fi
 
-		export PS1="\n$user_c\u$prompt_c@$host_c\h$prompt_c:$tag_c$athena_tag $path_c\w \n$prompt_c\\\$$default_c "
+		function _adl__ps1 {
+			hash adl-beta > /dev/null 2>&1 && echo "$(adl-beta ps1)"
+		}
+	
+		export PS1="\n$user_c\u$prompt_c@$host_c\h$prompt_c:$athena_tag_c$athena_tag$adl_tag_c\$(_adl__ps1) $path_c\w \n$prompt_c\\\$$default_c "
 	# }
 
 # }
