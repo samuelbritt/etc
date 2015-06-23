@@ -67,6 +67,8 @@ alias untarz='tar xzf'
 alias cleanlatex='rm -f *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out'
 alias subl='/cygdrive/C/Program\ Files/Sublime\ Text\ 3/sublime_text.exe'
 alias mytop="htop -u $(whoami)"
+alias myps='ps u --forest'
+alias findadl="ps xao user,pid,ppid,pgid,sid,args -H --width=250 | grep -E 'adl|anodyne'"
 
 # tmux helpers
 alias tls='tmux list-sessions'
