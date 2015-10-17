@@ -28,9 +28,13 @@ elif [ `uname` = "Darwin" ] ; then
 fi
 
 if [ ${HOSTNAME#*.} = "athenahealth.com" ]; then
-	alias adlglimpse='aglimpse -iF "Anodyne"'
 	alias prettysql='/home/twilliams/bin/python /home/twilliams/bin/sqlformat --reindent'
 	alias unharr='/usr/local/athena/techops/prodsys/patch/ctl stop'
+	alias adlglimpse='aglimpse -iF "Anodyne"'
+	alias findadl="ps xao user,pid,ppid,pgid,sid,args -H --width=250 | grep -E '[a]dl|[a]nodyne|[U]SER'"
+	alias atest="export MASTER_ROOT_INSTANCE=ATEST1"
+	alias tll="tail -f \$(adl root)/logs/latest"
+	alias trl="tail -f \$(adl root)/reports/logs/latest"
 fi
 
 # Common alias definitions.
@@ -68,7 +72,6 @@ alias cleanlatex='rm -f *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out'
 alias subl='/cygdrive/C/Program\ Files/Sublime\ Text\ 3/sublime_text.exe'
 alias mytop="htop -u $(whoami)"
 alias myps='ps u --forest'
-alias findadl="ps xao user,pid,ppid,pgid,sid,args -H --width=250 | grep -E 'adl|anodyne'"
 
 # tmux helpers
 alias tls='tmux list-sessions'
