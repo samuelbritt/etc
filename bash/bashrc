@@ -75,11 +75,7 @@
 		export NYTPROF=start=no
 
 		# Perforce
-		location=`hostname | perl -pi -e 's/dev(\d).*/$1/'`
 		export P4PORT=perforce.athenahealth.com:1666
-		if [ $location == "1" ]; then
-			export P4PORT=perforce100.athenahealth.com:2666
-		fi
 		export P4CLIENT=$USER
 		export P4_HOME=/home/$USER/p4
 
@@ -96,6 +92,7 @@
 		export INTRANET_HOME="$P4_HOME/intranet"
 
 		# Athena-specific config
+		export ATHENA_USER="sbritt4"
 		export EMAILINTERCEPTADDRESS="$USER@corp.athenahealth.com"
 		export BARCODEWEBSERVICELOC=http://ars-anetsrv1.corp.athenahealth.com/perl/barcode/ws.pl
 		export CURLPROXY=link1.athenahealth.com:8000
@@ -103,36 +100,7 @@
 		export FILEROOT=/home/$USER/fileroot
 		export REDIRECT_PERL_FILEROOT=1
 		export WIKI_HOME=/home/$USER/wiki
-		export PATH="$HOME/bin:$P4_HOME/intranet/bin:$P4_HOME/techops/coredev/:$P4_HOME/techops/coredev/bin:$PATH"
-
-		# Save the .bash_history with every command. (The default is to save only on
-		# shell exit). -- from Sam Scarano via Miki on tech-tev.
-		# export PROMPT_COMMAND='history -a; history -r'
-
-		# Only uncomment this alias if you are using perforce with Windows and know that you need it.
-		# It can cause unexpected problems on linux-only workflows
-		# alias p4=auto_local_p4
-
-		# navigation_utilities: defines common functions like 'build', 'define', 'devdb'...
-		source /usr/local/athena/techops/coredev/utils/navigation_utilities.sh
-
-		# uses navigation_utilities' function to set athenaNet environment variables
-		# like $ATHENA_HOME and $MASTER_ROOT_INSTANCE
-		build prod
-
-		# aDL
-		export ADL_BIN="$ATHENA_HOME/scripts/reports/anodyne/"
-		export ADL_LIB="$ATHENA_HOME/perllib/Athena/Reports/Extract"
-		export ADL_CRON="$ATHENA_HOME/perllib/Athena/Cron/Jobs/"
-		export ab=$ADL_BIN
-		export etl="$ADL_BIN/anodyne_etl_daily.pl"
-		export etlx="$ADL_BIN/anodyne_etl_daily_x.pl"
-		export al=$ADL_LIB
-		export ac=$ADL_CRON
-		export ala=$ADL_LIB/Anodyne
-		export alc=$ADL_LIB/Anodyne/Canonical
-		export alp=$ADL_LIB/Anodyne/Canonical/PracticeTable
-		export alr=$ADL_LIB/Anodyne/Canonical/RootTable
+		export PATH="$HOME/bin:$PATH:$P4_HOME/intranet/bin:$P4_HOME/techops/coredev/:$P4_HOME/techops/coredev/bin"
 
 		# devnet
 		export DEVNET_HOME=$AX_HOME/devnet
@@ -141,6 +109,48 @@
 		export WORKER_BIN="$ATHENA_HOME/scripts/app/platform"
 		export RUNWORKUNITSINPROCESS=0
 		export ISDEVSERVER=Y
+
+		# apollo
+		alias apollo='ATHENA_LIB_LOADING_REDIRECTED=1 /usr/local/athena/prod/scripts/apollo/apollo/apollo.pl'
+
+		function on_build_change {
+			export aalib=$ATHENA_HOME/perllib/Athena/Reports/Analytics
+			export aastatic=$ATHENA_HOME/htdocs/static/cpmdashboards
+
+			export apl=$ATHENA_HOME/perllib/Athena/Athena/Apollo
+			export apb=$ATHENA_HOME/scripts/apollo
+			alias apollo-beta="$ATHENA_HOME/scripts/apollo/apollo/apollo.pl"
+
+			echo "    apl=$apl"
+			echo "    apb=$apb"
+		}
+
+		# aDL-specific aliases and commands
+		# export ADL_PS1_CUSTOMIZATION=false
+		# export ADL_PS1_USE_COLOR=false
+		# export ADL_SET_MASTER_ROOT_INSTANCE=false
+		if [ -f ~sbritt/public_html/bash/adl-bashrc ]; then
+			source ~sbritt/public_html/bash/adl-bashrc
+			# source ~sbritt/src/public_html/bash/adl-bashrc
+		fi
+
+		function _adl__ps1 {
+			type apollo-beta >/dev/null 2>&1 && echo "$(apollo-beta ps1)"
+		}
+		ADL_PS1_DEFAULT_COLOR="$candy_lightgray"
+		ADL_PS1_USERNAME_COLOR="$candy_tangerine"
+		ADL_PS1_HOSTNAME_COLOR="$candy_lemon"
+		ADL_PS1_BUILD_INFO_COLOR="$candy_sky"
+		ADL_PS1_DEV_ENV_INFO_COLOR="$candy_ruby"
+		ADL_PS1_WORKING_DIR_COLOR="$candy_lime"
+
+		# Save the .bash_history with every command. (The default is to save only on
+		# shell exit). -- from Sam Scarano via Miki on tech-tev.
+		# export PROMPT_COMMAND='history -a; history -r'
+
+		# Only uncomment this alias if you are using perforce with Windows and know that you need it.
+		# It can cause unexpected problems on linux-only workflows
+		# alias p4=auto_local_p4
 	# }
 	fi
 	# }
@@ -189,15 +199,15 @@
 	    source /etc/bash_completion
 	fi
 
-	# adl bash completion
-	if [ -f ~/.adl-completion.sh ]; then
-		source ~/.adl-completion.sh
-	fi
+	# # adl bash completion
+	# if [ -f ~/.adl-completion.sh ]; then
+	# 	source ~/.adl-completion.sh
+	# fi
 
-	# tmux bash completion
-	if [ -f ~/.tmux-completion.sh ]; then
-		source ~/.tmux-completion.sh
-	fi
+	# # tmux bash completion
+	# if [ -f ~/.tmux-completion.sh ]; then
+	# 	source ~/.tmux-completion.sh
+	# fi
 
 	# git bash completion
 	if [ -f ~/.git-completion.sh ]; then
@@ -213,80 +223,86 @@
 		export GIT_PS1_SHOWUPSTREAM="auto"
 	fi
 
-	# Prompt {
-		# A note on the colors:
-		#	\e[  - Indicates the beginning of color prompt
-		#	x;ym - Indicates color code: x is foreground and y is background
-		#	\e[m - indicates the end of color prompt
-		# [Note: Replace 0 with 1 for dark color]
+	# # Prompt {
+	# 	# A note on the colors:
+	# 	#	\e[  - Indicates the beginning of color prompt
+	# 	#	x;ym - Indicates color code: x is foreground and y is background
+	# 	#	\e[m - indicates the end of color prompt
+	# 	# [Note: Replace 0 with 1 for dark color]
 
-		# Candy colors
-		candy_lime=154
-		candy_gold=172
-		candy_ruby=196
-		candy_pink=200
-		candy_tangerine=208
-		candy_lemon=220
-		candy_lavender=147
-		candy_sky=123
-		candy_darkgray=237
-		candy_midgray=244
-		candy_lightgray=250
+	# 	# Candy colors
+	# 	candy_lime=154
+	# 	candy_gold=172
+	# 	candy_ruby=196
+	# 	candy_pink=200
+	# 	candy_tangerine=208
+	# 	candy_lemon=220
+	# 	candy_lavender=147
+	# 	candy_sky=123
+	# 	candy_darkgray=237
+	# 	candy_midgray=244
+	# 	candy_lightgray=250
 
-		# Solarized colors
-		# SOLARIZED       XTERM/HEX   16/8 TERMCOL  HEX     L*A*B      sRGB        HSB
-		# --------------- ----------- ---- -------  ------- ---------- ----------- -----------
-		solar_base03=234  #1c1c1c      8/4 brblack  #002b36 15 -12 -12   0  43  54 193 100  21
-		solar_base02=235  #262626      0/4 black    #073642 20 -12 -12   7  54  66 192  90  26
-		solar_base01=240  #4e4e4e     10/7 brgreen  #586e75 45 -07 -07  88 110 117 194  25  46
-		solar_base00=241  #585858     11/7 bryellow #657b83 50 -07 -07 101 123 131 195  23  51
-		solar_base0=244   #808080     12/6 brblue   #839496 60 -06 -03 131 148 150 186  13  59
-		solar_base1=245   #8a8a8a     14/4 brcyan   #93a1a1 65 -05 -02 147 161 161 180   9  63
-		solar_base2=254   #d7d7af      7/7 white    #eee8d5 92 -00  10 238 232 213  44  11  93
-		solar_base3=230   #ffffd7     15/7 brwhite  #fdf6e3 97  00  10 253 246 227  44  10  99
-		solar_yellow=136  #af8700      3/3 yellow   #b58900 60  10  65 181 137   0  45 100  71
-		solar_orange=166  #d75f00      9/3 brred    #cb4b16 50  50  55 203  75  22  18  89  80
-		solar_red=160     #d70000      1/1 red      #dc322f 50  65  45 220  50  47   1  79  86
-		solar_magenta=125 #af005f      5/5 magenta  #d33682 50  65 -05 211  54 130 331  74  83
-		solar_violet=61   #5f5faf     13/5 brmagenta#6c71c4 50  15 -45 108 113 196 237  45  77
-		solar_blue=33     #0087ff      4/4 blue     #268bd2 55 -10 -45  38 139 210 205  82  82
-		solar_cyan=37     #00afaf      6/6 cyan     #2aa198 60 -35 -05  42 161 152 175  74  63
-		solar_green=64    #5f8700      2/2 green    #859900 60 -20  65 133 153   0  68 100  60
+	# 	# Solarized colors
+	# 	# SOLARIZED       XTERM/HEX   16/8 TERMCOL  HEX     L*A*B      sRGB        HSB
+	# 	# --------------- ----------- ---- -------  ------- ---------- ----------- -----------
+	# 	solar_base03=234  #1c1c1c      8/4 brblack  #002b36 15 -12 -12   0  43  54 193 100  21
+	# 	solar_base02=235  #262626      0/4 black    #073642 20 -12 -12   7  54  66 192  90  26
+	# 	solar_base01=240  #4e4e4e     10/7 brgreen  #586e75 45 -07 -07  88 110 117 194  25  46
+	# 	solar_base00=241  #585858     11/7 bryellow #657b83 50 -07 -07 101 123 131 195  23  51
+	# 	solar_base0=244   #808080     12/6 brblue   #839496 60 -06 -03 131 148 150 186  13  59
+	# 	solar_base1=245   #8a8a8a     14/4 brcyan   #93a1a1 65 -05 -02 147 161 161 180   9  63
+	# 	solar_base2=254   #d7d7af      7/7 white    #eee8d5 92 -00  10 238 232 213  44  11  93
+	# 	solar_base3=230   #ffffd7     15/7 brwhite  #fdf6e3 97  00  10 253 246 227  44  10  99
+	# 	solar_yellow=136  #af8700      3/3 yellow   #b58900 60  10  65 181 137   0  45 100  71
+	# 	solar_orange=166  #d75f00      9/3 brred    #cb4b16 50  50  55 203  75  22  18  89  80
+	# 	solar_red=160     #d70000      1/1 red      #dc322f 50  65  45 220  50  47   1  79  86
+	# 	solar_magenta=125 #af005f      5/5 magenta  #d33682 50  65 -05 211  54 130 331  74  83
+	# 	solar_violet=61   #5f5faf     13/5 brmagenta#6c71c4 50  15 -45 108 113 196 237  45  77
+	# 	solar_blue=33     #0087ff      4/4 blue     #268bd2 55 -10 -45  38 139 210 205  82  82
+	# 	solar_cyan=37     #00afaf      6/6 cyan     #2aa198 60 -35 -05  42 161 152 175  74  63
+	# 	solar_green=64    #5f8700      2/2 green    #859900 60 -20  65 133 153   0  68 100  60
 
-		function c {
-			bold="00"
-			if [[ $2 = "bold" ]]; then
-				bold="01"
-			fi
-			echo "\[\e[$bold;38;5;${1}m\]"
-		}
+	# 	function c {
+	# 		bold="00"
+	# 		if [[ $2 = "bold" ]]; then
+	# 			bold="01"
+	# 		fi
+	# 		echo "\[\e[$bold;38;5;${1}m\]"
+	# 	}
 
-		user_c=$(c $solar_orange)
-		host_c=$(c $solar_yellow)
-		path_c=$(c $solar_green bold)
-		athena_tag_c=$(c $solar_cyan)
-		adl_tag_c=$(c $solar_red)
-		prompt_c=$(c $solar_base1)
-		default_c='\[\e[0m\]' # Resets to default term color
+	# 	user_c=$(c $solar_orange)
+	# 	host_c=$(c $solar_yellow)
+	# 	path_c=$(c $solar_green bold)
+	# 	athena_tag_c=$(c $solar_cyan)
+	# 	adl_tag_c=$(c $solar_red)
+	# 	prompt_c=$(c $solar_base1)
+	# 	default_c='\[\e[0m\]' # Resets to default term color
 
-		if $is_root ; then
-			prompt_c=$(c $candy_ruby)
-			user_c=$(c $candy_ruby)
-		fi
+	# 	if $is_root ; then
+	# 		prompt_c=$(c $candy_ruby)
+	# 		user_c=$(c $candy_ruby)
+	# 	fi
 
-		# Git tag is just too slow
-		git_tag=''
+	# 	# Git tag is just too slow
+	# 	git_tag=''
 
-		athena_tag=''
-		if [[ "$DOMAIN" = "athenahealth.com" ]]; then
-			athena_tag=" [\$BUILDNAME \$MASTER_ROOT_INSTANCE]"
-		fi
+	# 	athena_tag=''
+	# 	if [[ "$DOMAIN" = "athenahealth.com" ]]; then
+	# 		athena_tag=" [\$BUILDNAME \$MASTER_ROOT_INSTANCE]"
+	# 	fi
 
-		function _adl__ps1 {
-			hash adl-beta > /dev/null 2>&1 && echo "$(adl-beta ps1)"
-		}
+	# 	function _adl__ps1 {
+	# 		hash adl > /dev/null 2>&1 && echo "$(adl ps1)"
+	# 	}
 
-		export PS1="\n$user_c\u$prompt_c@$host_c\h$prompt_c:$athena_tag_c$athena_tag$adl_tag_c\$(_adl__ps1) $path_c\w \n$prompt_c\\\$$default_c "
+	# 	export PS1="\n$user_c\u$prompt_c@$host_c\h$prompt_c:$athena_tag_c$athena_tag$adl_tag_c\$(_adl__ps1) $path_c\w \n$prompt_c\\\$$default_c "
 	# }
 
 # }
+
+alias python3=/home/akopp/local/bin/python3
+
+#export ODBCSYSINI=~sbritt/src/snowflake/src/odbc/conf
+#export SSL_DIR=~sbritt/src/snowflake/src/odbc/pki
+source ~/.snowsql-auth

@@ -22,7 +22,4 @@ Host github.com
 	Port 443
 
 Host dev
-	HostName dev209.athenahealth.com
-	
-Host 209
-	HostName dev209.athenahealth.com
+	HostName dev109.athenahealth.com

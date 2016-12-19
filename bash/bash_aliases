@@ -1,3 +1,4 @@
+#!/bin/bash
 # Alias definitions
 
 # Platform and machine specific aliases
@@ -28,13 +29,12 @@ elif [ `uname` = "Darwin" ] ; then
 fi
 
 if [ ${HOSTNAME#*.} = "athenahealth.com" ]; then
+	# see also the adl-bashrc script
 	alias prettysql='/home/twilliams/bin/python /home/twilliams/bin/sqlformat --reindent'
 	alias unharr='/usr/local/athena/techops/prodsys/patch/ctl stop'
-	alias adlglimpse='aglimpse -iF "Anodyne"'
-	alias findadl="ps xao user,pid,ppid,pgid,sid,args -H --width=250 | grep -E '[a]dl|[a]nodyne|[U]SER'"
-	alias atest="export MASTER_ROOT_INSTANCE=ATEST1"
-	alias tll="tail -f \$(adl root)/logs/latest"
 	alias trl="tail -f \$(adl root)/reports/logs/latest"
+	alias p4log="p4 filelog -hlsm5"
+	export UTEST_OPTIONS='--nocoverage --color --compact'
 fi
 
 # Common alias definitions.
@@ -71,41 +71,7 @@ alias untarz='tar xzf'
 alias cleanlatex='rm -f *.aux *.bbl *.blg *.fdb_latexmk *.fls *.log *.out'
 alias subl='/cygdrive/C/Program\ Files/Sublime\ Text\ 3/sublime_text.exe'
 alias mytop="htop -u $(whoami)"
-alias myps='ps u --forest'
-
-# tmux helpers
-alias tls='tmux list-sessions'
-function t {
-	# t ls                you probably meant "tls"
-	# t <open-session>    attach open session "<open-session>"
-	# t <new-session>     create new session named "new-session" 
-	# t                   attach last open session
-	if [ -n "$1" ]; then
-		if [[ $1 = "ls" ]]; then
-			echo "tmux list-sessions"
-			command tmux list-sessions
-		else
-			local sessions=$(tmux -q list-sessions 2>/dev/null | cut -f 1 -d ':')
-			local isopen=false
-			for session in $sessions; do
-				if [[ $session = $1 ]]; then
-					isopen=true
-					break
-				fi
-			done
-			if [ "$isopen" = true ]; then
-				echo "tmux attach-session -t $1"
-				command tmux attach-session -t $1
-			else
-				echo "tmux new-session -s $1"
-				command tmux new-session -s $1
-			fi
-		fi
-	else
-		echo "tmux attach-session"
-		command tmux attach-session
-	fi
-}
+alias myps='ps faux | grep --color=never sbritt'
 
 # bad typing with git
 alias gi=git
@@ -139,7 +105,6 @@ function h {
 	esac
 }
 
-
 # recursive mkdir and cd if successful
 function mkcd {
 	mkdir -p "$@" && builtin cd "$@"
@@ -156,4 +121,10 @@ function manp {
 	man -t "$@" | ps2pdf - $file && open $file
 }
 
+alias p4shelved="p4 changes -L -u$USER -sshelved"
+alias utest-analytics="utest --failedonly --ignorewip --practice 1492 --suite Reports::Analytics"
+alias utest-datainsight="utest --failedonly --ignorewip --practice 1492 --suite Athena::DataInsight"
+alias python3="/home/akopp/local/bin/python3"
+
+alias "format-log"="sed -e 's/^\[[^]]*\] //' | perl -MAthena::Lib -MJSON::XS -ne 'my \$json = \$_; my \$decode; eval { \$decode = decode_json(\$json); }; print(JSON::XS->new->pretty(1)->encode(\$decode)) unless \$@; '"
 # vim: set ft=sh nospell:
