@@ -7,19 +7,31 @@ if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
 
 Push-Location $PSScriptRoot
 
-# Chocolatey packages
+# Install packages
 choco install ./apps/windows-packages.config -y
-
-# Powershell modules
 Install-Module Posh-Git
 
+Update-Help
+
 # Profile
-$profileParams = @{
-    Path = "${HOME}\Documents\WindowsPowerShell\profile.ps1"
-    Value = "$PSScriptRoot\powershell\profile.ps1"
-    ItemType = "SymbolicLink"
-    Force = $true
+$symLinks = @(
+    @{
+        Path = "${HOME}\Documents\WindowsPowerShell\profile.ps1"
+        Value = "$PSScriptRoot\powershell\profile.ps1"
+    }
+    @{
+        Path = "${HOME}\.gitconfig"
+        Value = "$PSScriptRoot\git\gitconfig"
+    }
+    @{
+        Path = "${HOME}\.gitattributes"
+        Value = "$PSScriptRoot\git\gitattributes"
+    }
+)
+
+$symLinks | ForEach-Object {
+    $params = $_
+    New-Item @params -ItemType SymbolicLink -Force | Out-Null
 }
-New-Item @profileParams
 
 Pop-Location
