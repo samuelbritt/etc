@@ -6,8 +6,6 @@
 [core]
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
-[helper]
-	credential = wincred
 [alias]
 	ci = commit
 	cam = commit -am
@@ -15,10 +13,12 @@
 	co = checkout
 	br = branch
 	fe = fetch
-	diffs = diff --staged
-	glog = log --oneline --graph --decorate
-	last = !git --no-pager glog -15
-	gloga = !git glog --all
-	lasta = !git last --all
+	ds = diff --staged
+	df = diff --name-only master...
+	l  = log --oneline --graph --decorate --all -25
+	ll = log --oneline --graph --decorate --all
 	arch = "!f() { git archive HEAD --prefix=\"$1/\" | gzip > \"$1\".tar.gz; }; f"
 	root = rev-parse --show-toplevel
+[include]
+	path = ".git.windows.config"
+	path = ".git.evestment.config"
