@@ -27,6 +27,10 @@ $symLinks = @(
         Path = "${HOME}\.gitattributes"
         Value = "$PSScriptRoot\git\gitattributes"
     }
+    @{
+        Path = "${HOME}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.ahk"
+        Value = "$PSScriptRoot\autohotkey\AutoHotkey.ahk"
+    }
 )
 
 $symLinks | ForEach-Object {
