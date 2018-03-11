@@ -1,41 +1,25 @@
 Import-Module posh-git
 
-# # vi mode
-# Set-PSReadlineOption -EditMode vi
-# Set-PSReadlineOption -ViModeIndicator Cursor
-# Set-PSReadlineOption -HistorySearchCursorMovesToEnd:$False
+$ETCPATH = "${HOME}\usr\etc"
+if (-not (Test-Path $ETCPATH))
+{
+    throw "Could not find path $ETCPATH"
+}
 
-# # escape
-# Set-PSReadlineKeyHandler -Chord "Ctrl+[" -Function "ViCommandMode" #-ViMode Insert
-
-# # bash-like completion
+# bash-like completion
 Set-PSReadlineKeyHandler -Key "Tab" -Function "Complete"
-
-# # search history
-# Set-PSReadlineKeyHandler -Chord "Ctrl+R" -Function "HistorySearchBackward"
 
 function prompt
 {
+    # color options:
+    #     Black    | DarkGray  | Gray     | White
+    #     DarkBlue | DarkGreen | DarkCyan | DarkRed | DarkMagenta | DarkYellow
+    #     Blue     | Green     | Cyan     | Red     | Magenta     | Yellow
+
     $origLastExitCode = $LASTEXITCODE
-    $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
-    $principal = [Security.Principal.WindowsPrincipal] $identity
-
-    $isAdminProcess = 0
-    if ($principal.IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
-    {
-        $isAdminProcess = 1
-    }
-
     $curPath = Get-TrimmedWorkingDirectory
-
-    # color options
-    # [-ForegroundColor {
-    #        Black    | DarkGray  | Gray     | White
-    #        DarkBlue | DarkGreen | DarkCyan | DarkRed | DarkMagenta | DarkYellow
-    #        Blue     | Green     | Cyan     | Red     | Magenta     | Yellow }
-
     Write-Host ""
-    if ($isAdminProcess) { Write-Host "[ADMIN] " -ForegroundColor RED -NoNewLine }
+    if (Test-IsAdmin) { Write-Host "[ADMIN] " -ForegroundColor RED -NoNewLine }
     Write-Host $env:USERNAME -NoNewLine -ForegroundColor DarkYellow
     Write-Host '@' -NoNewLine -ForegroundColor Gray
     Write-Host $(hostname) -NoNewLine -ForegroundColor Yellow
@@ -48,6 +32,13 @@ function prompt
 }
 
 # Functions
+function Test-IsAdmin
+{
+    $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $principal = [Security.Principal.WindowsPrincipal] $identity
+    Write-Output $principal.IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
+}
+
 function Get-TrimmedWorkingDirectory
 {
     $curPath = $ExecutionContext.SessionState.Path.CurrentLocation.Path
@@ -66,7 +57,7 @@ Set-Alias la Get-AllChildItems
 
 function Get-ParentLocation
 {
-    (Get-Location | Get-Item -Force).parent
+    (Get-Location | Get-Item -Force).Parent
 }
 
 function Set-ParentLocation
@@ -97,8 +88,7 @@ function New-ItemAndSetLocation
 {
     param($Path)
     $ErrorActionPreference = "Stop"
-    New-Item -Name $Path -ItemType "directory" | Out-Null
-    Set-Location $Path
+    New-Item -Name $Path -ItemType "Directory" | Set-Location
 }
 
 Set-Alias mkcd New-ItemAndSetLocation
@@ -120,9 +110,12 @@ function Get-TailContent
 Set-Alias tail Get-TailContent
 
 # paths
-$PSDIR = Split-Path $MyInvocation.MyCommand.Definition
-$SCRIPTDIR = Join-Path $PSDIR "Scripts"
-$env:Path = "$SCRIPTDIR;" + $env:Path
+$scriptsPath = Join-Path $ETCPATH "\powershell\scripts"
+$env:Path = "$scriptsPath;" + $env:Path
+
+$modulesPath = Join-Path $ETCPATH "\powershell\modules"
+$env:PsModulePath = "$modulesPath;" + $env:PsModulePath   
+
 $PROFILE = $MyInvocation.MyCommand.Definition
 
 # general aliases
@@ -132,138 +125,9 @@ $USR = "$HOME\usr"
 Set-Alias "subl" "${env:ProgramFiles}/Sublime Text 3/sublime_text.exe"
 Set-Alias touch New-Item
 Set-Alias grep Select-String
-function _profile { Invoke-Item $PROFILE.CurrentUserAllHosts }; Set-Alias profile _profile
 function gl { (git lasta) }
 
-# eVestment
-$SHOME = "S:\Technology\DataOperations\Sam"
-$TASKS = "${USR}\tasks"
-$SRC = "C:\Source"
-$DEV_TOOLS = "${SRC}\zzUtilities\DeveloperTools"
-$ANALYTICS = "${SRC}\Production\Analytics"
-$SHARED_API = "${SRC}\Production\SharedApi"
-$LEGACY = "${SRC}\Production\Legacy"
-$ROUNDHOUSE = "${SRC}\Production\Roundhouse"
-$DATA_OPS = "${SRC}\Production\DataOperations"
-$DEVENV = "${env:ProgramFiles(x86)}\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe"
-
-# dataops dev
-$env:DATAOPS_HOME = $DATA_OPS
-$env:PSModulePath = "${env:DATAOPS_HOME}\Modules;" + $env:PSModulePath
-$DATA_OPS_BUILDS = "S:\Technology\DataOperations\Builds"
-
-if (Test-Path "${env:HOME}\usr\.jira-token")
+if ($env:USERDOMAIN -eq "EVESTMENT")
 {
-    $tokenSS = Get-Content "${env:HOME}\usr\.jira-token" | ConvertTo-SecureString
-    $env:JiraToken = (New-Object pscredential 'x', $tokenSS).GetNetworkCredential().Password
-}
-
-function Reset-Modules { Get-ChildItem $DATA_OPS/Modules | Select-Object -ExpandProperty Name | Get-Module | Remove-Module -Force }
-
-function cdt
-{
-    param($Issue = (Get-Issue))
-    $target = $TASKS
-
-    if ($Issue)
-    {
-        $taskDir = Get-Ticket -Issue $Issue
-        if ($taskDir)
-        {
-            $target = $taskDir
-        }
-        else
-        {
-            Write-Warning "no task directory found for $Issue"
-        }
-    }
-    Set-Location $target
-}
-
-function cds { Set-Location $SRC }
-function cda { Set-Location $ANALYTICS }
-function cdsa { Set-Location $SHARED_API }
-function cdl { Set-Location $LEGACY }
-function cdr { Set-Location $ROUNDHOUSE }
-function cdd { Set-Location $DATA_OPS }
-function Start-SyncAll { Push-Location ${DEV_TOOLS}; .\GitPullAndUpdate.bat; Pop-Location }
-function Start-BuildAll { Push-Location ${DEV_TOOLS}; .\CompileAll.bat; Pop-Location }
-function Start-BuildAnalytics { Push-Location ${ANALYTICS}; .\.team\shell\build.ps1; Pop-Location }
-function Start-BuildApi { Push-Location ${SHARED_API}; .\.team\shell\build.ps1; Pop-Location }
-function Start-MessageHandler { . ${SHARED_API}\eA.Shared.API.Service\bin\eA.Shared.API.Service.exe }
-function Reset-IIS { Start-ProcessAsAdmin { iisreset.exe } }
-
-function Start-AdSsms
-{
-    runas /user:ad\sbritt "C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe"
-}
-
-<#
-.SYNOPSIS
-Opens Jira to the provided issue in your default browser. 
-
-.PARAMETER Issue
-Issue to open. If not provided, opens to the issue corresponding to your current branch.
-
-.EXAMPLE
-Start-Jira ANALYTICS-123
-
-Opens Jira to the page for issue ANALYTICS-123
-
-.EXAMPLE
-j ANALYTICS-123
-
-Same as above, but uses the alias "j".
-
-.EXAMPLE
-j
-
-Opens Jira to the page for issue corresponding to your current branch, assuming your branch is prefixed with the issue ID.
-#>
-function Start-Jira
-{ 
-    param([string] $Issue = (Get-Issue))
-    if (-not $Issue)
-    {
-        throw "Must provide an issue, or be in a branch."
-    }
-    Start-Process "https://evestment.atlassian.net/browse/$Issue"
-}
-Set-Alias j Start-Jira
-
-function Send-Email
-{
-    param (
-        [string] $FromAddress,
-        [string[]] $ToAddress,
-        [string] $Subject,
-        [string] $Body,
-        [switch] $Html,
-        [string] $Host = "ev-smtp.evestment.local",
-        [int] $Port = 25 
-    )
-    $smtpClient = New-Object System.Net.Mail.SmtpClient
-    $smtpClient.Host = "ev-smtp.evestment.local"
-    $smtpClient.Port = 25
-
-    $mailMessage = New-Object System.Net.Mail.MailMessage
-    $mailMessage.From = New-Object System.Net.Mail.MailAddress($FromAddress)
-    $mailMessage.To.Add($ToAddress)
-    $mailMessage.Subject = $Subject
-    $mailMessage.Body = $Body
-    if ($Html)
-    {
-        $mailMessage.IsBodyHtml = $true
-    }
-    
-    $smtpClient.Send($mailMessage)
-}
-
-Import-Module EvGit
-
-function Rebuild-Sencha
-{
-    Push-Location $ANALYTICS\eA.Analytics.UI\ExtJs\analytics
-    sencha app build -c
-    Pop-Location
+    . "$ETCPATH/powershell/profile.evestment.ps1"
 }

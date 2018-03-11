@@ -15,9 +15,10 @@ Install-Module Posh-Git
 
 # Profile
 $profileParams = @{
-    Path = "${env:HOME}\Documents\WindowsPowerShell\profile.ps1"
+    Path = "${HOME}\Documents\WindowsPowerShell\profile.ps1"
     Value = "$PSScriptRoot\powershell\profile.ps1"
     ItemType = "SymbolicLink"
+    Force = $true
 }
 New-Item @profileParams
 
