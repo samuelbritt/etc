@@ -1,11 +1,13 @@
 [user]
-	name = Sam Britt
+	name = Samuel Britt
 	email = samuelbritt@gmail.com
 [color]
 	ui = true
 [core]
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
+[helper]
+	credential = wincred
 [alias]
 	ci = commit
 	cam = commit -am
