@@ -33,10 +33,10 @@ function prompt
     $curPath = Get-TrimmedWorkingDirectory
     Write-Host ""
     if (Test-IsAdmin) { Write-Host "[ADMIN] " -ForegroundColor RED -NoNewLine }
-    Write-Host $env:USERNAME -NoNewLine -ForegroundColor White
-    Write-Host '@' -NoNewLine -ForegroundColor Gray
-    Write-Host $(hostname) -NoNewLine -ForegroundColor White
-    Write-Host ':' -NoNewLine -ForegroundColor Gray
+    Write-Host $env:USERNAME -NoNewLine -ForegroundColor Gray
+    Write-Host '@' -NoNewLine -ForegroundColor White
+    Write-Host $(hostname) -NoNewLine -ForegroundColor Gray
+    Write-Host ':' -NoNewLine -ForegroundColor White
     try { Write-VcsStatus } catch {}
     Write-Host (' ' + $curPath) -ForegroundColor Green
     Write-Host ">" -ForegroundColor Gray -NoNewLine
