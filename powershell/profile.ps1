@@ -12,20 +12,33 @@ Set-PSReadlineKeyHandler -Key "Tab" -Function "Complete"
 function prompt
 {
     # color options:
-    #     Black    | DarkGray  | Gray     | White
-    #     DarkBlue | DarkGreen | DarkCyan | DarkRed | DarkMagenta | DarkYellow
-    #     Blue     | Green     | Cyan     | Red     | Magenta     | Yellow
+    #  0 Black
+    #  1 DarkBlue
+    #  2 DarkGreen
+    #  3 DarkCyan
+    #  4 DarkRed
+    #  5 DarkMagenta
+    #  6 DarkYellow
+    #  7 DarkGrey
+    #  8 Grey
+    #  9 Blue
+    # 10 Green
+    # 11 Cyan
+    # 12 Red
+    # 13 Magenta
+    # 14 Yellow
+    # 15 White
 
     $origLastExitCode = $LASTEXITCODE
     $curPath = Get-TrimmedWorkingDirectory
     Write-Host ""
     if (Test-IsAdmin) { Write-Host "[ADMIN] " -ForegroundColor RED -NoNewLine }
-    Write-Host $env:USERNAME -NoNewLine -ForegroundColor DarkYellow
+    Write-Host $env:USERNAME -NoNewLine -ForegroundColor White
     Write-Host '@' -NoNewLine -ForegroundColor Gray
-    Write-Host $(hostname) -NoNewLine -ForegroundColor Yellow
+    Write-Host $(hostname) -NoNewLine -ForegroundColor White
     Write-Host ':' -NoNewLine -ForegroundColor Gray
     try { Write-VcsStatus } catch {}
-    Write-Host (' ' + $curPath) -ForegroundColor DarkGreen
+    Write-Host (' ' + $curPath) -ForegroundColor Green
     Write-Host ">" -ForegroundColor Gray -NoNewLine
     $LASTEXITCODE = $origLastExitCode
     return " "
