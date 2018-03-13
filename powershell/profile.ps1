@@ -9,37 +9,79 @@ if (-not (Test-Path $ETCPATH))
 # bash-like completion
 Set-PSReadlineKeyHandler -Key "Tab" -Function "Complete"
 
+$ColorSchemes = @{
+    SolarizedLukeMaciak = @(
+        "Base02"
+        "Blue"
+        "Green"
+        "Yellow"
+
+        "Red"
+        "Magenta"
+        "Cyan"
+        "Base2"
+
+        "Base03"
+        "Base1"
+        "Base01"
+        "Base00"
+
+        "Orange"
+        "Violet"
+        "Base0"
+        "Base3"
+    )
+    PowerShell = @(
+        "Black"
+        "DarkBlue"
+        "DarkGreen"
+        "DarkCyan"
+        "DarkRed"
+        "DarkMagenta"
+        "DarkYellow"
+        "DarkGrey"
+        "Grey"
+        "Blue"
+        "Green"
+        "Cyan"
+        "Red"
+        "Magenta"
+        "Yellow"
+        "White"
+    )
+}
+
+$ChosenColorScheme = $ColorSchemes.SolarizedLukeMaciak
+
+$ColorScheme = @{}
+$i = 0
+$ChosenColorScheme | ForEach-Object {
+    $ColorScheme.$_ = $i
+    # Write-Host $_ -ForegroundColor $i
+    $i += 1
+}
+
 function prompt
 {
-    # color options:
-    #  0 Black
-    #  1 DarkBlue
-    #  2 DarkGreen
-    #  3 DarkCyan
-    #  4 DarkRed
-    #  5 DarkMagenta
-    #  6 DarkYellow
-    #  7 DarkGrey
-    #  8 Grey
-    #  9 Blue
-    # 10 Green
-    # 11 Cyan
-    # 12 Red
-    # 13 Magenta
-    # 14 Yellow
-    # 15 White
+    $colors = @{
+        Admin = $ColorScheme.Red
+        UserName = $ColorScheme.Orange
+        HostName = $ColorScheme.Yellow
+        Path = $ColorScheme.Green
+        Symbols = $ColorScheme.Base1
+    }
 
     $origLastExitCode = $LASTEXITCODE
     $curPath = Get-TrimmedWorkingDirectory
     Write-Host ""
-    if (Test-IsAdmin) { Write-Host "[ADMIN] " -ForegroundColor RED -NoNewLine }
-    Write-Host $env:USERNAME -NoNewLine -ForegroundColor Gray
-    Write-Host '@' -NoNewLine -ForegroundColor White
-    Write-Host $(hostname) -NoNewLine -ForegroundColor Gray
-    Write-Host ':' -NoNewLine -ForegroundColor White
+    if (Test-IsAdmin) { Write-Host "[ADMIN] " -ForegroundColor $colors.Admin -NoNewLine }
+    Write-Host $env:USERNAME -NoNewLine -ForegroundColor $colors.UserName
+    Write-Host '@' -NoNewLine -ForegroundColor $colors.Symbols
+    Write-Host $(hostname) -NoNewLine -ForegroundColor $colors.HostName
+    Write-Host ':' -NoNewLine -ForegroundColor $colors.Symbols
     try { Write-VcsStatus } catch {}
-    Write-Host (' ' + $curPath) -ForegroundColor Green
-    Write-Host ">" -ForegroundColor Gray -NoNewLine
+    Write-Host (' ' + $curPath) -ForegroundColor $colors.Path
+    Write-Host ">" -NoNewLine -ForegroundColor $colors.Symbols
     $LASTEXITCODE = $origLastExitCode
     return " "
 }
