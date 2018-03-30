@@ -1,7 +1,8 @@
+[CmdletBinding()]
 param(
     [string] $ServerInstance = 'ev-atl-devdata01',
     [string] $Database = 'superset_dev',
-    [string] $Schema = '__import',
+    [string[]] $Schema = '__import',
     [string] $TableName = '*'
 )
 Set-StrictMode -Version Latest
@@ -10,7 +11,13 @@ $newLine = [System.Environment]::NewLine
 
 $server = New-Object Microsoft.SqlServer.Management.Smo.Server $ServerInstance
 $db = $server.Databases[$Database]
-$tables = $db.Tables | Where-Object { ($_.Schema -like $Schema) -and ($_.Name -like $TableName) }
+
+$tables = @()
+foreach ($theSchema in $Schema)
+{
+    Write-Verbose "Getting tables for $theSchema"
+    $tables += $db.Tables | Where-Object { ($_.Schema -like $theSchema) -and ($_.Name -like $TableName) }
+}
 
 $dropOptions = New-Object Microsoft.SqlServer.Management.Smo.ScriptingOptions
 $dropOptions.IncludeIfNotExists = $true
@@ -22,6 +29,7 @@ $tableCreateOptions.NoCollation = $true
 $tableCreateOptions.Indexes = $true
 $tableCreateOptions.DriAllConstraints = $false
 $tableCreateOptions.DriAllKeys = $false
+$tableCreateOptions.DriDefaults = $true
 
 $fkCreateOptions = New-Object Microsoft.SqlServer.Management.Smo.ScriptingOptions
 $fkCreateOptions.IncludeIfNotExists = $true

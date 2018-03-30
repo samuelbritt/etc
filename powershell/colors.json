@@ -1,0 +1,89 @@
+{
+  "powershell": {
+    "pallette": [
+      "Black",
+      "DarkBlue",
+      "DarkGreen",
+      "DarkCyan",
+
+      "Red",
+      "Magenta",
+      "Yellow",
+      "DarkGrey",
+
+      "Grey",
+      "Blue",
+      "Green",
+      "Cyan",
+
+      "DarkRed",
+      "DarkMagenta",
+      "DarkYellow",
+      "White"
+    ],
+    "prompt": {
+      "admin": "Red",
+      "userName": "DarkYellow",
+      "hostName": "DarkYellow",
+      "path": "Green",
+      "symbols": "DarkGrey"
+    }
+  },
+  "solarized": {
+    "pallette": [
+      "Base02",
+      "Blue",
+      "Green",
+      "Yellow",
+
+      "Red",
+      "Magenta",
+      "Cyan",
+      "Base2",
+
+      "Base03",
+      "Base1",
+      "Base01",
+      "Base00",
+
+      "Orange",
+      "Violet",
+      "Base0",
+      "Base3"
+    ],
+    "prompt" : {
+      "admin": "Red",
+      "userName": "Orange",
+      "hostName": "Yellow",
+      "path": "Green",
+      "symbols": "Base1"
+    }
+  },
+  "nord": {
+    "pallette": [
+      "Polar.Darker",
+      "Frost.DarkBlue",
+      "Aurora.DarkGreen",
+      "Frost.BlueGreen",
+      "Aurora.Red",
+      "Aurora.Purple",
+      "Aurora.Yellow",
+      "Snow.Light",
+      "Polar.Dark",
+      "Frost.Blue",
+      "Aurora.Green",
+      "Frost.LightBlue",
+      "Aurora.DarkRed",
+      "Aurora.DarkPurple",
+      "Aurora.Orange",
+      "Snow.Lighter"
+    ],
+    "prompt": {
+      "admin": "Aurora.Red",
+      "userName": "Aurora.Purple",
+      "hostName": "Aurora.Purple",
+      "path": "Aurora.Green",
+      "symbols": "Snow.Light"
+    }
+  }
+}

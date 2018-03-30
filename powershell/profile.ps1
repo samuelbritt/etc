@@ -9,67 +9,54 @@ if (-not (Test-Path $ETCPATH))
 # bash-like completion
 Set-PSReadlineKeyHandler -Key "Tab" -Function "Complete"
 
-$ColorSchemes = @{
-    SolarizedLukeMaciak = @(
-        "Base02"
-        "Blue"
-        "Green"
-        "Yellow"
+function Get-ColorScheme
+{
+    param([string] $Name, [switch] $Debug)
 
-        "Red"
-        "Magenta"
-        "Cyan"
-        "Base2"
+    $colorSchemes = Get-Content "$ETCPATH\powershell\colors.json" | ConvertFrom-Json
 
-        "Base03"
-        "Base1"
-        "Base01"
-        "Base00"
+    $scheme = New-Object psobject -Property @{
+        Pallette = @{}
+        Prompt = New-Object psobject -Property @{
+            Admin = $null
+            UserName = $null
+            HostName = $null
+            Path = $null
+            Symbols = $null
+        }
+    }
 
-        "Orange"
-        "Violet"
-        "Base0"
-        "Base3"
-    )
-    PowerShell = @(
-        "Black"
-        "DarkBlue"
-        "DarkGreen"
-        "DarkCyan"
-        "DarkRed"
-        "DarkMagenta"
-        "DarkYellow"
-        "DarkGrey"
-        "Grey"
-        "Blue"
-        "Green"
-        "Cyan"
-        "Red"
-        "Magenta"
-        "Yellow"
-        "White"
-    )
+    $data = $colorSchemes.$Name
+    $data.Pallette | ForEach-Object {
+        $scheme.Pallette.Add($_, $data.Pallette.IndexOf($_))
+        if ($Debug) { Write-Host "$_" -ForegroundColor $scheme.Pallette[$_] }
+    }
+
+    $scheme.Prompt | Get-Member -MemberType NoteProperty | ForEach-Object {
+        $memberName = $_.Name
+        $scheme.Prompt.$memberName = $scheme.Pallette[$data.prompt.$memberName]
+    }
+
+    Write-Output $scheme
 }
 
-$ChosenColorScheme = $ColorSchemes.SolarizedLukeMaciak
-
-$ColorScheme = @{}
-$i = 0
-$ChosenColorScheme | ForEach-Object {
-    $ColorScheme.$_ = $i
-    # Write-Host $_ -ForegroundColor $i
-    $i += 1
+function Set-ColorScheme
+{
+    [CmdletBinding()]
+    Param([string] $Name)
+    Process
+    {
+        Set-StrictMode -Version Latest
+        $script:ColorScheme = Get-ColorScheme -Name $Name
+    }
 }
+
+$script:ColorScheme = $null
+Set-ColorScheme "Nord"
 
 function prompt
 {
-    $colors = @{
-        Admin = $ColorScheme.Red
-        UserName = $ColorScheme.Orange
-        HostName = $ColorScheme.Yellow
-        Path = $ColorScheme.Green
-        Symbols = $ColorScheme.Base1
-    }
+    $colors = $script:ColorScheme.Prompt
 
     $origLastExitCode = $LASTEXITCODE
     $curPath = Get-TrimmedWorkingDirectory
@@ -169,7 +156,7 @@ $scriptsPath = Join-Path $ETCPATH "\powershell\scripts"
 $env:Path = "$scriptsPath;" + $env:Path
 
 $modulesPath = Join-Path $ETCPATH "\powershell\modules"
-$env:PsModulePath = "$modulesPath;" + $env:PsModulePath   
+$env:PsModulePath = "$modulesPath;" + $env:PsModulePath
 
 $PROFILE = $MyInvocation.MyCommand.Definition
 

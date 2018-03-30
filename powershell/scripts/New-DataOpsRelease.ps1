@@ -18,7 +18,7 @@ function Format-Issue
 function Format-Branches
 {
     param(
-        [Parameter(ValueFromPipeline = $true)]    
+        [Parameter(ValueFromPipeline = $true)]
         [string[]] $Branches
     )
     process
@@ -27,7 +27,7 @@ function Format-Branches
         {
             $details = Get-BranchDetails -BranchName $branch
             $issue = Get-JiraIssue -IssueId $details.Issue
-        
+
             $inputObject = if ($issue) { $issue } else { $details }
             $fmt = $inputObject | Format-Issue
             Write-Output "<li>$fmt</li>"
@@ -44,7 +44,7 @@ function Get-BranchesMergedSinceRelease
 
     $startCommit = $Start.ToString()
     $endCommit = if ($End) { $End.ToString() } else { 'HEAD' }
-    
+
     git log --format="%C(auto)%h %s%d" --merges "${startCommit}..${endCommit}" |
         Select-String "to master" |
         Where-Object { $_ -match '([0-9a-fA-f]+) Merge.*from (.*?-\d*.*?) to master.*' } |
@@ -89,7 +89,7 @@ Thanks,<br>
 
 Push-Location $srcPath
 $currentBranch = Get-CurrentBranch
-# git stash save -u
+git stash save -u
 git checkout master
 Start-Sleep -Seconds 1
 git pull
