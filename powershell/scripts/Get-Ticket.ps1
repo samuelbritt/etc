@@ -18,7 +18,7 @@ if (-not $Issue)
     $Issue = $branchDetails.Issue
 }
 
-$ticketDir = Get-ChildItem $Path\$Issue* |
+$ticketDir = Get-ChildItem $Path\$Issue-* |
     Sort-Object -Property FullName |
     Select-Object -First 1
 
@@ -28,12 +28,12 @@ if (-not $ticketDir)
     {
         $Name = $branchDetails.Summary
     }
-    
+
     if (-not $Issue -or -not $Name)
     {
         throw "must provide both an issue an name, or be in a branch"
     }
-    
+
     $Name = $Name.ToLower().Replace(' ', '-')
     $ticketDir = Join-Path $Path "${Issue}-${Name}"
 }

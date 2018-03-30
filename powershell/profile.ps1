@@ -9,67 +9,86 @@ if (-not (Test-Path $ETCPATH))
 # bash-like completion
 Set-PSReadlineKeyHandler -Key "Tab" -Function "Complete"
 
-$ColorSchemes = @{
-    SolarizedLukeMaciak = @(
-        "Base02"
-        "Blue"
-        "Green"
-        "Yellow"
-
-        "Red"
-        "Magenta"
-        "Cyan"
-        "Base2"
-
-        "Base03"
-        "Base1"
-        "Base01"
-        "Base00"
-
-        "Orange"
-        "Violet"
-        "Base0"
-        "Base3"
+function Get-ColorScheme
+{
+    param(
+        [string] $Name = $(if ($script:ColorScheme) { $script:ColorScheme.Name }),
+        [switch] $Debug
     )
-    PowerShell = @(
-        "Black"
-        "DarkBlue"
-        "DarkGreen"
-        "DarkCyan"
-        "DarkRed"
-        "DarkMagenta"
-        "DarkYellow"
-        "DarkGrey"
-        "Grey"
-        "Blue"
-        "Green"
-        "Cyan"
-        "Red"
-        "Magenta"
-        "Yellow"
-        "White"
-    )
+
+    $colorSchemes = Get-Content "$ETCPATH\powershell\colors.json" | ConvertFrom-Json
+
+    $scheme = New-Object psobject -Property @{
+        Name = $Name
+        Pallette = @{}
+        CustomColors = New-Object psobject -Property @{
+            Admin = $null
+            UserName = $null
+            HostName = $null
+            Path = $null
+            Symbols = $null
+            ErrorForegroundColor = $null
+        }
+    }
+
+    $data = $colorSchemes.$Name
+    $data.Pallette | ForEach-Object {
+        $index = $data.Pallette.IndexOf($_)
+        $scheme.Pallette.Add($_, $index)
+
+        if ($Debug)
+        {
+            Write-Host ("{0,2} {1}" -f $index, $_) -ForegroundColor $scheme.Pallette[$_]
+        }
+    }
+
+    $scheme.CustomColors | Get-Member -MemberType NoteProperty | ForEach-Object {
+        $memberName = $_.Name
+        $scheme.CustomColors.$memberName = $data.colors.$memberName
+    }
+
+    Write-Output $scheme
 }
 
-$ChosenColorScheme = $ColorSchemes.SolarizedLukeMaciak
+function Get-ConsoleColor
+{
+    param ([string] $Name)
 
-$ColorScheme = @{}
-$i = 0
-$ChosenColorScheme | ForEach-Object {
-    $ColorScheme.$_ = $i
-    # Write-Host $_ -ForegroundColor $i
-    $i += 1
+    $colorName = $Name
+    if (($script:ColorScheme.CustomColors.PSObject.Properties.name) -contains $Name)
+    {
+        $colorName = $script:ColorScheme.CustomColors.$Name
+    }
+    Write-Output $script:ColorScheme.Pallette[$colorName]
 }
 
+function Set-ColorScheme
+{
+    [CmdletBinding()]
+    Param([string] $Name)
+    Process
+    {
+        Set-StrictMode -Version Latest
+        $script:ColorScheme = Get-ColorScheme -Name $Name
+
+        if ($script:ColorScheme.CustomColors.ErrorForegroundColor)
+        {
+            $host.PrivateData.ErrorForegroundColor = (Get-ConsoleColor $script:ColorScheme.CustomColors.ErrorForegroundColor)
+        }
+    }
+}
+
+Set-ColorScheme "Nord"
 function prompt
 {
-    $colors = @{
-        Admin = $ColorScheme.Red
-        UserName = $ColorScheme.Orange
-        HostName = $ColorScheme.Yellow
-        Path = $ColorScheme.Green
-        Symbols = $ColorScheme.Base1
-    }
+    $colors = @{}
+    @(
+        "Admin",
+        "UserName"
+        "HostName"
+        "Path"
+        "Symbols"
+    ) | ForEach-Object { $colors.Add($_, (Get-ConsoleColor $_)) }
 
     $origLastExitCode = $LASTEXITCODE
     $curPath = Get-TrimmedWorkingDirectory
@@ -169,7 +188,7 @@ $scriptsPath = Join-Path $ETCPATH "\powershell\scripts"
 $env:Path = "$scriptsPath;" + $env:Path
 
 $modulesPath = Join-Path $ETCPATH "\powershell\modules"
-$env:PsModulePath = "$modulesPath;" + $env:PsModulePath   
+$env:PsModulePath = "$modulesPath;" + $env:PsModulePath
 
 $PROFILE = $MyInvocation.MyCommand.Definition
 

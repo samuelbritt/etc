@@ -23,7 +23,7 @@ SELECT
 `t{3}
 FROM {1} {2} WITH (NOLOCK)
 `tJOIN [etl].[Batch] [b] WITH (NOLOCK) ON {2}.[BatchID] = [b].[BatchID]
-WHERE [b].[BatchID] = 1
+WHERE [b].[IsActive] = 1
 "@
     function Get-Tables
     {
@@ -69,7 +69,7 @@ WHERE [b].[BatchID] = 1
         Set-StrictMode -Version Latest
 
         $columnSql = ($Columns |
-                # Where-Object { $_.Name -ne "BatchId" } |
+                Where-Object { $_.Name -ne "BatchId" } |
                 Sort-Object Id |
                 Select-Object -ExpandProperty Name |
                 ForEach-Object { "[$TableAlias].[$_]" } ) -join "`r`n`t,"
