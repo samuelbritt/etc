@@ -17,4 +17,5 @@ function Start-ProcessAsAdmin
     }
     Start-Process @process
 }
+
 Set-Alias sudo Start-ProcessAsAdmin

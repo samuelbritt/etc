@@ -152,8 +152,9 @@ function Get-TailContent
 Set-Alias tail Get-TailContent
 
 # paths
-$scriptsPath = Join-Path $ETCPATH "\powershell\scripts"
-$env:Path = "$scriptsPath;" + $env:Path
+$functionsPath = Join-Path $ETCPATH "\powershell\functions"
+Get-ChildItem $functionsPath | ForEach-Object { . $_.FullName }
+# $env:Path = "$scriptsPath;" + $env:Path
 
 $modulesPath = Join-Path $ETCPATH "\powershell\modules"
 $env:PsModulePath = "$modulesPath;" + $env:PsModulePath
