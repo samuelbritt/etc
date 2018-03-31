@@ -1,6 +1,6 @@
 function New-RoundhouseMigration
 {
-    [CmdletBinding(SupportsShouldProcess=$true, DefaultParameterSetName='ByDatabase')]
+    [CmdletBinding(DefaultParameterSetName='ByDatabase')]
     param(
         [Parameter(ParameterSetName='ByPath')]
         [string] $Path,

@@ -72,7 +72,7 @@ function New-SupersetAddItem
     
         $columns = Get-Columns -SchemaName $SchemaName -TableName $TableName @conn
         $columnNames = $columns | Where-Object IsIdentity -NE 1 | Select-Object -ExpandProperty Name
-        $columnList = "`t" + (($columnNames | % { "[${_}]"}) -join "`r`n`t,")
+        $columnList = "`t" + (($columnNames | ForEach-Object { "[${_}]"}) -join "`r`n`t,")
     
     
         $columnObjs = $columnNames | ForEach-Object {
@@ -121,8 +121,8 @@ function New-SupersetAddItem
         $insertValues = ($columnObjs.SqlValue -join "`r`n$space,")
     
         $parameterStatement = ((($columnObjs |
-        ? { $_.IsVariable } |
-        % { $ParameterTemplate -f ($_.SqlValue, $_.PropertyName) }) |
+        Where-Object { $_.IsVariable } |
+        ForEach-Object { $ParameterTemplate -f ($_.SqlValue, $_.PropertyName) }) |
         Get-Unique) -join "`r`n$space")
     
         $InsertTemplate -f ($SchemaName, $TableName, $insertColumns, $insertValues)

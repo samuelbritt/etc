@@ -31,7 +31,7 @@ function Invoke-BakrepoMirrorProd
     # Remove-S3Object -BucketName $DestinationBucketName -KeyCollection $keyCollection -ProfileName $WriterProfileName -Force
     
     Get-S3Object -BucketName $BucketName -KeyPrefix $KeyPrefix -ProfileName $ReaderProfileName |
-        % {
+        ForEach-Object {
             $metadata = $_ | Get-S3ObjectMetadata -ProfileName $ReaderProfileName
             $evMetadata = $metadata.Metadata['x-amz-meta-ev-context']
             $tagSet = $_ | Get-S3ObjectTagSet -ProfileName $ReaderProfileName
