@@ -11,33 +11,56 @@ Set-PSReadlineKeyHandler -Key "Tab" -Function "Complete"
 
 function Get-ColorScheme
 {
-    param([string] $Name, [switch] $Debug)
+    param(
+        [string] $Name = $(if ($script:ColorScheme) { $script:ColorScheme.Name }),
+        [switch] $Debug
+    )
 
     $colorSchemes = Get-Content "$ETCPATH\powershell\colors.json" | ConvertFrom-Json
 
     $scheme = New-Object psobject -Property @{
+        Name = $Name
         Pallette = @{}
-        Prompt = New-Object psobject -Property @{
+        CustomColors = New-Object psobject -Property @{
             Admin = $null
             UserName = $null
             HostName = $null
             Path = $null
             Symbols = $null
+            ErrorForegroundColor = $null
         }
     }
 
     $data = $colorSchemes.$Name
     $data.Pallette | ForEach-Object {
-        $scheme.Pallette.Add($_, $data.Pallette.IndexOf($_))
-        if ($Debug) { Write-Host "$_" -ForegroundColor $scheme.Pallette[$_] }
+        $index = $data.Pallette.IndexOf($_)
+        $scheme.Pallette.Add($_, $index)
+
+        if ($Debug)
+        {
+            Write-Host ("{0,2} {1}" -f $index, $_) -ForegroundColor $scheme.Pallette[$_]
+        }
     }
 
-    $scheme.Prompt | Get-Member -MemberType NoteProperty | ForEach-Object {
+    $scheme.CustomColors | Get-Member -MemberType NoteProperty | ForEach-Object {
         $memberName = $_.Name
-        $scheme.Prompt.$memberName = $scheme.Pallette[$data.prompt.$memberName]
+        $scheme.CustomColors.$memberName = $data.colors.$memberName
     }
 
     Write-Output $scheme
+}
+
+function Get-ConsoleColor
+{
+    param ([string] $Name)
+
+    $colorName = $Name
+    if (($script:ColorScheme.CustomColors.PSObject.Properties.name) -contains $Name)
+    {
+        $colorName = $script:ColorScheme.CustomColors.$Name
+    }
+
+    Write-Output $script:ColorScheme.Pallette[$colorName]
 }
 
 function Set-ColorScheme
@@ -48,6 +71,11 @@ function Set-ColorScheme
     {
         Set-StrictMode -Version Latest
         $script:ColorScheme = Get-ColorScheme -Name $Name
+
+        if ($script:ColorScheme.CustomColors.ErrorForegroundColor)
+        {
+            $host.PrivateData.ErrorForegroundColor = (Get-ConsoleColor $script:ColorScheme.CustomColors.ErrorForegroundColor)
+        }
     }
 }
 
@@ -56,7 +84,14 @@ Set-ColorScheme "Nord"
 
 function prompt
 {
-    $colors = $script:ColorScheme.Prompt
+    $colors = @{}
+    @(
+        "Admin",
+        "UserName"
+        "HostName"
+        "Path"
+        "Symbols"
+    ) | ForEach-Object { $colors.Add($_, (Get-ConsoleColor $_)) }
 
     $origLastExitCode = $LASTEXITCODE
     $curPath = Get-TrimmedWorkingDirectory

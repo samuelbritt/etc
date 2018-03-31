@@ -21,7 +21,7 @@
       "DarkYellow",
       "White"
     ],
-    "prompt": {
+    "colors": {
       "admin": "Red",
       "userName": "DarkYellow",
       "hostName": "DarkYellow",
@@ -51,7 +51,7 @@
       "Base0",
       "Base3"
     ],
-    "prompt" : {
+    "colors" : {
       "admin": "Red",
       "userName": "Orange",
       "hostName": "Yellow",
@@ -78,12 +78,13 @@
       "Aurora.Orange",
       "Snow.Lighter"
     ],
-    "prompt": {
+    "colors": {
       "admin": "Aurora.Red",
       "userName": "Aurora.Purple",
       "hostName": "Aurora.Purple",
       "path": "Aurora.Green",
-      "symbols": "Snow.Light"
+      "symbols": "Snow.Light",
+      "errorForegroundColor": "Aurora.Green"
     }
   }
 }
