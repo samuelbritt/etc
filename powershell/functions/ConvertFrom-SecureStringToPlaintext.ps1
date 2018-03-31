@@ -1,4 +1,4 @@
-function Convert-SecureStringToPlaintext
+function ConvertFrom-SecureStringToPlaintext
 {
     param(
         [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
