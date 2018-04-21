@@ -72,7 +72,8 @@ function Set-ColorScheme
         Set-StrictMode -Version Latest
         $script:ColorScheme = Get-ColorScheme -Name $Name
 
-        if ($script:ColorScheme.CustomColors.ErrorForegroundColor)
+        if ($script:ColorScheme.CustomColors.ErrorForegroundColor -and
+            ($host.PrivateData | Get-Member | Select-Object -ExpandProperty Name) -contains 'ErrorForegroundColor')
         {
             $host.PrivateData.ErrorForegroundColor = (Get-ConsoleColor $script:ColorScheme.CustomColors.ErrorForegroundColor)
         }
