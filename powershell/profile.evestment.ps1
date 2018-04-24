@@ -14,19 +14,14 @@ $DEVENV = "${env:ProgramFiles(x86)}\Microsoft Visual Studio 14.0\Common7\IDE\dev
 # dataops dev
 $env:DATAOPS_HOME = $DATA_OPS
 $env:PSModulePath = "${env:DATAOPS_HOME}\Modules;" + $env:PSModulePath
+$env:PSModulePath = "${env:DATAOPS_HOME}\src\Modules;" + $env:PSModulePath
+$env:PSModulePath = "${env:DATAOPS_HOME}\packages;" + $env:PSModulePath
 $DATA_OPS_BUILDS = "S:\Technology\DataOperations\Builds"
 
 if (Test-Path "${env:HOME}\usr\.jira-token")
 {
     $tokenSS = Get-Content "${env:HOME}\usr\.jira-token" | ConvertTo-SecureString
     $env:JiraToken = (New-Object pscredential 'x', $tokenSS).GetNetworkCredential().Password
-}
-
-function Reset-Modules {
-    Get-ChildItem $DATA_OPS/Modules |
-    Select-Object -ExpandProperty Name |
-    Get-Module |
-    Remove-Module -Force
 }
 
 function cdt
