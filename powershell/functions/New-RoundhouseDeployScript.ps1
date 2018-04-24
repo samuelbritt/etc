@@ -1,4 +1,4 @@
-function New-DeployScript
+function New-RoundhouseDeployScript
 {
     [CmdletBinding()]
     param(
@@ -23,23 +23,23 @@ function New-DeployScript
             Write-Error "$(Get-Location) is not a roundhouse repository."
             break
         }
-    
+
         Write-Verbose "fetching latest branches..." -Verbose
         git fetch
     }
     Process
     {
-    
+
         $diffSource = "origin/$SourceBranchName"
         $diffTarget = "origin/$BranchName"
-        
+
         if ($Local)
         {
             $diffTarget = $BranchName
         }
-    
+
         $deployScript = Join-Path $DeployDir "${diffTarget}__${SourceBranchName}-$(Get-Date -f yyyMMddTHHmmss).sql"
-        
+
         if (! (git branch --list --all $diffTarget --no-merged $diffSource))
         {
             # The branch might have been merged and deleted. Try to find the merge commit:
@@ -56,7 +56,7 @@ function New-DeployScript
                 break
             }
         }
-    
+
         $fileSort = {
             if ( $_ -like '*OneTime*' )          { 1 }
             if ( $_ -like '*Views*' )            { 2 }
@@ -64,14 +64,14 @@ function New-DeployScript
             if ( $_ -like '*StoredProcedures*' ) { 4 }
             if ( $_ -like '*Manual*' )           { 5 }
         }
-    
+
         Write-Verbose "exporting to file ${deployScript}..." -Verbose
         $deployScriptItem = New-Item -Path $deployScript -ItemType File -Force
         Add-Content -Path $deployScript -Value "USE [<database,,evestment_tub>]"
         Add-Content -Path $deployScript -Value "GO`r`n"
         Add-Content -Path $deployScript -Value "DECLARE @ServerName sysname = @@servername`r`n"
         Add-Content -Path $deployScript -Value "RAISERROR('deploying branch %s on server %s...', 10, -1, '${BranchName}', @ServerName) WITH NOWAIT"
-        
+
         $files = Invoke-Expression "git diff --name-only $diffSource...$diffTarget"
         $files |
             Where-Object { $_ -match '.*\.sql$' } |
@@ -88,11 +88,11 @@ function New-DeployScript
                 Add-Content -Path $deployScript -Value "--#endregion`r`n"
             }
         Add-Content -Path $deployScript -Value "RAISERROR('done.', 10, -1) WITH NOWAIT"
-            
-    
+
+
         Write-Verbose "done." -Verbose
         Invoke-Item $deployScript
-    
+
         if ($PassThru)
         {
             Write-Output $deployScriptItem
