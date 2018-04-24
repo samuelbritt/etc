@@ -8,6 +8,7 @@
 	attributesfile = ~/.gitattributes
 [alias]
 	ci = commit
+	cim = commit -m
 	cam = commit -am
 	st = status --short --branch
 	co = checkout
