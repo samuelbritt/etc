@@ -1,13 +1,13 @@
 function New-RoundhouseMigration
 {
-    [CmdletBinding(DefaultParameterSetName='ByDatabase')]
+    [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName='ByDatabase')]
     param(
         [Parameter(ParameterSetName='ByPath')]
         [string] $Path,
-    
+
         [Parameter(ParameterSetName='ByDatabase')]
         [string] $RootPath = "C:\Source\Production\Roundhouse",
-    
+
         [Parameter(ParameterSetName='ByDatabase')]
         [ValidateSet(
             "Advantage",
@@ -22,22 +22,22 @@ function New-RoundhouseMigration
             "Superset"
         )]
         [string] $Database = "evestment",
-    
+
         [Parameter(ParameterSetName='ByDatabase')]
         [switch] $Manual,
-    
+
         [Parameter()]
         [string] $Issue,
-    
+
         [Parameter()]
         [string] $Name,
-    
+
         [Parameter()]
         [int] $Padding=5
     )
     Begin
     {
-    
+
         function Get-MostRecentScriptId {
             [CmdletBinding(SupportsShouldProcess=$true)]
             param($Path)
@@ -49,19 +49,19 @@ function New-RoundhouseMigration
                 Select-Object -First 1)
             Write-Output $lastId
         }
-        
+
         function Get-ScriptTemplate {
             [CmdletBinding()]
             param($Issue, $Description)
-        
+
             $date = (Get-Date -Format 'yyyy-MM-dd')
             $template = @"
 /*
-    * Issue $Issue
-    * $date
-    * ${env:USERNAME}
-    * $Description
-    */
+ * Issue $Issue
+ * $date
+ * ${env:USERNAME}
+ * $Description
+ */
 
 SET XACT_ABORT ON
 GO
@@ -88,7 +88,7 @@ IF EXISTS (SELECT * FROM #Config WHERE Testing = 1) ROLLBACK
 ELSE COMMIT
 GO
 "@
-        
+
             Write-Output $template
         }
     }
@@ -102,37 +102,37 @@ GO
             }
             $Path = "$RootPath\$Database\$leaf"
         }
-    
+
         $branchDetails = Get-BranchDetails
         if (-not $Issue)
         {
             $Issue = $branchDetails.Issue
         }
-    
+
         if (!$Name)
         {
             $Name = $branchDetails.Summary
         }
-        
+
         $Name = $Name -replace ' ', '-'
         $Name = $Name -replace '.sql$', ''
-    
+
         $nextScriptId = (Get-MostRecentScriptId -Path $Path) + 1
         $nextFile = "{0:D${Padding}}_{1}_{2}" -f $nextScriptId, $env:USERINITIALS, $Issue
         if ($Name) {
             $nextFile = "${nextFile}_${Name}"
         }
         $nextFile = "${nextFile}.sql"
-    
+
         if ($Path) {
             $nextFile = Join-Path $Path $nextFile
         }
-    
+
         if ($PSCmdlet.ShouldProcess("$nextFile", "New-Item")) {
             Write-Verbose "Creating file $nextFile"
             New-Item $nextFile
             Get-ScriptTemplate -Issue $Issue -Description $Name | Set-Content -Path $nextFile
-    
+
             Invoke-Item $nextFile
         }
     }

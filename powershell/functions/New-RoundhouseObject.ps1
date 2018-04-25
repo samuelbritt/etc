@@ -2,13 +2,13 @@ function New-RoundhouseObject
 {
     [CmdletBinding(SupportsShouldProcess=$true, DefaultParameterSetName='ByDatabase')]
     param(
-    
+
         [Parameter(ParameterSetName='ByPath', Mandatory)]
         [string] $Path,
-    
+
         [Parameter(ParameterSetName='ByDatabase')]
         [string] $RootPath = "C:\Source\Production\Roundhouse",
-    
+
         [Parameter(ParameterSetName='ByDatabase')]
         [ValidateSet(
             "Advantage",
@@ -23,14 +23,14 @@ function New-RoundhouseObject
             "Superset"
         )]
         [string] $Database = "Evestment",
-    
+
         [Parameter()]
         [ValidateSet('StoredProcedure', 'View')]
         [string] $ObjectType = "StoredProcedure",
-    
+
         [Parameter(Mandatory)]
         [string] $SchemaName,
-    
+
         [Parameter(Mandatory)]
         [string] $Name
     )
@@ -56,7 +56,7 @@ SET NOCOUNT ON
 GO
 '@
             }
-    
+
             View = @{
                 SubDirectory = "Views"
                 Template = @'
@@ -77,24 +77,24 @@ AS
     Process
     {
         Set-StrictMode -Version Latest
-    
+
         $subDir = $Data.$ObjectType.SubDirectory
         $template = $Data.$ObjectType.Template
-    
+
         if ($PSCmdlet.ParameterSetName -eq 'ByDatabase')
         {
             $Path = "$RootPath\$($Database.ToLower())\$subDir"
         }
-    
+
         $content = $template.Replace('${SCHEMA_NAME}', $SchemaName).Replace('${OBJECT_NAME}', $Name)
-    
+
         $fileName = "$SchemaName.$Name.sql"
         $fullPath = Join-Path $Path $fileName
         if (Test-Path $fullPath)
         {
             throw "script $fullPath already exists"
         }
-    
+
         if ($PSCmdlet.ShouldProcess("$fullPath", "New-Item"))
         {
             Write-Verbose "creating file ${fullPath}..." -Verbose
