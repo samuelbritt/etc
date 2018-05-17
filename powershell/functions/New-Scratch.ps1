@@ -15,7 +15,7 @@ function New-Scratch
     {
         $ticketDir = Get-Ticket -Issue $Issue
 
-        if (-not $ticketDir)
+        if (-not (Test-Path $ticketDir))
         {
             $ticketDir = New-Ticket $Issue | Select-Object -ExpandProperty FullName
         }

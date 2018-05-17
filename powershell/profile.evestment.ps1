@@ -11,12 +11,12 @@ $ROUNDHOUSE = "${SRC}\Production\Roundhouse"
 $DATA_OPS = "${SRC}\Production\DataOperations"
 $DEVENV = "${env:ProgramFiles(x86)}\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe"
 
-# dataops dev
-$env:DATAOPS_HOME = $DATA_OPS
-$env:PSModulePath = "${env:DATAOPS_HOME}\Modules;" + $env:PSModulePath
-$env:PSModulePath = "${env:DATAOPS_HOME}\src\Modules;" + $env:PSModulePath
-$env:PSModulePath = "${env:DATAOPS_HOME}\packages;" + $env:PSModulePath
 $DATA_OPS_BUILDS = "S:\Technology\DataOperations\Builds"
+
+# Environment variables to support DataOps development
+$env:DATAOPS_HOME = "C:\Source\Production\DataOperations\src"
+$env:PSModulePath = "C:\Source\Production\DataOperations\src\Modules", $env:PSModulePath -join ";"
+$env:PSModulePath = "C:\Source\Production\DataOperations\packages", $env:PSModulePath -join ";"
 
 if (Test-Path "${env:HOME}\usr\.jira-token")
 {
@@ -119,7 +119,7 @@ function Send-Email
     {
         $mailMessage.IsBodyHtml = $true
     }
-    
+
     $smtpClient.Send($mailMessage)
 }
 
