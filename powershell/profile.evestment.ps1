@@ -9,7 +9,12 @@ $SHARED_API = "${SRC}\Production\SharedApi"
 $LEGACY = "${SRC}\Production\Legacy"
 $ROUNDHOUSE = "${SRC}\Production\Roundhouse"
 $DATA_OPS = "${SRC}\Production\DataOperations"
+$TERRAFORM = "${SRC}\Production\Terraform"
+$MICROSERVICES = "${SRC}\Production\Microservices"
+$INFRASTRUCTURE = "${TERRAFORM}\aws_infrastructure"
+$CURRENCY = "${MICROSERVICES}\currency"
 $DEVENV = "${env:ProgramFiles(x86)}\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe"
+$DEVENV = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\devenv.exe"
 
 $DATA_OPS_BUILDS = "S:\Technology\DataOperations\Builds"
 
@@ -63,6 +68,56 @@ function Start-AdSsms
 }
 
 <#
+.Synopsis
+Open one or more solutions in Visual Studio
+
+.Example
+vs
+Open all ".sln" files in the current directory
+
+.Example
+vs Analytics, SharedApi
+Open the SharedApi.sln and Analytics.sln
+
+.Example
+vs -Path path/to/app.sln, path/to/anotherApp.sln
+Opens app.sln and anotherApp.sln
+#>
+function Start-VisualStudio
+{
+    [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = "ByPath")]
+    param(
+        [Parameter(ParameterSetName = "ByPath")]
+        [string[]] $Path = "*.sln",
+
+        [Parameter(ParameterSetName = "ByProject", Position = 0)]
+        [ValidateSet("Analytics", "SharedApi", "Currency")]
+        [Alias("p")]
+        [string[]] $Project = @("Analytics", "SharedApi", "Currency")
+    )
+
+    $map = @{
+        Analytics = "${ANALYTICS}\Analytics.sln"
+        SharedApi = "${SHARED_API}\SharedApi.sln"
+        Currency = "${CURRENCY}\src\App.sln"
+    }
+
+    if ($PSCmdlet.ParameterSetName -eq "ByProject")
+    {
+        $Path = $Project | ForEach-Object { $map[$_] }
+    }
+
+    Resolve-Path $Path | ForEach-Object {
+        if ($PSCmdlet.ShouldProcess($_, 'Open devenv'))
+        {
+            Start-Process $DEVENV -ArgumentList $_ -Verb RunAs
+        }
+    }
+}
+Set-Alias vs Start-VisualStudio
+
+
+<#
 .SYNOPSIS
 Opens Jira to the provided issue in your default browser. 
 
@@ -85,7 +140,7 @@ j
 Opens Jira to the page for issue corresponding to your current branch, assuming your branch is prefixed with the issue ID.
 #>
 function Start-Jira
-{ 
+{
     param([string] $Issue = (Get-Issue))
     if (-not $Issue)
     {
