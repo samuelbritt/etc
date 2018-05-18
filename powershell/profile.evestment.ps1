@@ -55,10 +55,13 @@ function cdsa { Set-Location $SHARED_API }
 function cdl { Set-Location $LEGACY }
 function cdr { Set-Location $ROUNDHOUSE }
 function cdd { Set-Location $DATA_OPS }
+function cdc { Set-Location $CURRENCY }
+function cdi { Set-Location $INFRASTRUCTURE }
 function Start-SyncAll { Push-Location ${DEV_TOOLS}; .\GitPullAndUpdate.bat; Pop-Location }
 function Start-BuildAll { Push-Location ${DEV_TOOLS}; .\CompileAll.bat; Pop-Location }
 function Start-BuildAnalytics { Push-Location ${ANALYTICS}; .\.team\shell\build.ps1; Pop-Location }
 function Start-BuildApi { Push-Location ${SHARED_API}; .\.team\shell\build.ps1; Pop-Location }
+function Start-BuildSencha { Push-Location "${ANALYTICS}\eA.Analytics.UI\ExtJs\analytics"; sencha app build -c; Pop-Location }
 function Start-MessageHandler { . ${SHARED_API}\eA.Shared.API.Service\bin\eA.Shared.API.Service.exe }
 function Reset-IIS { Start-ProcessAsAdmin { iisreset.exe } }
 
@@ -77,7 +80,7 @@ Open all ".sln" files in the current directory
 
 .Example
 vs Analytics, SharedApi
-Open the SharedApi.sln and Analytics.sln
+Open the Analytics and Shared Api solution files. See the documentation for all options.
 
 .Example
 vs -Path path/to/app.sln, path/to/anotherApp.sln
@@ -92,7 +95,6 @@ function Start-VisualStudio
 
         [Parameter(ParameterSetName = "ByProject", Position = 0)]
         [ValidateSet("Analytics", "SharedApi", "Currency")]
-        [Alias("p")]
         [string[]] $Project = @("Analytics", "SharedApi", "Currency")
     )
 
@@ -119,7 +121,7 @@ Set-Alias vs Start-VisualStudio
 
 <#
 .SYNOPSIS
-Opens Jira to the provided issue in your default browser. 
+Opens Jira to the provided issue in your default browser.
 
 .PARAMETER Issue
 Issue to open. If not provided, opens to the issue corresponding to your current branch.
@@ -178,9 +180,3 @@ function Send-Email
     $smtpClient.Send($mailMessage)
 }
 
-function Rebuild-Sencha
-{
-    Push-Location $ANALYTICS\eA.Analytics.UI\ExtJs\analytics
-    sencha app build -c
-    Pop-Location
-}
