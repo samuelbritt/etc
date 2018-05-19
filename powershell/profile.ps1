@@ -204,6 +204,7 @@ $USR = "$HOME\usr"
 Set-Alias "subl" "${env:ProgramFiles}/Sublime Text 3/sublime_text.exe"
 Set-Alias touch New-Item
 Set-Alias grep Select-String
+$env:NOTES_PATH = "${env:HOME}\Dropbox\sync\notes"
 function gl { (git lasta) }
 
 if ($env:USERDOMAIN -eq "EVESTMENT")
