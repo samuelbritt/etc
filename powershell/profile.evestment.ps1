@@ -9,14 +9,19 @@ $SHARED_API = "${SRC}\Production\SharedApi"
 $LEGACY = "${SRC}\Production\Legacy"
 $ROUNDHOUSE = "${SRC}\Production\Roundhouse"
 $DATA_OPS = "${SRC}\Production\DataOperations"
+$TERRAFORM = "${SRC}\Production\Terraform"
+$MICROSERVICES = "${SRC}\Production\Microservices"
+$INFRASTRUCTURE = "${TERRAFORM}\aws_infrastructure"
+$CURRENCY = "${MICROSERVICES}\currency"
 $DEVENV = "${env:ProgramFiles(x86)}\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe"
+$DEVENV = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\devenv.exe"
 
-# dataops dev
-$env:DATAOPS_HOME = $DATA_OPS
-$env:PSModulePath = "${env:DATAOPS_HOME}\Modules;" + $env:PSModulePath
-$env:PSModulePath = "${env:DATAOPS_HOME}\src\Modules;" + $env:PSModulePath
-$env:PSModulePath = "${env:DATAOPS_HOME}\packages;" + $env:PSModulePath
 $DATA_OPS_BUILDS = "S:\Technology\DataOperations\Builds"
+
+# Environment variables to support DataOps development
+$env:DATAOPS_HOME = "C:\Source\Production\DataOperations\src"
+$env:PSModulePath = "C:\Source\Production\DataOperations\src\Modules", $env:PSModulePath -join ";"
+$env:PSModulePath = "C:\Source\Production\DataOperations\packages", $env:PSModulePath -join ";"
 
 if (Test-Path "${env:HOME}\usr\.jira-token")
 {
@@ -50,10 +55,13 @@ function cdsa { Set-Location $SHARED_API }
 function cdl { Set-Location $LEGACY }
 function cdr { Set-Location $ROUNDHOUSE }
 function cdd { Set-Location $DATA_OPS }
+function cdc { Set-Location $CURRENCY }
+function cdi { Set-Location $INFRASTRUCTURE }
 function Start-SyncAll { Push-Location ${DEV_TOOLS}; .\GitPullAndUpdate.bat; Pop-Location }
 function Start-BuildAll { Push-Location ${DEV_TOOLS}; .\CompileAll.bat; Pop-Location }
 function Start-BuildAnalytics { Push-Location ${ANALYTICS}; .\.team\shell\build.ps1; Pop-Location }
 function Start-BuildApi { Push-Location ${SHARED_API}; .\.team\shell\build.ps1; Pop-Location }
+function Start-BuildSencha { Push-Location "${ANALYTICS}\eA.Analytics.UI\ExtJs\analytics"; sencha app build -c; Pop-Location }
 function Start-MessageHandler { . ${SHARED_API}\eA.Shared.API.Service\bin\eA.Shared.API.Service.exe }
 function Reset-IIS { Start-ProcessAsAdmin { iisreset.exe } }
 
@@ -63,8 +71,57 @@ function Start-AdSsms
 }
 
 <#
+.Synopsis
+Open one or more solutions in Visual Studio
+
+.Example
+vs
+Open all ".sln" files in the current directory
+
+.Example
+vs Analytics, SharedApi
+Open the Analytics and Shared Api solution files. See the documentation for all options.
+
+.Example
+vs -Path path/to/app.sln, path/to/anotherApp.sln
+Opens app.sln and anotherApp.sln
+#>
+function Start-VisualStudio
+{
+    [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = "ByPath")]
+    param(
+        [Parameter(ParameterSetName = "ByPath")]
+        [string[]] $Path = "*.sln",
+
+        [Parameter(ParameterSetName = "ByProject", Position = 0)]
+        [ValidateSet("Analytics", "SharedApi", "Currency")]
+        [string[]] $Project = @("Analytics", "SharedApi", "Currency")
+    )
+
+    $map = @{
+        Analytics = "${ANALYTICS}\Analytics.sln"
+        SharedApi = "${SHARED_API}\SharedApi.sln"
+        Currency = "${CURRENCY}\src\App.sln"
+    }
+
+    if ($PSCmdlet.ParameterSetName -eq "ByProject")
+    {
+        $Path = $Project | ForEach-Object { $map[$_] }
+    }
+
+    Resolve-Path $Path | ForEach-Object {
+        if ($PSCmdlet.ShouldProcess($_, 'Open devenv'))
+        {
+            Start-Process $DEVENV -ArgumentList $_ -Verb RunAs
+        }
+    }
+}
+Set-Alias vs Start-VisualStudio
+
+
+<#
 .SYNOPSIS
-Opens Jira to the provided issue in your default browser. 
+Opens Jira to the provided issue in your default browser.
 
 .PARAMETER Issue
 Issue to open. If not provided, opens to the issue corresponding to your current branch.
@@ -85,7 +142,7 @@ j
 Opens Jira to the page for issue corresponding to your current branch, assuming your branch is prefixed with the issue ID.
 #>
 function Start-Jira
-{ 
+{
     param([string] $Issue = (Get-Issue))
     if (-not $Issue)
     {
@@ -119,13 +176,7 @@ function Send-Email
     {
         $mailMessage.IsBodyHtml = $true
     }
-    
+
     $smtpClient.Send($mailMessage)
 }
 
-function Rebuild-Sencha
-{
-    Push-Location $ANALYTICS\eA.Analytics.UI\ExtJs\analytics
-    sencha app build -c
-    Pop-Location
-}

@@ -195,7 +195,7 @@ Get-ChildItem $functionsPath | ForEach-Object { . $_.FullName }
 $modulesPath = Join-Path $ETCPATH "\powershell\modules"
 $env:PsModulePath = "$modulesPath;" + $env:PsModulePath
 
-$PROFILE = $MyInvocation.MyCommand.Definition
+# $PROFILE = $MyInvocation.MyCommand.Definition
 
 # general aliases
 $env:USERINITIALS = 'SEB'
