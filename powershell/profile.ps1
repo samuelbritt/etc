@@ -200,13 +200,19 @@ $env:PsModulePath = "$modulesPath;" + $env:PsModulePath
 # general aliases
 $env:USERINITIALS = 'SEB'
 $CYGHOME = "C:\cygwin64\home\${env:USERNAME}"
-$USR = "$HOME\usr"
-Set-Alias "subl" "${env:ProgramFiles}/Sublime Text 3/sublime_text.exe"
+$USR = Join-Path $HOME 'usr'
+$SRC = Join-Path $USR 'src'
+
+# Notes
+$env:PsModulePath = (Join-Path $SRC 'notes'), $env:PsModulePath -join ';'
+$env:NOTES_PATH = "${env:HOME}\Dropbox\sync\notes"
+Import-Module Notes
+
 Set-Alias touch New-Item
 Set-Alias grep Select-String
-$env:NOTES_PATH = "${env:HOME}\Dropbox\sync\notes"
 function gl { (git lasta) }
 
+# Additional profiles
 if ($env:USERDOMAIN -eq "EVESTMENT")
 {
     . "$ETCPATH/powershell/profile.evestment.ps1"
