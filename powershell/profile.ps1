@@ -6,6 +6,24 @@ if (-not (Test-Path $ETCPATH))
     throw "Could not find path $ETCPATH"
 }
 
+# Environment varaibles
+$env:USERINITIALS = 'SEB'
+$CYGHOME = "C:\cygwin64\home\${env:USERNAME}"
+$USR = Join-Path $HOME 'usr'
+$SRC = Join-Path $USR 'src'
+
+# paths
+Get-ChildItem (Join-Path $ETCPATH 'powershell\functions') | ForEach-Object { . $_.FullName }
+$env:PsModulePath = (Join-Path $ETCPATH 'powershell\modules'), $env:PsModulePath -join ';'
+
+# posh dev
+$env:PsModulePath = (Join-Path $SRC 'notes'), $env:PsModulePath -join ';'
+$env:PsModulePath = (Join-Path $SRC 'ps-tools'), $env:PsModulePath -join ';'
+
+# Notes
+$env:NOTES_PATH = "${env:HOME}\Dropbox\sync\notes"
+Import-Module Notes
+
 # bash-like completion
 Set-PSReadlineKeyHandler -Key "Tab" -Function "Complete"
 
@@ -184,33 +202,12 @@ function Get-TailContent
     param($Path, $n = 20)
     Get-Content $Path -Tail $n
 }
+function gl { (git lasta) }
 
+# Aliases
 Set-Alias tail Get-TailContent
-
-# paths
-$functionsPath = Join-Path $ETCPATH "\powershell\functions"
-Get-ChildItem $functionsPath | ForEach-Object { . $_.FullName }
-# $env:Path = "$scriptsPath;" + $env:Path
-
-$modulesPath = Join-Path $ETCPATH "\powershell\modules"
-$env:PsModulePath = "$modulesPath;" + $env:PsModulePath
-
-# $PROFILE = $MyInvocation.MyCommand.Definition
-
-# general aliases
-$env:USERINITIALS = 'SEB'
-$CYGHOME = "C:\cygwin64\home\${env:USERNAME}"
-$USR = Join-Path $HOME 'usr'
-$SRC = Join-Path $USR 'src'
-
-# Notes
-$env:PsModulePath = (Join-Path $SRC 'notes'), $env:PsModulePath -join ';'
-$env:NOTES_PATH = "${env:HOME}\Dropbox\sync\notes"
-Import-Module Notes
-
 Set-Alias touch New-Item
 Set-Alias grep Select-String
-function gl { (git lasta) }
 
 # Additional profiles
 if ($env:USERDOMAIN -eq "EVESTMENT")
