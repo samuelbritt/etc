@@ -17,8 +17,9 @@ Get-ChildItem (Join-Path $ETCPATH 'powershell\functions') | ForEach-Object { . $
 $env:PsModulePath = (Join-Path $ETCPATH 'powershell\modules'), $env:PsModulePath -join ';'
 
 # posh dev
-$env:PsModulePath = (Join-Path $SRC 'notes'), $env:PsModulePath -join ';'
+$env:PsModulePath = (Join-Path $SRC 'ps-notes'), $env:PsModulePath -join ';'
 $env:PsModulePath = (Join-Path $SRC 'ps-tools'), $env:PsModulePath -join ';'
+$env:PsModulePath = (Join-Path $SRC 'ps-templates'), $env:PsModulePath -join ';'
 
 # Notes
 $env:NOTES_PATH = "${env:HOME}\Dropbox\sync\notes"
