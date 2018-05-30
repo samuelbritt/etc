@@ -5,27 +5,24 @@ function Get-Scratch
         [string] $Issue,
         [string] $Path = "$HOME\usr\tasks"
     )
-    
-    if (-not $Issue)
+
+    if (Test-GitRepository)
     {
         $branchDetails = Get-BranchDetails
-        $Issue = $branchDetails.Issue
+        $Issue = if ($Issue -ne $null) { $Issue } $branchDetails.Issue
     }
-    
+
     if ($Issue)
     {
-        $taskDir = Get-ChildItem $Path\$Issue* | Select-Object -First 1
-    
-        if ($taskDir)
+        $ticketDir = Get-Ticket -Issue $Issue
+
+        if ($ticketDir)
         {
-            $scratch = Join-Path $taskDir 'scratch.sql'
+            $scratch = Join-Path $ticketDir "${Issue}-scratch.sql"
+
             if (Test-Path $scratch)
             {
-                Invoke-Item $scratch
-            }
-            else
-            {
-                New-Scratch -Issue $Issue -Path $Path
+                Get-Item $scratch
             }
         }
         else
