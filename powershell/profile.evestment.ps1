@@ -103,10 +103,10 @@ function Start-VisualStudio
 {
     [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = "ByPath")]
     param(
-        [Parameter(ParameterSetName = "ByPath")]
+        [Parameter(ParameterSetName = "ByPath", Position = 0)]
         [string[]] $Path = "*.sln",
 
-        [Parameter(ParameterSetName = "ByProject", Position = 0)]
+        [Parameter(ParameterSetName = "ByProject")]
         [ValidateSet("Analytics", "SharedApi", "Currency")]
         [string[]] $Project = @("Analytics", "SharedApi", "Currency")
     )

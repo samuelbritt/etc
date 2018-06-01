@@ -12,8 +12,8 @@ $CYGHOME = "C:\cygwin64\home\${env:USERNAME}"
 $USR = Join-Path $HOME 'usr'
 $SRC = Join-Path $USR 'src'
 
-# paths
-Get-ChildItem (Join-Path $ETCPATH 'powershell\functions') | ForEach-Object { . $_.FullName }
+# etc
+Get-ChildItem (Join-Path $ETCPATH 'powershell\functions') -Include *.ps1 -Recurse | ForEach-Object { . $_.FullName }
 $env:PsModulePath = (Join-Path $ETCPATH 'powershell\modules'), $env:PsModulePath -join ';'
 
 # posh dev
@@ -28,78 +28,7 @@ Import-Module Notes
 # bash-like completion
 Set-PSReadlineKeyHandler -Key "Tab" -Function "Complete"
 
-function Get-ColorScheme
-{
-    param(
-        [string] $Name = $(if ($script:ColorScheme) { $script:ColorScheme.Name }),
-        [switch] $Debug
-    )
-
-    $colorSchemes = Get-Content "$ETCPATH\powershell\colors.json" | ConvertFrom-Json
-
-    $scheme = New-Object psobject -Property @{
-        Name = $Name
-        Pallette = @{}
-        CustomColors = New-Object psobject -Property @{
-            Admin = $null
-            UserName = $null
-            HostName = $null
-            Path = $null
-            Symbols = $null
-            ErrorForegroundColor = $null
-        }
-    }
-
-    $data = $colorSchemes.$Name
-    $data.Pallette | ForEach-Object {
-        $index = $data.Pallette.IndexOf($_)
-        $scheme.Pallette.Add($_, $index)
-
-        if ($Debug)
-        {
-            Write-Host ("{0,2} {1}" -f $index, $_) -ForegroundColor $scheme.Pallette[$_]
-        }
-    }
-
-    $scheme.CustomColors | Get-Member -MemberType NoteProperty | ForEach-Object {
-        $memberName = $_.Name
-        $scheme.CustomColors.$memberName = $data.colors.$memberName
-    }
-
-    Write-Output $scheme
-}
-
-function Get-ConsoleColor
-{
-    param ([string] $Name)
-
-    $colorName = $Name
-    if (($script:ColorScheme.CustomColors.PSObject.Properties.name) -contains $Name)
-    {
-        $colorName = $script:ColorScheme.CustomColors.$Name
-    }
-
-    Write-Output $script:ColorScheme.Pallette[$colorName]
-}
-
-function Set-ColorScheme
-{
-    [CmdletBinding()]
-    Param([string] $Name)
-    Process
-    {
-        Set-StrictMode -Version Latest
-        $script:ColorScheme = Get-ColorScheme -Name $Name
-
-        if ($script:ColorScheme.CustomColors.ErrorForegroundColor -and
-            ($host.PrivateData | Get-Member | Select-Object -ExpandProperty Name) -contains 'ErrorForegroundColor')
-        {
-            $host.PrivateData.ErrorForegroundColor = (Get-ConsoleColor $script:ColorScheme.CustomColors.ErrorForegroundColor)
-        }
-    }
-}
-
-$script:ColorScheme = $null
+# custom colors
 Set-ColorScheme "Nord"
 
 function prompt
@@ -129,6 +58,11 @@ function prompt
 }
 
 # Functions
+function Reset-Profile
+{
+    . $PSCommandPath
+}
+
 function Test-IsAdmin
 {
     $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
