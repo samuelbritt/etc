@@ -15,62 +15,51 @@ function Get-ElmahError
         Evestment domain will prompt for Sql credentials). [default: Prod]
     .PARAMETER ErrorDetailMaxLength
         Max length to use when parsing long error stack traces. [default: 500000]
-    .PARAMETER DefaultUserName
-        Username used to populate the credentials dialog, if necessary. [default: $env:USERNAME]
+    .PARAMETER Credential
+        Credential to use for SQL Server authentication if necessary.
     #>
     [CmdletBinding()]
     Param (
-        [Parameter(Mandatory=$True)]
-            [guid] $ErrorId,
+        [Parameter(Mandatory = $True)]
+        [guid] $ErrorId,
         [Parameter()]
-        [ValidateSet('Dev', 'Tub', 'Test', 'Prod')]
+        [ValidateSet('Dev', 'Tub', 'Testing', 'Prod')]
         [string] $Environment = 'Prod',
         [Parameter()]
-            [int] $ErrorDetailMaxLength = 500000,
+        [PSCredential] $Credential,
         [Parameter()]
-            [string] $DefaultUserName = $env:USERNAME
+        [int] $ErrorDetailMaxLength = 500000
     )
-    
+
     $serverInstance = $null
     $database = 'CommonLogging'
-    $integratedSecurity = $true
-    
+
     switch ($Environment)
     {
         'Dev'
         {
-            $serverInstance = 'ev-atl-devdata01' 
+            $serverInstance = 'ev-atl-devdata01'
             $database += '_dev'
             break
         }
         'Tub'
         {
-            $serverInstance = 'ev-atl-tubdata01' 
+            $serverInstance = 'ev-atl-tubdata01'
             $database += '_tub'
             break
         }
-        'TestOld'
+        'Testing'
         {
-            $serverInstance = 'easeasdlcdb2.inetuhosted.net' 
-            $database += '_testing'
-            $integratedSecurity = $false
-            break
-        }
-        'Test'
-        {
-            $serverInstance = 'testing-platformdb-1.aws.evestment.internal' 
-            $database += ''
-            $integratedSecurity = $false
+            $serverInstance = 'test-platform.us-east-1.aws.evestment.nonprod'
             break
         }
         'Prod'
         {
-            $serverInstance = 'evest-pdbag-01.inetuhosted.net' 
-            $integratedSecurity = $false
+            $serverInstance = 'prod-platform.us-east-1.aws.evestment.prod'
             break
         }
     }
-    
+
     $query = 'select * from dbo.elmah_error where ErrorId = $(error_id);'
     $vars = ("error_id='$ErrorId'")
     $params = @{
@@ -80,18 +69,17 @@ function Get-ElmahError
         Variable = $vars
         MaxCharLength = $ErrorDetailMaxLength
     }
-    
-    if (-not $integratedSecurity)
+
+    if ($Credential)
     {
-        $credentials = Get-Credential -Message "Enter SQL Server credentials to server '$serverInstance'" -UserName $DefaultUserName
-        $params.Username = $credentials.GetNetworkCredential().Username
-        $params.Password = $credentials.GetNetworkCredential().Password
+        $params.Username = $Credential.GetNetworkCredential().Username
+        $params.Password = $Credential.GetNetworkCredential().Password
     }
-    
+
     $elmahError = Invoke-Sqlcmd @params
     $allXml = [xml]$elmahError.AllXml
-    
-    $properties = @{
+
+    [PSCustomObject] @{
         ErrorId = $elmahError.ErrorId
         TimeUtc = $elmahError.TimeUtc
         Application = $elmahError.Application
@@ -99,6 +87,4 @@ function Get-ElmahError
         Message = $elmahError.Message
         ErrorDetail = $allXml.error.detail
     }
-    $obj = New-Object -TypeName PSObject -Property $properties
-    Write-Output $obj
 }

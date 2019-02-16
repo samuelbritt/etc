@@ -15,7 +15,7 @@
 	br = branch
 	fe = fetch
 	ds = diff --staged
-	df = diff --name-only master...
+	df = diff --name-only origin/master...
 	l  = log --oneline --graph --decorate --all -25
 	ll = log --oneline --graph --decorate --all
 	arch = "!f() { git archive HEAD --prefix=\"$1/\" | gzip > \"$1\".tar.gz; }; f"

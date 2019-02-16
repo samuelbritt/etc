@@ -11,7 +11,7 @@ function Get-Ticket
     if (Test-GitRepository)
     {
         $branchDetails = Get-BranchDetails
-        $Issue = if ($Issue -ne $null) { $Issue } $branchDetails.Issue
+        $Issue = if ($Issue) { $Issue } else { $branchDetails.Issue }
     }
 
     Get-ChildItem "${Path}\${Issue}-*" |

@@ -1,7 +1,7 @@
 function Invoke-BakrepoAdhocUpload
 {
     [CmdletBinding(SupportsShouldProcess = $true)]
-    
+
     Param(
         $Path,
         [datetime]$BackupFinishDate = (Get-Date '2017-07-02 20:00:01.000'),
@@ -18,8 +18,8 @@ function Invoke-BakrepoAdhocUpload
         $BucketName       = 'dataops-bakrepo',
         $ProfileName      = 'DataopsBackupWriterSandbox'
     )
-    
-    Get-ChildItem "${Path}/*.7z" | 
+
+    Get-ChildItem "${Path}/*.7z" |
         Select-Object FullName, @{n='Seq'; e={ $_.Name -match $Pattern | Out-Null; [int]($Matches[1]) }} |
         % {
             New-Object PSObject -Property @{

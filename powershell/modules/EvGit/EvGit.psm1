@@ -64,7 +64,7 @@ function Get-CurrentBranch
 
 function Get-Branch
 {
-    param ([string[]] $Issue, [switch] $All)
+    param ([string] $Issue, [switch] $All)
     $branches = git branch
 
     if ($All)
@@ -136,7 +136,6 @@ function New-Commit
 
     $details = Get-BranchDetails
 
-
     if (-not $Issue)
     {
         $Issue = $details.Issue
@@ -144,7 +143,7 @@ function New-Commit
 
     if (-not $Message)
     {
-        $Message = $details.Summary     
+        $Message = $details.Summary
     }
 
     $commitMessage = "$Issue - $Message"

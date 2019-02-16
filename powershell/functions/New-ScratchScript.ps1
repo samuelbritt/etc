@@ -1,17 +1,19 @@
-function New-Scratch
+function New-ScratchScript
 {
+    [CmdletBinding(SupportsShouldProcess)]
     param(
-        [Parameter(Position = 1)]
+        [Parameter()]
         [string] $Issue,
         [Parameter()]
-        [string] $Name
+        [string] $Name = "scratch"
     )
+    Set-StrictMode -Version Latest
 
     if (Test-GitRepository)
     {
         $branchDetails = Get-BranchDetails
-        $Issue = if ($Issue -ne $null) { $Issue } $branchDetails.Issue
-        $Name = if ($Name -ne $null) { $Name } $branchDetails.Summary
+        $Issue = if ($Issue) { $Issue } else { $branchDetails.Issue }
+        $ticketDirectoryName = $branchDetails.Summary
     }
 
     if ($Issue)
@@ -19,10 +21,11 @@ function New-Scratch
         $ticketDir = Get-Ticket -Issue $Issue
         if (!$ticketDir)
         {
-            $ticketDir = New-Ticket $Issue -Name $Name | Select-Object -ExpandProperty FullName
+            $ticketDir = New-Ticket $Issue -Name $ticketDirectoryName | Select-Object -ExpandProperty FullName
         }
 
-        $scratch = Join-Path $ticketDir "${Issue}-scratch.sql"
+        $Name = $Name.Replace(' ', '-')
+        $scratch = Join-Path $ticketDir "${Issue}-${Name}.sql"
         if (!(Test-Path $scratch))
         {
             New-Item $scratch -ItemType File | Out-Null

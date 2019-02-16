@@ -88,6 +88,7 @@ return
 :*:;an::ANALYTICS-
 :*:;do::DOPS-
 :*:;su::SUP-
+:*:;in::INSIGHTS-
 :*:;tg::tag:""{LEFT 1}
 :*:;ntg::-tag:""{LEFT 1}
 :*:;nc::-tag:"-6 Completed"{LEFT 1}

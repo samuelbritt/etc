@@ -86,5 +86,36 @@
       "symbols": "Snow.Light",
       "errorForegroundColor": "Aurora.Green"
     }
+  },
+  "MaterialSublimeDark": {
+    "pallette": [
+      "Background",
+      "Grey",
+      "Green",
+      "Green-copy",
+
+      "Pink",
+      "Purple",
+      "Peach1",
+      "LightBlue",
+
+      "Foreground",
+      "Blue",
+      "Green-copy-2",
+      "Sky",
+
+      "Pink-copy",
+      "Peach2",
+      "Accent",
+      "Peach1-copy"
+    ],
+    "colors": {
+      "admin": "Pink",
+      "userName": "Peach1",
+      "hostName": "Accent",
+      "path": "Green",
+      "symbols": "LightBlue",
+      "errorForegroundColor": "Pink"
+    }
   }
 }

@@ -7,7 +7,6 @@ if (-not (Test-Path $ETCPATH))
 }
 
 # Environment varaibles
-$env:USERINITIALS = 'SEB'
 $CYGHOME = "C:\cygwin64\home\${env:USERNAME}"
 $USR = Join-Path $HOME 'usr'
 $SRC = Join-Path $USR 'src'
@@ -19,7 +18,7 @@ $env:PsModulePath = (Join-Path $ETCPATH 'powershell\modules'), $env:PsModulePath
 # posh dev
 $env:PsModulePath = (Join-Path $SRC 'ps-notes'), $env:PsModulePath -join ';'
 $env:PsModulePath = (Join-Path $SRC 'ps-tools'), $env:PsModulePath -join ';'
-$env:PsModulePath = (Join-Path $SRC 'ps-templates'), $env:PsModulePath -join ';'
+# $env:PsModulePath = (Join-Path $SRC 'ps-templates'), $env:PsModulePath -join ';'
 
 # Notes
 $env:NOTES_PATH = "${env:HOME}\Dropbox\sync\notes"
@@ -29,18 +28,22 @@ Import-Module Notes
 Set-PSReadlineKeyHandler -Key "Tab" -Function "Complete"
 
 # custom colors
-Set-ColorScheme "Nord"
+# Set-ColorScheme "Nord"
+Set-ColorScheme "MaterialSublimeDark"
 
 function prompt
 {
     $colors = @{}
+
     @(
         "Admin",
         "UserName"
         "HostName"
         "Path"
         "Symbols"
-    ) | ForEach-Object { $colors.Add($_, (Get-ConsoleColor $_)) }
+    ) | ForEach-Object {
+        $colors.Add($_, (Get-ConsoleColor $_))
+    }
 
     $origLastExitCode = $LASTEXITCODE
     $curPath = Get-TrimmedWorkingDirectory
@@ -84,7 +87,6 @@ function Get-AllChildItems
 {
     Get-ChildItem -Attributes Hidden, !Hidden
 }
-Set-Alias la Get-AllChildItems
 
 function Get-ParentLocation
 {
@@ -96,15 +98,11 @@ function Set-ParentLocation
     Set-Location (Get-ParentLocation).FullName
 }
 
-Set-Alias ".." Set-ParentLocation
-
 function Set-GrandParentLocation
 {
     Set-ParentLocation
     Set-ParentLocation
 }
-
-Set-Alias "..." Set-GrandParentLocation
 
 function Set-LocationAndGetChildItem
 {
@@ -113,8 +111,6 @@ function Set-LocationAndGetChildItem
     Get-ChildItem
 }
 
-Set-Alias cl Set-LocationAndGetChildItem
-
 function New-ItemAndSetLocation
 {
     param($Path)
@@ -122,24 +118,27 @@ function New-ItemAndSetLocation
     New-Item -Name $Path -ItemType "Directory" | Set-Location
 }
 
-Set-Alias mkcd New-ItemAndSetLocation
-
 function Get-HeadContent
 {
     param($Path, $n = 20)
     Get-Content $Path -Head $n
 }
 
-Set-Alias head Get-HeadContent
-
 function Get-TailContent
 {
     param($Path, $n = 20)
     Get-Content $Path -Tail $n
 }
+
 function gl { (git lasta) }
 
 # Aliases
+Set-Alias ".." Set-ParentLocation
+Set-Alias "..." Set-GrandParentLocation
+Set-Alias cl Set-LocationAndGetChildItem
+Set-Alias la Get-AllChildItems
+Set-Alias mkcd New-ItemAndSetLocation
+Set-Alias head Get-HeadContent
 Set-Alias tail Get-TailContent
 Set-Alias touch New-Item
 Set-Alias grep Select-String

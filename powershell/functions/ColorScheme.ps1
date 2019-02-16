@@ -1,7 +1,9 @@
+$script:ColorScheme = ''
+
 function Get-ColorScheme
 {
     param(
-        [string] $Name = $(if ($script:ColorScheme) { $script:ColorScheme.Name }),
+        [string] $Name = $(if ((!(Test-Path Variable:script:ColorScheme))) { $script:ColorScheme.Name }),
         [switch] $Debug
     )
 
@@ -44,6 +46,12 @@ function Get-ConsoleColor
     param ([string] $Name)
 
     $colorName = $Name
+    if (!(Test-Path Variable:script:ColorScheme))
+    {
+        Write-Output White
+        return
+    }
+
     if (($script:ColorScheme.CustomColors.PSObject.Properties.name) -contains $Name)
     {
         $colorName = $script:ColorScheme.CustomColors.$Name

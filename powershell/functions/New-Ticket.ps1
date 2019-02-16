@@ -13,8 +13,8 @@ function New-Ticket
     if (Test-GitRepository)
     {
         $branchDetails = Get-BranchDetails
-        $Issue = if ($Issue -ne $null) { $Issue } $branchDetails.Issue
-        $Name = if ($Name -ne $null) { $Name } $branchDetails.Summary
+        $Issue = if ($Issue) { $Issue } else { $branchDetails.Issue }
+        $Name = if ($Name) { $Name } else { $branchDetails.Summary }
     }
 
     $ticketDir = Get-Ticket -Issue $Issue
