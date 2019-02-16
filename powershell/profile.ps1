@@ -15,6 +15,10 @@ $SRC = Join-Path $USR 'src'
 Get-ChildItem (Join-Path $ETCPATH 'powershell\functions') -Include *.ps1 -Recurse | ForEach-Object { . $_.FullName }
 $env:PsModulePath = (Join-Path $ETCPATH 'powershell\modules'), $env:PsModulePath -join ';'
 
+# python dev
+$env:PATH = "${env:PATH};C:\ProgramData\Anaconda3"
+$env:PATH = "${env:PATH};C:\ProgramData\Anaconda3\Scripts"
+
 # posh dev
 $env:PsModulePath = (Join-Path $SRC 'ps-notes'), $env:PsModulePath -join ';'
 $env:PsModulePath = (Join-Path $SRC 'ps-tools'), $env:PsModulePath -join ';'
@@ -148,3 +152,4 @@ if ($env:USERDOMAIN -eq "EVESTMENT")
 {
     . "$ETCPATH/powershell/profile.evestment.ps1"
 }
+
