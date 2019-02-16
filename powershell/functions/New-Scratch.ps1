@@ -2,36 +2,36 @@ function New-Scratch
 {
     param(
         [Parameter(Position = 1)]
-        [string] $Issue
+        [string] $Issue,
+        [Parameter()]
+        [string] $Name
     )
 
-    if (-not $Issue)
+    if (Test-GitRepository)
     {
         $branchDetails = Get-BranchDetails
-        $Issue = $branchDetails.Issue
+        $Issue = if ($Issue -ne $null) { $Issue } $branchDetails.Issue
+        $Name = if ($Name -ne $null) { $Name } $branchDetails.Summary
     }
 
     if ($Issue)
     {
         $ticketDir = Get-Ticket -Issue $Issue
-
-        if (-not (Test-Path $ticketDir))
+        if (!$ticketDir)
         {
-            $ticketDir = New-Ticket $Issue | Select-Object -ExpandProperty FullName
+            $ticketDir = New-Ticket $Issue -Name $Name | Select-Object -ExpandProperty FullName
         }
 
-        if ($ticketDir)
+        $scratch = Join-Path $ticketDir "${Issue}-scratch.sql"
+        if (!(Test-Path $scratch))
         {
-            $scratch = Join-Path $ticketDir "${Issue}-scratch.sql"
-            if (-not (Test-Path $scratch))
-            {
-                New-Item $scratch -ItemType File | Out-Null
-                Invoke-Item $scratch
-            }
+            New-Item $scratch -ItemType File | Out-Null
         }
-        else
-        {
-            Write-Warning "no ticket directory found for $Issue"
-        }
+
+        Invoke-Item $scratch
+    }
+    else
+    {
+        throw "could not determine scratch path for issue ${Issue}"
     }
 }

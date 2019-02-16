@@ -1,6 +1,6 @@
 function New-Ticket
 {
-    [CmdletBinding(SupportsShouldProcess=$true)]
+    [CmdletBinding(SupportsShouldProcess = $true)]
     param(
         [Parameter(Position = 1)]
         [string] $Issue,
@@ -8,11 +8,28 @@ function New-Ticket
         [string] $Name,
         [string] $Path = "$HOME\usr\tasks"
     )
-    
-    $ticketDir = Get-Ticket -Issue $Issue -Name $Name -Path $Path
-    
-    if (-not (Test-Path $ticketDir))
+
+    $branchDetails = $null
+    if (Test-GitRepository)
     {
-        New-Item $ticketDir -ItemType Directory
+        $branchDetails = Get-BranchDetails
+        $Issue = if ($Issue -ne $null) { $Issue } $branchDetails.Issue
+        $Name = if ($Name -ne $null) { $Name } $branchDetails.Summary
     }
+
+    $ticketDir = Get-Ticket -Issue $Issue
+    if ($ticketDir)
+    {
+        throw "Ticket $Issue already exists at '$ticketDir'"
+    }
+
+    if (!($Issue -and $Name))
+    {
+        throw "must provide both an issue an name, or be in a branch"
+    }
+
+    $Name = $Name.ToLower().Replace(' ', '-')
+    $ticketDir = Join-Path $Path "${Issue}-${Name}"
+
+    New-Item $ticketDir -ItemType Directory
 }

@@ -61,7 +61,20 @@ function Start-SyncAll { Push-Location ${DEV_TOOLS}; .\GitPullAndUpdate.bat; Pop
 function Start-BuildAll { Push-Location ${DEV_TOOLS}; .\CompileAll.bat; Pop-Location }
 function Start-BuildAnalytics { Push-Location ${ANALYTICS}; .\.team\shell\build.ps1; Pop-Location }
 function Start-BuildApi { Push-Location ${SHARED_API}; .\.team\shell\build.ps1; Pop-Location }
-function Start-BuildSencha { Push-Location "${ANALYTICS}\eA.Analytics.UI\ExtJs\analytics"; sencha app build -c; Pop-Location }
+function Start-BuildSencha {
+    param(
+        [Parameter()]
+        [ValidateSet('analytics', 'design-lab', 'downloads', 'ext', 'fetch', 'home', 'packages', 'salesforce', 'subscription')]
+        [string[]] $Name = 'analytics'
+    )
+
+    $Name | ForEach-Object {
+        Push-Location "${ANALYTICS}\eA.Analytics.UI\ExtJs\$_";
+        sencha app refresh --packages;
+        sencha app build -c;
+        Pop-Location
+    }
+}
 function Start-MessageHandler { . ${SHARED_API}\eA.Shared.API.Service\bin\eA.Shared.API.Service.exe }
 function Reset-IIS { Start-ProcessAsAdmin { iisreset.exe } }
 
@@ -90,10 +103,10 @@ function Start-VisualStudio
 {
     [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = "ByPath")]
     param(
-        [Parameter(ParameterSetName = "ByPath")]
+        [Parameter(ParameterSetName = "ByPath", Position = 0)]
         [string[]] $Path = "*.sln",
 
-        [Parameter(ParameterSetName = "ByProject", Position = 0)]
+        [Parameter(ParameterSetName = "ByProject")]
         [ValidateSet("Analytics", "SharedApi", "Currency")]
         [string[]] $Project = @("Analytics", "SharedApi", "Currency")
     )
@@ -161,7 +174,7 @@ function Send-Email
         [string] $Body,
         [switch] $Html,
         [string] $Host = "ev-smtp.evestment.local",
-        [int] $Port = 25 
+        [int] $Port = 25
     )
     $smtpClient = New-Object System.Net.Mail.SmtpClient
     $smtpClient.Host = "ev-smtp.evestment.local"
@@ -179,4 +192,3 @@ function Send-Email
 
     $smtpClient.Send($mailMessage)
 }
-

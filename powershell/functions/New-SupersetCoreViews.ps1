@@ -41,7 +41,7 @@ WHERE [b].[IsActive] = 1
             $select.Where = "OBJECT_SCHEMA_NAME(t.[object_id]) = '$SourceSchema'"
             Invoke-SqlSelect -Query $select -ServerInstance $ServerInstance -Database $Database
         }
-    
+
         function Get-Columns
         {
             param(
@@ -59,7 +59,7 @@ WHERE [b].[IsActive] = 1
             $select.Where = "c.[object_id] = $ObjectId"
             Invoke-SqlSelect -Query $select -ServerInstance $ServerInstance -Database $Database
         }
-    
+
         function New-CreateViewSql
         {
             param(
@@ -69,16 +69,16 @@ WHERE [b].[IsActive] = 1
                 [string] $TargetSchema
             )
             Set-StrictMode -Version Latest
-    
+
             $columnSql = ($Columns |
                     Where-Object { $_.Name -ne "BatchId" } |
                     Sort-Object Id |
                     Select-Object -ExpandProperty Name |
                     ForEach-Object { "[$TableAlias].[$_]" } ) -join "`r`n`t,"
-            
+
             $viewName = "[$TargetSchema].[$($Table.Name)]"
             $tableName = "[$($Table.SchemaName)].[$($Table.Name)]"
-    
+
             $viewSql = $ViewTemplate -f $viewName, $tableName, "[$TableAlias]", $columnSql
             Write-Output $viewSql
         }
@@ -97,7 +97,7 @@ WHERE [b].[IsActive] = 1
             $sql = New-CreateViewSql -Table $t -Columns $columns -TargetSchema $TargetSchema
             $fileName = $TargetSchema, $t.Name -join '.'
             $filePath = "$Path\superset\Views\$fileName.sql"
-    
+
             $sql | Set-Content -Path $filePath
         }
     }
