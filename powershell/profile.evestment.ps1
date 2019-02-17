@@ -4,7 +4,7 @@ if (Test-Path "C:\Source\TeamMembers\seb-posh-tools\profile.ps1")
 }
 
 $env:USERINITIALS = 'SEB'
-$TASKS = "${USR}\tasks"
+$env:TICKETS_PATH = "${USR}\tasks"
 Set-Alias cdk Set-TicketLocation
 Set-Alias co Open-GitBranch
 

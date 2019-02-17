@@ -22,7 +22,7 @@ $env:PATH = "${env:PATH};C:\ProgramData\Anaconda3\Scripts"
 # posh dev
 $env:PsModulePath = (Join-Path $SRC 'ps-notes'), $env:PsModulePath -join ';'
 $env:PsModulePath = (Join-Path $SRC 'ps-tools'), $env:PsModulePath -join ';'
-# $env:PsModulePath = (Join-Path $SRC 'ps-templates'), $env:PsModulePath -join ';'
+$env:PsModulePath = (Join-Path $SRC 'ps-templates'), $env:PsModulePath -join ';'
 
 # Notes
 $env:NOTES_PATH = "${env:HOME}\Dropbox\sync\notes"
@@ -87,65 +87,7 @@ function Get-TrimmedWorkingDirectory
     return $curPath
 }
 
-function Get-AllChildItems
-{
-    Get-ChildItem -Attributes Hidden, !Hidden
-}
-
-function Get-ParentLocation
-{
-    (Get-Location | Get-Item -Force).Parent
-}
-
-function Set-ParentLocation
-{
-    Set-Location (Get-ParentLocation).FullName
-}
-
-function Set-GrandParentLocation
-{
-    Set-ParentLocation
-    Set-ParentLocation
-}
-
-function Set-LocationAndGetChildItem
-{
-    param($Path)
-    Set-Location $Path
-    Get-ChildItem
-}
-
-function New-ItemAndSetLocation
-{
-    param($Path)
-    $ErrorActionPreference = "Stop"
-    New-Item -Name $Path -ItemType "Directory" | Set-Location
-}
-
-function Get-HeadContent
-{
-    param($Path, $n = 20)
-    Get-Content $Path -Head $n
-}
-
-function Get-TailContent
-{
-    param($Path, $n = 20)
-    Get-Content $Path -Tail $n
-}
-
 function gl { (git lasta) }
-
-# Aliases
-Set-Alias ".." Set-ParentLocation
-Set-Alias "..." Set-GrandParentLocation
-Set-Alias cl Set-LocationAndGetChildItem
-Set-Alias la Get-AllChildItems
-Set-Alias mkcd New-ItemAndSetLocation
-Set-Alias head Get-HeadContent
-Set-Alias tail Get-TailContent
-Set-Alias touch New-Item
-Set-Alias grep Select-String
 
 # Additional profiles
 if ($env:USERDOMAIN -eq "EVESTMENT")

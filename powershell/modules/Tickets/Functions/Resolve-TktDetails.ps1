@@ -1,15 +1,17 @@
-function New-ScratchNote
+function Resolve-TktDetails
 {
     [CmdletBinding()]
     Param(
-        [Parameter(Position = 1)]
+        [Parameter()]
         [string] $Issue,
+
         [Parameter()]
         [string] $Name
     )
     Process
     {
         Set-StrictMode -Version Latest
+
         if (Test-GitRepository)
         {
             $branchDetails = Get-BranchDetails
@@ -17,8 +19,9 @@ function New-ScratchNote
             $Name = if ($Name) { $Name } else { $branchDetails.Summary }
         }
 
-        $title = "${Issue} - $Name"
-
-        New-Note -Title $title
+        [PSCustomObject] @{
+            Issue = $Issue
+            Name = $Name
+        }
     }
 }
