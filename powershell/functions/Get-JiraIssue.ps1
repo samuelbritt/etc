@@ -3,14 +3,14 @@ function Get-JiraIssue
     [CmdletBinding()]
     param([string] $Issue)
     Set-StrictMode -Version Latest
-    
+
     function New-JiraTicket
     {
         param(
             [Parameter(ValueFromPipeline = $true)]
             [psobject] $Response
         )
-    
+
         process
         {
             $properties = @{
@@ -24,33 +24,33 @@ function Get-JiraIssue
                 Project = $Response.fields.project.name
                 Assignee = $null
             }
-    
+
             if ($Response.fields.assignee)
             {
                 $properties.Assignee = $Response.fields.assignee.name
             }
-    
+
             New-Object psobject -Property $properties
         }
     }
-    
+
     $username = Get-Config jira.username
     $password = Get-Config jira.password
     $baseurl = Get-Config jira.baseurl
-    
+
     if (-not ($username -and $password))
     {
         throw "could not find jira authentication credentials"
     }
-    
+
     if (-not $baseurl)
     {
         throw "could not find jira base url"
     }
-    
+
     $header = Get-BasicAuthHeader -Username $username -Password $password
     $url = "$baseurl/issue/$Issue"
-    
+
     try
     {
         Invoke-RestMethod -Method Get -ContentType application/json -Uri $url -Headers $header |

@@ -6,7 +6,7 @@ if (-not (Test-Path $ETCPATH))
     throw "Could not find path $ETCPATH"
 }
 
-# Environment varaibles
+# Environment variables
 $CYGHOME = "C:\cygwin64\home\${env:USERNAME}"
 $USR = Join-Path $HOME 'usr'
 $SRC = Join-Path $USR 'src'
@@ -152,4 +152,3 @@ if ($env:USERDOMAIN -eq "EVESTMENT")
 {
     . "$ETCPATH/powershell/profile.evestment.ps1"
 }
-
