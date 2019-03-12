@@ -1,3 +1,4 @@
+[CmdletBinding()]
 param(
     [switch] $NoPackageInstall
 )
@@ -63,7 +64,7 @@ process
         }
     )
 
-    if ($env:USERDOMAIN -eq "EVESTMENT")
+    if ($env:USERDOMAIN -eq "EVESTMENT" -or $env:USERDOMAIN -eq "ORG")
     {
         $symLinks += @(
             @{

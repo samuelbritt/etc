@@ -26,7 +26,7 @@ $env:PsModulePath = (Join-Path $SRC 'ps-templates'), $env:PsModulePath -join ';'
 
 # Notes
 $env:NOTES_PATH = "${env:HOME}\Dropbox\sync\notes"
-Import-Module Notes
+if (Get-Module Notes -ListAvailable) { Import-Module Notes }
 
 # bash-like completion
 Set-PSReadlineKeyHandler -Key "Tab" -Function "Complete"
@@ -90,7 +90,7 @@ function Get-TrimmedWorkingDirectory
 function gl { (git lasta) }
 
 # Additional profiles
-if ($env:USERDOMAIN -eq "EVESTMENT")
+if ($env:USERDOMAIN -eq "EVESTMENT" -or $env:USERDOMAIN -eq "ORG")
 {
     . "$ETCPATH/powershell/profile.evestment.ps1"
 }
