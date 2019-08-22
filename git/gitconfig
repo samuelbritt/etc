@@ -6,6 +6,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
+	autocrlf = true
 [alias]
 	ci = commit
 	cim = commit -m
@@ -23,3 +24,7 @@
 [include]
 	path = ".git.windows.config"
 	path = ".git.evestment.config"
+[push]
+	default = simple
+[merge]
+	tool = kdiff3

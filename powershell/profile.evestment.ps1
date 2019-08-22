@@ -1,10 +1,12 @@
-if (Test-Path "C:\Source\TeamMembers\seb-posh-tools\profile.ps1")
+$poshToolsPath = "C:\Source\zzUtilities\posh-tools"
+if (Test-Path "$poshToolsPath\profile.ps1")
 {
-    . "C:\Source\TeamMembers\seb-posh-tools\profile.ps1"
+    . "$poshToolsPath\profile.ps1"
 }
 
 $env:USERINITIALS = 'SEB'
-$env:TICKETS_PATH = "${USR}\tasks"
+$env:TICKETS_PATH = "${env:OneDrive}\tasks"
+$env:NOTES_PATH = "${env:OneDrive}\notes"
 Set-Alias cdk Set-TicketLocation
 Set-Alias co Open-GitBranch
 

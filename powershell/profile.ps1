@@ -1,6 +1,10 @@
 Import-Module posh-git
 
-$ETCPATH = "${HOME}\usr\etc"
+# System environment variables
+$env:HOMEDRIVE = "C:"
+$env:HOME = "${env:HOMEDRIVE}\Users\${env:USERNAME}"
+
+$ETCPATH = "${env:HOME}\usr\etc"
 if (-not (Test-Path $ETCPATH))
 {
     throw "Could not find path $ETCPATH"
@@ -8,16 +12,20 @@ if (-not (Test-Path $ETCPATH))
 
 # Environment variables
 $CYGHOME = "C:\cygwin64\home\${env:USERNAME}"
-$USR = Join-Path $HOME 'usr'
+$USR = Join-Path ${env:HOME} 'usr'
 $SRC = Join-Path $USR 'src'
 
 # etc
 Get-ChildItem (Join-Path $ETCPATH 'powershell\functions') -Include *.ps1 -Recurse | ForEach-Object { . $_.FullName }
 $env:PsModulePath = (Join-Path $ETCPATH 'powershell\modules'), $env:PsModulePath -join ';'
 
+# bin
+$env:PATH = "${env:PATH};${USR}\bin"
+
 # python dev
-$env:PATH = "${env:PATH};C:\ProgramData\Anaconda3"
-$env:PATH = "${env:PATH};C:\ProgramData\Anaconda3\Scripts"
+# $env:PATH = "${env:PATH};C:\ProgramData\Anaconda3"
+# $env:PATH = "${env:PATH};C:\ProgramData\Anaconda3\Scripts"
+
 
 # posh dev
 $env:PsModulePath = (Join-Path $SRC 'ps-notes'), $env:PsModulePath -join ';'
